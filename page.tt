@@ -19,15 +19,39 @@ a { color: #04c; }
   font-size: 18px;
   font-weight: bold;
 }
+
+#logo a {
+  background-color: #04c;
+  color: #FFF;
+  text-decoration: none;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Gadget;
+}
+
+#issue {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  font-size: 18px;
+}
+
 </style>
 
 <table border="0" cellpadding="0" cellspacing="0" width="620" align="center"><tr bgcolor="#ffffff">
 <tr>
 <td>
-<p style="border-bottom: 1px solid #ccc; padding-bottom: 8px; font-size: 1.2em">
-<a href="http://perlweekly.com/"><img src="http://perlweekly.com/logosmall.gif" alt="Perl Weekly" width="229" height="39" style="margin-bottom: 10px; border: 0" /></a>
-<br /><small>[% title %]</small>
+
+[% IF email %]
+You can <a href="http://perlweekly.com/">read the newsletter on the web</a>, if you prefer.
+[% END %]
+
+<p id="logo">
+<a href="http://perlweekly.com/">Perl &#x2318; Weekly</a>
 </p>
+<p id="issue">
+[% title %]
+</p>
+
 
 [% FOR text IN header %]
 <p>
@@ -45,11 +69,8 @@ a { color: #04c; }
      </p>
    [% END %]
 [% END %]
-</td></tr></table>
-
 
 [% IF web %]
-
 You know, you could get this report right in your mailbox. Every Week. Free of charge!
 
 <form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
@@ -57,6 +78,25 @@ You know, you could get this report right in your mailbox. Every Week. Free of c
 <span class="label">and click here:</span>
 <input type="submit" value="Sign Me Up!" />
 </form>
+[% END %]
+
+
+[% IF email %]
+<p>
+You joined the Perl Weekly to get weekly e-mails about the Perl programming language and related topics.
+Want to see more? See <a href="http://perlweekly.com/archive/">the archives</a> of all the issues.
+
+Reading this as a non-subscriber? <a href="http://perlweekly.com/">click here to join us</a> free of charge.
+(c) Gabor Szabo
+You can <a href="http://perlweekly.com/unsubscribe.html">unsubscribe here</a> if you don't want to receive mails any more.
+</p>
+[% END %]
+
+</td></tr></table>
+
+
+[% IF web %]
+
 
 
 <script type="text/javascript">
