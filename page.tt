@@ -1,0 +1,78 @@
+<html><head>
+  <title>Perl Weekly [% title %]</title>
+</head>
+<body>
+
+<style>
+table { font-family: helvetica, arial, sans-serif; }
+p { margin: 1.2em 0em 1.35em 0em; line-height: 1.4em; }
+a { color: #04c; }
+
+.entry {
+   margin-left: 1.5em;
+}
+.entry a {
+  font-size: 18px;
+  font-weight: bold;
+}
+.subtitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+</style>
+
+<table border="0" cellpadding="0" cellspacing="0" width="620" align="center"><tr bgcolor="#ffffff">
+<tr>
+<td>
+<p style="border-bottom: 1px solid #ccc; padding-bottom: 8px; font-size: 1.2em">
+<a href="http://perlweekly.com/"><img src="http://perlweekly.com/logosmall.gif" alt="Perl Weekly" width="229" height="39" style="margin-bottom: 10px; border: 0" /></a>
+<br /><small>[% title %]</small>
+</p>
+
+[% FOR text IN header %]
+<p>
+[% text %]
+</p>
+[% END %]
+
+[% FOR ch IN chapters %]
+   <p class="subtitle">[% ch.title %]</p>
+   [% FOR e IN ch.entries %]
+     <p class="entry">
+     <a href="[% e.url %]">[% e.title %]</a>
+     <br />
+     [% e.text %]
+     </p>
+   [% END %]
+[% END %]
+</td></tr></table>
+
+
+[% IF web %]
+
+You know, you could get this report right in your mailbox. Every Week. Free of charge!
+
+<form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+<span class="label">Just type in your e-mail:</span><input name="email" />
+<span class="label">and click here:</span>
+<input type="submit" value="Sign Me Up!" />
+</form>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12199211-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+[% END %]
+
+</body>
+</html>
