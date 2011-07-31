@@ -35,6 +35,11 @@ a { color: #04c; }
   font-size: 18px;
 }
 
+#footer {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
 </style>
 
 <table border="0" cellpadding="0" cellspacing="0" width="620" align="center"><tr bgcolor="#ffffff">
@@ -71,6 +76,8 @@ You can <a href="http://perlweekly.com/">read the newsletter on the web</a>, if 
 [% END %]
 
 [% IF web %]
+<div id="footer">
+<p>
 You know, you could get this report right in your mailbox. Every Week. Free of charge!
 
 <form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
@@ -78,10 +85,13 @@ You know, you could get this report right in your mailbox. Every Week. Free of c
 <span class="label">and click here:</span>
 <input type="submit" value="Sign Me Up!" />
 </form>
+</p>
+</div>
 [% END %]
 
 
 [% IF email %]
+<div id="footer">
 <p>
 You joined the Perl Weekly to get weekly e-mails about the Perl programming language and related topics.
 Want to see more? See <a href="http://perlweekly.com/archive/">the archives</a> of all the issues.
@@ -90,6 +100,7 @@ Reading this as a non-subscriber? <a href="http://perlweekly.com/">click here to
 (c) Gabor Szabo
 You can <a href="http://perlweekly.com/unsubscribe.html">unsubscribe here</a> if you don't want to receive mails any more.
 </p>
+<div>
 [% END %]
 
 </td></tr></table>
