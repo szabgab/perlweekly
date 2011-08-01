@@ -5,26 +5,29 @@ use warnings;
 use Getopt::Long qw(GetOptions);
 use MIME::Lite::HTML;
 use MIME::Lite;
+use Cwd qw(abs_path cwd);
 
-my $to   = 'gabor@perl.org.il';  
-my $from = 'gabor@szabgab.com';
+my %opt;
+GetOptions(\%opt,
+	'to=s',
+	'issue=i',
+) or die;
+die if not $opt{to} or not $opt{issue};
 
-my $issue = 'next';
+my $from = 'Gabor Szabo <gabor@szabgab.com>';
 
-my $subject = 'The current Perl Weekly News - Issue #' . $issue;
+my $subject = 'The current Perl Weekly News - Issue #' . $opt{issue};
 my $host = 'szabgab.com';
-my $url  = "http://perlweekly.com/archive/$issue.html";
+my $html = qx{$^X bin/generate.pl mail $opt{issue}};
 
-my $msg = MIME::Lite::HTML->new(
-#my $msg = MIME::Lite->new(
-	From     => $to,
-	To       => $to,
-	Url      => $url,
+my $msg = MIME::Lite->new(
+	From     => $from,
+	To       => $opt{to},
+	Type     => 'text/html',
 	Subject  => $subject,
-#	Data     => 'Content',
+	Data     => $html,
 );
 
+$msg->attr('content-type.charset' => 'UTF-8');
 
-#print "prepared\n";
-#$msg->send('smtp', $host, Debug => 1, Timeout => 5);
-#$msg->send;
+$msg->send;

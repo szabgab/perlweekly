@@ -13,19 +13,14 @@ table { font-family: helvetica, arial, sans-serif; }
 p { margin: 1.2em 0em 1.35em 0em; line-height: 1.4em; }
 a { color: #04c; }
 
-.entry {
-   margin-left: 1.5em;
-}
-.entry a {
-  font-size: 18px;
-  font-weight: bold;
-}
-.subtitle {
-  font-size: 18px;
-  font-weight: bold;
-}
+</style>
 
-#logo a {
+<table border="0" cellpadding="0" cellspacing="0" width="620" align="center"><tr bgcolor="#ffffff">
+<tr>
+<td>
+
+<p id="logo">
+<a href="http://perlweekly.com/" style="
   background-color: #088;
   color: #FFF;
   text-decoration: none;
@@ -37,36 +32,21 @@ a { color: #04c; }
   -webkit-border-radius: 5px;
   border: 1px solid #000;
   padding: 10px;
+">Perl Weekly</a>
 
-}
-
-#issue {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 8px;
-  font-size: 18px;
-}
-
-#footer {
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-}
-
-</style>
-
-<table border="0" cellpadding="0" cellspacing="0" width="620" align="center"><tr bgcolor="#ffffff">
-<tr>
-<td>
-
-[% IF email %]
-You can <a href="http://perlweekly.com/">read the newsletter on the web</a>, if you prefer.
-[% END %]
-
-<p id="logo">
-<a href="http://perlweekly.com/">Perl Weekly</a>
 </p>
-<p id="issue">
+<p id="issue"
+  style="border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  font-size: 18px;">
 [% title %]
 </p>
+
+[% IF mail %]
+<div style="text-align: center">
+You can <a href="http://perlweekly.com/archive/[% issue %].html">read the newsletter on the web</a>, if you prefer.
+</div>
+[% END %]
 
 
 [% FOR text IN header %]
@@ -76,10 +56,15 @@ You can <a href="http://perlweekly.com/">read the newsletter on the web</a>, if 
 [% END %]
 
 [% FOR ch IN chapters %]
-   <p class="subtitle">[% ch.title %]</p>
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">[% ch.title %]</p>
    [% FOR e IN ch.entries %]
-     <p class="entry">
-     <a href="[% e.url %]">[% e.title %]</a>
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="[% e.url %]" style="
+  font-size: 18px;
+  font-weight: bold;
+">[% e.title %]</a>
      <br />
      [% e.text %]
      </p>
@@ -87,7 +72,10 @@ You can <a href="http://perlweekly.com/">read the newsletter on the web</a>, if 
 [% END %]
 
 [% IF web %]
-<div id="footer">
+<div id="footer" style="
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+">
 <p>
 You know, you could get this report right in your mailbox. Every Week. Free of charge!
 
@@ -101,14 +89,19 @@ You know, you could get this report right in your mailbox. Every Week. Free of c
 [% END %]
 
 
-[% IF email %]
-<div id="footer">
+[% IF mail %]
+<div id="footer" style="
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+">
 <p>
 You joined the Perl Weekly to get weekly e-mails about the Perl programming language and related topics.
+<br />
 Want to see more? See <a href="http://perlweekly.com/archive/">the archives</a> of all the issues.
-
+<br />
 Reading this as a non-subscriber? <a href="http://perlweekly.com/">click here to join us</a> free of charge.
-(c) Gabor Szabo
+<br />
+(c) <a href="http://szabgab.com/">Gabor Szabo</a></p>
 You can <a href="http://perlweekly.com/unsubscribe.html">unsubscribe here</a> if you don't want to receive mails any more.
 </p>
 <div>
@@ -118,9 +111,6 @@ You can <a href="http://perlweekly.com/unsubscribe.html">unsubscribe here</a> if
 
 
 [% IF web %]
-
-
-
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
