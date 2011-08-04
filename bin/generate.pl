@@ -3,9 +3,12 @@ use strict;
 use warnings;
 
 use Data::Dumper qw(Dumper);
-use Template;
-use JSON qw(from_json);
-use File::Slurp qw(read_file);
+use Encode       qw(decode);
+use File::Slurp  qw(read_file);
+use JSON         qw(from_json);
+use Template     qw();
+use XML::RSS     qw();
+
 
 my ($target, $issue) = @ARGV;
 if (not $target
@@ -30,3 +33,53 @@ $data->{$target} = 1;
 $data->{issue} = $issue;
 
 $t->process('page.tt', $data);
+
+generate_rss($data);
+exit;
+
+
+sub generate_rss {
+    my ($data) = @_;
+
+    my $url = 'http://perlweekly.com/';
+    my $rss = XML::RSS->new( version => '1.0' );
+    my $year = 1900 + (localtime)[5];
+    $rss->channel(
+        title       => 'Perl Weekly newsletter',
+        link        => $url,
+        description => 'A free, once a week e-mail round-up of hand-picked news and articles about Perl.',
+        dc => {
+            language  => 'en-us',
+            publisher => 'szabgab@gmail.com',
+            rights    => "Copyright 2011-$year, Gabor Szabo",
+        },
+        syn => {
+            updatePeriod     => "weekly",
+            updateFrequency  => "1",
+            updateBase       => "2011-08-01T00:00+00:00",
+        }
+    );
+
+#    $data->{title};
+#    $data->{header};
+    foreach my $ch (@{ $data->{chapters} }) {
+        #$ch->{title}
+        foreach my $e (@{ $ch->{entries} }) {
+            my $text = $e->{text};
+            $rss->add_item(
+                title => decode('utf-8', $e->{title}),
+                link  => $e->{url}, 
+                description => decode('utf-8', $e->{text}),
+                #dc => {
+                #    creator => '???', # TODO should be the author of the original article
+                #    date    => POSIX::strftime("%Y-%m-%dT%H:%M:%S+00:00", localtime $e->{timestamp},
+                #    subject => 'list of tags?',
+            );
+        }
+    }
+  
+    #rss_item_count();
+    $rss->save( 'html/perlweekly.rss' );
+    return;
+    #return $rss->as_string;
+}
