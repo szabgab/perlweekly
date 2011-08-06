@@ -13,12 +13,13 @@ use XML::RSS     qw();
 my ($target, $issue) = @ARGV;
 if (not $target
 	or not $issue
-	or $target !~ /^(mail|web)$/
+	or $target !~ /^(mail|web|rss)$/
 	or not $issue) {
 	warn <<"END_USAGE";
 Usage: $0 
-   web   ISSUE 
+   web   ISSUE
    mail  ISSUE
+   rss   ISSUE
    
    ISSUE is a number or the word sources
 END_USAGE
@@ -32,10 +33,10 @@ my $data = from_json scalar read_file "src/$issue.json";
 $data->{$target} = 1;
 $data->{issue} = $issue;
 
-$t->process('page.tt', $data);
-
-if ($issue =~ /^\d+$/) {
+if ($target eq 'rss') {
    generate_rss($data);
+} else {
+   $t->process('page.tt', $data);
 }
 exit;
 
