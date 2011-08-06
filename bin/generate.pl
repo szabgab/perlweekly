@@ -34,7 +34,9 @@ $data->{issue} = $issue;
 
 $t->process('page.tt', $data);
 
-generate_rss($data);
+if ($issue =~ /^\d+$/) {
+   generate_rss($data);
+}
 exit;
 
 
