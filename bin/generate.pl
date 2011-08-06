@@ -14,13 +14,13 @@ my ($target, $issue) = @ARGV;
 if (not $target
 	or not $issue
 	or $target !~ /^(mail|web)$/
-	or $issue =~ /\D/) {
+	or not $issue) {
 	warn <<"END_USAGE";
 Usage: $0 
    web   ISSUE 
    mail  ISSUE
    
-   ISSUE is a number
+   ISSUE is a number or the word sources
 END_USAGE
 	exit;
 }
