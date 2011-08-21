@@ -13,12 +13,13 @@ use XML::RSS     qw();
 my ($target, $issue) = @ARGV;
 if (not $target
 	or not $issue
-	or $target !~ /^(mail|web|rss)$/
+	or $target !~ /^(mail|text|web|rss)$/
 	or not $issue) {
 	warn <<"END_USAGE";
 Usage: $0 
    web   ISSUE
-   mail  ISSUE
+   mail  ISSUE          an html version to be sent by e-mail
+   text  ISSUE          a text version to be sent by e-mail
    rss   ISSUE
    
    ISSUE is a number or the word sources
@@ -35,6 +36,8 @@ $data->{issue} = $issue;
 
 if ($target eq 'rss') {
    generate_rss($data);
+} elsif ($target eq 'text') {
+   $t->process('text.tt', $data);
 } else {
    $t->process('page.tt', $data);
 }

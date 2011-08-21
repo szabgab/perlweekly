@@ -24,6 +24,7 @@ if ($opt{subject}) {
 
 my $host = 'szabgab.com';
 my $html = qx{$^X bin/generate.pl mail $opt{issue}};
+my $text = qx{$^X bin/generate.pl text $opt{issue}};
 
 my $msg = MIME::Lite->new(
 	From     => $from,
@@ -33,6 +34,15 @@ my $msg = MIME::Lite->new(
 	Data     => $html,
 );
 
+$msg->attach(
+	TYPE     => 'text',
+	Data     => $text,
+);
+#$msg->attach(
+#	TYPE     => 'text/html',
+#	Data     => $html,
+#);
 $msg->attr('content-type.charset' => 'UTF-8');
 
 $msg->send;
+
