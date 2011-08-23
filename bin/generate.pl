@@ -7,6 +7,7 @@ use Encode       qw(decode);
 use File::Slurp  qw(read_file);
 use JSON         qw(from_json);
 use Template     qw();
+use Text::Wrap   qw(wrap);
 use XML::RSS     qw();
 
 
@@ -37,6 +38,14 @@ $data->{issue} = $issue;
 if ($target eq 'rss') {
    generate_rss($data);
 } elsif ($target eq 'text') {
+   foreach my $h (@{ $data->{header} }) {
+     $h = wrap('', '', $h);
+   }
+   foreach my $ch (@{ $data->{chapters} }) {
+      foreach my $e (@{ $ch->{entries} }) {
+          $e->{text} = wrap('', '  ', $e->{text});
+      }
+   }
    $t->process('text.tt', $data);
 } else {
    $t->process('page.tt', $data);
