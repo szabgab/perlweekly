@@ -29,20 +29,42 @@ my $text = qx{$^X bin/generate.pl text $opt{issue}};
 my $msg = MIME::Lite->new(
 	From     => $from,
 	To       => $opt{to},
-	Type     => 'text/html',
+	Type     => 'multipart/alternative',
 	Subject  => $subject,
-	Data     => $html,
+	#Data     => $text,
 );
 
-$msg->attach(
-	TYPE     => 'text',
+my $text_msg = MIME::Lite->new(
+	Type     => 'text',
 	Data     => $text,
+	Encoding => 'quoted-printable',
 );
-#$msg->attach(
-#	TYPE     => 'text/html',
-#	Data     => $html,
-#);
-$msg->attr('content-type.charset' => 'UTF-8');
+$text_msg->attr("content-type" => "text/plain; charset=UTF-8");
+#$text_msg->replace("MIME-Version" => "");
+$text_msg->replace("X-Mailer" => "");
+#$text_msg->replace("Content-Disposition" => "");
+$text_msg->attr('mime-version' => '');
+$text_msg->attr('Content-Disposition' => '');
+#$text_msg->attr('content-type.charset' => 'UTF-8');
+
+my $html_msg = MIME::Lite->new(
+	Type     => 'text',
+	Data     => $html,
+	Encoding => 'quoted-printable',
+);
+$html_msg->attr("content-type" => "text/html; charset=UTF-8");
+#$html_msg->replace("MIME-Version" => "");
+$html_msg->replace("X-Mailer" => "");
+#$html_msg->replace("Content-Disposition" => "");
+$html_msg->attr('mime-version' => '');
+$html_msg->attr('Content-Disposition' => '');
+
+
+
+
+$msg->attach($text_msg);
+$msg->attach($html_msg);
+
 
 $msg->send;
 
