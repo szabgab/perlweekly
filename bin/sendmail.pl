@@ -23,8 +23,9 @@ if ($opt{subject}) {
 }
 
 my $host = 'szabgab.com';
-my $html = qx{$^X bin/generate.pl mail $opt{issue}};
-my $text = qx{$^X bin/generate.pl text $opt{issue}};
+my %content;
+$content{html} = qx{$^X bin/generate.pl mail $opt{issue}};
+$content{text} = qx{$^X bin/generate.pl text $opt{issue}};
 
 my $msg = MIME::Lite->new(
 	From     => $from,
@@ -34,31 +35,24 @@ my $msg = MIME::Lite->new(
 	#Data     => $text,
 );
 
-my $text_msg = MIME::Lite->new(
-	Type     => 'text',
-	Data     => $text,
-	Encoding => 'quoted-printable',
+my %type = (
+	text => 'text/plain',
+	html => 'text/html',
 );
-$text_msg->attr("content-type" => "text/plain; charset=UTF-8");
-$text_msg->replace("X-Mailer" => "");
-$text_msg->attr('mime-version' => '');
-$text_msg->attr('Content-Disposition' => '');
 
-my $html_msg = MIME::Lite->new(
-	Type     => 'text',
-	Data     => $html,
-	Encoding => 'quoted-printable',
-);
-$html_msg->attr("content-type" => "text/html; charset=UTF-8");
-$html_msg->replace("X-Mailer" => "");
-$html_msg->attr('mime-version' => '');
-$html_msg->attr('Content-Disposition' => '');
+foreach my $t (qw(text html)) {
+	my $att = MIME::Lite->new(
+		Type     => 'text',
+		Data     => $content{$t},
+		Encoding => 'quoted-printable',
+	);
+	$att->attr("content-type" => "$type{$t}; charset=UTF-8");
+	$att->replace("X-Mailer" => "");
+	$att->attr('mime-version' => '');
+	$att->attr('Content-Disposition' => '');
 
-
-
-
-$msg->attach($text_msg);
-$msg->attach($html_msg);
+	$msg->attach($att);
+}
 
 
 $msg->send;
