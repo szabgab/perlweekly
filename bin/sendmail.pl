@@ -40,12 +40,9 @@ my $text_msg = MIME::Lite->new(
 	Encoding => 'quoted-printable',
 );
 $text_msg->attr("content-type" => "text/plain; charset=UTF-8");
-#$text_msg->replace("MIME-Version" => "");
 $text_msg->replace("X-Mailer" => "");
-#$text_msg->replace("Content-Disposition" => "");
 $text_msg->attr('mime-version' => '');
 $text_msg->attr('Content-Disposition' => '');
-#$text_msg->attr('content-type.charset' => 'UTF-8');
 
 my $html_msg = MIME::Lite->new(
 	Type     => 'text',
@@ -53,9 +50,7 @@ my $html_msg = MIME::Lite->new(
 	Encoding => 'quoted-printable',
 );
 $html_msg->attr("content-type" => "text/html; charset=UTF-8");
-#$html_msg->replace("MIME-Version" => "");
 $html_msg->replace("X-Mailer" => "");
-#$html_msg->replace("Content-Disposition" => "");
 $html_msg->attr('mime-version' => '');
 $html_msg->attr('Content-Disposition' => '');
 
