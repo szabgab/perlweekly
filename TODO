@@ -1,17 +1,4 @@
 
-1) Fetch list of users from Mailman (WWW::Mailman)
-2) Send e-mail directly to each person. Reduce the use of Mailman only for managing subscriptions.
-3) Create a redirection script that will get a unique URL and redirect the 
-   user to the real URL logging the requests.
-4) When generating the e-mail messages replace the real links with 
-   unique links pointing to counter created in 3)
-5) Create subscription management in Dwimmer 
-6) Move the whole thing over to use Dwimmer.
-
-
-*) add RSS and Atom feed for the feed junkies?
-
-
 After sending each post:
 *) Tweet about it
 *) Post about it on G+
@@ -32,5 +19,41 @@ http://www.reddit.com/r/perl/comments/j6285/perl_weekly_a_free_weekly_perl_email
 http://pradeeppant.com/2011/08/03/perl-weekly-newsletter/
 http://www.linuxtoday.com/developer/2011080500639NWCYDV
 http://www.i-programmer.info/news/98-languages/2862-perl-weekly-launched.html
+
+
+
+I got several complaints regarding the <a href="http://perlweekly.com/">Perl Weekly</a> from people who prefer to receive 
+it as plain text instead of HTML.
+I was sorry to hear that as the actual HTML is very minimalistic. I did not even include an image in the message
+but I accept their preference - after all I am mostly using text in my own e-mails - so I'd like to fix this ASAP.
+
+I have been using Mailman as the quick-and-dirty way to allow people to subscribe (and unsubscribe) and allow 
+me to send messages but from the beginning I wanted to use my own system.
+
+There are several things I'd like to have. Mailman might have some of them but surely not all. 
+
+I'd like to address the e-mails to the individuals and not to the mailing list.
+
+I'd also like to have some way to know how many people are actually reading the messages and
+clicking on the links. The third-party mailing list services provide this feature by replacing
+each link by a unique redirection link. They also embed a 1 pixel image in the HTML mail that
+will allow the client to see how many user have even opened the mail. The latter won't work
+in the text version but that's not critical.
+
+Those are features I'd like to have but I don't want to outsource them to some third party 
+mailing list provider.
+I'd like to see that my effort creating the newsletter really serves the subscribers 
+but I'd like to reduce the third parties collecting the same information.
+
+There are several thing that need to be done:
+
+<ol>
+<li>Fetch list of users from Mailman. Can be done with [dist://WWW::Mailman]</li>
+<li>Send e-mail directly to each person. Reduce the use of Mailman only for managing subscriptions.</li>
+<li>Create a redirection script that will get a unique URL and redirect the user to the real URL logging the requests.</li>
+<li>When generating the e-mail messages replace the real links with unique links pointing to the redirector.</li>
+<li>Create subscription management in Dancer that allows the setting HTML/Text.</li> 
+<li>Move the whole system to a real Dancer application.</li>
+</ul>
 
 
