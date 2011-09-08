@@ -2,13 +2,16 @@
 use strict;
 use warnings;
 
-use Data::Dumper qw(Dumper);
-use Encode       qw(decode);
-use File::Slurp  qw(read_file);
-use JSON         qw(from_json);
-use Template     qw();
-use Text::Wrap   qw(wrap);
-use XML::RSS     qw();
+use Capture::Tiny  qw(capture);
+use Data::Dumper   qw(Dumper);
+use Encode         qw(decode);
+use File::Basename qw(basename);
+use File::Slurp    qw(read_file);
+use JSON           qw(from_json);
+use List::Util     qw(max);
+use Template       qw();
+use Text::Wrap     qw(wrap);
+use XML::RSS       qw();
 
 
 my ($target, $issue) = @ARGV;
@@ -22,40 +25,70 @@ Usage: $0
    mail  ISSUE          an html version to be sent by e-mail
    text  ISSUE          a text version to be sent by e-mail
    rss   ISSUE
-   
+
    ISSUE is a number or the word sources
+
+   or we can also write
+
+   web all
+
 END_USAGE
 	exit;
 }
 
 
-my $t = Template->new();
-
-my $data = from_json scalar read_file "src/$issue.json";
-$data->{$target} = 1;
-$data->{issue} = $issue;
-
 if ($target eq 'rss') {
-   generate_rss($data);
-} elsif ($target eq 'text') {
-   foreach my $h (@{ $data->{header} }) {
-     $h = wrap('', '', $h);
-   }
-   foreach my $ch (@{ $data->{chapters} }) {
-      foreach my $e (@{ $ch->{entries} }) {
-          $e->{text} = wrap('', '  ', $e->{text});
-      }
-   }
-   $t->process('text.tt', $data);
+    generate_rss();
 } else {
-   $t->process('page.tt', $data);
+    if ($target eq 'web' and $issue eq 'all') {
+        my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
+        #die Dumper \@list;
+        foreach my $i (1 .. $max) {
+            $issue = $i;
+            my ($out, $err) = capture { generate() };
+            open my $fh, '>', "html/archive/$i.html" or die;
+            print $fh $out;
+        }
+        $target = 'rss';
+    } else {
+        generate();
+    }
 }
+
 exit;
+
+sub get_data {
+    my $data = from_json scalar read_file "src/$issue.json";
+    $data->{$target} = 1;
+    $data->{issue} = $issue;
+
+    return $data;
+}
+
+sub generate {
+    my $t = Template->new();
+    my $data = get_data();
+
+    if ($target eq 'text') {
+       foreach my $h (@{ $data->{header} }) {
+         $h = wrap('', '', $h);
+       }
+       foreach my $ch (@{ $data->{chapters} }) {
+          foreach my $e (@{ $ch->{entries} }) {
+              $e->{text} = wrap('', '  ', $e->{text});
+          }
+       }
+       $t->process('text.tt', $data);
+    } else {
+       $t->process('page.tt', $data);
+    }
+}
+    
 
 
 sub generate_rss {
-    my ($data) = @_;
 
+    my $data = get_data();
     my $url = 'http://perlweekly.com/';
     my $rss = XML::RSS->new( version => '1.0' );
     my $year = 1900 + (localtime)[5];
@@ -92,7 +125,7 @@ sub generate_rss {
             );
         }
     }
-  
+
     #rss_item_count();
     $rss->save( 'html/perlweekly.rss' );
     return;
