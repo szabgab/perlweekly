@@ -36,6 +36,7 @@ END_USAGE
 	exit;
 }
 
+my @issues;
 
 if ($target eq 'rss') {
     generate_rss();
@@ -50,6 +51,10 @@ if ($target eq 'rss') {
             print $fh $out;
         }
         $target = 'rss';
+        generate_rss();
+
+        my $t = Template->new();
+        $t->process('archive.tt', {issues => \@issues}, 'html/archive/index.html');
     } else {
         generate();
     }
@@ -73,6 +78,10 @@ sub get_data {
 sub generate {
     my $t = Template->new();
     my $data = get_data();
+    push @issues, {
+        number => $issue,
+        date   => $data->{date},
+    };
 
     if ($target eq 'text') {
        foreach my $h (@{ $data->{header} }) {
