@@ -61,6 +61,11 @@ sub get_data {
     my $data = from_json scalar read_file "src/$issue.json";
     $data->{$target} = 1;
     $data->{issue} = $issue;
+    my $title = delete($data->{title}) || '';
+    if ($title) {
+        $title = " - $title";
+    }
+    $data->{title} = "Issue #$issue - $data->{date}$title";
 
     return $data;
 }
