@@ -2,6 +2,9 @@
 use strict;
 use warnings;
 
+use lib '/home/gabor/perl5/local/lib/perl5',
+        '/home/gabor/perl5/local/lib/perl5/x86_64-linux-gnu-thread-multi';
+
 use CGI;
 use Email::Valid;
 use LWP::Simple qw(get);
