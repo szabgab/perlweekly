@@ -72,6 +72,7 @@ sub get_data {
     }
     $data->{title} = "Issue #$issue - $data->{date}$title";
 
+
     return $data;
 }
 
@@ -82,6 +83,15 @@ sub generate {
         number => $issue,
         date   => $data->{date},
     };
+
+
+    if ($target eq 'mail' or $target eq 'text') {
+        foreach my $ch (@{ $data->{chapters} }) {
+           foreach my $e (@{ $ch->{entries} }) {
+              $e->{url} = $e->{link} || $e->{url};
+           }
+        }
+    }
 
     if ($target eq 'text') {
        foreach my $h (@{ $data->{header} }) {
