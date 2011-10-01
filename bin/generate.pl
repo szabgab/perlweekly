@@ -16,11 +16,11 @@ use XML::RSS       qw();
 
 my ($target, $issue) = @ARGV;
 if (not $target
-	or not $issue
-	or $target !~ /^(mail|text|web|rss)$/
-	or not $issue) {
-	warn <<"END_USAGE";
-Usage: $0 
+    or not $issue
+    or $target !~ /^(mail|text|web|rss)$/
+    or not $issue) {
+    warn <<"END_USAGE";
+Usage: $0
    web   ISSUE
    mail  ISSUE          an html version to be sent by e-mail
    text  ISSUE          a text version to be sent by e-mail
@@ -33,7 +33,7 @@ Usage: $0
    web all
 
 END_USAGE
-	exit;
+    exit;
 }
 
 my @issues;
@@ -107,7 +107,7 @@ sub generate {
        $t->process('page.tt', $data);
     }
 }
-    
+
 
 
 sub generate_rss {
@@ -140,7 +140,7 @@ sub generate_rss {
             my $text = $e->{text};
             $rss->add_item(
                 title => decode('utf-8', $e->{title}),
-                link  => $e->{url}, 
+                link  => $e->{url},
                 description => decode('utf-8', $e->{text}),
                 #dc => {
                 #    creator => '???', # TODO should be the author of the original article
