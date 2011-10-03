@@ -54,7 +54,7 @@ if ($target eq 'rss') {
         generate_rss();
 
         my $t = Template->new();
-        $t->process('archive.tt', {issues => \@issues}, 'html/archive/index.html');
+        $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html');
     } else {
         generate();
     }
@@ -102,9 +102,9 @@ sub generate {
               $e->{text} = wrap('', '  ', $e->{text});
           }
        }
-       $t->process('text.tt', $data);
+       $t->process('tt/text.tt', $data);
     } else {
-       $t->process('page.tt', $data);
+       $t->process('tt/page.tt', $data);
     }
 }
 
