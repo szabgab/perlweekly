@@ -55,6 +55,8 @@ if ($target eq 'rss') {
 
         my $t = Template->new();
         $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html');
+        
+        $t->process('tt/index.tt', {}, 'html/index.html');
     } else {
         generate();
     }
