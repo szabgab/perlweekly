@@ -2,6 +2,8 @@
 use strict;
 use warnings;
 
+use autodie;
+
 use Capture::Tiny  qw(capture);
 use Data::Dumper   qw(Dumper);
 use Encode         qw(decode);
@@ -47,16 +49,16 @@ if ($target eq 'rss') {
         foreach my $i (1 .. $max) {
             $issue = $i;
             my ($out, $err) = capture { generate() };
-            open my $fh, '>', "html/archive/$i.html" or die;
+            open my $fh, '>', "html/archive/$i.html";
             print $fh $out;
         }
         $target = 'rss';
         generate_rss();
 
         my $t = Template->new();
-        $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html');
+        $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
         
-        $t->process('tt/index.tt', {latest => $max}, 'html/index.html');
+        $t->process('tt/index.tt', {latest => $max}, 'html/index.html') or die $t->error;
     } else {
         generate();
     }
@@ -104,9 +106,9 @@ sub generate {
               $e->{text} = wrap('', '  ', $e->{text});
           }
        }
-       $t->process('tt/text.tt', $data);
+       $t->process('tt/text.tt', $data) or die $t->error;
     } else {
-       $t->process('tt/page.tt', $data);
+       $t->process('tt/page.tt', $data) or die $t->error;
     }
 }
 
