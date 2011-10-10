@@ -57,7 +57,7 @@ if ($target eq 'rss') {
 
         my $t = Template->new();
         $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
-        $t->process('tt/index.tt', {latest => $max}, 'html/index.html') or die $t->error;
+        $t->process('tt/index.tt', {latest => $max, next => 'October 17'}, 'html/index.html') or die $t->error;
         foreach my $f (qw(thankyou unsubscribe)) {
               $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
         }
