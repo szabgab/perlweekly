@@ -41,34 +41,35 @@ END_USAGE
 my @issues;
 
 if ($target eq 'rss') {
-    generate_rss();
+    generate_rss($issue);
 } else {
     if ($target eq 'web' and $issue eq 'all') {
         my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
         #die Dumper \@list;
         foreach my $i (1 .. $max) {
-            $issue = $i;
-            my ($out, $err) = capture { generate() };
+            my ($out, $err) = capture { generate($i) };
             open my $fh, '>', "html/archive/$i.html";
             print $fh $out;
         }
         $target = 'rss';
-        generate_rss();
+        generate_rss($max);
 
         my $t = Template->new();
         $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
-        $t->process('tt/index.tt', {latest => $max, next => 'October 17'}, 'html/index.html') or die $t->error;
+        $t->process('tt/index.tt', {latest => $max, next_issue => 'October 17'}, 'html/index.html') or die $t->error;
         foreach my $f (qw(thankyou unsubscribe)) {
               $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
         }
     } else {
-        generate();
+        generate($issue);
     }
 }
 
 exit;
 
 sub get_data {
+    my $issue = shift;
+
     my $data = from_json scalar read_file "src/$issue.json";
     $data->{$target} = 1;
     $data->{issue} = $issue;
@@ -83,8 +84,10 @@ sub get_data {
 }
 
 sub generate {
+    my $issue = shift;
+
     my $t = Template->new();
-    my $data = get_data();
+    my $data = get_data($issue);
     push @issues, {
         number => $issue,
         date   => $data->{date},
@@ -117,8 +120,9 @@ sub generate {
 
 
 sub generate_rss {
+    my $issue = shift;
 
-    my $data = get_data();
+    my $data = get_data($issue);
     my $url = 'http://perlweekly.com/';
     my $rss = XML::RSS->new( version => '1.0' );
     my $year = 1900 + (localtime)[5];
