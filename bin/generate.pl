@@ -40,6 +40,13 @@ END_USAGE
 
 my @issues;
 
+my $count = 0;
+if (open my $fh, '<', 'src/count.txt') {
+	$count = <$fh>;
+	close $fh;
+}
+
+
 if ($target eq 'rss') {
     generate_rss($issue);
 } else {
@@ -57,7 +64,7 @@ if ($target eq 'rss') {
         my $next = get_data('next');
         my $t = Template->new();
         $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
-        $t->process('tt/index.tt', { latest => $max, next_issue => $next->{date} }, 'html/index.html') or die $t->error;
+        $t->process('tt/index.tt', { latest => $max, next_issue => $next->{date}, count => $count }, 'html/index.html') or die $t->error;
         foreach my $f (qw(thankyou unsubscribe outreach)) {
               $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
         }
