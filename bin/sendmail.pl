@@ -6,6 +6,8 @@ use Getopt::Long qw(GetOptions);
 use MIME::Lite::HTML;
 use MIME::Lite;
 use Cwd qw(abs_path cwd);
+use File::Slurp    qw(read_file);
+use JSON           qw(from_json);
 
 my %opt;
 GetOptions(\%opt,
@@ -26,6 +28,10 @@ my $host = 'szabgab.com';
 my %content;
 $content{html} = qx{$^X bin/generate.pl mail $opt{issue}};
 $content{text} = qx{$^X bin/generate.pl text $opt{issue}};
+my $data = from_json scalar read_file "src/$opt{issue}.json";
+if ($data->{subject}) {
+	$subject = "#$opt{issue} - $data->{subject}";
+}
 
 my $msg = MIME::Lite->new(
 	From     => $from,
