@@ -14,7 +14,7 @@ print $q->header;
 my $email = $q->param('email');
 
 if (not $email) {
-	warn "No e-mail given" if not $email;
+	warn "No e-mail given";
 } elsif (Email::Valid->address($email)) {
 	get("http://mail.perlweekly.com/mailman/subscribe/perlweekly?email=$email");
 } else {
