@@ -1,0 +1,411 @@
+<html>
+<head>
+  <title>Perl Weekly Issue #31 - February 27, 2012</title>
+
+ <link rel="stylesheet" type="text/css" href="/style.css" />
+ <script src="/js/jquery.js" type="text/javascript"></script>
+ <script src="/js/mailman.js" type="text/javascript"></script>
+ <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+</head>
+<body>
+
+<style>
+table { font-family: helvetica, arial, sans-serif; }
+p { margin: 1.2em 0em 1.35em 0em; line-height: 1.4em; }
+a { color: #04c; }
+
+</style>
+
+<table border="0" cellpadding="0" cellspacing="0" width="700" align="center"><tr bgcolor="#ffffff">
+<tr>
+<td>
+
+<p id="logo">
+<a href="http://perlweekly.com/" style="
+  background-color: #004065;
+  color: #FFF;
+  text-decoration: none;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Gadget;
+
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #000;
+  padding: 10px;
+">Perl Weekly</a>
+
+</p>
+<p id="issue"
+  style="border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  font-size: 18px;">
+Issue #31 - February 27, 2012
+</p>
+
+
+
+
+
+<p>
+Sorry for sending this late but I am a bit tense and busy with the Israeli Perl Workshop. It is tomorrow. We have over 120 people registered and we were just told that the allocated rooms are being renovated :).
+</p>
+
+<p>
+Luckily we already got new rooms but I still have to print out the name-tags, the schedule and a few signs to direct people to the rooms. So I am sending this out. I hope I have not made too many typos.
+</p>
+
+<p>
+Enjoy!
+</p>
+
+
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">Announcements</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://jjnapiorkowski.typepad.com/modern-perl/2012/02/dbixclassmigration-on-cpan.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">DBIx::Class::Migration on CPAN</a>
+     <br />
+     John Napiorkowski released the above module including a tutorial. I am really looking forward to trying it next week. The tutorial looks promising though it refers to a number of things you'll have to learn first, unless you already understand the difficulty in database schema upgrade and downgrade.
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://news.perlfoundation.org/2012/02/2012q1-grant-results.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">TPF: 2012Q1 Grant Results</a>
+     <br />
+     Two requests were approved. One was rejected and one was postponed to the next round.
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://domm.plix.at/perl/2012_02_21_app_archivedevelcover.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">App::ArchiveDevelCover 1.000</a>
+     <br />
+     Thomas Klausner (domm) likes checking test coverage and likes to see the progress he is making regarding to the coverage. So his new module allows you to save your previous test coverage report and create an index page for all the reports.
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://www.movabletype.org/2012/02/movable_type_513_507_and_438_security_updates.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">Movable Type 5.13, 5.07, and 4.38 Security Updates</a>
+     <br />
+     
+     </p>
+   
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">Articles</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://blogs.perl.org/users/jeffrey_kegler/2012/02/whats-new-with-marpa.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">What's new with Marpa</a>
+     <br />
+     Jeffrey Kegler has a new revision to the Marpa theory paper and provides some update on his plans and progress with Marpa::R2 and Milarepa.
+     </p>
+   
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">Perl Mongers</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://pradeeppant.com/2012/02/20/delhi-pm-perl-monger-user-group-need-suggestions/" style="
+  font-size: 18px;
+  font-weight: bold;
+">Delhi.pm Perl Monger user group: Need suggestions</a>
+     <br />
+     Pradeep Pant is trying to re-start the Delhi Perl Monger group and asked for help.
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://www.cluj.pm/" style="
+  font-size: 18px;
+  font-weight: bold;
+">Cluj.pm</a>
+     <br />
+     There is a new Perl Monger group being organized in Cluj Napoca in Transylvania, Romania. Matt S. Trout and Chisel Wright were invited to the opening. Please refrain from invoking Dracula jokes, Transylvania is beautiful!
+     </p>
+   
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">Testing</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://www.modernperlbooks.com/mt/2012/02/nagged-by-a-test-harness.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">Nagged by a Test Harness</a>
+     <br />
+     I totally with chromatic that warnings surfacing from dependencies of dependencies are very disturbing and I applaud his sending a patch. I don't agree that this nagging is pointless. It would be nice if we could eliminate all the warnings generated during test execution. In some cases those warnings point at actual issues in the code or in the way the code is used.
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://blogs.perl.org/users/su-shee/2012/02/smoothing-selenium-use.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">Smoothing Selenium Use</a>
+     <br />
+     Su-Shee describes how they built a DSL that fit their business language to express test cases of a complex ('rich' for people with positive attitude) web application. She shows some usage of the DSL (which is basically a set of method calls) and explains some of the issues they faced during the work.
+     </p>
+   
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">Code</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://perlservices.at/2012/02/25/extracting-data-from-a-japanese-dictionary/" style="
+  font-size: 18px;
+  font-weight: bold;
+">Extracting data from a Japanese dictionary</a>
+     <br />
+     Marcel Grunauer started a new blog and already published several interesting posts. In this one Hanekomu shows how he uses the XML based JMdict dictionary and creates JSon data structure that he can then use with JQuery. He also provides a couple of comments on how to deal with unicode that and how to speed up XML processing by a factor of 10. I hope he will stick to his frequent writings and I wish him success with his new company providing Perl development services!
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://www.pal-blog.de/entwicklung/perl/2012/think-looping.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">Think looping</a>
+     <br />
+     Frequent updates to a database and frequent opening of a file can be very time consuming. Sebastian Willing (Sewi) shows how he made his code much faster by some caching and by trading accuracy in the database, for speed.
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://oylenshpeegul.typepad.com/blog/2012/02/dumping-data-in-the-perl-repl.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">Dumping data in the Perl REPL</a>
+     <br />
+     
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://blog.kraih.com/mojolicious-hack-of-the-day-more-anyevent-oh" style="
+  font-size: 18px;
+  font-weight: bold;
+">Mojolicious hack of the day: More AnyEvent, oh my</a>
+     <br />
+     Another example from Sebastian Riedel (sri).
+     </p>
+   
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">Parrot</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://www.nntp.perl.org/group/perl.perl6.announce/2012/02/msg668.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">Parrot 4.1.0 'Black-headed Parrot' Released</a>
+     <br />
+     
+     </p>
+   
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">Screenshots</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://ahmadzawawi.blogspot.com/2012/02/padrepluginmoose-012.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">Padre::Plugin::Moose 0.12 </a>
+     <br />
+     Ahmad M. Zawawi (azawawi) is cranking out new versions of his Moose and Padre integration at a wonderful speed. He also keeps showing us screenshots which makes it much easier to understand what he is doing. I am really looking forward to using this in teaching Moose.
+     </p>
+   
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">Perl 6</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://rdstar.wordpress.com/2012/02/20/two-years-of-perl-6/" style="
+  font-size: 18px;
+  font-weight: bold;
+">Two Years of Perl 6!</a>
+     <br />
+     A personal account of two years locked in on the Rakudo Death Star
+     </p>
+   
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">Other</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://blogs.perl.org/users/salvador_fandino/2012/02/my-english-stinks-thank-you-for-patching-it.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">My English stinks, thank you for patching it!</a>
+     <br />
+     Salvador Fandino wrote this but I could have written as well. When reading documentation, blog post or comments in the Perl Weekly newsletter, it is important to remember that the author might not be a native English speaker. If you send us a nice comment on how to improve our grammar, we are usually grateful for that!
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://nxadm.wordpress.com/2012/02/25/be-nice-to-me-and-ill-be-nice-to-you-ebooks/" style="
+  font-size: 18px;
+  font-weight: bold;
+">Be nice to me and I'll be nice to you (ebooks) </a>
+     <br />
+     I did not know you can 'upgrade' your dead-tree O'Reilly books to eBooks for just $5. Claudio Ramirez (El-Che) has a point. If a corporation treats its customers with respect, those will do the same in return. Unfortunately many corporation don't do that.
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://people.csail.mit.edu/pgbovine/python/tutor.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">Online Python Tutor</a>
+     <br />
+     This is awesome. I want this for Perl as well!
+     </p>
+   
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">Training</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://www.learning-perl.com/?p=270" style="
+  font-size: 18px;
+  font-weight: bold;
+">Learning Perl Challenge: rhich</a>
+     <br />
+     brian d foy started a new series of Newbie Perl Challenges that publishes on Monday. Unfortunately a few hours after I send out the Perl Weekly. So I am a week late announcing it.
+     </p>
+   
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">The self promotion section</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://szabgab.com/what-is-a-perl-monger-group-for.html" style="
+  font-size: 18px;
+  font-weight: bold;
+">What is a Perl Monger group for?</a>
+     <br />
+     What is the value your Perl Monger group provides you? What would provide you with value that would make it worth for you to join? What does it mean to 'join' a Perl Monger group?
+     </p>
+   
+
+   <p class="subtitle" style="
+  font-size: 18px;
+  font-weight: bold;">Events</p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://conferences.yapceurope.org/gpw2012/" style="
+  font-size: 18px;
+  font-weight: bold;
+">German Perl workshop</a>
+     <br />
+     March 5-7, 2012, Erlangen, Germany
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://dcbpw.org/" style="
+  font-size: 18px;
+  font-weight: bold;
+">DC-Baltimore Perl workshop</a>
+     <br />
+     April 14, 2012, Catonsville, MD, USA
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://www.perlworkshop.nl/nlpw2012/" style="
+  font-size: 18px;
+  font-weight: bold;
+">Dutch Perl Workshop</a>
+     <br />
+     April 14, 2012, The Hague, The Netherlands
+     </p>
+   
+     <p class="entry" style="margin-left: 1.5em;">
+     <a href="http://yapcna.org/" style="
+  font-size: 18px;
+  font-weight: bold;
+">YAPC::NA</a>
+     <br />
+     June 13-15, 2012, Madison, Wisconsin, USA
+     </p>
+   
+
+
+
+
+
+</td></tr></table>
+
+
+<div id="main">
+<p>
+You know, you could get the Perl Weekly right in your mailbox. Every Week.<br>Free of charge!
+</p>
+  <div class="subform">
+    <form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+    <span class="formlabel">Enter your e-mail:</span>
+    <input class="emailinput" name="email" size="20" />
+    <input class="awesome_button" type="submit" value="and click to sign up!" />
+    </form>
+    <div class="onemail">
+      Just ONE e-mail each Monday. Easy to unsubscribe. No spam. Your e-mail address is safe.
+    </div>
+  </div>
+
+</div>
+
+<div id="footer" style="
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+">
+(C) Copyright <a href="http://szabgab.com/">Gabor Szabo</a>. The articles are copyright the respective authors.</p>
+</div>
+
+
+
+
+<a href="http://twitter.com/#!/perlweekly"><img src="/img/twitter32.png" alt="Perl Weekly on Twitter" /></a>
+<a href="https://plus.google.com/102874059713383300948"><img src="/img/gplus-32.png" alt="Perl Weekly page on Google+" /></a>
+<a href="http://www.facebook.com/PerlWeekly"><img src="/img/facebook32.png" alt="Like the Perl Weekly on FaceBook" /></a>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12199211-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!--<a title="Google Analytics Alternative" href="http://getclicky.com/66487408">
+<img alt="Google Analytics Alternative" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>-->
+
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(66487408); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66487408ns.gif" /></p></noscript>
+
+
+
+
+</body>
+</html>
