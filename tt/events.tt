@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+<title>Perl Weekly Events</title>
+ <link rel="stylesheet" type="text/css" href="/style.css" />
+ <script src="/js/jquery.js" type="text/javascript"></script>
+ <script src="/js/mailman.js" type="text/javascript"></script>
+</head>
+<body id="home">
+<div id="stripe">List of Perl Events</div>
+
+<div id="main">
+
+<p>
+These are the upcoming Perl events I know about. I usually include 3-4 of the closest events
+in the newsletter. If your Perl event is not listed here, please let <a href="http://szabgab.com/contact.html">me</a>
+know about it, and I'd be glad to include it.
+</p>
+
+
+<ul>
+[% FOR e IN events %]
+<li><a href="[% e.url %]">[% e.title %]</a> - [% e.text %]</li>
+[% END %]
+</ul>
+
+  <p>
+  If you are not yet subscribed, you can do it now. Free of charge:
+  </p>
+  <div class="subform">
+    <form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+    <span class="formlabel">Enter your e-mail:</span>
+    <input class="emailinput" name="email" size="20" />
+    <input class="awesome_button" type="submit" value="and click to sign up!" />
+    </form>
+    <div class="onemail">
+      Just ONE e-mail each Monday. Easy to unsubscribe. No spam. Your e-mail address is safe.
+    </div>
+  </div>
+
+</div>
+
+[% INCLUDE tt/incl/tracking.tt %]
+
+</body>
+</html>
