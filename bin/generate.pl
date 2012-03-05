@@ -67,7 +67,7 @@ if ($target eq 'rss') {
         $t->process('tt/index.tt',  { latest => $max, next_issue => $next->{date}, count => $count }, 'html/index.html') or die $t->error;
         my $events = from_json scalar read_file "src/events.json";
         $t->process('tt/events.tt', { events => $events->{entries} }, 'html/events.html') or die $t->error;
-        foreach my $f (qw(thankyou unsubscribe outreach)) {
+        foreach my $f (qw(thankyou unsubscribe promotion)) {
               $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
         }
     } else {
