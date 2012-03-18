@@ -44,24 +44,21 @@ if (open my $fh, '<', 'src/count.txt') {
 
 
 if ($target eq 'rss') {
-    generate_rss(get_data($issue));
+    PerlWeekly::Issue->new($issue)->generate_rss;
 } else {
     if ($target eq 'web' and $issue eq 'all') {
         my (@issues, $last);
         my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
         foreach my $i (1 .. $max) {
-            my $data = get_data($i);
+            my $issue = PerlWeekly::Issue->new($i);
             open my $fh, '>', "html/archive/$i.html";
-            print $fh generate($data);
-            push @issues, {
-                number => $i,
-                date   => $data->{date},
-            };
-            $last = $data;
+            print $fh $issue->generate($target);
+            push @issues, $issue;
+            $last = $issue;
         }
-        generate_rss($last);
+        $last->generate_rss;
 
-        my $next = get_data('next');
+        my $next = PerlWeekly::Issue->new('next');
         my $t = Template->new();
         $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
         $t->process('tt/index.tt',  { latest => $max, next_issue => $next->{date}, count => $count }, 'html/index.html') or die $t->error;
@@ -71,32 +68,38 @@ if ($target eq 'rss') {
               $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
         }
     } else {
-        print generate($issue);
+        print PerlWeekly::Issue->new($issue)->generate($target);
     }
 }
 
 exit;
 
-sub get_data {
-    my $issue = shift;
+package PerlWeekly::Issue;
 
-    my $data = from_json scalar read_file "src/$issue.json";
-    $data->{$target} = 1;
-    $data->{issue} = $issue;
-    my $sep = $data->{title} ? ' - ' : '';
-    $data->{title} = "Issue #$issue - $data->{date}$sep$data->{title}";
+sub new {
+    my $class = shift;
+    my ( $issue ) = @_;
 
+    my $self = from_json scalar read_file "src/$issue.json";
+    bless $self, $class;
 
-    return $data;
+    $self->{$target} = 1;
+    $self->{issue}  = $issue;
+    $self->{number} = $issue;
+    my $sep = $self->{title} ? ' - ' : '';
+    $self->{title} = "Issue #$issue - $self->{date}$sep$self->{title}";
+
+    return $self;
 }
 
 sub generate {
-    my $data = shift;
+    my $self = shift;
+    my $target = shift;
 
     my $t = Template->new();
 
     if ($target eq 'mail' or $target eq 'text') {
-        foreach my $ch (@{ $data->{chapters} }) {
+        foreach my $ch (@{ $self->{chapters} }) {
            foreach my $e (@{ $ch->{entries} }) {
               $e->{url} = $e->{link} || $e->{url};
            }
@@ -104,10 +107,10 @@ sub generate {
     }
 
     if ($target eq 'text') {
-       foreach my $h (@{ $data->{header} }) {
+       foreach my $h (@{ $self->{header} }) {
          $h = wrap('', '', $h);
        }
-       foreach my $ch (@{ $data->{chapters} }) {
+       foreach my $ch (@{ $self->{chapters} }) {
           foreach my $e (@{ $ch->{entries} }) {
               $e->{text} = wrap('', '  ', $e->{text});
           }
@@ -115,14 +118,14 @@ sub generate {
     }
 
     my $tmpl = $target eq 'text' ? 'tt/text.tt' : 'tt/page.tt';
-    $t->process($tmpl, $data, \my $out) or die $t->error;
+    $t->process($tmpl, $self, \my $out) or die $t->error;
     return $out;
 }
 
 
 
 sub generate_rss {
-    my $data = shift;
+    my $self = shift;
 
     my $url = 'http://perlweekly.com/';
     my $rss = XML::RSS->new( version => '1.0' );
@@ -143,9 +146,9 @@ sub generate_rss {
         }
     );
 
-#    $data->{title};
-#    $data->{header};
-    foreach my $ch (@{ $data->{chapters} }) {
+#    $self->{title};
+#    $self->{header};
+    foreach my $ch (@{ $self->{chapters} }) {
         #$ch->{title}
         foreach my $e (@{ $ch->{entries} }) {
             my $text = $e->{text};
