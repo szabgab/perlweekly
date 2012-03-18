@@ -5,7 +5,6 @@ use warnings;
 use autodie;
 
 use Capture::Tiny  qw(capture);
-use Data::Dumper   qw(Dumper);
 use Encode         qw(decode);
 use File::Basename qw(basename);
 use File::Slurp    qw(read_file);
@@ -52,7 +51,6 @@ if ($target eq 'rss') {
 } else {
     if ($target eq 'web' and $issue eq 'all') {
         my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
-        #die Dumper \@list;
         foreach my $i (1 .. $max) {
             my ($out, $err) = capture { generate($i) };
             open my $fh, '>', "html/archive/$i.html";
