@@ -92,22 +92,13 @@ sub generate {
     my $self = shift;
     my $target = shift;
     my @out = @_ ? shift : ();
-
-    if ($target eq 'web') {
-        return $self->process_tt('tt/page.tt', @out);
-    }
-    elsif ($target eq 'mail') {
-        return $self->fixup_links->process_tt('tt/page.tt', @out);
-    }
-    elsif ($target eq 'text') {
-        return $self->fixup_links->wrap_text->process_tt('tt/text.tt', @out);
-    }
-    elsif ($target eq 'rss') {
-        return $self->process_rss;
-    }
-    else {
+    return (
+        $target eq 'web'  ? $self                        ->process_tt('tt/page.tt', @out) :
+        $target eq 'mail' ? $self->fixup_links           ->process_tt('tt/page.tt', @out) :
+        $target eq 'text' ? $self->fixup_links->wrap_text->process_tt('tt/text.tt', @out) :
+        $target eq 'rss'  ? $self->process_rss :
         die "Unknown target '$target'\n";
-    }
+    );
 }
 
 sub fixup_links {
