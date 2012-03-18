@@ -37,8 +37,6 @@ END_USAGE
     exit;
 }
 
-my @issues;
-
 my $count = 0;
 if (open my $fh, '<', 'src/count.txt') {
 	$count = <$fh>;
@@ -47,17 +45,23 @@ if (open my $fh, '<', 'src/count.txt') {
 
 
 if ($target eq 'rss') {
-    generate_rss($issue);
+    generate_rss(get_data($issue));
 } else {
     if ($target eq 'web' and $issue eq 'all') {
+        my (@issues, $last);
         my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
         foreach my $i (1 .. $max) {
-            my ($out, $err) = capture { generate($i) };
+            my $data = get_data($i);
+            my ($out, $err) = capture { generate($data) };
             open my $fh, '>', "html/archive/$i.html";
             print $fh $out;
+            push @issues, {
+                number => $i,
+                date   => $data->{date},
+            };
+            $last = $data;
         }
-        $target = 'rss';
-        generate_rss($max);
+        generate_rss($last);
 
         my $next = get_data('next');
         my $t = Template->new();
@@ -89,15 +93,9 @@ sub get_data {
 }
 
 sub generate {
-    my $issue = shift;
+    my $data = shift;
 
     my $t = Template->new();
-    my $data = get_data($issue);
-    push @issues, {
-        number => $issue,
-        date   => $data->{date},
-    };
-
 
     if ($target eq 'mail' or $target eq 'text') {
         foreach my $ch (@{ $data->{chapters} }) {
@@ -125,9 +123,8 @@ sub generate {
 
 
 sub generate_rss {
-    my $issue = shift;
+    my $data = shift;
 
-    my $data = get_data($issue);
     my $url = 'http://perlweekly.com/';
     my $rss = XML::RSS->new( version => '1.0' );
     my $year = 1900 + (localtime)[5];
