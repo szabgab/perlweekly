@@ -49,7 +49,7 @@ if ($target eq 'web' and $issue eq 'all') {
     foreach my $i (1 .. $max) {
         my $issue = PerlWeekly::Issue->new($i);
         open my $fh, '>', "html/archive/$i.html";
-        print $fh $issue->generate($target);
+        $issue->generate($target, $fh);
         push @issues, $issue;
         $last = $issue;
     }
@@ -65,7 +65,7 @@ if ($target eq 'web' and $issue eq 'all') {
           $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
     }
 } else {
-    print PerlWeekly::Issue->new($issue)->generate($target);
+    PerlWeekly::Issue->new($issue)->generate($target);
 }
 
 exit;
@@ -91,6 +91,7 @@ sub new {
 sub generate {
     my $self = shift;
     my $target = shift;
+    my @out = @_ ? shift : ();
 
     if ($target eq 'mail' or $target eq 'text') {
         foreach my $ch (@{ $self->{chapters} }) {
@@ -114,8 +115,7 @@ sub generate {
     if ($target ne 'rss') {
         my $t = Template->new();
         my $tmpl = $target eq 'text' ? 'tt/text.tt' : 'tt/page.tt';
-        $t->process($tmpl, $self, \my $out) or die $t->error;
-        return $out;
+        $t->process($tmpl, $self, @out) or die $t->error;
     }
     else {
         my $url = 'http://perlweekly.com/';
