@@ -4,7 +4,6 @@ use warnings;
 
 use autodie;
 
-use Capture::Tiny  qw(capture);
 use Encode         qw(decode);
 use File::Basename qw(basename);
 use File::Slurp    qw(read_file);
@@ -52,9 +51,8 @@ if ($target eq 'rss') {
         my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
         foreach my $i (1 .. $max) {
             my $data = get_data($i);
-            my ($out, $err) = capture { generate($data) };
             open my $fh, '>', "html/archive/$i.html";
-            print $fh $out;
+            print $fh generate($data);
             push @issues, {
                 number => $i,
                 date   => $data->{date},
@@ -73,7 +71,7 @@ if ($target eq 'rss') {
               $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
         }
     } else {
-        generate($issue);
+        print generate($issue);
     }
 }
 
@@ -114,10 +112,11 @@ sub generate {
               $e->{text} = wrap('', '  ', $e->{text});
           }
        }
-       $t->process('tt/text.tt', $data) or die $t->error;
-    } else {
-       $t->process('tt/page.tt', $data) or die $t->error;
     }
+
+    my $tmpl = $target eq 'text' ? 'tt/text.tt' : 'tt/page.tt';
+    $t->process($tmpl, $data, \my $out) or die $t->error;
+    return $out;
 }
 
 
