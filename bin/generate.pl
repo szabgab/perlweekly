@@ -93,19 +93,20 @@ sub generate {
     my $target = shift;
     my @out = @_ ? shift : ();
 
-    if ($target eq 'mail' or $target eq 'text') {
-        $self->fixup_links;
+    if ($target eq 'web') {
+        return $self->process_tt('tt/page.tt', @out);
     }
-
-    if ($target eq 'text') {
-        $self->wrap_text;
+    elsif ($target eq 'mail') {
+        return $self->fixup_links->process_tt('tt/page.tt', @out);
     }
-
-    if ($target ne 'rss') {
-        return $self->process_tt($target eq 'text' ? 'tt/text.tt' : 'tt/page.tt', @out);
+    elsif ($target eq 'text') {
+        return $self->fixup_links->wrap_text->process_tt('tt/text.tt', @out);
+    }
+    elsif ($target eq 'rss') {
+        return $self->process_rss;
     }
     else {
-        $self->process_rss;
+        die "Unknown target '$target'\n";
     }
 }
 
