@@ -45,7 +45,7 @@ if ($target eq 'web' and $issue eq 'all') {
     my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
     foreach my $i (1 .. $max) {
         my $issue = PerlWeekly::Issue->new($i);
-        open my $fh, '>', "html/archive/$i.html";
+        open my $fh, '>:encoding(UTF-8)', "html/archive/$i.html";
         $issue->generate($target, $fh);
         push @issues, $issue;
         $last = $issue;
@@ -56,7 +56,7 @@ if ($target eq 'web' and $issue eq 'all') {
     my $t = Template->new();
     $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
     $t->process('tt/index.tt',  { latest => $max, next_issue => $next->{date}, count => $count }, 'html/index.html') or die $t->error;
-    my $events = from_json scalar read_file "src/events.json";
+    my $events = from_json scalar read_file "src/events.json", binmode => 'utf8';
     $t->process('tt/events.tt', { events => $events->{entries} }, 'html/events.html') or die $t->error;
     foreach my $f (qw(thankyou unsubscribe promotion)) {
           $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
@@ -82,7 +82,7 @@ sub new {
     my $class = shift;
     my ( $issue ) = @_;
 
-    my $self = from_json scalar read_file "src/$issue.json";
+    my $self = from_json scalar read_file "src/$issue.json", binmode => 'utf8';
     bless $self, $class;
 
     $self->{$target} = 1;
