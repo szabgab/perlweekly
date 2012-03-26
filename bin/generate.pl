@@ -88,8 +88,8 @@ sub new {
     $self->{$target} = 1;
     $self->{issue}  = $issue;
     $self->{number} = $issue;
-    my $sep = $self->{title} ? ' - ' : '';
-    $self->{title} = "Issue #$issue - $self->{date}$sep$self->{title}";
+    my $title = $self->{title} ? " - $self->{title}" : '';
+    $self->{title} = "Issue #$issue - $self->{date}$title";
 
     return $self;
 }
