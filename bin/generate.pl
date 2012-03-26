@@ -4,8 +4,6 @@ use warnings;
 
 use autodie;
 
-use Capture::Tiny  qw(capture);
-use Data::Dumper   qw(Dumper);
 use Encode         qw(decode);
 use File::Basename qw(basename);
 use File::Slurp    qw(read_file);
@@ -26,7 +24,7 @@ Usage: $0
    web   ISSUE
    mail  ISSUE          an html version to be sent by e-mail
    text  ISSUE          a text version to be sent by e-mail
-   rss   ISSUE
+   rss   ISSUE          (no output)
 
    ISSUE is a number or the word sources
 
@@ -38,8 +36,6 @@ END_USAGE
     exit;
 }
 
-my @issues;
-
 my $count = 0;
 if (open my $fh, '<', 'src/count.txt') {
 	$count = <$fh>;
@@ -47,92 +43,97 @@ if (open my $fh, '<', 'src/count.txt') {
 }
 
 
-if ($target eq 'rss') {
-    generate_rss($issue);
-} else {
-    if ($target eq 'web' and $issue eq 'all') {
-        my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
-        #die Dumper \@list;
-        foreach my $i (1 .. $max) {
-            my ($out, $err) = capture { generate($i) };
-            open my $fh, '>', "html/archive/$i.html";
-            print $fh $out;
-        }
-        $target = 'rss';
-        generate_rss($max);
-
-        my $next = get_data('next');
-        my $t = Template->new();
-        $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
-        $t->process('tt/index.tt',  { latest => $max, next_issue => $next->{date}, count => $count }, 'html/index.html') or die $t->error;
-        my $events = from_json scalar read_file "src/events.json";
-        $t->process('tt/events.tt', { events => $events->{entries} }, 'html/events.html') or die $t->error;
-        foreach my $f (qw(thankyou unsubscribe promotion)) {
-              $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
-        }
-    } else {
-        generate($issue);
+if ($target eq 'web' and $issue eq 'all') {
+    my (@issues, $last);
+    my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
+    foreach my $i (1 .. $max) {
+        my $issue = PerlWeekly::Issue->new($i);
+        open my $fh, '>', "html/archive/$i.html";
+        $issue->generate($target, $fh);
+        push @issues, $issue;
+        $last = $issue;
     }
+    $last->generate('rss');
+
+    my $next = PerlWeekly::Issue->new('next');
+    my $t = Template->new();
+    $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
+    $t->process('tt/index.tt',  { latest => $max, next_issue => $next->{date}, count => $count }, 'html/index.html') or die $t->error;
+    my $events = from_json scalar read_file "src/events.json";
+    $t->process('tt/events.tt', { events => $events->{entries} }, 'html/events.html') or die $t->error;
+    foreach my $f (qw(thankyou unsubscribe promotion)) {
+          $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
+    }
+} else {
+    PerlWeekly::Issue->new($issue)->generate($target);
 }
 
 exit;
 
-sub get_data {
-    my $issue = shift;
+package PerlWeekly::Issue;
 
-    my $data = from_json scalar read_file "src/$issue.json";
-    $data->{$target} = 1;
-    $data->{issue} = $issue;
-    my $title = delete($data->{title}) || '';
-    if ($title) {
-        $title = " - $title";
-    }
-    $data->{title} = "Issue #$issue - $data->{date}$title";
+sub new {
+    my $class = shift;
+    my ( $issue ) = @_;
 
+    my $self = from_json scalar read_file "src/$issue.json";
+    bless $self, $class;
 
-    return $data;
+    $self->{$target} = 1;
+    $self->{issue}  = $issue;
+    $self->{number} = $issue;
+    my $sep = $self->{title} ? ' - ' : '';
+    $self->{title} = "Issue #$issue - $self->{date}$sep$self->{title}";
+
+    return $self;
 }
 
 sub generate {
-    my $issue = shift;
-
-    my $t = Template->new();
-    my $data = get_data($issue);
-    push @issues, {
-        number => $issue,
-        date   => $data->{date},
-    };
-
-
-    if ($target eq 'mail' or $target eq 'text') {
-        foreach my $ch (@{ $data->{chapters} }) {
-           foreach my $e (@{ $ch->{entries} }) {
-              $e->{url} = $e->{link} || $e->{url};
-           }
-        }
-    }
-
-    if ($target eq 'text') {
-       foreach my $h (@{ $data->{header} }) {
-         $h = wrap('', '', $h);
-       }
-       foreach my $ch (@{ $data->{chapters} }) {
-          foreach my $e (@{ $ch->{entries} }) {
-              $e->{text} = wrap('', '  ', $e->{text});
-          }
-       }
-       $t->process('tt/text.tt', $data) or die $t->error;
-    } else {
-       $t->process('tt/page.tt', $data) or die $t->error;
-    }
+    my $self = shift;
+    my $target = shift;
+    my @out = @_ ? shift : ();
+    return (
+        $target eq 'web'  ? $self                        ->process_tt('tt/page.tt', @out) :
+        $target eq 'mail' ? $self->fixup_links           ->process_tt('tt/page.tt', @out) :
+        $target eq 'text' ? $self->fixup_links->wrap_text->process_tt('tt/text.tt', @out) :
+        $target eq 'rss'  ? $self->process_rss :
+        die "Unknown target '$target'\n";
+    );
 }
 
+sub fixup_links {
+    my $self = shift;
+    foreach my $ch (@{ $self->{chapters} }) {
+       foreach my $e (@{ $ch->{entries} }) {
+          $e->{url} = $e->{link} || $e->{url};
+       }
+    }
+    return $self;
+}
 
+sub wrap_text {
+    my $self = shift;
+    foreach my $h (@{ $self->{header} }) {
+        $h = wrap('', '', $h);
+    }
+    foreach my $ch (@{ $self->{chapters} }) {
+        foreach my $e (@{ $ch->{entries} }) {
+            $e->{text} = wrap('', '  ', $e->{text});
+        }
+    }
+    return $self;
+}
 
-sub generate_rss {
-    my $issue = shift;
+sub process_tt {
+    my $self = shift;
+    my $tmpl = shift;
+    my $t = Template->new();
+    $t->process($tmpl, $self, @_) or die $t->error;
+}
 
-    my $data = get_data($issue);
+sub process_rss {
+    my $self = shift;
+
     my $url = 'http://perlweekly.com/';
     my $rss = XML::RSS->new( version => '1.0' );
     my $year = 1900 + (localtime)[5];
@@ -152,9 +153,9 @@ sub generate_rss {
         }
     );
 
-#    $data->{title};
-#    $data->{header};
-    foreach my $ch (@{ $data->{chapters} }) {
+#    $self->{title};
+#    $self->{header};
+    foreach my $ch (@{ $self->{chapters} }) {
         #$ch->{title}
         foreach my $e (@{ $ch->{entries} }) {
             my $text = $e->{text};
