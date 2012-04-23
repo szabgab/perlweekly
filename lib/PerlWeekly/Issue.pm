@@ -7,7 +7,7 @@ use autodie;
 use Encode         qw(decode);
 use File::Slurp    qw(read_file);
 use JSON           qw(from_json);
-use Template       qw();
+use PerlWeekly::Template       qw();
 use Text::Wrap     qw(wrap);
 use XML::RSS       qw();
 
@@ -66,7 +66,8 @@ sub wrap_text {
 sub process_tt {
     my $self = shift;
     my $tmpl = shift;
-    my $t = Template->new();
+    my $t = PerlWeekly::Template->new();
+
     $t->process($tmpl, $self, @_) or die $t->error;
 }
 
