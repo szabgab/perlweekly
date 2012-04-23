@@ -13,7 +13,7 @@ http://perlweekly.com/archive/[% issue %].html
 
 [% FOR ch IN chapters %]
 [% ch.title %]
-[% ch.header %][% ch.header %][% END %]
+[% IF ch.header %][% ch.header %][% END %]
   [% FOR e IN ch.entries %]
   [% e.title %]
   [% e.url %]
@@ -22,7 +22,7 @@ http://perlweekly.com/archive/[% issue %].html
   --------------
 
   [% END %]
-[% ch.footer %][% ch.footer %][% END %]
+[% IF ch.footer %][% ch.footer %][% END %]
 =============
 [% END %]
 

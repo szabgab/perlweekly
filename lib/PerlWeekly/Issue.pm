@@ -53,12 +53,22 @@ sub fixup_links {
 sub wrap_text {
     my $self = shift;
     foreach my $h (@{ $self->{header} }) {
+        $h = html2text($h);
         $h = wrap('', '', $h);
     }
     foreach my $ch (@{ $self->{chapters} }) {
+		foreach my $part (qw(header footer)) {
+            $ch->{$part} = html2text($ch->{$part});
+			$ch->{$part} = wrap('', '  ', $ch->{$part});
+		}
         foreach my $e (@{ $ch->{entries} }) {
+            $e->{text} = html2text($e->{text});
             $e->{text} = wrap('', '  ', $e->{text});
         }
+    }
+    foreach my $h (@{ $self->{footer} }) {
+	    $h = html2text($h);
+        $h = wrap('', '', $h);
     }
     return $self;
 }
@@ -115,6 +125,17 @@ sub process_rss {
     $rss->save( 'html/perlweekly.rss' );
     return;
     #return $rss->as_string;
+}
+
+# simple html to text converter
+# can handle <a href=http://bla>text</a>
+sub html2text {
+	my ($html) = @_;
+
+	return if not defined $html;
+
+	$html =~ s{<a href=([^>]+)>([^<]+)</a>}{$2 ($1)}g;
+	return $html;
 }
 
 1;
