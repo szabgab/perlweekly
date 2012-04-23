@@ -61,6 +61,9 @@ You can <a href="http://perlweekly.com/archive/[% issue %].html">read the newsle
    <p class="subtitle" style="
   font-size: 18px;
   font-weight: bold;">[% ch.title %]</p>
+  [% IF ch.header %]
+    <p>[% ch.header %]</p>
+  [% END %]
    [% FOR e IN ch.entries %]
      <p class="entry" style="margin-left: 1.5em;">
      <a href="[% e.url %]" style="
@@ -71,8 +74,16 @@ You can <a href="http://perlweekly.com/archive/[% issue %].html">read the newsle
      [% e.text %]
      </p>
    [% END %]
+  [% IF ch.footer %]
+    <p>[% ch.footer %]</p>
+  [% END %]
 [% END %]
 
+[% FOR text IN footer %]
+<p>
+[% text %]
+</p>
+[% END %]
 
 [% IF mail %]
 <div id="footer" style="
