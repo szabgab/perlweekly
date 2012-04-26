@@ -60,6 +60,9 @@ if ($target eq 'web' and $issue eq 'all') {
     my $t = PerlWeekly::Template->new();
     $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
 
+    @issues = reverse @issues;
+    $t->process('tt/archive.tt', {issues => \@issues, reverse => 1}, 'html/all.html') or die $t->error;
+
     $t->process('tt/index.tt',  { latest => $max, next_issue => $next->{date}, count => $count }, 'html/index.html') or die $t->error;
     my $events = from_json scalar read_file "src/events.json", binmode => 'utf8';
     $t->process('tt/events.tt', { events => $events->{entries} }, 'html/events.html') or die $t->error;
