@@ -21,8 +21,6 @@ sub new {
     $self->{$target} = 1;
     $self->{issue}  = $issue;
     $self->{number} = $issue;
-    my $title = $self->{title} ? " - $self->{title}" : '';
-    $self->{title} = "Issue #$issue - $self->{date}$title";
 
     return $self;
 }
@@ -106,7 +104,7 @@ sub process_rss {
     my $text = join "\n", map {"<p>$_</p>"} @{ $self->{header} };
 
     $rss->add_item(
-        title => decode('utf-8', "#$self->{issue} - " . ($self->{subject} || '')),
+        title => decode('utf-8', "#$self->{issue} - $self->{subject}"),
         link  => "${url}archive/$self->{issue}.html",
         description => decode('utf-8', $text),
         #dc => {
@@ -115,7 +113,6 @@ sub process_rss {
         #    subject => 'list of tags?',
     );
 
-#    $self->{title};
 #    $self->{header};
     foreach my $ch (@{ $self->{chapters} }) {
         #$ch->{title}
