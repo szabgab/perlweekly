@@ -107,7 +107,7 @@ sub process_rss {
 
     $rss->add_item(
         title => decode('utf-8', "#$self->{issue} - " . ($self->{subject} || '')),
-        link  => "${url}html/archive/$self->{issue}.html",
+        link  => "${url}archive/$self->{issue}.html",
         description => decode('utf-8', $text),
         #dc => {
         #    creator => '???', # TODO should be the author of the original article
