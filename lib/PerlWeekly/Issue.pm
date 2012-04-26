@@ -103,6 +103,18 @@ sub process_rss {
         }
     );
 
+    my $text = join "\n", map {"<p>$_</p>"} @{ $self->{header} };
+
+    $rss->add_item(
+        title => decode('utf-8', "#$self->{issue} - " . ($self->{subject} || '')),
+        link  => "${url}html/archive/$self->{issue}.html",
+        description => decode('utf-8', $text),
+        #dc => {
+        #    creator => '???', # TODO should be the author of the original article
+        #    date    => POSIX::strftime("%Y-%m-%dT%H:%M:%S+00:00", localtime $e->{timestamp},
+        #    subject => 'list of tags?',
+    );
+
 #    $self->{title};
 #    $self->{header};
     foreach my $ch (@{ $self->{chapters} }) {
