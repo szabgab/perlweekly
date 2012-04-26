@@ -48,6 +48,7 @@ if ($target eq 'web' and $issue eq 'all') {
     my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
     foreach my $i (1 .. $max) {
         my $issue = PerlWeekly::Issue->new($i, $target);
+        $issue->{latest} = $max;
         $issue->generate($target, "html/archive/$i.html");
         push @issues, $issue;
         $last = $issue;
