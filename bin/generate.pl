@@ -54,6 +54,8 @@ if ($target eq 'web' and $issue eq 'all') {
     }
     $last->generate('rss');
 
+    $last->generate($target, "html/latest.html");
+
     my $next = PerlWeekly::Issue->new('next', $target);
     my $t = PerlWeekly::Template->new();
     $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
