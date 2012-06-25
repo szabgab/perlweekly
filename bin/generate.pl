@@ -31,6 +31,7 @@ Usage: $0
    or we can also write
 
    web all
+   web latest
 
 END_USAGE
     exit;
@@ -43,38 +44,44 @@ if (open my $fh, '<', 'src/count.txt') {
 }
 
 
-if ($target eq 'web' and $issue eq 'all') {
-    my (@issues, $last);
-    my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
-    foreach my $i (1 .. $max) {
-        my $issue = PerlWeekly::Issue->new($i, $target);
-        $issue->{latest} = $max;
-        $issue->generate($target, "html/archive/$i.html");
-        push @issues, $issue;
-        $last = $issue;
-    }
-    $last->generate('rss');
+if ($target ne 'web') {
+	PerlWeekly::Issue->new($issue, $target)->generate($target);
+	exit;
+}
 
-    $last->generate($target, "html/latest.html");
+if ($issue eq 'all' or $issue eq 'latest') {
+	my (@issues, $last);
+	my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
+	my $start = $issue eq 'all' ?  1 : $max;
+	foreach my $i ($start .. $max) {
+		my $issue = PerlWeekly::Issue->new($i, $target);
+		$issue->{latest} = $max;
+		$issue->generate($target, "html/archive/$i.html");
+		push @issues, $issue;
+		$last = $issue;
+	}
 
-    my $next = PerlWeekly::Issue->new('next', $target);
-    my $t = PerlWeekly::Template->new();
-    $t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
+	$last->generate('rss');
 
-    $t->process('tt/all.tt', {issues => \@issues}, 'html/all.html') or die $t->error;
+	$last->generate($target, "html/latest.html");
 
-    @issues = reverse @issues;
-    $t->process('tt/archive.tt', {issues => \@issues, reverse => 1}, 'html/archive/reverse.html') or die $t->error;
+	my $next = PerlWeekly::Issue->new('next', $target);
+	my $t = PerlWeekly::Template->new();
+	$t->process('tt/archive.tt', {issues => \@issues}, 'html/archive/index.html') or die $t->error;
 
+	$t->process('tt/all.tt', {issues => \@issues}, 'html/all.html') or die $t->error;
 
-    $t->process('tt/index.tt',  { latest => $max, next_issue => $next->{date}, count => $count }, 'html/index.html') or die $t->error;
-    my $events = from_json scalar read_file "src/events.json", binmode => 'utf8';
-    $t->process('tt/events.tt', { events => $events->{entries} }, 'html/events.html') or die $t->error;
-    foreach my $f (qw(thankyou unsubscribe promotion)) {
-          $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
-    }
+	@issues = reverse @issues;
+	$t->process('tt/archive.tt', {issues => \@issues, reverse => 1}, 'html/archive/reverse.html') or die $t->error;
+
+	$t->process('tt/index.tt',  { latest => $max, next_issue => $next->{date}, count => $count }, 'html/index.html') or die $t->error;
+	my $events = from_json scalar read_file "src/events.json", binmode => 'utf8';
+	$t->process('tt/events.tt', { events => $events->{entries} }, 'html/events.html') or die $t->error;
+	foreach my $f (qw(thankyou unsubscribe promotion)) {
+		$t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
+	}
 } else {
-    PerlWeekly::Issue->new($issue, $target)->generate($target, "html/archive/$issue.html");
+	PerlWeekly::Issue->new($issue, $target)->generate($target, "html/archive/$issue.html");
 	print "done\n";
 }
 
