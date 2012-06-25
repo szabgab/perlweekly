@@ -74,7 +74,8 @@ if ($target eq 'web' and $issue eq 'all') {
           $t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
     }
 } else {
-    PerlWeekly::Issue->new($issue, $target)->generate($target);
+    PerlWeekly::Issue->new($issue, $target)->generate($target, "html/archive/$issue.html");
+	print "done\n";
 }
 
 exit;
