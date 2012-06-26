@@ -52,13 +52,14 @@ if ($target ne 'web') {
 if ($issue eq 'all' or $issue eq 'latest') {
 	my (@issues, $last);
 	my ($max) = max grep { /^\d+$/ } map {substr(basename($_), 0, -5)} glob 'src/*.json';
-	my $start = $issue eq 'all' ?  1 : $max;
-	foreach my $i ($start .. $max) {
-		my $issue = PerlWeekly::Issue->new($i, $target);
-		$issue->{latest} = $max;
-		$issue->generate($target, "html/archive/$i.html");
-		push @issues, $issue;
-		$last = $issue;
+	foreach my $i (1 .. $max) {
+		my $pwissue = PerlWeekly::Issue->new($i, $target);
+		$pwissue->{latest} = $max;
+		if ($issue eq 'all' or $i == $max) {
+			$pwissue->generate($target, "html/archive/$i.html");
+		}
+		push @issues, $pwissue;
+		$last = $pwissue;
 	}
 
 	$last->generate('rss');
