@@ -72,6 +72,8 @@ if ($issue eq 'all' or $issue eq 'latest') {
 
 	$t->process('tt/all.tt', {issues => \@issues}, 'html/all.html') or die $t->error;
 
+	collect_links(@issues);
+
 	@issues = reverse @issues;
 	$t->process('tt/archive.tt', {issues => \@issues, reverse => 1}, 'html/archive/reverse.html') or die $t->error;
 
@@ -88,4 +90,33 @@ if ($issue eq 'all' or $issue eq 'latest') {
 
 exit;
 
+sub collect_links {
+	my @issues = @_;
+	my %links;
+	foreach my $issue (@issues) {
+		foreach my $ch (@{ $issue->{chapters} }) {
+			foreach my $e (@{ $ch->{entries} }) {
+				$links{ $e->{url} } = 1;
+			}
+		}
+    }
+	my %count;
+    foreach my $url (keys %links) {
+		if ($url =~ m{http://blogs.perl.org/users/[^/]+} ) {
+			$count{$&}++;
+		} elsif ($url =~ m{https?://[^/]+}) {
+			$count{$&}++;
+		} else {
+			warn "Strange url $url";
+		}
+	}
+	my @sources = map { { url => $_, count => $count{$_} } }
+		reverse sort {$count{$a} <=> $count{$b} or $a cmp $b } keys %count;
+	my $t = PerlWeekly::Template->new();
+	$t->process('tt/sources.tt', {sources => \@sources}, 'html/sources.html') or die $t->error;
+
+    #use Data::Dumper qw(Dumper);
+    #print Dumper \%links;
+    #print Dumper \%count;
+}
 
