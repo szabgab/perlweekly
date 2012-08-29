@@ -12,16 +12,12 @@ my %opt;
 GetOptions(\%opt,
 	'to=s',
 	'issue=i',
-	'subject=s',
 ) or die;
-die "Usage: $0 --to mail\@address.com  --issue N --subject SUBJECT\n" if not $opt{to} or not $opt{issue};
+die "Usage: $0 --to mail\@address.com  --issue N\n" if not $opt{to} or not $opt{issue};
 
 my $from = 'Gabor Szabo <gabor@szabgab.com>';
 
 my $subject = 'The current Perl Weekly News - Issue #' . $opt{issue};
-if ($opt{subject}) {
-	$subject .= " - $opt{subject}";
-}
 
 my $host = 'szabgab.com';
 my %content;
