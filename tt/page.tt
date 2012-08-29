@@ -56,7 +56,7 @@ You can <a href="http://perlweekly.com/archive/[% issue %].html">read the newsle
 
 
 [% FOR text IN header %]
-<p>
+<p style="font-size: 16px">
 [% text %]
 </p>
 [% END %]
@@ -66,7 +66,7 @@ You can <a href="http://perlweekly.com/archive/[% issue %].html">read the newsle
   font-size: 18px;
   font-weight: bold;">[% ch.title %]</p>
   [% IF ch.header %]
-    <p>[% ch.header %]</p>
+    <p style="font-size: 16px">[% ch.header %]</p>
   [% END %]
    [% FOR e IN ch.entries %]
      <p class="entry" style="margin-left: 1.5em;">
@@ -75,7 +75,9 @@ You can <a href="http://perlweekly.com/archive/[% issue %].html">read the newsle
   font-weight: bold;
 ">[% e.title %]</a>
      <br />
+     <p style="font-size: 16px">
      [% e.text %]
+     </p>
 [% IF social_links %]
      <br />
      <a href="http://twitter.com/home?status=[% e.title %] [% e.url %] via @perlweekly">Tweet</a>
@@ -85,7 +87,7 @@ You can <a href="http://perlweekly.com/archive/[% issue %].html">read the newsle
      </p>
    [% END %]
   [% IF ch.footer %]
-    <p>[% ch.footer %]</p>
+    <p style="font-size: 16px">[% ch.footer %]</p>
   [% END %]
 [% END %]
 
