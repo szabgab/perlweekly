@@ -3,7 +3,6 @@ use strict;
 use warnings;
 
 use Getopt::Long qw(GetOptions);
-use MIME::Lite::HTML;
 use MIME::Lite;
 use Cwd qw(abs_path cwd);
 use File::Slurp    qw(read_file);
