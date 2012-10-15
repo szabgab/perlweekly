@@ -4,7 +4,7 @@ use warnings;
 
 use autodie;
 
-use Encode         qw(decode);
+use Encode         qw(decode encode);
 use File::Slurp    qw(read_file);
 use JSON           qw(from_json);
 use PerlWeekly::Template       qw();
@@ -106,7 +106,7 @@ sub process_rss {
     $rss->add_item(
         title => decode('utf-8', "#$self->{issue} - $self->{subject}"),
         link  => "${url}archive/$self->{issue}.html",
-        description => decode('utf-8', $text),
+        description => encode('utf-8', $text),
         #dc => {
         #    creator => '???', # TODO should be the author of the original article
         #    date    => POSIX::strftime("%Y-%m-%dT%H:%M:%S+00:00", localtime $e->{timestamp},
