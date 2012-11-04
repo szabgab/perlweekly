@@ -5,6 +5,7 @@ use warnings;
 use autodie;
 
 use Cwd            qw(abs_path);
+use Data::Dumper   qw(Dumper);
 use File::Basename qw(basename dirname);
 use File::Slurp    qw(read_file);
 use JSON           qw(from_json);
@@ -107,7 +108,7 @@ sub collect_links {
 		} elsif ($url =~ m{https?://[^/]+}) {
 			$count{$&}++;
 		} else {
-			warn "Strange url $url";
+			warn "Strange url '$url' " . Dumper $links{$url};
 		}
 	}
 	my @sources = map { { url => $_, count => $count{$_} } }
@@ -115,7 +116,6 @@ sub collect_links {
 	my $t = PerlWeekly::Template->new();
 	$t->process('tt/sources.tt', {sources => \@sources}, 'html/sources.html') or die $t->error;
 
-    #use Data::Dumper qw(Dumper);
     #print Dumper \%links;
     #print Dumper \%count;
 }
