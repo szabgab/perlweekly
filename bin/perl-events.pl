@@ -36,11 +36,14 @@ my @out;
 foreach my $e (@$yef) {
     my ($day, $month, $year) = $e->{begin} =~ /(\d\d|xx).(\d\d|xx).(\d\d\d\d)$/;
     next if $current_year > $year;
-    next if $current_year == $year and $month ne 'xx' and $month < $current_month;
+    if ($current_year == $year and $month ne 'xx') {
+        next if $month < $current_month;
+        next if $month == $current_month and $day < $current_day;
+    }
     $e->{url} //= '';
     #say $_->{url} for @{ $pw_events->{entries} };
     my $missing  = any { $e->{url} eq $_->{url} } @{ $pw_events->{entries} };
-    $missing = $missing ? '  ' : '* ';
+    $missing = $missing ? '         ' : 'Missing: ';
     push @out, sprintf "$missing$year - $month - $day - %-30s %s\n", $e->{name}, $e->{url};
 }
 print sort @out;
