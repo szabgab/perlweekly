@@ -97,7 +97,7 @@ sub collect_links {
 	foreach my $issue (@issues) {
 		foreach my $ch (@{ $issue->{chapters} }) {
 			foreach my $e (@{ $ch->{entries} }) {
-				$links{ $e->{url} } = 1;
+				$links{ $e->{url} } = $e;
 			}
 		}
     }
