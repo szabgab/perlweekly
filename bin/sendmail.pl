@@ -55,6 +55,6 @@ foreach my $t (qw(text html)) {
 	$msg->attach($att);
 }
 
+$msg->send('smtp','localhost');
 
-$msg->send;
 
