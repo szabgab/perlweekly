@@ -4,6 +4,7 @@ use warnings;
 
 use autodie;
 
+use Data::Dumper   qw(Dumper);
 use Encode         qw(decode encode);
 use File::Slurp    qw(read_file);
 use JSON           qw(from_json);
@@ -117,6 +118,7 @@ sub process_rss {
     foreach my $ch (@{ $self->{chapters} }) {
         #$ch->{title}
         foreach my $e (@{ $ch->{entries} }) {
+			warn "Missing text " . Dumper $e if not exists $e->{text};
             my $text = $e->{text};
             $rss->add_item(
                 title => decode('utf-8', $e->{title}),
