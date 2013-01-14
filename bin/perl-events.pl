@@ -33,6 +33,9 @@ $current_year += 1900;
 my $yef = YAML::LoadFile($file);
 my $pw_events = from_json scalar read_file "src/events.json", binmode => 'utf8';
 my @out;
+print "----------------------------------\n";
+print "From YEF site:\n";
+print "----------------------------------\n";
 foreach my $e (@$yef) {
     my ($day, $month, $year) = $e->{begin} =~ /(\d\d|xx).(\d\d|xx).(\d\d\d\d)$/;
     next if $current_year > $year;
@@ -42,9 +45,19 @@ foreach my $e (@$yef) {
     }
     $e->{url} //= '';
     #say $_->{url} for @{ $pw_events->{entries} };
-    my $missing  = any { $e->{url} eq $_->{url} } @{ $pw_events->{entries} };
-    $missing = $missing ? '         ' : 'Missing: ';
-    push @out, sprintf "$missing$year - $month - $day - %-30s %s\n", $e->{name}, $e->{url};
+    my $found  = any { $e->{url} eq $_->{url} } @{ $pw_events->{entries} };
+    my $prefix = $found ? 'OK        ' : 'Missing:  ';
+    if (not $e->{url}) {
+        $prefix = 'NO URL:   ';
+    }
+    push @out, sprintf "$prefix$year - $month - $day - %-30s %s\n", $e->{name}, $e->{url};
 }
 print sort @out;
+@out  = map { sprintf "NO URL:    %-30s\n", $_->{title} } grep { $_->{url} eq '' } @{ $pw_events->{entries} };
+if (@out) {
+    print "----------------------------------\n";
+    print "Form Perl Weekly\n";
+    print "----------------------------------\n";
+    print @out;
+}
 
