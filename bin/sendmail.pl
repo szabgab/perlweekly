@@ -16,6 +16,7 @@ GetOptions(\%opt,
 die "Usage: $0 --to mail\@address.com  --issue N\n" if not $opt{to} or not $opt{issue};
 
 my $from = 'Gabor Szabo <gabor@szabgab.com>';
+#my $from = 'Yanick Champoux <yanick@babyl.ca>';
 
 my $subject = 'The current Perl Weekly News - Issue #' . $opt{issue};
 
