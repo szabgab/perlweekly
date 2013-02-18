@@ -30,6 +30,7 @@ a { color: #04c; }
   font-weight: bold;
   font-family: Gadget;
 
+  border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border: 1px solid #000;
@@ -62,19 +63,25 @@ You can <a href="http://perlweekly.com/archive/[% issue %].html">read the newsle
 [% END %]
 
 [% FOR ch IN chapters %]
-  <div
-   [% IF ch.sponsor %]
-   style="background-color:#EEEEEE;"
-   [% END %]
-  >
+  <div>
     <hr style="color: red" />
     <div style="
       font-size: 18px;
       font-weight: bold;">[% ch.title %]</div>
-      [% IF ch.header %]
+    [% IF ch.header %]
         <p style="font-size: 16px">[% ch.header %]</p>
       [% END %]
       [% FOR e IN ch.entries %]
+         <div
+          [% IF ch.sponsor %]
+          style="
+              background-color:#EEEEEE;
+              border-radius: 10px;
+              -moz-border-radius: 10px;
+              -webkit-border-radius: 10px;
+             "
+          [% END %]
+         >
          <p style="margin-left: 1.5em;">
          <a href="[% e.url %]" style="
             font-size: 18px;
@@ -90,7 +97,7 @@ You can <a href="http://perlweekly.com/archive/[% issue %].html">read the newsle
            | <a href="http://www.facebook.com/sharer.php?u=[% e.url %]&t=[% e.title %]">Facebook</a>
            | <a href="https://plusone.google.com/_/+1/confirm?hl=en&url=[% e.url %]">Google Plus</a>
          [% END %]
-         <p>
+         </div>
       [% END %]
       [% IF ch.footer %]
         <p style="font-size: 16px">[% ch.footer %]</p>
