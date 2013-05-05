@@ -84,6 +84,21 @@ if ($issue eq 'all' or $issue eq 'latest') {
 	foreach my $f (qw(thankyou unsubscribe promotion)) {
 		$t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
 	}
+
+	# Create sitemap.xml
+	my $URL = 'http://perlweekly.com';
+	my @pages = { filename => "$URL/" };
+	push @pages, map { { filename => "$URL/$_" } } qw(
+			archive/
+			archive/reverse.html
+			all.html
+			promotion.html
+			events.html
+		);
+	push @pages, map { { filename => "$URL/archive/$_.html" } } 1..$max;
+	$t->process('tt/sitemap.tt', {pages => \@pages}, 'html/sitemap.xml') or die $t->error;
+
+
 } else {
 	PerlWeekly::Issue->new($issue, $target)->generate($target, "html/archive/$issue.html");
 	print "done\n";
