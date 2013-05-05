@@ -94,6 +94,7 @@ if ($issue eq 'all' or $issue eq 'latest') {
 			all.html
 			promotion.html
 			events.html
+			latest.html
 		);
 	push @pages, map { { filename => "$URL/archive/$_.html" } } 1..$max;
 	$t->process('tt/sitemap.tt', {pages => \@pages}, 'html/sitemap.xml') or die $t->error;
