@@ -46,11 +46,12 @@ sub slurp_entries {
 
         my $title = (shift @$file) =~ s/^###\s*//r;
         my $link = shift @$file;
-        my $date = shift @$file;
+        ( my $date = shift @$file ) =~ y/-/./;
         shift @$file;
 
         my $text;
-        $text .= shift @$file while $file->[0] !~ /^\s*$/;
+        $text .= ' ' . shift @$file while $file->[0] !~ /^\s*$/;
+        $text =~ s/^\s+|\s+$//g;
 
         push @entries, {
             title => $title,
