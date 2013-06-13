@@ -5,6 +5,7 @@ use 5.16.0;
 use strict;
 use warnings;
 use Path::Tiny;
+use List::AllUtils qw/ before /;
 
 chomp(my @file = path(shift)->lines);
 
@@ -12,6 +13,16 @@ my $newsletter = {};
 
 $newsletter->{subject} = (shift @file) =~ s/^#\s*//r;
 $newsletter->{date} = shift @file;
+
+## header stuff
+my @headers;
+
+push @headers, shift @file until $file[0] =~ /^##/ or not @file;
+
+$newsletter->{header} = [
+    map { s/\s*\n\s*/ /gr } split "\n\n", join "\n", @headers
+];
+
 
 while( @file ) {
 
