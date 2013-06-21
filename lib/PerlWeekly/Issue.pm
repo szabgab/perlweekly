@@ -121,9 +121,9 @@ sub process_rss {
 			warn "Missing text " . Dumper $e if not exists $e->{text};
             my $text = $e->{text};
             $rss->add_item(
-                title => decode('utf-8', $e->{title}),
+                title => encode('utf-8', $e->{title}),
                 link  => $e->{url},
-                description => decode('utf-8', $e->{text}),
+                description => encode('utf-8', $e->{text}),
                 #dc => {
                 #    creator => '???', # TODO should be the author of the original article
                 #    date    => POSIX::strftime("%Y-%m-%dT%H:%M:%S+00:00", localtime $e->{timestamp},
