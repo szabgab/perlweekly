@@ -29,4 +29,4 @@ for my $ch (@{ $data->{chapters} }) {
 
 
 #write_file $json_file, to_json($data, {utf8 => 1, pretty => 1});
-write_file $json_file, { binmode => 'utf8' }, to_json($data, {utf8 => 1, pretty => 1});
+write_file $json_file, { binmode => 'utf8' }, to_json($data, {utf8 => 1, pretty => 1, canonical => 1});
