@@ -15,6 +15,8 @@ WriteMakefile(
     PREREQ_PM => {
         'Cwd'                    => 0,
         'Data::Dumper'           => 0,
+		'Data::ICal'             => 0,
+		'Data::Printer'          => 0,
 		'DateTime::Format::ICal' => 0,
 		'DateTime::Functions'    => 0,
         'Encode'                 => 0,
@@ -25,7 +27,9 @@ WriteMakefile(
         'List::MoreUtils'        => 0,
         'List::Util'             => 0,
         'LWP::Simple'            => 0,
+		'MIME::Lite'             => 0,
 		'Net::Delicious'         => 0,
+		'Path::Tiny'             => 0,
         'Template'               => 0,
         'Test::More'             => 0,
         'Text::Wrap'             => 0,
