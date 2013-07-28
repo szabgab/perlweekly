@@ -24,6 +24,7 @@ my $data = from_json $src_json, { utf8  => 1 };
 for my $ch (@{ $data->{chapters} }) {
     for my $e (@{ $ch->{entries} }) {
         next if $e->{link};
+		next if not $e->{url};
         print "$e->{url}\n";
         #$e->{url} .= "&utm_medium=email&utm_campaign=PerlWeekly_$self->{issue}";
         my $bitly = WWW::Shorten::Bitly->new(URL => $e->{url}, USER => $user, APIKEY => $apikey);
