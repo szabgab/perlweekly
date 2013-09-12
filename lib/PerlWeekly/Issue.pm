@@ -19,6 +19,12 @@ sub new {
     my $self = from_json scalar read_file "src/$issue.json", binmode => 'utf8';
     bless $self, $class;
 
+	for my $ch (@{ $self->{chapters} }) {
+		my $id = lc $ch->{title};
+		$id =~ s/\s+/_/g;
+		$ch->{id} = $id;
+	}
+
     $self->{$target} = 1;
     $self->{issue}  = $issue;
     $self->{number} = $issue;
