@@ -15,6 +15,24 @@ table { font-family: helvetica, arial, sans-serif; }
 p { margin: 1.2em 0em 1.35em 0em; line-height: 1.4em; }
 a { color: #04c; }
 
+#menu {
+  border-bottom: 1px solid #ccc;
+}
+#menu ul {
+  text-align: center;
+  margin: 0;
+}
+#menu li {
+  font-size: 12px;
+  display: inline;
+  list-style-type: none;
+  padding-right: 10px;
+}
+
+#social_icons {
+  margin-top: 10px;
+}
+
 </style>
 
 <table border="0" cellpadding="0" cellspacing="0" width="700" align="center"><tr bgcolor="#ffffff">
@@ -181,6 +199,13 @@ You know, you could get the Perl Weekly right in your mailbox. Every Week.<br>Fr
 ">
 (C) Copyright <a href="http://szabgab.com/">Gabor Szabo</a>. The articles are copyright the respective authors.</p>
 <p>This newsletter is about the Perl programming language.</p>
+</div>
+<div id="menu">
+  <ul>
+  [% FOR ch IN chapters %]
+    <li><a href="#[% ch.id %]">[% ch.title %]</a></li>
+  [% END %]
+  </ul>
 </div>
 [% END %]
 
