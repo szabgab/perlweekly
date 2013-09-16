@@ -79,7 +79,13 @@ if ($issue eq 'all' or $issue eq 'latest') {
 	$t->process('tt/archive.tt', {issues => \@issues, reverse => 1}, 'html/archive/reverse.html') or die $t->error;
 
 	$t->process('tt/index.tt',  { latest => $max, next_issue => $next->{date}, count => $count }, 'html/index.html') or die $t->error;
-	my $events = from_json scalar read_file "src/events.json", binmode => 'utf8';
+	my $events;
+	eval {
+		$events = from_json scalar read_file "src/events.json", binmode => 'utf8';
+	};
+	if ($@) {
+		die "JSON exception in src/events.json $@";
+	}
 	$t->process('tt/events.tt', { events => $events->{entries} }, 'html/events.html') or die $t->error;
 	foreach my $f (qw(thankyou unsubscribe promotion)) {
 		$t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;

@@ -16,7 +16,13 @@ sub new {
     my $class = shift;
     my ( $issue, $target ) = @_;
 
-    my $self = from_json scalar read_file "src/$issue.json", binmode => 'utf8';
+	my $self;
+	eval {
+    	$self = from_json scalar read_file "src/$issue.json", binmode => 'utf8';
+	};
+	if ($@) {
+		die "JSON exception in src/$issue.json   $@";
+	}
     bless $self, $class;
 
 	for my $ch (@{ $self->{chapters} }) {
