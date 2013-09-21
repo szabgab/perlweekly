@@ -51,11 +51,21 @@ sub generate {
     );
 }
 
+# in e-mail (both html and text) we prefer to use the shortened URL
+# that, if exists, is stored in the "link" field.
 sub fixup_links {
     my $self = shift;
     foreach my $ch (@{ $self->{chapters} }) {
        foreach my $e (@{ $ch->{entries} }) {
           $e->{url} = $e->{link} || $e->{url};
+          my (@urls) = $e->{text} =~ m{<a href=(https?://[^>]*)>}g;
+          push @urls, $e->{text} =~ m{<a href="(https?://[^>]*)">}g;
+          warn Dumper \@urls;
+          foreach my $url (@urls) {
+              if ($e->{map}{$url}) {
+                  $e->{text} =~ s{\Q$url}{$e->{map}{$url}};
+              }
+          }
        }
     }
     return $self;
@@ -162,4 +172,6 @@ sub html2text {
 }
 
 1;
+# vim:expandtab
+# vim:tabstop=4
 
