@@ -26,16 +26,17 @@ my $data = from_json $src_json, { utf8  => 1 };
 
 for my $ch (@{ $data->{chapters} }) {
     for my $e (@{ $ch->{entries} }) {
+		$e->{text} //= '';
         my (@urls) = $e->{text} =~ m{<a href=(https?://[^>]*)>}g;
         push @urls, $e->{text} =~ m{<a href="(https?://[^>]*)">}g;
-        warn Dumper \@urls;
+        #warn Dumper \@urls;
         foreach my $url (@urls) {
             if (not $e->{map}{$url}) {
                 my $bitly = WWW::Shorten::Bitly->new(URL => $url, USER => $user, APIKEY => $apikey);
                 $e->{map}{$url} = $bitly->shorten(URL => $url);
             }
         }
-        warn Dumper $e->{map};
+        #warn Dumper $e->{map};
 
         next if $e->{link};
 		next if not $e->{url};
