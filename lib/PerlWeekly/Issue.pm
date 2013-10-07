@@ -51,7 +51,7 @@ sub generate {
     );
 }
 
-# in e-mail (both html and text) we prefer to use the shortened URL
+# In e-mail (both html and text) we prefer to use the shortened URL
 # that, if exists, is stored in the "link" field.
 sub fixup_links {
     my $self = shift;
@@ -60,13 +60,18 @@ sub fixup_links {
           $e->{url} = $e->{link} || $e->{url};
           my (@urls) = $e->{text} =~ m{<a href=(https?://[^>]*)>}g;
           push @urls, $e->{text} =~ m{<a href="(https?://[^>]*)">}g;
-          warn Dumper \@urls;
+          #warn Dumper \@urls;
           foreach my $url (@urls) {
               if ($e->{map}{$url}) {
                   $e->{text} =~ s{\Q$url}{$e->{map}{$url}};
               }
           }
        }
+    }
+
+    # In email the internal links don't seem to work. So let's remove them. At least from the header.
+    foreach my $h (@{ $self->{header} }) {
+        $h =~ s{<a href="#\w+">([^<]+)</a>}{$1}g;
     }
     return $self;
 }
