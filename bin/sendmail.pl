@@ -7,6 +7,8 @@ use MIME::Lite;
 use Cwd qw(abs_path cwd);
 use File::Slurp    qw(read_file);
 use JSON           qw(from_json);
+use Encode         qw(decode encode);
+
 
 my %opt;
 GetOptions(\%opt,
@@ -24,7 +26,7 @@ my $host = 'szabgab.com';
 my %content;
 $content{html} = qx{$^X bin/generate.pl mail $opt{issue}};
 $content{text} = qx{$^X bin/generate.pl text $opt{issue}};
-my $data = from_json scalar read_file "src/$opt{issue}.json";
+my $data = from_json scalar(read_file "src/$opt{issue}.json"), binmode => 'utf8';
 if ($data->{subject}) {
 	$subject = "#$opt{issue} - $data->{subject}";
 }
@@ -33,7 +35,7 @@ my $msg = MIME::Lite->new(
 	From     => $from,
 	To       => $opt{to},
 	Type     => 'multipart/alternative',
-	Subject  => $subject,
+	Subject  => decode('utf-8', $subject), # worked on #118
 	#Data     => $text,
 );
 
