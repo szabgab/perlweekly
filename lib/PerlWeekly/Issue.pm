@@ -132,7 +132,7 @@ sub process_rss {
     my $text = join "\n", map {"<p>$_</p>"} @{ $self->{header} };
 
     $rss->add_item(
-        title => decode('utf-8', "#$self->{issue} - $self->{subject}"),
+        title => encode('utf-8', "#$self->{issue} - $self->{subject}"),
         link  => "${url}archive/$self->{issue}.html",
         description => encode('utf-8', $text),
         #dc => {
