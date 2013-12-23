@@ -4,6 +4,7 @@ use warnings;
 
 use autodie;
 
+use Carp           qw(croak);
 use Data::Dumper   qw(Dumper);
 use Encode         qw(decode encode);
 use File::Slurp    qw(read_file);
@@ -42,6 +43,7 @@ sub generate {
     my $self = shift;
     my $target = shift;
     my @out = @_ ? shift : ();
+
     return (
         $target eq 'web'  ? $self                        ->process_tt('tt/page.tt', @out) :
         $target eq 'mail' ? $self->fixup_links           ->process_tt('tt/page.tt', @out) :

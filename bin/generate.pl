@@ -65,7 +65,9 @@ if ($issue eq 'all' or $issue eq 'latest') {
 
 	$last->generate('rss');
 
+	$last->{latest_page} = $max;
 	$last->generate($target, "html/latest.html");
+	delete $last->{latest_page};
 
 	my $next = PerlWeekly::Issue->new('next', $target);
 	my $t = PerlWeekly::Template->new();
@@ -78,7 +80,7 @@ if ($issue eq 'all' or $issue eq 'latest') {
 	@issues = reverse @issues;
 	$t->process('tt/archive.tt', {issues => \@issues, reverse => 1}, 'html/archive/reverse.html') or die $t->error;
 
-	$t->process('tt/index.tt',  { latest => $max, next_issue_date => $next->{date}, latest_issue_number => $max+1,  $count => $count }, 'html/index.html') or die $t->error;
+	$t->process('tt/index.tt',  { latest => $max, next_issue_date => $next->{date}, latest_issue_number => $max,  $count => $count }, 'html/index.html') or die $t->error;
 	my $events;
 	eval {
 		$events = from_json scalar read_file "src/events.json", binmode => 'utf8';
