@@ -12,6 +12,7 @@ use JSON           qw(from_json);
 use PerlWeekly::Template       qw();
 use Text::Wrap     qw(wrap);
 use XML::RSS       qw();
+#use POSIX          qw();
 
 sub new {
     my $class = shift;
@@ -149,14 +150,20 @@ sub process_rss {
         foreach my $e (@{ $ch->{entries} }) {
 			warn "Missing text " . Dumper $e if not exists $e->{text};
             my $text = $e->{text};
+
+            #die Dumper $e;
+            die "Missing ts in " . Dumper $e if not $e->{ts};
+            die "Invalid ts format in " . Dumper $e if $e->{ts} =~ /^\d20\d\d\.\d\d\.\d\d$/;
+            my $ts = join '-', split /\./, $e->{ts};
             $rss->add_item(
                 title => encode('utf-8', $e->{title}),
                 link  => $e->{url},
                 description => encode('utf-8', $e->{text}),
-                #dc => {
+                dc => {
                 #    creator => '???', # TODO should be the author of the original article
-                #    date    => POSIX::strftime("%Y-%m-%dT%H:%M:%S+00:00", localtime $e->{timestamp},
+                    date    => "${ts}T00:00:00+00:00",
                 #    subject => 'list of tags?',
+                },
             );
         }
     }
