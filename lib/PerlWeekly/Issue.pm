@@ -12,6 +12,8 @@ use JSON           qw(from_json);
 use PerlWeekly::Template       qw();
 use Text::Wrap     qw(wrap);
 use XML::RSS       qw();
+use DateTime       qw();
+use DateTime::Format::W3CDTF;
 #use POSIX          qw();
 
 sub new {
@@ -26,6 +28,9 @@ sub new {
 		die "JSON exception in src/$issue.json   $@";
 	}
     bless $self, $class;
+
+    die "No date in $issue" if not $self->{date};
+    die "Invalid date format in $issue  (expected YYYY-MM-DD)" if $self->{date} !~ /^\d\d\d\d-\d\d-\d\d$/;
 
 	for my $ch (@{ $self->{chapters} }) {
 		my $id = lc $ch->{title};
@@ -116,6 +121,9 @@ sub process_rss {
     my $url = 'http://perlweekly.com/';
     my $rss = XML::RSS->new( version => '1.0' );
     my $year = 1900 + (localtime)[5];
+    my $dateparser = DateTime::Format::W3CDTF->new;
+    my $dt = $dateparser->parse_datetime("$self->{date}T10:00:00+00:00");
+    #die $dt;
     $rss->channel(
         title       => 'Perl Weekly newsletter',
         link        => $url,
@@ -138,10 +146,11 @@ sub process_rss {
         title => encode('utf-8', "#$self->{issue} - $self->{subject}"),
         link  => "${url}archive/$self->{issue}.html",
         description => encode('utf-8', $text),
-        #dc => {
+        dc => {
         #    creator => '???', # TODO should be the author of the original article
-        #    date    => POSIX::strftime("%Y-%m-%dT%H:%M:%S+00:00", localtime $e->{timestamp},
-        #    subject => 'list of tags?',
+            date    => $dateparser->format_datetime($dt),
+            subject => 'list of tags?',
+        }
     );
 
 #    $self->{header};
@@ -152,16 +161,17 @@ sub process_rss {
             my $text = $e->{text};
 
             #die Dumper $e;
-            die "Missing ts in " . Dumper $e if not $e->{ts};
-            die "Invalid ts format in " . Dumper $e if $e->{ts} =~ /^\d20\d\d\.\d\d\.\d\d$/;
-            my $ts = join '-', split /\./, $e->{ts};
+            #die "Missing ts in " . Dumper $e if not $e->{ts};
+            #die "Invalid ts format in " . Dumper $e if $e->{ts} =~ /^\d20\d\d\.\d\d\.\d\d$/;
+            #my $ts = join '-', split /\./, $e->{ts};
+            $dt->add( seconds => 1 );
             $rss->add_item(
                 title => encode('utf-8', $e->{title}),
                 link  => $e->{url},
                 description => encode('utf-8', $e->{text}),
                 dc => {
                 #    creator => '???', # TODO should be the author of the original article
-                    date    => "${ts}T00:00:00+00:00",
+                    date    => $dateparser->format_datetime($dt), #"${ts}T00:00:00+00:00",
                 #    subject => 'list of tags?',
                 },
             );
