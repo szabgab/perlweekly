@@ -62,8 +62,8 @@ sub slurp_entries {
         ( my $date = shift @$file ) =~ y/-/./;
         shift @$file;
 
-        my $text;
-        $text .= ' ' . shift @$file while $file->[0] !~ /^\s*$/;
+        my $text = '';
+        $text .= ' ' . shift @$file while @file and $file->[0] !~ /^\s*$/;
         $text =~ s/^\s+|\s+$//g;
 
         push @entries, {
