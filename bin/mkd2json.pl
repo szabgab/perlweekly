@@ -6,9 +6,10 @@ use strict;
 use warnings;
 use Path::Tiny;
 use List::AllUtils qw/ before /;
-my $path = shift or die "Usage: $0 src/NNN.mkd\n";
+my $in_file = shift or die "Usage: $0 src/NNN.mkd\n";
+(my $out_file = $in_file) =~ s/mkd$/json/;
 
-chomp(my @file = path($path)->lines);
+chomp(my @file = path($in_file)->lines);
 
 my $newsletter = {};
 
@@ -81,7 +82,7 @@ sub slurp_entries {
 use JSON::XS;
 my $coder = JSON::XS->new->ascii->pretty->allow_nonref;
 
-say $coder->encode($newsletter);
+path($out_file)->spew_utf8($coder->encode($newsletter));
 
 __END__
 
