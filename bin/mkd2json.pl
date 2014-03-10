@@ -6,8 +6,9 @@ use strict;
 use warnings;
 use Path::Tiny;
 use List::AllUtils qw/ before /;
+my $path = shift or die "Usage: $0 src/NNN.mkd\n";
 
-chomp(my @file = path(shift)->lines);
+chomp(my @file = path($path)->lines);
 
 my $newsletter = {};
 
@@ -49,7 +50,7 @@ sub slurp_entries {
     my @entries;
 
     while( @$file ) {
-        $DB::single = $file->[0] =~ /#/;
+        #$DB::single = $file->[0] =~ /#/;
 
         shift @$file while @$file and $file->[0] =~ /^\s*$/;
 
