@@ -86,7 +86,7 @@ if ($issue eq 'all' or $issue eq 'latest') {
 		$events = from_json scalar read_file "src/events.json", binmode => 'utf8';
 	};
 	if ($@) {
-		die "JSON exception in src/events.json $@";
+		die "JSON exception in src/events.json\n\n$@";
 	}
 	$t->process('tt/events.tt', { events => $events->{entries} }, 'html/events.html') or die $t->error;
 	foreach my $f (qw(thankyou unsubscribe promotion)) {
