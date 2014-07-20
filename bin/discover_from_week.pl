@@ -22,7 +22,8 @@ my %already_seen;
 
 for ( $feeds_file->lines ) {
     chomp;
-    s/\s*#.*//;
+    s/\s*#//;
+    s/\s.*$//;
     next if /^\s*$/;
     $already_seen{ URI->new($_)->host }++;
 }
