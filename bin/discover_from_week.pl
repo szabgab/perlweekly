@@ -20,15 +20,15 @@ my @urls = map { URI->new($_) } $jpath->values($json);
 
 my %already_seen;
 
-for ( $feeds_file->read_lines ) {
+for ( $feeds_file->lines ) {
     chomp;
-    s/#.*//;
+    s/\s*#.*//;
     next if /^\s*$/;
     $already_seen{ URI->new($_)->host }++;
 }
 
 for my $url ( @urls ) {
-    next if $already_seen( $url->host );
+    next if $already_seen{ $url->host };
 
     for my $feed ( XML::Feed->find_feeds($url) ) {
         warn "adding $feed\n";

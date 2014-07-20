@@ -13,17 +13,16 @@ use DateTime::Functions qw/ now /;
 my @feeds = grep { /^[^#]/ and not /^\s*$/ } <>;
 chomp @feeds;
 
-my $aggregate = XML::Feed->new;
-
-for my $url ( @feeds ) {
-    my $feed = XML::Feed->parse( URI->new($url) );
-    $aggregate->splice($feed);
-}
-
 my $cutout_date = now();
 $cutout_date->subtract( days => 1) until $cutout_date->day_of_week == 1;
 
-my @entries = grep { $_->issued >= $cutout_date } sort { $a->issued <=> $b->issued } $aggregate->entries;
+my %seen;
+my @entries = sort { $a->issued <=> $b->issued } 
+              grep { not $seen{ $_->link }++ }
+              grep { $_->issued >= $cutout_date } 
+              map { $_->entries } 
+              map { XML::Feed->parse( URI->new($_) ) }
+              @feeds; 
 
 for my $entry ( @entries ) {
     say '### ', $entry->title;
@@ -31,9 +30,3 @@ for my $entry ( @entries ) {
     say eval { $entry->issued->ymd } || '????-??-??';
     say "\n", $entry->author, "\n";
 }
-
-
-
-
-
-
