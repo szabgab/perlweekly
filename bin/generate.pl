@@ -31,6 +31,7 @@ Usage: $0
 
    or we can also write
 
+   web events           generate the events page only
    web all
    web latest
 
@@ -44,11 +45,16 @@ if (open my $fh, '<', 'src/count.txt') {
 	close $fh;
 }
 
-
 if ($target ne 'web') {
 	PerlWeekly::Issue->new($issue, $target)->generate($target);
 	exit;
 }
+
+if ($issue eq 'events') {
+	events_page();
+	exit;
+}
+
 
 if ($issue eq 'all' or $issue eq 'latest') {
 	my (@issues, $last);
@@ -81,14 +87,8 @@ if ($issue eq 'all' or $issue eq 'latest') {
 	$t->process('tt/archive.tt', {issues => \@issues, reverse => 1}, 'html/archive/reverse.html') or die $t->error;
 
 	$t->process('tt/index.tt',  { latest => $max, next_issue_date => $next->{date}, latest_issue_number => $max,  count => $count }, 'html/index.html') or die $t->error;
-	my $events;
-	eval {
-		$events = from_json scalar read_file "src/events.json", binmode => 'utf8';
-	};
-	if ($@) {
-		die "JSON exception in src/events.json\n\n$@";
-	}
-	$t->process('tt/events.tt', { events => $events->{entries} }, 'html/events.html') or die $t->error;
+	events_page();
+
 	foreach my $f (qw(thankyou unsubscribe promotion)) {
 		$t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
 	}
@@ -142,5 +142,17 @@ sub collect_links {
 
     #print Dumper \%links;
     #print Dumper \%count;
+}
+
+sub events_page {
+	my $events;
+	eval {
+		$events = from_json scalar read_file "src/events.json", binmode => 'utf8';
+	};
+	if ($@) {
+		die "JSON exception in src/events.json\n\n$@";
+	}
+	my $t = PerlWeekly::Template->new();
+	$t->process('tt/events.tt', { events => $events->{entries} }, 'html/events.html') or die $t->error;
 }
 
