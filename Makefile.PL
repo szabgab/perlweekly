@@ -24,6 +24,7 @@ WriteMakefile(
         'File::Slurp',           => 0,
         'Gravatar::URL'          => 0,
         'JSON'                   => 0,
+		'JSON::Path'             => 0,
         'List::MoreUtils'        => 0,
         'List::Util'             => 0,
         'LWP::Simple'            => 0,
