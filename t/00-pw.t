@@ -3,9 +3,7 @@ use warnings;
 
 use Test::More;
 
-# skipping one that needs 5.16 ?
-# really?
-my @exes = grep { ! /mkd2json.pl/ } glob "bin/*";
+my @exes = glob "bin/*";
 
 plan tests => 1 + @exes;
 foreach my $exe (@exes) {
@@ -16,6 +14,13 @@ foreach my $exe (@exes) {
 			next;
 		}
 	}
+	if ($^V < 'v5.16.0') {
+		if ($exe =~ /mkd2json.pl/) {
+			$T->skip("$exe needs 5.20.0 or higher", 1);
+			next;
+		}
+	}
+
 	is system("$^X -c $exe"), 0, $exe;
 }
 ok 1;
