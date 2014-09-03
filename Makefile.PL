@@ -37,6 +37,7 @@ WriteMakefile(
 		'WWW::Mailman'           => 0,
 		'WWW::Shorten::Bitly'    => 0,
 		'XML::RSS'               => 0,
+		'XML::Feed'              => 0,
 		'YAML'                   => 0,
 	},
 	dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
