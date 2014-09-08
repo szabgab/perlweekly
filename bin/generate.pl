@@ -89,7 +89,7 @@ if ($issue eq 'all' or $issue eq 'latest') {
 	$t->process('tt/index.tt',  { latest => $max, next_issue_date => $next->{date}, latest_issue_number => $max,  count => $count }, 'html/index.html') or die $t->error;
 	events_page();
 
-	foreach my $f (qw(thankyou unsubscribe promotion)) {
+	foreach my $f (qw(thankyou unsubscribe promotion sponsors)) {
 		$t->process("tt/$f.tt", {}, "html/$f.html") or die $t->error;
 	}
 
@@ -103,6 +103,7 @@ if ($issue eq 'all' or $issue eq 'latest') {
 			promotion.html
 			events.html
 			latest.html
+			sponsors.html
 		);
 	push @pages, map { { filename => "$URL/archive/$_.html" } } 1..$max;
 	$t->process('tt/sitemap.tt', {pages => \@pages}, 'html/sitemap.xml') or die $t->error;
