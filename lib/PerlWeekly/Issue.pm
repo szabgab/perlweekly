@@ -210,6 +210,4 @@ sub html2text {
 
 1;
 
-# vim:expandtab
-# vim:tabstop=4
 
