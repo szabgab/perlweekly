@@ -6,6 +6,7 @@ use Net::Delicious;
 use Path::Tiny;
 use JSON qw/ decode_json /;
 
+my ( $w, $p );
 my $weekly = decode_json path('src')
 	->child( ( $w || die "weekly, dude" ) . '.json' )->slurp;
 
