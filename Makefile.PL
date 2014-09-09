@@ -34,6 +34,7 @@ WriteMakefile(
 		'Path::Tiny'             => 0,
 		'Template'               => 0,
 		'Test::More'             => 0,
+		'Test::Code::TidyAll'    => 0,
 		'Text::Wrap'             => 0,
 		'WWW::Mailman'           => 0,
 		'WWW::Shorten::Bitly'    => 0,
