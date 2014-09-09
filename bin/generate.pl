@@ -58,8 +58,7 @@ if ( $issue eq 'events' ) {
 
 if ( $issue eq 'all' or $issue eq 'latest' ) {
 	my ( @issues, $last );
-	my ($max)
-		= max grep {/^\d+$/}
+	my ($max) = max grep {/^\d+$/}
 		map { substr( basename($_), 0, -5 ) } glob 'src/*.json';
 	foreach my $i ( 1 .. $max ) {
 		my $pwissue = PerlWeekly::Issue->new( $i, $target );
