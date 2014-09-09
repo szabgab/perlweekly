@@ -34,6 +34,7 @@ WriteMakefile(
 		'Path::Tiny'             => 0,
 		'Template'               => 0,
 		'Test::More'             => 0,
+		'Perl::Tidy'             => 0,  # Apparently Test::Code::TidyAll does not explicitly depend on it
 		'Test::Code::TidyAll'    => 0,
 		'Text::Wrap'             => 0,
 		'WWW::Mailman'           => 0,
