@@ -4,14 +4,14 @@ use WWW::Mailman;
 use Data::Dumper qw(Dumper);
 
 my $pw = shift;
-if (not $pw) {
-   print "Admin pw: ";
-   chomp($pw = <STDIN>);
+if ( not $pw ) {
+	print "Admin pw: ";
+	chomp( $pw = <STDIN> );
 }
 
 my $m = WWW::Mailman->new(
-   uri  => 'http://mail.perlweekly.com/mailman/listinfo/perlweekly',
-   admin_password => $pw,
+	uri => 'http://mail.perlweekly.com/mailman/listinfo/perlweekly',
+	admin_password => $pw,
 );
 
 #my @roster = $m->roster;
