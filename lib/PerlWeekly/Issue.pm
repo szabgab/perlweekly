@@ -210,4 +210,3 @@ sub html2text {
 
 1;
 
-
