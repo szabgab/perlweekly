@@ -76,7 +76,8 @@ sub slurp_entries {
 			};
 	}
 
-	return sort { $a->{ts} cmp $b->{ts} } @entries;
+	my @res = sort { $a->{ts} cmp $b->{ts} } @entries;
+	return @res;
 }
 
 use JSON::XS;

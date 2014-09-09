@@ -1,4 +1,6 @@
 #!/usr/bin/perl -s
+use strict;
+use warnings;
 
 use Net::Delicious;
 use Path::Tiny;
