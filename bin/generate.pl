@@ -7,7 +7,7 @@ use autodie;
 use Cwd qw(abs_path);
 use Data::Dumper qw(Dumper);
 use File::Basename qw(basename dirname);
-use File::Slurp qw(read_file);
+use Path::Tiny qw(path);
 use JSON qw(from_json);
 use List::Util qw(max);
 
@@ -168,10 +168,7 @@ sub collect_links {
 
 sub events_page {
 	my $events;
-	eval {
-		$events = from_json scalar read_file "src/events.json",
-			binmode => 'utf8';
-	};
+	eval { $events = from_json scalar path("src/events.json")->slurp_utf8; };
 	if ($@) {
 		die "JSON exception in src/events.json\n\n$@";
 	}
