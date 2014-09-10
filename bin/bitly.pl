@@ -4,7 +4,7 @@ use autodie;
 use 5.010;
 
 use JSON qw(from_json to_json);
-use File::Slurp qw(read_file write_file);
+use Path::Tiny qw(path);
 use WWW::Shorten::Bitly;
 use Data::Dumper qw(Dumper);
 use Encode qw(decode encode);
@@ -20,8 +20,7 @@ my $json_file = shift or die "Usage: $0 src/ddd.json\n";
 #binmode(STDOUT, ":utf8");
 #binmode(STDERR, ":utf8");
 
-my $src_json
-	= encode( 'utf-8', scalar read_file( $json_file, binmode => ':utf8' ) );
+my $src_json = encode( 'utf-8', scalar path($json_file)->slurp_utf8 );
 my $data = from_json $src_json, { utf8 => 1 };
 
 for my $ch ( @{ $data->{chapters} } ) {
@@ -59,7 +58,8 @@ for my $ch ( @{ $data->{chapters} } ) {
 	}
 }
 
-#write_file $json_file, to_json($data, {utf8 => 1, pretty => 1});
-write_file $json_file, { binmode => ':utf8' },
-	decode( 'utf-8',
-	to_json( $data, { utf8 => 1, pretty => 1, canonical => 1 } ) );
+path($json_file)->spew_utf8(
+	decode(
+		'utf-8', to_json( $data, { utf8 => 1, pretty => 1, canonical => 1 } )
+	)
+);
