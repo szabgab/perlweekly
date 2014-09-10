@@ -26,7 +26,7 @@ sub new {
 	die "File '$filename' does not exist.\n" if not -e $filename;
 	eval { $self = from_json scalar read_file $filename, binmode => 'utf8'; };
 	if ($@) {
-		die "JSON exception in src/$issue.json   $@";
+		die "JSON exception in '$filename' $@";
 	}
 	bless $self, $class;
 
