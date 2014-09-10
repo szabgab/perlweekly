@@ -22,10 +22,9 @@ sub new {
 	my ( $issue, $target ) = @_;
 
 	my $self;
-	eval {
-		$self = from_json scalar read_file "src/$issue.json",
-			binmode => 'utf8';
-	};
+	my $filename = "src/$issue.json";
+	die "File '$filename' does not exist.\n" if not -e $filename;
+	eval { $self = from_json scalar read_file $filename, binmode => 'utf8'; };
 	if ($@) {
 		die "JSON exception in src/$issue.json   $@";
 	}
