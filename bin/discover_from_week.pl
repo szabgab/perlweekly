@@ -6,7 +6,7 @@ use strict;
 use warnings;
 
 use JSON::Path;
-use Path::Tiny qw/ path /;
+use Path::Tiny qw(path);
 use URI;
 use XML::Feed;
 

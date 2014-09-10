@@ -2,9 +2,9 @@
 use strict;
 use warnings;
 
-use Net::Delicious;
-use Path::Tiny;
-use JSON qw/ decode_json /;
+use Net::Delicious ();
+use Path::Tiny qw(path);
+use JSON qw(decode_json);
 
 my ( $w, $p );
 my $weekly = decode_json path('src')

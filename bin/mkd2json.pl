@@ -4,8 +4,9 @@ use 5.16.0;
 
 use strict;
 use warnings;
-use Path::Tiny;
-use List::AllUtils qw/ before /;
+use Path::Tiny qw(path);
+use List::AllUtils qw(before);
+
 my $in_file = shift or die "Usage: $0 src/NNN.mkd\n";
 ( my $out_file = $in_file ) =~ s/mkd$/json/;
 

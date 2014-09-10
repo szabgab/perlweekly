@@ -3,12 +3,12 @@
 use strict;
 use warnings;
 
-use Data::Printer;
-use Path::Tiny;
-use Data::ICal;
-use Data::ICal::Entry::Event;
-use DateTime::Format::ICal;
-use DateTime::Functions qw/ now /;
+use Data::Printer ();
+use Path::Tiny qw(path);
+use Data::ICal               ();
+use Data::ICal::Entry::Event ();
+use DateTime::Format::ICal   ();
+use DateTime::Functions qw(now);
 
 my ( undef, @events )
 	= path('events/events.mkd')->slurp =~ /^##(.*?)(?=##|\Z)/msg;
