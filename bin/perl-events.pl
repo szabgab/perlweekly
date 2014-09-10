@@ -11,7 +11,7 @@ use 5.010;
 
 use YAML;
 use JSON qw(from_json);
-use File::Slurp qw(read_file);
+use Path::Tiny qw(path);
 use Data::Dumper qw(Dumper);
 use Cwd qw(abs_path cwd);
 use File::Basename qw(dirname);
@@ -31,8 +31,7 @@ $current_month++;
 $current_year += 1900;
 
 my $yef       = YAML::LoadFile($file);
-my $pw_events = from_json scalar read_file "src/events.json",
-	binmode => 'utf8';
+my $pw_events = from_json scalar path("src/events.json")->slurp_utf8;
 my @out;
 print "----------------------------------\n";
 print "From YEF site:\n";

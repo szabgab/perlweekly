@@ -5,7 +5,7 @@ use warnings;
 use Getopt::Long qw(GetOptions);
 use MIME::Lite;
 use Cwd qw(abs_path cwd);
-use File::Slurp qw(read_file);
+use Path::Tiny qw(path);
 use JSON qw(from_json);
 use Encode qw(decode encode);
 
@@ -25,8 +25,7 @@ my $host = 'szabgab.com';
 my %content;
 $content{html} = qx{$^X bin/generate.pl mail $opt{issue}};
 $content{text} = qx{$^X bin/generate.pl text $opt{issue}};
-my $data = from_json scalar( read_file "src/$opt{issue}.json" ),
-	binmode => 'utf8';
+my $data = from_json scalar( path("src/$opt{issue}.json")->slurp_utf8 );
 if ( $data->{subject} ) {
 	$subject = "#$opt{issue} - $data->{subject}";
 }
