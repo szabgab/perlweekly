@@ -7,7 +7,7 @@ use autodie;
 use Carp qw(croak);
 use Data::Dumper qw(Dumper);
 use Encode qw(decode encode);
-use File::Slurp qw(read_file);
+use Path::Tiny qw(path);
 use JSON qw(from_json);
 use PerlWeekly::Template qw();
 use Text::Wrap qw(wrap);
@@ -24,7 +24,7 @@ sub new {
 	my $self;
 	my $filename = "src/$issue.json";
 	die "File '$filename' does not exist.\n" if not -e $filename;
-	eval { $self = from_json scalar read_file $filename, binmode => 'utf8'; };
+	eval { $self = from_json scalar path($filename)->slurp_utf8 };
 	if ($@) {
 		die "JSON exception in '$filename' $@";
 	}
