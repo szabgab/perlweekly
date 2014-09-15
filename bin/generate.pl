@@ -73,7 +73,15 @@ if ( $issue eq 'all' or $issue eq 'latest' ) {
 	$last->generate('rss');
 
 	$last->{latest_page} = $max;
-	$last->generate( $target, "html/latest.html" );
+	#$last->generate( $target, "html/latest.html" );
+	open my $out, '>', 'html/latest.html' or die;
+	print $out <<"END_LATEST";
+<script>
+window.location = "http://perlweekly.com/archive/$max.html"
+</script>
+END_LATEST
+	close $out;
+
 	delete $last->{latest_page};
 
 	my $next = PerlWeekly::Issue->new( 'next', $target );
