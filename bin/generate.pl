@@ -73,6 +73,7 @@ if ( $issue eq 'all' or $issue eq 'latest' ) {
 	$last->generate('rss');
 
 	$last->{latest_page} = $max;
+
 	#$last->generate( $target, "html/latest.html" );
 	open my $out, '>', 'html/latest.html' or die;
 	print $out <<"END_LATEST";
