@@ -9,9 +9,11 @@ use Path::Tiny qw(path);
 use JSON qw(from_json);
 use Encode qw(decode encode);
 
-my %opt;
-GetOptions( \%opt, 'to=s', 'issue=i', ) or die;
-die "Usage: $0 --to mail\@address.com  --issue N\n"
+my %opt = (
+	smtp => 'localhost',
+);
+GetOptions( \%opt, 'to=s', 'issue=i', 'smtp=s' ) or die;
+die "Usage: $0 --to mail\@address.com  --issue N [--smtp server]\n"
 	if not $opt{to}
 	or not $opt{issue};
 
@@ -57,5 +59,5 @@ foreach my $t (qw(text html)) {
 	$msg->attach($att);
 }
 
-$msg->send( 'smtp', 'localhost' );
+$msg->send( 'smtp', $opt{smtp} );
 
