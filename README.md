@@ -19,9 +19,34 @@ I update the 'title', 'text', 'url', and 'ts' fields. I have not touched the 'ta
 that too and then display the values. At least on the web site. The 'link' field is going to be update by the bitly script. So I leave
 that empty.
 
-Yanick: ??
+Yanick:
 
-At the end Yanick sends a pull-request. Usually with a correctly formatted json file :)
+I first create a 'week-123' branch (where "123" is the current week number,
+natch). Then I copy my Markdown template in the src/ directory
+
+    cp template.mkd src/123.mkd
+    
+I keep all the feeds that I usually peruse in data/feeds.url, and I have a
+script that visit them all and auto-generate entries for anything that
+appeared in the last week
+
+    perl bin/gen_mkd_from_feeds.pl data/feeds.url >> src/123.mkd
+    
+I then edit src/123.mkd manually. Add anything else I saw elsewhere,
+put the entries in the appropriate section (sections that don't
+have entries will be automatically removed, and entries will also
+be chronologically sorted in the next step).
+
+Then I convert the markdown in json
+
+    perl bin/mkd2json.pl src/123.mkd
+    
+Check that all looks good
+
+    perl bin/generate.pl web 123
+    firefox html/archive/123.html
+    
+Finally, I commit src/123.json and send a pull request to Gabor.
 
 
 The final touch
