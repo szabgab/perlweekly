@@ -28,10 +28,12 @@ if ( $data->{subject} ) {
 }
 
 my $editors = from_json scalar( path("src/editors.json")->slurp_utf8 );
+
 #die $data->{editor};
 #die Dumper $editors;
 
-my $from = "$editors->{ $data->{editor} }{name} <$editors->{ $data->{editor} }{from}>";
+my $from
+	= "$editors->{ $data->{editor} }{name} <$editors->{ $data->{editor} }{from}>";
 
 my $msg = MIME::Lite->new(
 	From    => $from,
