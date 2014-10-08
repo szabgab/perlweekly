@@ -9,9 +9,7 @@ use Path::Tiny qw(path);
 use JSON qw(from_json);
 use Encode qw(decode encode);
 
-my %opt = (
-	smtp => 'localhost',
-);
+my %opt = ( smtp => 'localhost', );
 GetOptions( \%opt, 'to=s', 'issue=i', 'smtp=s' ) or die;
 die "Usage: $0 --to mail\@address.com  --issue N [--smtp server]\n"
 	if not $opt{to}
