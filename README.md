@@ -55,7 +55,8 @@ The final touch
 * Update src/next.json to have the next date (this is used on the front page)
 * Update src/count.txt from http://mail.perlweekly.com/mailman/admin/perlweekly/members
 * add sponsors, if there are any
-* Update the src/events.json maybe moving some old items to src/old_events.json
+* Update the ```src/events.json``` by runnig ```bin/perl-events.pl``` and maybe by moving some old items to ```src/old_events.json```
+* Copy the section of events from the previous edition, and update it (remove old, add new)
 * Run ispell on the source file and try not to "fix" British English with American English
 * Run  bin/bitly.pl to add the bitly links
 * Run bin/generate.pl web all
