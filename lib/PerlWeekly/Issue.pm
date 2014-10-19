@@ -69,7 +69,8 @@ sub generate {
 sub add_author_info {
 	my $self = shift;
 
-	my $authors = from_json scalar( path("src/authors.json")->slurp_utf8 );
+	my $authors = eval { from_json scalar( path("src/authors.json")->slurp_utf8 ) };
+	die "Could not read src/authors.json\n\n$@" if $@;
 
 	foreach my $ch ( @{ $self->{chapters} } ) {
 		foreach my $e ( @{ $ch->{entries} } ) {
