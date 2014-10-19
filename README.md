@@ -71,7 +71,7 @@ The final touch
   that was held for approval and the other one as I am the list administrator. I follow the link in this
   second e-mail and approve the message to go out to the mailing list.
 
-* Then I go and past the link of the latest editon in the Perl Developers group on Facebook, the Perl Weekly page on Google+,
+* Then I go and paste the link of the latest editon in the Perl Developers group on Facebook, the Perl Weekly page on Google+,
   LinkedIN, Twitter.
 
 
