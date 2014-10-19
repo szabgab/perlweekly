@@ -21,6 +21,7 @@ sub new {
 	my $class = shift;
 	my ( $issue, $target ) = @_;
 
+
 	my $self;
 	my $filename = "src/$issue.json";
 	die "File '$filename' does not exist.\n" if not -e $filename;
@@ -52,6 +53,8 @@ sub generate {
 	my $target = shift;
 	my @out    = @_ ? shift : ();
 
+	$self->add_author_info;
+
 	return (
 		  $target eq 'web' ? $self->process_tt( 'tt/page.tt', @out )
 		: $target eq 'mail'
@@ -61,6 +64,24 @@ sub generate {
 		: $target eq 'rss' ? $self->process_rss
 		:                    die "Unknown target '$target'\n"
 	);
+}
+
+sub add_author_info {
+	my $self = shift;
+
+	my $authors = from_json scalar( path("src/authors.json")->slurp_utf8 );
+
+	foreach my $ch ( @{ $self->{chapters} } ) {
+		foreach my $e ( @{ $ch->{entries} } ) {
+			if ($e->{author}) {
+				my $author = $authors->{ $e->{author} };
+				die "Author $e->{author} not found in authors.json\n" if not $author;
+				$e->{img} = $author->{img};
+				$e->{img_title} = $author->{name};
+			}
+		}
+	}
+	return;
 }
 
 # In e-mail (both html and text) we prefer to use the shortened URL
