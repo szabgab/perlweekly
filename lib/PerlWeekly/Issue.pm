@@ -21,7 +21,6 @@ sub new {
 	my $class = shift;
 	my ( $issue, $target ) = @_;
 
-
 	my $self;
 	my $filename = "src/$issue.json";
 	die "File '$filename' does not exist.\n" if not -e $filename;
@@ -69,15 +68,17 @@ sub generate {
 sub add_author_info {
 	my $self = shift;
 
-	my $authors = eval { from_json scalar( path("src/authors.json")->slurp_utf8 ) };
+	my $authors
+		= eval { from_json scalar( path("src/authors.json")->slurp_utf8 ) };
 	die "Could not read src/authors.json\n\n$@" if $@;
 
 	foreach my $ch ( @{ $self->{chapters} } ) {
 		foreach my $e ( @{ $ch->{entries} } ) {
-			if ($e->{author}) {
+			if ( $e->{author} ) {
 				my $author = $authors->{ $e->{author} };
-				die "Author $e->{author} not found in authors.json\n" if not $author;
-				$e->{img} = $author->{img};
+				die "Author $e->{author} not found in authors.json\n"
+					if not $author;
+				$e->{img}       = $author->{img};
 				$e->{img_title} = $author->{name};
 			}
 		}
