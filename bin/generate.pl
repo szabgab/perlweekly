@@ -78,7 +78,7 @@ if ( $issue eq 'all' or $issue eq 'latest' ) {
 	open my $out, '>', 'html/latest.html' or die;
 	print $out <<"END_LATEST";
 <script>
-window.location = "http://perlweekly.com/archive/$max.html"
+window.location = location.origin + "/archive/$max.html";
 </script>
 END_LATEST
 	close $out;
