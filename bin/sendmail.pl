@@ -31,7 +31,8 @@ my $editors = from_json scalar( path("src/editors.json")->slurp_utf8 );
 
 #die $data->{editor};
 #die Dumper $editors;
-die "Editor '$data->{editor}' not found.\n" if not $editors->{ $data->{editor} };
+die "Editor '$data->{editor}' not found.\n"
+	if not $editors->{ $data->{editor} };
 
 my $from
 	= "$editors->{ $data->{editor} }{name} <$editors->{ $data->{editor} }{from}>";
