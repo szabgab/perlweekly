@@ -76,7 +76,8 @@ sub add_author_info {
 		foreach my $e ( @{ $ch->{entries} } ) {
 			if ( $e->{author} ) {
 				my $author = $authors->{ $e->{author} };
-				if (not $author) {
+				if ( not $author ) {
+
 					#warn "Author $e->{author} not found in authors.json\n";
 					#delete $e->{author};
 					next;
