@@ -57,6 +57,7 @@ The final touch
 * add sponsors, if there are any
 * Update the ```src/events.json``` by runnig ```bin/perl-events.pl``` and maybe by moving some old items to ```src/old_events.json```
 * Copy the section of events from the previous edition, and update it (remove old, add new)
+* Add authors where they are missing.
 * Run ispell on the source file and try not to "fix" British English with American English
 * Run  bin/bitly.pl to add the bitly links
 * Run bin/generate.pl web all
