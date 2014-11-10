@@ -27,7 +27,7 @@ if ( $data->{subject} ) {
 	$subject = "#$opt{issue} - $data->{subject}";
 }
 
-my $editors = from_json scalar( path("src/editors.json")->slurp_utf8 );
+my $editors = from_json scalar( path("src/authors.json")->slurp_utf8 );
 
 #die $data->{editor};
 #die Dumper $editors;

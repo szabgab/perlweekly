@@ -72,6 +72,12 @@ sub add_author_info {
 		= eval { from_json scalar( path("src/authors.json")->slurp_utf8 ) };
 	die "Could not read src/authors.json\n\n$@" if $@;
 
+	die "Missing editor" if not $self->{editor};
+	# why is this called twice?
+	#die Dumper $self->{editor} if not $authors->{ $self->{editor} };
+	#die "Editor '$self->{editor}' not found in src/authors.json" if not $authors->{ $self->{editor} };
+	$self->{editor} = $authors->{ $self->{editor} };
+
 	foreach my $ch ( @{ $self->{chapters} } ) {
 		foreach my $e ( @{ $ch->{entries} } ) {
 			if ( $e->{author} ) {
