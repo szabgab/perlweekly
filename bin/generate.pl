@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
+use 5.010;
 
 use autodie;
 
@@ -94,6 +95,7 @@ END_LATEST
 	$t->process( 'tt/all.tt', { issues => \@issues }, 'html/all.html' )
 		or die $t->error;
 
+	collect_tags(@issues);
 	collect_links(@issues);
 
 	@issues = reverse @issues;
@@ -141,6 +143,45 @@ else {
 }
 
 exit;
+
+sub collect_tags {
+	my @issues = @_;
+	my %links;
+	my %tags;
+	foreach my $issue (@issues) {
+		foreach my $ch ( @{ $issue->{chapters} } ) {
+			foreach my $e ( @{ $ch->{entries} } ) {
+				foreach my $tag ( @{ $e->{tags} } ) {
+					my $url = lc $tag;
+					$url =~ s/[^a-z0-9]+/_/g;
+					$url =~ s/^_|_$//g;
+					$tags{$url}{tag} = $tag;
+					$tags{$url}{cnt}++;
+					push @{ $tags{$url}{entries} }, $e;
+				}
+			}
+		}
+	}
+
+	my $t = PerlWeekly::Template->new();
+	$t->process( 'tt/tags.tt', { tags => \%tags }, 'html/tags.html' )
+		or die $t->error;
+
+	mkdir 'html/tags' if not -e 'html/tags';
+	foreach my $url ( keys %tags ) {
+		$t->process(
+			'tt/tag.tt',
+			{
+				tag     => $tags{$url}{tag},
+				cnt     => $tags{$url}{cnt},
+				entries => $tags{$url}{entries}
+			},
+			"html/tags/$url.html"
+		) or die $t->error;
+	}
+
+	return;
+}
 
 sub collect_links {
 	my @issues = @_;
