@@ -145,6 +145,19 @@ a { color: #04c; }
                   font-weight: bold;
                   ">[% e.title | html %]</a>
                <br />
+               [%- IF e.author -%]
+                 <span style="font-size: 14px"> 
+                   by 
+                       [%- IF e.author.url -%]
+                          <a href="[% e.author.url %]">[%- e.author.name -%]</a>
+                       [%- ELSE -%]
+                          [%- e.author.name -%]
+                       [%- END -%]
+                       [%- IF e.author.pause -%]
+                         (<a href="https://metacpan.org/author/[% e.author.pause %]">[% e.author.pause %]</a>)
+                       [%- END -%]
+                  </span>
+               [%- END -%]
                <p style="font-size: 16px">
                  [% e.text %]
                </p>
