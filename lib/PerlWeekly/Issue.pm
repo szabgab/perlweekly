@@ -83,11 +83,12 @@ sub add_author_info {
 		foreach my $e ( @{ $ch->{entries} } ) {
 			if ( $e->{author} ) {
 				my $author = $authors->{ $e->{author} };
-				if ( $author ) {
-					$e->{author} = $author;
+				if ($author) {
+					$e->{author}    = $author;
 					$e->{img}       = $author->{img};
 					$e->{img_title} = $author->{name};
-				} else {
+				}
+				else {
 
 					#warn "Author $e->{author} not found in authors.json\n";
 					#delete $e->{author};
