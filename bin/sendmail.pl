@@ -34,8 +34,11 @@ my $editors = from_json scalar( path("src/authors.json")->slurp_utf8 );
 die "Editor '$data->{editor}' not found.\n"
 	if not $editors->{ $data->{editor} };
 
-my $from
-	= "$editors->{ $data->{editor} }{name} <$editors->{ $data->{editor} }{from}>";
+# Maybe, after all, it is better if all the messages come from one person
+# and just keep the editor at the top of each edition.
+#my $from
+#	= "$editors->{ $data->{editor} }{name} <$editors->{ $data->{editor} }{from}>";
+my $from = "$editors->{gabor_szabo}{name} <$editors->{gabor_szabo}{from}>";
 
 my $msg = MIME::Lite->new(
 	From    => $from,
