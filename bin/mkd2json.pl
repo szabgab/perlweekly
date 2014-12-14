@@ -1,4 +1,4 @@
-#!/usr/bin/perl 
+#!/usr/bin/env perl
 
 use 5.16.0;
 
@@ -6,6 +6,7 @@ use strict;
 use warnings;
 use Path::Tiny qw(path);
 use List::AllUtils qw(before);
+use PerlX::Maybe;
 
 my $in_file = shift or die "Usage: $0 src/NNN.mkd\n";
 ( my $out_file = $in_file ) =~ s/mkd$/json/;
@@ -16,6 +17,7 @@ my $newsletter = {};
 
 $newsletter->{subject} = ( shift @file ) =~ s/^#\s*//r;
 $newsletter->{date}    = shift @file;
+$newsletter->{editor} = 'yanick_champoux';
 
 ## header stuff
 my @headers;
@@ -34,6 +36,8 @@ while (@file) {
 	my @entries = slurp_entries( \@file )
 		or next;
 
+    warn "adding $title\n";
+
 	push @{ $newsletter->{chapters} },
 		{
 		title   => $title,
@@ -51,19 +55,23 @@ sub slurp_entries {
 
 	while (@$file) {
 
-		#$DB::single = $file->[0] =~ /#/;
-
 		shift @$file while @$file and $file->[0] =~ /^\s*$/;
 
 		last if $file->[0] =~ /^##\s+/m;
 
 		my $title = ( shift @$file ) =~ s/^###\s*//r;
-		my $link  = shift @$file;
-		( my $date = shift @$file ) =~ y/-/./;
-		shift @$file;
+        my @meta;
+        push @meta, shift @$file until $file->[0] =~ /^\s*$/;
+
+        my( $link, $date, $author ) = @meta;
+		my $date =~ y/-/./;
+        $author =~ y/ /_/;
+        $author = lc $author;
+
+        shift @$file while @$file and $file->[0] =~ /^\s*$/;
 
 		my $text = '';
-		$text .= ' ' . shift @$file while @file and $file->[0] !~ /^\s*$/;
+		$text .= ' ' . shift @$file while @$file and $file->[0] !~ /^(?:#|\s*$)/;
 		$text =~ s/^\s+|\s+$//g;
 
 		push @entries,
@@ -74,6 +82,7 @@ sub slurp_entries {
 			ts    => $date,
 			link  => '',
 			tags  => [],
+            maybe author => $author,
 			};
 	}
 
