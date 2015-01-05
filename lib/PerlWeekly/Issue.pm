@@ -82,6 +82,12 @@ sub add_author_info {
 	foreach my $ch ( @{ $self->{chapters} } ) {
 		foreach my $e ( @{ $ch->{entries} } ) {
 			if ( $e->{author} ) {
+				next
+					if ref $e->{author}
+					; # TODO: remove this. (the current issue runs twice so we are skipping it the second time)
+				die
+					"Could not fine author '$e->{author}' in issue $self->{issue} ($e->{title})"
+					if not $authors->{ $e->{author} };
 				my $author = $authors->{ $e->{author} };
 				if ($author) {
 					$e->{author}    = $author;
