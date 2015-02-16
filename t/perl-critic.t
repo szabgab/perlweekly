@@ -11,6 +11,8 @@ use Test::Perl::Critic;
 # Temporarily skip any files that existed before adding the tests.
 # Eventually these should all be removed (once the files are cleaned up).
 my %skip = map { ( $_ => 1 ) } qw(
+	lib/Text/Tabs.pm
+	lib/Text/Wrap.pm
 );
 
 my @files = grep { !$skip{$_} }
