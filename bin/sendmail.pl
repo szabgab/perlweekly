@@ -2,6 +2,8 @@
 use strict;
 use warnings;
 
+use lib 'lib';
+
 use Getopt::Long qw(GetOptions);
 use MIME::Lite;
 use Cwd qw(abs_path cwd);
