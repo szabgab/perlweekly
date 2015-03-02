@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+  <title>Perl Programming Weekly Issue #188 - 2015-03-02 - The First Days of Christmas Scheduled to be in August</title>
+
+ <link rel="stylesheet" type="text/css" href="/style.css" />
+ <script src="/js/jquery.js" type="text/javascript"></script>
+ <script src="/js/mailman.js" type="text/javascript"></script>
+ <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+
+</head>
+<body>
+
+<style>
+* { text-align: left; }
+table {
+  font-family: helvetica, arial, sans-serif;
+  width: 700px;
+}
+@media (max-width: 800px) {
+  table {
+     width: 370px;
+  }
+}
+p { margin: 1.2em 0em 1.35em 0em; line-height: 1.4em; }
+a { color: #04c; }
+
+#menu {
+  border-bottom: 1px solid #ccc;
+}
+#menu ul {
+  text-align: center;
+  margin: 0;
+}
+#menu li {
+  font-size: 12px;
+  display: inline;
+  list-style-type: none;
+  padding-right: 10px;
+}
+
+#social_icons {
+  margin-top: 10px;
+}
+
+</style>
+
+<table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
+<tr><td>
+    <p id="logo">
+    <a href="http://perlweekly.com/" style="
+      background-color: #004065;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 40px;
+      font-weight: bold;
+      font-family: Gadget;
+    
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border: 1px solid #000;
+      padding: 10px;
+    ">Perl Weekly</a>
+    
+    </p>
+    <p id="issue"
+      style="border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      font-size: 18px;">
+    Issue #188 - 2015-03-02 - The First Days of Christmas Scheduled to be in August
+    </p>
+    
+    
+    <a href="/latest.html">latest</a> | <a href="/archive">archive</a> | by <a href="http://techblog.babyl.ca/">Yanick Champoux</a>
+    <p>
+    <!-- start facebook SDK ?? -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=101520636611790";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- end facebook -->
+    
+    <div class="fb-like" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+    <a href="http://twitter.com/share" class="twitter-share-button"
+    data-text="Perl Weekly: The First Days of Christmas Scheduled to be in August via @perlweekly" data-count="vertical">Tweet</a>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js">
+    </script>
+    
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="tall"></g:plusone>
+    
+    
+    
+</td></tr>
+
+<tr><td>
+    <table>
+    <tr><td>
+        
+        <p style="font-size: 16px">
+         This week, we have the releases of two of the big web frameworks, a new Strawberry Perl, and invitations to upcoming Hackatons both for Perl 5 and Perl 6. For the latter, the pressure is building: the August Hackaton in Switzerland is touted as the last one before the dev version of Perl 6 1.0 goes out. Enjoy! ~ `/anick 
+        </p>
+        
+    </td>
+    <td>
+        <img  style="right:0; bottom: 0;" src="/img/yanick_champoux.png" />
+    </td></tr>
+    </table>
+</td></tr>
+
+
+    <tr><td>
+        <hr style="color: red" id="sponsors" />
+        <div style="font-size: 18px; font-weight: bold;">Sponsors</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://betago.is.com/dl.aspx?cid=5669&pv_url=https://github.com/jjhart/insidesales_challenge?5669_rm_id=100.6473429.7" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">InsideSales.com – Pass our &quot;Perl Challenge&quot; &amp; Win a $100 Amazon Gift Card</a>
+               <br />               <p style="font-size: 16px">
+                 Our yummy Perl codebase handles millions of emails in production each week!  We're growing like crazy, doubling in revenue and size annually. We want you to join our team in Utah. Pass our "Perl Challenge" to win a $100 Amazon gift card and an interview. Hires will receive a sizable signing bonus.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://www.striata.com/about-striata/career-application/africa/perl-developer/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Looking for Perl Gurus to work in exciting development environment</a>
+               <br />               <p style="font-size: 16px">
+                 Do you eat Javascript for lunch? Are you familiar with Web Servers such as IIS and Apache? Do you dig Perl the most? Then join Striata! We will make best use of your talent, while ensuring that you grow and learn in an environment that boasts some of the best developers in the industry. <a href="https://www.striata.com/about-striata/career-application/africa/perl-developer/">Apply now!</a>
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+      <tr><td>
+      <p style="font-size: 16px">Interseted in sponsored ads in the Perl Weekly? <a href="http://perlweekly.com/sponsors.html">Check out</a> the details.</p>
+      </td></tr>
+    
+
+    <tr><td>
+        <hr style="color: red" id="announcements" />
+        <div style="font-size: 18px; font-weight: bold;">Announcements</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/shadowcat_mdk/2015/03/perl-and-the-company-culture.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Perl and the Company Culture</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Mark Keating                  </span>               <p style="font-size: 16px">
+                 Mark wants to make some noise and promote companies, big and small, that use Perl. For that, he asks for your help to corral the names of all  organizations that fit the bill.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/graham_ollis/2015/02/adopting-in-the-hope-to-improve-maintenance.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Adopting in the hope to improve maintenance</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Graham Ollis                         (<a href="https://metacpan.org/author/PLICEASE">PLICEASE</a>)                  </span>               <p style="font-size: 16px">
+                 Graham would like to provide a warm, cozy new home for a handful of modules. But, of course, this can't happen without the blessing of their original owners, so he's sending an announcement flare.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/graham_ollis.jpg" title="Graham Ollis" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/swiss_perl_workshop/2015/02/perl-6-hackathon-with-larry-wall.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Perl 6 Hackathon with Larry Wall in Switzerland</a>
+               <br />               <p style="font-size: 16px">
+                 Feel like celebrating Christmas in August? Then you might entertain the notion of joining this Hackaton, most probably the last one before Perl6 get officially released.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blog.kraih.com/post/112170845701" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Mojolicious 6.0 released: Perl real-time web framework</a>
+               <br />               <p style="font-size: 16px">
+                 A new major release of Mojolicious is out! Massive rewrites, support for  things like IPv6, SOCKS5, and non-blocking name resolution, this is clearly not your grampa web framework.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/damian_conway/2015/02/a-big-week-in-oslo.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">A big week in Oslo</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Damian Conway                         (<a href="https://metacpan.org/author/DCONWAY">DCONWAY</a>)                  </span>               <p style="font-size: 16px">
+                 Damian is going to Norway, and he's going to be a busy, busy man. Lots of talks and presentations on his plate for the days to come.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/damian_conway.jpg" title="Damian Conway" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/kmx/2015/02/strawberry-perl-52021-released.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Strawberry Perl 5.20.2.1 released</a>
+               <br />               <p style="font-size: 16px">
+                 A new version of Strawberry Perl is out. Amongst other goodies, this  version comes with all the major DBI drivers -- MySQL, PostgreSQL, Oracle, MS SQL -- working out of the box.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://news.perlfoundation.org/2015/02/yapcna2015-hackathons-announce.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">YAPC::NA::2015 Hackathons Announced</a>
+               <br />               <p style="font-size: 16px">
+                 Perl 5, Perl 6, hardware, there will be hackatons for them all at YAPC::NA. If you plan to join the fun, RSVP so that the organizers know what to expect.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/sawyer_x/2015/02/dancer2-0159000-waiting-for-you-on-cpan.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Dancer2 0.159000 waiting for you on CPAN!</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/sawyer_x/">Sawyer X</a>                         (<a href="https://metacpan.org/author/XSAWYERX">XSAWYERX</a>)                  </span>               <p style="font-size: 16px">
+                 A new version of Dancer 2 is out! Documentation updates, lots of bug fixes, a brand new support for asynchronousity (err.. asynchronousness?) and streaming.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/sawyer_x.png" title="Sawyer X" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="articles" />
+        <div style="font-size: 18px; font-weight: bold;">Articles</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://perltricks.com/article/155/2015/2/26/Hello-perldoc--productivity-booster" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Hello perldoc, productivity booster</a>
+               <br />               <p style="font-size: 16px">
+                 Some tools help and some tools are next to indispensable. Perldoc squarely falls in the second category. David offers us here a quick review of its main use cases.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://www.techworld.com/careers/perl-developers-dispel-doubts-about-codes-longevity-3599357/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Perl developers dispel doubts about the code's longevity</a>
+               <br />               <p style="font-size: 16px">
+                 You know the usual question. "Is Perl dead? Dying? Looking pale? Perhaps pining for the fjords?" TechWorld went out and interviewed some of the members of the community in this latest attempt to answer the eternal question.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="testing" />
+        <div style="font-size: 18px; font-weight: bold;">Testing</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blog.twoshortplanks.com/2015/02/28/the-role-of-critique/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">The Role of Critique</a>
+               <br />               <p style="font-size: 16px">
+                 If a role is defining a private method that it is not using itself, Perl::Critic is wont to spuriously tut-tut at you. Or was, as Mark decided that enough was enough, and crafted a patch that takes care of that.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://contourline.wordpress.com/2015/02/23/another-note-to-my-future-self-on-dbixclass/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Another note to my future self on DBIx::Class</a>
+               <br />               <p style="font-size: 16px">
+                 While working on the creation of a DBIx-based test database,  James realized that not everything is perfectly documented. He's jolting down the missing pieces of the puzzle here for the benefit of his future self (and us, natch).
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="code" />
+        <div style="font-size: 18px; font-weight: bold;">Code</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://techblog.babyl.ca/entry/got-lib" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">got lib? Lieber Gott!</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://techblog.babyl.ca/">Yanick Champoux</a>                         (<a href="https://metacpan.org/author/YANICK">YANICK</a>)                  </span>               <p style="font-size: 16px">
+                 The new release of 'got' introduced the subcommand 'got lib'. What does it do? Yanick reveals all.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/yanick_champoux.png" title="Yanick Champoux" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://blog.afoolishmanifesto.com/posts/configuration-station" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Configuration Station</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="https://blog.afoolishmanifesto.com/">Arthur Axel "fREW" Schmidt</a>                         (<a href="https://metacpan.org/author/FREW">FREW</a>)                  </span>               <p style="font-size: 16px">
+                 fREW plays with a new Proof::ConfigLoader, which aims at being light on the syntax overhead while allowing overriding via environment variables.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/frew.gif" title="Arthur Axel "fREW" Schmidt" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blog.booking.com/socket-timeout-made-easy.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">IO::Socket::Timeout: socket timeout made easy</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Damien Krotkine                         (<a href="https://metacpan.org/author/DAMS">DAMS</a>)                  </span>               <p style="font-size: 16px">
+                 For most of us, just getting the web page is good enough. But for, say, Booking.com, there's also a need for speed. Damien shares with us how they tweak and interact with socket timeouts as one way to quench this thirst of velocity.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/damien_krotkine.png" title="Damien Krotkine" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/kivanc_yazan/2015/02/public-voting-through-twitter.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Public Voting through Twitter</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Kivanc Yazan                  </span>               <p style="font-size: 16px">
+                 Kivan was recently involved in a charity party where voting for things like dance and songs was done via Twitter. Brilliant idea. And he came up with a script to take the humdrum off tallying the results too.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/kivanc_yazan.jpg" title="Kivanc Yazan" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="weekly_collections" />
+        <div style="font-size: 18px; font-weight: bold;">Weekly collections</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://niceperl.blogspot.com/2015/02/xvii-cpan-great-modules-released-last.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">CPAN great modules released last week</a>
+               <br />               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://niceperl.blogspot.com/2015/02/cxlix-metacpan-weekly-report.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">MetaCPAN weekly report - File::Serialize</a>
+               <br />               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://niceperl.blogspot.com/2015/02/clxxiv-stackoverflow-perl-report.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">StackOverflow Perl report</a>
+               <br />               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+
+<tr><td>
+
+
+
+
+
+<div id="main">
+<p>
+You know, you could get the Perl Weekly right in your mailbox. Every Week.<br>Free of charge!
+</p>
+  <div class="subform">
+    <form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+    <span class="formlabel">Enter your e-mail:</span>
+    <input class="emailinput" name="email" size="20" />
+    <input class="awesome_button" type="submit" value="and click to sign up!" />
+    </form>
+    <div class="onemail">
+      Just ONE e-mail each Monday. Easy to unsubscribe. No spam. Your e-mail address is safe.
+    </div>
+  </div>
+
+</div>
+
+<div id="footer" style="
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+">
+(C) Copyright <a href="http://szabgab.com/">Gabor Szabo</a>. The articles are copyright the respective authors.</p>
+<p>This newsletter is about the Perl programming language.</p>
+</div>
+<div id="menu">
+  <ul>
+    <li>Sections:</li>
+  
+    <li><a href="#sponsors">Sponsors</a></li>
+  
+    <li><a href="#announcements">Announcements</a></li>
+  
+    <li><a href="#articles">Articles</a></li>
+  
+    <li><a href="#testing">Testing</a></li>
+  
+    <li><a href="#code">Code</a></li>
+  
+    <li><a href="#weekly_collections">Weekly collections</a></li>
+  
+  </ul>
+</div>
+
+
+
+
+<div id="social_icons">
+<a href="http://twitter.com/#!/perlweekly"><img src="/img/twitter32.png" alt="Perl Weekly on Twitter" /></a>
+<a href="https://plus.google.com/102874059713383300948"><img src="/img/gplus-32.png" alt="Perl Weekly page on Google+" /></a>
+<a href="http://www.facebook.com/PerlWeekly"><img src="/img/facebook32.png" alt="Like the Perl Weekly on FaceBook" /></a>
+<a href="http://feeds.feedburner.com/PerlWeekly" rel="alternate" type="application/rss+xml"><img src="/img/feed-icon32x32.png" alt="RSS Feed of the Perl Weekly. Updated once a week" /></a>
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12199211-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+</td></tr>
+</table>
+
+
+</body>
+</html>
