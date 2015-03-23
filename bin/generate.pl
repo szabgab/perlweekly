@@ -115,7 +115,9 @@ END_LATEST
 	) or die $t->error;
 	events_page();
 
-	foreach my $f (qw(thankyou unsubscribe promotion sponsors promoting-perl-events)) {
+	foreach my $f (
+		qw(thankyou unsubscribe promotion sponsors promoting-perl-events))
+	{
 		$t->process( "tt/$f.tt", {}, "html/$f.html" ) or die $t->error;
 	}
 
