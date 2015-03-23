@@ -115,7 +115,7 @@ END_LATEST
 	) or die $t->error;
 	events_page();
 
-	foreach my $f (qw(thankyou unsubscribe promotion sponsors)) {
+	foreach my $f (qw(thankyou unsubscribe promotion sponsors promoting-perl-events)) {
 		$t->process( "tt/$f.tt", {}, "html/$f.html" ) or die $t->error;
 	}
 
@@ -130,6 +130,7 @@ END_LATEST
 		events.html
 		latest.html
 		sponsors.html
+		promoting-perl-events.html
 	);
 	push @pages, map { { filename => "$URL/archive/$_.html" } } 1 .. $max;
 	$t->process( 'tt/sitemap.tt', { pages => \@pages }, 'html/sitemap.xml' )
