@@ -64,7 +64,7 @@ sub slurp_entries {
 		push @meta, shift @$file until $file->[0] =~ /^\s*$/;
 
 		my ( $link, $date, $author ) = @meta;
-		my $date =~ y/-/./;
+		$date =~ y/-/./;
 		$author =~ y/ /_/;
 		$author = lc $author;
 
