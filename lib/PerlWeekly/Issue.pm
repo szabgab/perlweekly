@@ -246,7 +246,7 @@ sub html2text {
 
 	return if not defined $html;
 
-	$html =~ s{<a href=([^>]+)>([^<]+)</a>}{$2 ($1)}g;
+	$html =~ s{<a href=["']([^>]+)["']>([^<]+)</a>}{$2 ( $1 )}g;
 	$html =~ s{<br>}{\n}g;
 	return $html;
 }
