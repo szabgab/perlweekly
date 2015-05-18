@@ -5,8 +5,8 @@ use 5.010;
 
 use autodie;
 
-binmode(STDOUT, ":utf8");
-binmode(STDERR, ":utf8");
+binmode( STDOUT, ":encoding(UTF-8)" );
+binmode( STDERR, ":encoding(UTF-8)" );
 
 use Cwd qw(abs_path);
 use Data::Dumper qw(Dumper);

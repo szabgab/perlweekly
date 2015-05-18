@@ -17,8 +17,8 @@ my ( $user, $apikey ) = split /:/, $line;
 
 my $json_file = shift or die "Usage: $0 src/ddd.json\n";
 
-#binmode(STDOUT, ":utf8");
-#binmode(STDERR, ":utf8");
+#binmode(STDOUT, ":encoding(UTF-8)");
+#binmode(STDERR, ":encoding(UTF-8)");
 
 my $src_json = encode( 'utf-8', scalar path($json_file)->slurp_utf8 );
 my $data = from_json $src_json, { utf8 => 1 };
