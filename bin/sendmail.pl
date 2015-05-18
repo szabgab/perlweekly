@@ -2,6 +2,9 @@
 use strict;
 use warnings;
 
+binmode(STDOUT, ":utf8");
+binmode(STDERR, ":utf8");
+
 use lib 'lib';
 
 use Getopt::Long qw(GetOptions);
