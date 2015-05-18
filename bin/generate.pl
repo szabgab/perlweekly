@@ -5,6 +5,9 @@ use 5.010;
 
 use autodie;
 
+binmode(STDOUT, ":utf8");
+binmode(STDERR, ":utf8");
+
 use Cwd qw(abs_path);
 use Data::Dumper qw(Dumper);
 use File::Basename qw(basename dirname);
