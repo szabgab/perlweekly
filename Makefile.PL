@@ -21,6 +21,7 @@ WriteMakefile(
 		'DateTime::Functions'    => 0,
 		'Encode'                 => 0,
 		'File::Basename'         => 0,
+		'File::Serialize'        => 0,
 		'Gravatar::URL'          => 0,
 		'JSON'                   => 0,
 		'JSON::XS'               => 0,
