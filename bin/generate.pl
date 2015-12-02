@@ -91,8 +91,8 @@ END_LATEST
 
 	my $next = PerlWeekly::Issue->new( 'next', $target );
 	my $t = PerlWeekly::Template->new();
-	$t->process( 'tt/archive.tt', { issues => \@issues },
-		'html/archive/index.html' )
+	$t->process( 'tt/archive.tt', { issues => \@issues, reverse => 0 },
+		'html/archive/reverse.html' )
 		or die $t->error;
 
 	$t->process( 'tt/all.tt', { issues => \@issues }, 'html/all.html' )
@@ -103,7 +103,7 @@ END_LATEST
 
 	@issues = reverse @issues;
 	$t->process( 'tt/archive.tt', { issues => \@issues, reverse => 1 },
-		'html/archive/reverse.html' )
+		'html/archive/index.html' )
 		or die $t->error;
 
 	$t->process(
