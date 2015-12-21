@@ -50,11 +50,6 @@ if ( open my $fh, '<', 'src/count.txt' ) {
 	close $fh;
 }
 
-
-
-
-
-
 if ( $target ne 'web' ) {
 	PerlWeekly::Issue->new( $issue, $target )->generate($target);
 	exit;
