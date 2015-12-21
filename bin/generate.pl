@@ -50,6 +50,11 @@ if ( open my $fh, '<', 'src/count.txt' ) {
 	close $fh;
 }
 
+
+
+
+
+
 if ( $target ne 'web' ) {
 	PerlWeekly::Issue->new( $issue, $target )->generate($target);
 	exit;
@@ -89,8 +94,15 @@ END_LATEST
 
 	delete $last->{latest_page};
 
+	my $authors
+		= eval { from_json scalar( path("src/authors.json")->slurp_utf8 ) };
+
 	my $next = PerlWeekly::Issue->new( 'next', $target );
 	my $t = PerlWeekly::Template->new();
+	$t->process( 'tt/authors.tt', { authors => $authors },
+		'html/authors.html' )
+		or die $t->error;
+
 	$t->process( 'tt/archive.tt', { issues => \@issues, reverse => 0 },
 		'html/archive/reverse.html' )
 		or die $t->error;
