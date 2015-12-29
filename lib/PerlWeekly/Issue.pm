@@ -192,7 +192,8 @@ sub process_rss {
 
 	my $text = join "\n", map {"<p>$_</p>"} @{ $self->{header} };
 
-	$rss->add_item(
+	my @items;
+	push @items, {
 		title => encode( 'utf-8', "#$self->{issue} - $self->{subject}" ),
 		link        => "${url}archive/$self->{issue}.html",
 		description => encode( 'utf-8', $text ),
@@ -202,10 +203,9 @@ sub process_rss {
 			date    => $dateparser->format_datetime($dt),
 			subject => 'list of tags?',
 		}
-	);
+	};
 
 	#    $self->{header};
-	my @items;
 	foreach my $ch ( @{ $self->{chapters} } ) {
 
 		#$ch->{title}
