@@ -205,6 +205,7 @@ sub process_rss {
 	);
 
 	#    $self->{header};
+	my @items;
 	foreach my $ch ( @{ $self->{chapters} } ) {
 
 		#$ch->{title}
@@ -217,7 +218,7 @@ sub process_rss {
 #die "Invalid ts format in " . Dumper $e if $e->{ts} =~ /^\d20\d\d\.\d\d\.\d\d$/;
 #my $ts = join '-', split /\./, $e->{ts};
 			$dt->add( seconds => 1 );
-			$rss->add_item(
+			push @items, {
 				title       => encode( 'utf-8', $e->{title} ),
 				link        => $e->{url},
 				description => encode( 'utf-8', $e->{text} ),
@@ -227,9 +228,13 @@ sub process_rss {
 					date => $dateparser->format_datetime($dt)
 					,    #"${ts}T00:00:00+00:00",
 					     #    subject => 'list of tags?',
-				},
-			);
+				};
 		}
+	}
+
+	# Add items so the latest comes first, as is convention on blogs/in rss:
+	foreach my $item (reverse @items) {
+		$rss->add_item(%$item);
 	}
 
 	#rss_item_count();
