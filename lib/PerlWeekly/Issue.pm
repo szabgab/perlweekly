@@ -228,7 +228,8 @@ sub process_rss {
 					date => $dateparser->format_datetime($dt)
 					,    #"${ts}T00:00:00+00:00",
 					     #    subject => 'list of tags?',
-				};
+				},
+			}
 		}
 	}
 
