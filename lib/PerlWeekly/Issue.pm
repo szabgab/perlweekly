@@ -229,12 +229,12 @@ sub process_rss {
 					,    #"${ts}T00:00:00+00:00",
 					     #    subject => 'list of tags?',
 				},
-			}
+			};
 		}
 	}
 
 	# Add items so the latest comes first, as is convention on blogs/in rss:
-	foreach my $item (reverse @items) {
+	foreach my $item ( reverse @items ) {
 		$rss->add_item(%$item);
 	}
 
