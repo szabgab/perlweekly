@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+  <title>Perl Programming Weekly Issue #236 - 2016-02-01 - Grants, Testing and Fighting Entropy</title>
+
+ <link rel="stylesheet" type="text/css" href="/style.css" />
+ <script src="/js/jquery.js" type="text/javascript"></script>
+ <script src="/js/mailman.js" type="text/javascript"></script>
+ <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+ <script> 
+ $(document).ready(function() { 
+    if (document.referrer !== 'https://www.google.com/') { 
+       document.getElementById('registration').style.display = 'none'; 
+    }
+ });
+ </script>
+
+
+
+</head>
+<body>
+
+<style>
+* { text-align: left; }
+table {
+  font-family: helvetica, arial, sans-serif;
+  width: 700px;
+}
+@media (max-width: 800px) {
+  table {
+     width: 370px;
+  }
+}
+p { margin: 1.2em 0em 1.35em 0em; line-height: 1.4em; }
+a { color: #04c; }
+
+#menu {
+  border-bottom: 1px solid #ccc;
+}
+#menu ul {
+  text-align: center;
+  margin: 0;
+}
+#menu li {
+  font-size: 12px;
+  display: inline;
+  list-style-type: none;
+  padding-right: 10px;
+}
+
+#social_icons {
+  margin-top: 10px;
+}
+
+</style>
+
+<table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
+<tr><td>
+    <p id="logo">
+    <a href="http://perlweekly.com/" style="
+      background-color: #004065;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 40px;
+      font-weight: bold;
+      font-family: Gadget;
+    
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border: 1px solid #000;
+      padding: 10px;
+    ">Perl Weekly</a>
+    
+    </p>
+    <p id="issue"
+      style="border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      font-size: 18px;">
+    Issue #236 - 2016-02-01 - Grants, Testing and Fighting Entropy
+    </p>
+    
+    
+    <a href="/latest.html">latest</a> | <a href="/archive">archive</a> | by <a href="http://techblog.babyl.ca/">Yanick Champoux</a>
+
+    <div class="subform" id="registration">
+      <div class="onemail">
+        Don't miss the next issue!
+      </div>
+      <form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+      <span class="formlabel">Enter your e-mail:</span>
+      <input class="emailinput" name="email" size="20" />
+      <input class="awesome_button" type="submit" value="and click to sign up!" />
+      </form>
+    </div>
+
+    <p>
+    <!-- start facebook SDK ?? -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=101520636611790";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- end facebook -->
+    
+    <div class="fb-like" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+    <a href="http://twitter.com/share" class="twitter-share-button"
+    data-text="Perl Weekly: Grants, Testing and Fighting Entropy via @perlweekly" data-count="vertical">Tweet</a>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js">
+    </script>
+    
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="tall"></g:plusone>
+    
+    
+    
+</td></tr>
+
+<tr><td>
+    <table>
+    <tr><td>
+        
+        <p style="font-size: 16px">
+         This week we have a few articles on testing web thingies (mocking web services, using SWAT, that kind of fun stuff), encouraging grant reports (shiny things are happening while we aren't looking), an early case of Spring cleaning fever (where entropy is fought and modules put to adoption). Oh, yes, and a modest proposal is made for a new Perl operator. Enjoy! ~ `/anick 
+        </p>
+        
+    </td>
+    <td>
+        <img  style="right:0; bottom: 0;" src="/img/yanick_champoux.png" />
+    </td></tr>
+    </table>
+</td></tr>
+
+
+    <tr><td>
+        <hr style="color: red" id="announcements" />
+        <div style="font-size: 18px; font-weight: bold;">Announcements</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://dilfridge.blogspot.com/2016/01/please-test-www-apachemodperl.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Please test www-apache/mod_perl-2.0.10_pre201601</a>
+               <br />               <p style="font-size: 16px">
+                 Using mod_perl? If so, you might want to test the trial version of its  upcoming update.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="articles" />
+        <div style="font-size: 18px; font-weight: bold;">Articles</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://neilb.org/2016/01/26/river-head-quality.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Quality metrics for the head of the CPAN River</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://neilb.org/">Neil Bowers</a>                         (<a href="https://metacpan.org/author/NEILB">NEILB</a>)                  </span>               <p style="font-size: 16px">
+                 That bloke, there, in the waders, taking water samples from the might CPAN river? That's our Neil.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/neil_bowers.png" title="Neil Bowers" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/zoffix_znet/2016/01/bit-rot-thursday.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Bit Rot Thursday</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Zoffix Znet                         (<a href="https://metacpan.org/author/ZOFFIX">ZOFFIX</a>)                  </span>               <p style="font-size: 16px">
+                 Entropy waits for no-one. Every distribution released on CPAN, if left to itself, will slowly mush away. So what one should do? Fight the inexorable advance of decay? Give up? Embrace the chaos? Zoffix discusses those many paths.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/zoffix_znet/2016/01/modules-for-adoption-bit-rot-thursday.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">100+ Modules for Adoption! (Bit Rot Thursday)</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Zoffix Znet                         (<a href="https://metacpan.org/author/ZOFFIX">ZOFFIX</a>)                  </span>               <p style="font-size: 16px">
+                 Zoffix is going through an early Spring cleaning. He deleted a few of his old distributions, and put a bunch (and I really mean a /bunch/) of other up for adoption.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://perlmaven.com/highest-hash-value" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">The easiest way to find the highest hash value without looping through all of them (max)</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://szabgab.com/">Gabor Szabo</a>                         (<a href="https://metacpan.org/author/SZABGAB">SZABGAB</a>)                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/gabor_szabo.png" title="Gabor Szabo" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="discussion" />
+        <div style="font-size: 18px; font-weight: bold;">Discussion</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/martin/2016/01/the-fuse-operator---a-suggested-language-extension.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">The Fuse Operator - A Suggested Language Extension</a>
+               <br />               <p style="font-size: 16px">
+                 "I wish Perl had that one extra operator" is not something you hear very often. The "fuse" operator would be something for safe, non-auto-vivificating, deferencing. And, I must admit, it does sounds appealing.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="testing" />
+        <div style="font-size: 18px; font-weight: bold;">Testing</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/chase_whitener/2016/01/mock-testing-web-services-with-mojo.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Mock Testing Web Services with Mojo</a>
+               <br />               <p style="font-size: 16px">
+                 So you want to test something interacting with a web service without, y'know, doing terrible things to that web service... If we were talking about a class or a function, you'd mock it in a heart-beat. Well, the same can be done for web services, here via a Mojo-based impostor.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/melezhik/2016/01/curl-swat-vs-selenuim.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">curl + swat VS selenium </a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/melezhik/">Alexey Melezhik</a>                         (<a href="https://metacpan.org/author/MELEZHIK">MELEZHIK</a>)                  </span>               <p style="font-size: 16px">
+                 You'd be hard-pressed to find such two wildly different test automation tools.  But how do they compare for the same task? Melezhik finds out.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/alexey_melezhik.png" title="Alexey Melezhik" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="code" />
+        <div style="font-size: 18px; font-weight: bold;">Code</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blog.geekuni.com/2016/01/vim-tt-html-highlighting-and-tag-matching.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Quick and Dirty: Vim highlighting and tag matching for HTML and Perl's Template Toolkit</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Andrew Solomon                         (<a href="https://metacpan.org/author/ILLY">ILLY</a>)                  </span>               <p style="font-size: 16px">
+                 A quick trick for vim jockeys to be able to jump back and forth between opening and closing tags within ToolkitTemplate tags.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/andrew_solomon.png" title="Andrew Solomon" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/yary/2016/01/utf-16-and-windows-crlf-oh-my.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">UTF-16 and Windows CRLF, oh my</a>
+               <br />               <p style="font-size: 16px">
+                 Running Perl on Windows? Dealing with UTF-16? You want to read this. Unless you're into learning things the hard way. In which case, don't read this. And stock up on headache medicine.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/sherwin_daganato/2016/01/mvc-with-dancer2-and-dbic-form-validation.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">MVC with Dancer2 and DBIC: Form Validation</a>
+               <br />               <p style="font-size: 16px">
+                 How to use HTML::FormHandler with Dancer2 for the sign-up page of your application.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://domm.plix.at/perl/2016_01_app_timetracker_category.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">App::TimeTracker::Command::Category</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://domm.plix.at/">Thomas Klausner</a>                         (<a href="https://metacpan.org/author/DOMM">DOMM</a>)                  </span>               <p style="font-size: 16px">
+                 tracker, the command-line time-tracking application by domm, can now tag tasks with categories, thanks to this new plugin.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/mikko_koivunalho/2016/01/ioiron---towards-update-to-version-3.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">IO::Iron - Towards Update to Version 3</a>
+               <br />               <p style="font-size: 16px">
+                 v3 of the web service IronMQ is coming up, and  the maintainer of IO::Iron is already on deck, making sure that when the time come, he'll have all his ducks in a row.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://perlmaven.com/how-to-provide-stdin-to-an-external-executable" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">How to provide STDIN to an external executable?</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://szabgab.com/">Gabor Szabo</a>                         (<a href="https://metacpan.org/author/SZABGAB">SZABGAB</a>)                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/gabor_szabo.png" title="Gabor Szabo" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="grants" />
+        <div style="font-size: 18px; font-weight: bold;">Grants</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://news.perlfoundation.org/2016/01/migrating-blogsperlorg-second-.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Migrating blogs.perl.org: Second Progress Report</a>
+               <br />               <p style="font-size: 16px">
+                 The migration of blogs.perl.org to the PerlBee platform is slowly making progress. We can already peer at the work done in its GitHub repository, and a wider audience test instance is supposed to become accessible soonishingly.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://news.perlfoundation.org/2016/01/maintaining-perl-5-grant-repor-24.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Maintaining Perl 5: Grant Report for November 2015</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Karen Pauley                  </span>               <p style="font-size: 16px">
+                 Bolts tightened here, squeaky cogs oiled there. Lot of little improvements have been done by the grant elves in November.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/karen_pauley.png" title="Karen Pauley" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://news.perlfoundation.org/2016/01/grant-report-testsimplestream-.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Grant Report: Test::Simple/Stream Stabilization</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Alberto Simões                         (<a href="https://metacpan.org/author/AMBS">AMBS</a>)                  </span>               <p style="font-size: 16px">
+                 Looks like Test::More and friends are close to being upgraded to a newer engine.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/alberto_simoes.png" title="Alberto Simões" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="perl_6" />
+        <div style="font-size: 18px; font-weight: bold;">Perl 6</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/zoffix_znet/2016/01/perl-6-rotor-the-king-of-list-manipulation.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Perl 6 .rotor: The King of List Manipulation</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Zoffix Znet                         (<a href="https://metacpan.org/author/ZOFFIX">ZOFFIX</a>)                  </span>               <p style="font-size: 16px">
+                 It slices, it dices, it... gets pretty funky in the last example of that article.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="weekly_collections" />
+        <div style="font-size: 18px; font-weight: bold;">Weekly collections</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://niceperl.blogspot.com/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">NICEPERL's lists</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Miguel Prz                         (<a href="https://metacpan.org/author/NICEPERL">NICEPERL</a>)                  </span>               <p style="font-size: 16px">
+                 <a href="http://niceperl.blogspot.com/2016/01/lxv-cpan-great-modules-released-last.html">Great modules released last week</a>;<br><a href="http://niceperl.blogspot.com/2016/01/cxcvii-metacpan-weekly-report-importer.html">MetaCPAN weekly report</a>;<br><a href="http://niceperl.blogspot.com/2016/01/ccxxii-stackoverflow-perl-report.html">StackOverflow Perl report</a>.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+
+<tr><td>
+
+
+
+
+
+<div id="main">
+<p>
+You know, you could get the Perl Weekly right in your mailbox. Every Week.<br>Free of charge!
+</p>
+  <div class="subform">
+    <form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+    <span class="formlabel">Enter your e-mail:</span>
+    <input class="emailinput" name="email" size="20" />
+    <input class="awesome_button" type="submit" value="and click to sign up!" />
+    </form>
+    <div class="onemail">
+      Just ONE e-mail each Monday. Easy to unsubscribe. No spam. Your e-mail address is safe.
+    </div>
+  </div>
+
+</div>
+
+<div id="footer" style="
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+">
+(C) Copyright <a href="http://szabgab.com/">Gabor Szabo</a>. The articles are copyright the respective authors.</p>
+<p>This newsletter is about the Perl programming language.</p>
+</div>
+<div id="menu">
+  <ul>
+    <li>Sections:</li>
+  
+    <li><a href="#announcements">Announcements</a></li>
+  
+    <li><a href="#articles">Articles</a></li>
+  
+    <li><a href="#discussion">Discussion</a></li>
+  
+    <li><a href="#testing">Testing</a></li>
+  
+    <li><a href="#code">Code</a></li>
+  
+    <li><a href="#grants">Grants</a></li>
+  
+    <li><a href="#perl_6">Perl 6</a></li>
+  
+    <li><a href="#weekly_collections">Weekly collections</a></li>
+  
+  </ul>
+</div>
+
+
+
+
+<div id="social_icons">
+<a href="http://twitter.com/#!/perlweekly"><img src="/img/twitter32.png" alt="Perl Weekly on Twitter" /></a>
+<a href="https://plus.google.com/102874059713383300948"><img src="/img/gplus-32.png" alt="Perl Weekly page on Google+" /></a>
+<a href="http://www.facebook.com/PerlWeekly"><img src="/img/facebook32.png" alt="Like the Perl Weekly on FaceBook" /></a>
+<a href="http://feeds.feedburner.com/PerlWeekly" rel="alternate" type="application/rss+xml"><img src="/img/feed-icon32x32.png" alt="RSS Feed of the Perl Weekly. Updated once a week" /></a>
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12199211-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+</td></tr>
+</table>
+
+
+</body>
+</html>
