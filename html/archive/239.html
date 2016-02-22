@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+  <title>Perl Programming Weekly Issue #239 - 2016-02-22 - Of Tabletop and Desktop Games</title>
+
+ <link rel="stylesheet" type="text/css" href="/style.css" />
+ <script src="/js/jquery.js" type="text/javascript"></script>
+ <script src="/js/mailman.js" type="text/javascript"></script>
+ <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+ <script> 
+ $(document).ready(function() { 
+    if (document.referrer !== 'https://www.google.com/') { 
+       document.getElementById('registration').style.display = 'none'; 
+    }
+ });
+ </script>
+
+
+
+</head>
+<body>
+
+<style>
+* { text-align: left; }
+table {
+  font-family: helvetica, arial, sans-serif;
+  width: 700px;
+}
+@media (max-width: 800px) {
+  table {
+     width: 370px;
+  }
+}
+p { margin: 1.2em 0em 1.35em 0em; line-height: 1.4em; }
+a { color: #04c; }
+
+#menu {
+  border-bottom: 1px solid #ccc;
+}
+#menu ul {
+  text-align: center;
+  margin: 0;
+}
+#menu li {
+  font-size: 12px;
+  display: inline;
+  list-style-type: none;
+  padding-right: 10px;
+}
+
+#social_icons {
+  margin-top: 10px;
+}
+
+</style>
+
+<table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
+<tr><td>
+    <p id="logo">
+    <a href="http://perlweekly.com/" style="
+      background-color: #004065;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 40px;
+      font-weight: bold;
+      font-family: Gadget;
+    
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border: 1px solid #000;
+      padding: 10px;
+    ">Perl Weekly</a>
+    
+    </p>
+    <p id="issue"
+      style="border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      font-size: 18px;">
+    Issue #239 - 2016-02-22 - Of Tabletop and Desktop Games
+    </p>
+    
+    
+    <a href="/latest.html">latest</a> | <a href="/archive">archive</a> | by <a href="http://techblog.babyl.ca/">Yanick Champoux</a>
+
+    <div class="subform" id="registration">
+      <div class="onemail">
+        Don't miss the next issue!
+      </div>
+      <form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+      <span class="formlabel">Enter your e-mail:</span>
+      <input class="emailinput" name="email" size="20" />
+      <input class="awesome_button" type="submit" value="and click to sign up!" />
+      </form>
+    </div>
+
+    <p>
+    <!-- start facebook SDK ?? -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=101520636611790";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- end facebook -->
+    
+    <div class="fb-like" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+    <a href="http://twitter.com/share" class="twitter-share-button"
+    data-text="Perl Weekly: Of Tabletop and Desktop Games via @perlweekly" data-count="vertical">Tweet</a>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js">
+    </script>
+    
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="tall"></g:plusone>
+    
+    
+    
+</td></tr>
+
+<tr><td>
+    <table>
+    <tr><td>
+        
+        <p style="font-size: 16px">
+         This week, we see the emergence of a new convention/conference platform mostly geared toward boardgame conventions, from the fine folks who already brought us the GameCrafter. Plus a few articles dealing with testing. Plus the usual smattering of Perl6 and module releases. Enjoy! ~ `/anick 
+        </p>
+        
+    </td>
+    <td>
+        <img  style="right:0; bottom: 0;" src="/img/yanick_champoux.png" />
+    </td></tr>
+    </table>
+</td></tr>
+
+
+    <tr><td>
+        <hr style="color: red" id="announcements" />
+        <div style="font-size: 18px; font-weight: bold;">Announcements</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/yuki_kimoto/2016/02/gitprep-112-released---catch-up-latest-github-design.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">GitPrep 1.12 released - Catch up latest GitHub design  </a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Yuki Kimoto                         (<a href="https://metacpan.org/author/KIMOTO">KIMOTO</a>)                  </span>               <p style="font-size: 16px">
+                 A new version of the locally-installable GitHub lookalike is out!
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/yuki_kimoto.png" title="Yuki Kimoto" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/jt_smith/2016/02/tabletopevents-built-on-perl.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Tabletop.Events Built On Perl</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by JT Smith                         (<a href="https://metacpan.org/author/RIZEN">RIZEN</a>)                  </span>               <p style="font-size: 16px">
+                 Tabletop.Events is a new convention management platform built using Perl and AngularJS. As its name suggest, it's mostly geared toward board game conventions, but its set of features also makes it quite capable of managing other kind of conventions and conferences.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/jt_smith.png" title="JT Smith" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="articles" />
+        <div style="font-size: 18px; font-weight: bold;">Articles</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://perlgeek.de/blog-en/automating-deployments/2016-011-alternatives.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Technology for automating deployments: the agony of choice</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Moritz Lenz                         (<a href="https://metacpan.org/author/MORITZ">MORITZ</a>)                  </span>               <p style="font-size: 16px">
+                 When there are no alternative, you know exactly where you stand (in a canoe, floating in the middle of that well-known creek) and what need to be done (find a paddle, stat). But when the options are legions, they are trigger decision paralysis. Moritz reviews a few of the many, many tools out there having to do with automated deployment (and shares which ones he's typically reaching for).
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/moritz_lenz.png" title="Moritz Lenz" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="discussion" />
+        <div style="font-size: 18px; font-weight: bold;">Discussion</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/melezhik/2016/02/am-i-reinventing-a-wheel.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Am I reinventing a wheel? </a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/melezhik/">Alexey Melezhik</a>                         (<a href="https://metacpan.org/author/MELEZHIK">MELEZHIK</a>)                  </span>               <p style="font-size: 16px">
+                 melezhik has written a plugin for his outthentic tool that reports and monitors disk usage. He is, however, wondering if he might not be reinventing the wheel. If so, he's also wondering if somebody could point him to any perl-based radial prior art.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/alexey_melezhik.png" title="Alexey Melezhik" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="testing" />
+        <div style="font-size: 18px; font-weight: bold;">Testing</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://iinteractive.com/notebook/2016/02/12/herding-camels.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Herding Camels</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://techblog.babyl.ca/">Yanick Champoux</a>                         (<a href="https://metacpan.org/author/YANICK">YANICK</a>)                  </span>               <p style="font-size: 16px">
+                 Yanick showcases how Git, Git::CPAN::Patch, App::GitGot and a small roll of  script-fu can be used together to macgyver a testing infrastructure for inter-related code repositories.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/yanick_champoux.png" title="Yanick Champoux" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/melezhik/2016/02/3part---cpan-modules-third-party-testing.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">3Party - cpan modules third party testing</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/melezhik/">Alexey Melezhik</a>                         (<a href="https://metacpan.org/author/MELEZHIK">MELEZHIK</a>)                  </span>               <p style="font-size: 16px">
+                 melezhik is musing aloud about a potential new service that would provide black box-type integration testing for modules (as opposed to the unit testing that CPANtesters provides). Interested? Let him know!
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/alexey_melezhik.png" title="Alexey Melezhik" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="code" />
+        <div style="font-size: 18px; font-weight: bold;">Code</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/book/2016/02/introducing-gitversioncompare.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Introducing Git::Version::Compare</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Philippe Bruhat                         (<a href="https://metacpan.org/author/BOOK">BOOK</a>)                  </span>               <p style="font-size: 16px">
+                 Thought Perl was the only software out there with funky versioning? Ah! But that's okay: Git's own versioning maze now sport nice padded walls, thanks to BooK and Git::Version::Compare.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/philippe_bruhat.png" title="Philippe Bruhat" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://www.dagolden.com/index.php/2624/please-test-path-tiny-0-081-trial/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Please test Path-Tiny-0.081-TRIAL</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://www.dagolden.com/">David Golden</a>                         (<a href="https://metacpan.org/author/DAGOLDEN">DAGOLDEN</a>)                  </span>               <p style="font-size: 16px">
+                 The trial version of the upcoming Path::Tiny release is available. If you are using Path::Tiny, you should give it a whirl, as there are incompatible changes coming down the pipe. And if you are not using Path::Tiny. You should. 'cause it's awesome.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/david_golden.jpg" title="David Golden" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://perlancar.wordpress.com/2016/02/21/lcpan-tips-008-finding-related-modules/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">lcpan tips 008: Finding related modules</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Steven Haryanto                         (<a href="https://metacpan.org/author/SHARYANTO">SHARYANTO</a>)                  </span>               <p style="font-size: 16px">
+                 perlancar shares a cool thing the new mirror tool lcpan can do: it can peruses the documentation of all mirrored modules, and figure out which modules relate to each other based on their conjointed mentions in the same PODs.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://jhthorsen.github.com/perl/2016/02/21/rewriting-assetpack-plugin.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Rewriting Mojolicious::Plugin::AssetPack </a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Jan Henning Thorsen                         (<a href="https://metacpan.org/author/JHTHORSEN">JHTHORSEN</a>)                  </span>               <p style="font-size: 16px">
+                 A rewrite of the asset-building Mojolicious plugin is in the wings. Come and see what changes Jan has in mind.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/jan_henning_thorsen.png" title="Jan Henning Thorsen" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="perl_6" />
+        <div style="font-size: 18px; font-weight: bold;">Perl 6</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://theperlfisher.blogspot.ca/2016/02/from-regular-expressions-to-grammars-pt_20.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">From Regular Expressions to Grammars, Pt. 3</a>
+               <br />               <p style="font-size: 16px">
+                 Parsing JavaScript with Perl6 grammar. Fun!
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="cpan_news" />
+        <div style="font-size: 18px; font-weight: bold;">CPAN News</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://niceperl.blogspot.com/2016/02/lxviii-cpan-great-modules-released-last.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">NICEPERL's lists</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by Miguel Prz                         (<a href="https://metacpan.org/author/NICEPERL">NICEPERL</a>)                  </span>               <p style="font-size: 16px">
+                 Miguel Prz (<a href="https://metacpan.org/author/NICEPERL">NICEPERL</a>)'s regular lists: <a href="http://niceperl.blogspot.com/2016/02/lxviii-cpan-great-modules-released-last.html">Great modules released last week</a>; <a href="http://niceperl.blogspot.ca/2016/02/cc-metacpan-weekly-report-datepregnancy.html">MetaCPAN weekly report</a>; <a href="http://niceperl.blogspot.ca/2016/02/ccxxv-stackoverflow-perl-report.html">StackOverflow Perl report</a>.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="perl_maven_articles" />
+        <div style="font-size: 18px; font-weight: bold;">Perl Maven Articles</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://perlmaven.com/space-matters" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">An extra space can ruin your day</a>
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://szabgab.com/">Gabor Szabo</a>                         (<a href="https://metacpan.org/author/SZABGAB">SZABGAB</a>)                  </span>               <p style="font-size: 16px">
+                 Space matters in Perl too
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/gabor_szabo.png" title="Gabor Szabo" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://perlmaven.com/becoming-a-co-maintainer" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Becoming a co-maintainer of a CPAN-module</a>
+               <br />               <p style="font-size: 16px">
+                 Three new episodes in the series were re-published: <a href="http://perlmaven.com/move-packages-to-their-own-files">Move packages to their own files</a>, <a href="http://perlmaven.com/enable-test-perl-critic">Finish Perl::Critic cleanup, set up Test::Perl::Critic</a>, <a href="http://perlmaven.com/eliminating-indirect-method-calls">Eliminating indirect method calls</a>. Enjoy, and support the Perl Maven by subscribing to the <a href="http://perlmaven.com/pro">Perl Maven Pro</a>
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+
+<tr><td>
+
+
+
+
+
+<div id="main">
+<p>
+You know, you could get the Perl Weekly right in your mailbox. Every Week.<br>Free of charge!
+</p>
+  <div class="subform">
+    <form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+    <span class="formlabel">Enter your e-mail:</span>
+    <input class="emailinput" name="email" size="20" />
+    <input class="awesome_button" type="submit" value="and click to sign up!" />
+    </form>
+    <div class="onemail">
+      Just ONE e-mail each Monday. Easy to unsubscribe. No spam. Your e-mail address is safe.
+    </div>
+  </div>
+
+</div>
+
+<div id="footer" style="
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+">
+(C) Copyright <a href="http://szabgab.com/">Gabor Szabo</a>. The articles are copyright the respective authors.</p>
+<p>This newsletter is about the Perl programming language.</p>
+</div>
+<div id="menu">
+  <ul>
+    <li>Sections:</li>
+  
+    <li><a href="#announcements">Announcements</a></li>
+  
+    <li><a href="#articles">Articles</a></li>
+  
+    <li><a href="#discussion">Discussion</a></li>
+  
+    <li><a href="#testing">Testing</a></li>
+  
+    <li><a href="#code">Code</a></li>
+  
+    <li><a href="#perl_6">Perl 6</a></li>
+  
+    <li><a href="#cpan_news">CPAN News</a></li>
+  
+    <li><a href="#perl_maven_articles">Perl Maven Articles</a></li>
+  
+  </ul>
+</div>
+
+
+
+
+<div id="social_icons">
+<a href="http://twitter.com/#!/perlweekly"><img src="/img/twitter32.png" alt="Perl Weekly on Twitter" /></a>
+<a href="https://plus.google.com/102874059713383300948"><img src="/img/gplus-32.png" alt="Perl Weekly page on Google+" /></a>
+<a href="http://www.facebook.com/PerlWeekly"><img src="/img/facebook32.png" alt="Like the Perl Weekly on FaceBook" /></a>
+<a href="http://feeds.feedburner.com/PerlWeekly" rel="alternate" type="application/rss+xml"><img src="/img/feed-icon32x32.png" alt="RSS Feed of the Perl Weekly. Updated once a week" /></a>
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12199211-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+</td></tr>
+</table>
+
+
+</body>
+</html>
