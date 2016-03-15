@@ -53,6 +53,7 @@ sub generate {
 	my @out    = @_ ? shift : ();
 
 	$self->add_author_info;
+	$self->add_twitter;
 
 	return (
 		  $target eq 'web' ? $self->process_tt( 'tt/page.tt', @out )
@@ -63,6 +64,20 @@ sub generate {
 		: $target eq 'rss' ? $self->process_rss
 		:                    die "Unknown target '$target'\n"
 	);
+}
+
+sub add_twitter {
+	my $self = shift;
+	foreach my $ch ( @{ $self->{chapters} } ) {
+		foreach my $e ( @{ $ch->{entries} } ) {
+			$e->{twitter} = "$e->{title} $e->{url}";
+			if ( $e->{author} and $e->{author}{twitter} ) {
+				$e->{twitter} .= " by \@$e->{author}{twitter}";
+			}
+			$e->{twitter} .= " via \@perlweekly";
+		}
+	}
+	return;
 }
 
 sub add_author_info {
