@@ -47,6 +47,7 @@ WriteMakefile(
 		'YAML'                   => 0,
 		'Plack::Builder'         => 0,
 		'Plack::Middleware::DirIndex' => 0,
+		'URL::Encode'                 => 0,
 	},
 	dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
 	clean               => { FILES => 'Perl-Maven-*' },

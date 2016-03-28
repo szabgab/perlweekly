@@ -14,6 +14,7 @@ use Text::Wrap qw(wrap);
 use XML::RSS qw();
 use DateTime qw();
 use DateTime::Format::W3CDTF;
+use URL::Encode qw(url_encode_utf8);
 
 #use POSIX          qw();
 
@@ -68,9 +69,10 @@ sub generate {
 
 sub add_twitter {
 	my $self = shift;
+
 	foreach my $ch ( @{ $self->{chapters} } ) {
 		foreach my $e ( @{ $ch->{entries} } ) {
-			$e->{twitter} = "$e->{title} $e->{url}";
+			$e->{twitter} = url_encode_utf8("$e->{title} $e->{url}");
 			if ( $e->{author} and $e->{author}{twitter} ) {
 				$e->{twitter} .= " by \@$e->{author}{twitter}";
 			}
