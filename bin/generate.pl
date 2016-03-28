@@ -94,9 +94,13 @@ END_LATEST
 
 	my $next = PerlWeekly::Issue->new( 'next', $target );
 	my $t = PerlWeekly::Template->new();
-	$t->process( 'tt/authors.tt', { authors => [ sort { $a->{name} cmp $b->{name} } values %$authors ]},
-		'html/authors.html' )
-		or die $t->error;
+	$t->process(
+		'tt/authors.tt',
+		{
+			authors => [ sort { $a->{name} cmp $b->{name} } values %$authors ]
+		},
+		'html/authors.html'
+	) or die $t->error;
 
 	$t->process( 'tt/archive.tt', { issues => \@issues, reverse => 0 },
 		'html/archive/reverse.html' )
