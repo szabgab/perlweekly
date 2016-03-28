@@ -94,7 +94,7 @@ END_LATEST
 
 	my $next = PerlWeekly::Issue->new( 'next', $target );
 	my $t = PerlWeekly::Template->new();
-	$t->process( 'tt/authors.tt', { authors => $authors },
+	$t->process( 'tt/authors.tt', { authors => [ sort { $a->{name} cmp $b->{name} } values %$authors ]},
 		'html/authors.html' )
 		or die $t->error;
 
