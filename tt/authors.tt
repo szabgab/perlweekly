@@ -9,9 +9,21 @@
 <table border="0" cellpadding="0" cellspacing="0" width="1020" align="center"><tr bgcolor="#ffffff">
 [% FOR a IN authors.keys.sort %]
 <tr>
- <td align="left" width="50px">[% authors.$a.name %]</td>
+  <td align="left" >[% IF authors.$a.img %]<img style="width:100px; height=100px;" src="[% authors.$a.img %]" title="[% authors.$a.name %]">[% END %]</td>
+  <td align="left" width="50px">
+      [% IF authors.$a.url %]
+            <a href="[% authors.$a.url %]">[% authors.$a.name %]</a>
+      [% ELSE %]
+            [% authors.$a.name %]
+      [% END %]
+
+      [% IF authors.$a.nick %]
+            ([% authors.$a.nick %])
+      [% END %]
+
+  </td>
  <td align="left">[% IF authors.$a.pause %]<a href="http://metacpan.org/author/[% authors.$a.pause %]">[% authors.$a.pause %]</a>[% END %]</td>
- <td align="left">[% IF authors.$a.img %]<img src="[% authors.$a.img %]" title="[% authors.$a.name %]">[% END %]</td>
+ <td>[% IF authors.$a.twitter %]<img src="http://perlweekly.com/img/twitter32.png" alt="Tweet"> <a href="https://twitter.com/[% authors.$a.twitter %]">@[% authors.$a.twitter %]</a>[% END %]</td>
 </tr>
 [% END %]
 </table>
