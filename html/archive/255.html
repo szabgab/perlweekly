@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+  <title>Perl Weekly Issue #255 - 2016-06-13 - Perl Webinar</title>
+
+ <link rel="stylesheet" type="text/css" href="/style.css" />
+ <script src="/js/jquery.js" type="text/javascript"></script>
+ <script src="/js/mailman.js" type="text/javascript"></script>
+ <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+ <script> 
+ $(document).ready(function() { 
+    if (document.referrer !== 'https://www.google.com/') { 
+       document.getElementById('registration').style.display = 'none'; 
+    }
+ });
+ </script>
+
+
+
+</head>
+<body>
+
+<style>
+* { text-align: left; }
+table {
+  font-family: helvetica, arial, sans-serif;
+  width: 700px;
+}
+@media (max-width: 800px) {
+  table {
+     width: 370px;
+  }
+}
+p { margin: 1.2em 0em 1.35em 0em; line-height: 1.4em; }
+a { color: #04c; }
+
+#menu {
+  border-bottom: 1px solid #ccc;
+}
+#menu ul {
+  text-align: center;
+  margin: 0;
+}
+#menu li {
+  font-size: 12px;
+  display: inline;
+  list-style-type: none;
+  padding-right: 10px;
+}
+
+#social_icons {
+  margin-top: 10px;
+}
+
+</style>
+
+<table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
+<tr><td>
+    <p id="logo">
+    <a href="http://perlweekly.com/" style="
+      background-color: #004065;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 40px;
+      font-weight: bold;
+      font-family: Gadget;
+    
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border: 1px solid #000;
+      padding: 10px;
+    ">Perl Weekly</a>
+    
+    </p>
+    <p id="issue"
+      style="border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      font-size: 18px;">
+    Issue #255 - 2016-06-13 - Perl Webinar
+    </p>
+    
+    
+    <a href="/latest.html">latest</a> | <a href="/archive">archive</a> | by <a href="http://szabgab.com/">Gabor Szabo</a>
+
+    <div class="subform" id="registration">
+      <div class="onemail">
+        Don't miss the next issue!
+      </div>
+      <form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+      <span class="formlabel">Enter your e-mail:</span>
+      <input class="emailinput" name="email" size="20" />
+      <input class="awesome_button" type="submit" value="and click to sign up!" />
+      </form>
+    </div>
+
+    <p>
+    <!-- start facebook SDK ?? -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=101520636611790";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- end facebook -->
+    
+    <div class="fb-like" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+    <a href="http://twitter.com/share" class="twitter-share-button"
+    data-text="Perl Weekly: Perl Webinar via @perlweekly" data-count="vertical">Tweet</a>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js">
+    </script>
+    
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="tall"></g:plusone>
+    
+    
+    
+</td></tr>
+
+<tr><td>
+    <table>
+    <tr><td>
+        
+        <p style="font-size: 16px">
+        Hi there
+        </p>
+        
+        <p style="font-size: 16px">
+        I am rather speechless today, so let's just get on with the content. ~ Gabor
+        </p>
+        
+    </td>
+    <td>
+        <img  style="right:0; bottom: 0;" src="/img/gabor_szabo.png" />
+    </td></tr>
+    </table>
+</td></tr>
+
+
+    <tr><td>
+        <hr style="color: red" id="sponsors" />
+        <div style="font-size: 18px; font-weight: bold;">Sponsors</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://attendee.gotowebinar.com/register/2386706966560006913?source=perlweekly" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">A Long-Time Perl Hacker's View of the Perl World: Past, Present and Future </a> <a href="http://twitter.com/home?status=A+Long-Time+Perl+Hacker%27s+View+of+the+Perl+World%3A+Past%2C+Present+and+Future++https%3A%2F%2Fattendee.gotowebinar.com%2Fregister%2F2386706966560006913%3Fsource%3Dperlweekly via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://attendee.gotowebinar.com/register/2386706966560006913?source=perlweekly"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://attendee.gotowebinar.com/register/2386706966560006913?source=perlweekly"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />               <p style="font-size: 16px">
+                 While many claim that Perl is a dying language, ActiveState's Perl business is vibrant and growing. Join our webinar on June 15th as ActiveState's Tom Radcliffe and guest speaker Jason McIntosh (co-author of "Perl & XML") discuss all things Perl: its past, present and what the future holds.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="articles" />
+        <div style="font-size: 18px; font-weight: bold;">Articles</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/polettix/2016/06/pod-obvious-trick.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">POD speculation</a> <a href="http://twitter.com/home?status=POD+speculation+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fpolettix%2F2016%2F06%2Fpod-obvious-trick.html by @polettix via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/polettix/2016/06/pod-obvious-trick.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/polettix/2016/06/pod-obvious-trick.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://polettix.it">Flavio Poletti</a>                         (<a href="https://metacpan.org/author/POLETTIX">POLETTIX</a>)                  </span>               <p style="font-size: 16px">
+                 Do you document your functions as =headN or in a list as =item ?  (Editor: I think POD should have semantic tags such as =function and =method)
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/flavio_poletti.jpg" title="Flavio Poletti" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/kd/2016/06/writing-a-simple-splunk-api-client.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Writing a simple splunk API client.</a> <a href="http://twitter.com/home?status=Writing+a+simple+splunk+API+client.+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fkd%2F2016%2F06%2Fwriting-a-simple-splunk-api-client.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/kd/2016/06/writing-a-simple-splunk-api-client.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/kd/2016/06/writing-a-simple-splunk-api-client.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Kieren Diment                         (<a href="https://metacpan.org/author/ZARQUON">ZARQUON</a>)                  </span>               <p style="font-size: 16px">
+                 <a href="http://www.splunk.com/">Splunk</a> is a log and monitoring analytics toolkit. This article is about a client written in Perl but not on CPAN yet.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://domm.plix.at/perl/2016_06_recent_activity.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Recent activity</a> <a href="http://twitter.com/home?status=Recent+activity+http%3A%2F%2Fdomm.plix.at%2Fperl%2F2016_06_recent_activity.html by @domm_favors_irc via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://domm.plix.at/perl/2016_06_recent_activity.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://domm.plix.at/perl/2016_06_recent_activity.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://domm.plix.at/">Thomas Klausner</a>                         (<a href="https://metacpan.org/author/DOMM">DOMM</a>)                  </span>               <p style="font-size: 16px">
+                 CPAN releases; Events; Cycling; Looking for a back-end developer in Vienna
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/rui_miguel_p_bernardo/2016/06/-hello-world-in-perl.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Hello World in perl with QT</a> <a href="http://twitter.com/home?status=Hello+World+in+perl+with+QT+http%3A%2F%2Fblogs.perl.org%2Fusers%2Frui_miguel_p_bernardo%2F2016%2F06%2F-hello-world-in-perl.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/rui_miguel_p_bernardo/2016/06/-hello-world-in-perl.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/rui_miguel_p_bernardo/2016/06/-hello-world-in-perl.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />               <p style="font-size: 16px">
+                 An example on how to develop perl scripts using GUI interfaces from QT.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="testing" />
+        <div style="font-size: 18px; font-weight: bold;">Testing</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://perlbuzz.com/2016/05/30/all-about-the-new-test2-framework-and-how-it-will-help-your-tests/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">All about the new Test2 framework and how it will help your tests</a> <a href="http://twitter.com/home?status=All+about+the+new+Test2+framework+and+how+it+will+help+your+tests+http%3A%2F%2Fperlbuzz.com%2F2016%2F05%2F30%2Fall-about-the-new-test2-framework-and-how-it-will-help-your-tests%2F by @petdance via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://perlbuzz.com/2016/05/30/all-about-the-new-test2-framework-and-how-it-will-help-your-tests/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://perlbuzz.com/2016/05/30/all-about-the-new-test2-framework-and-how-it-will-help-your-tests/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Andy Lester                         (<a href="https://metacpan.org/author/PETDANCE">PETDANCE</a>)                  </span>               <p style="font-size: 16px">
+                 An interview with Chad Granum
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/andy_lester.png" title="Andy Lester" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://perlmaven.com/testing-timeout-with-cmp-ok" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Testing timeout with cmp_ok</a> <a href="http://twitter.com/home?status=Testing+timeout+with+cmp_ok+http%3A%2F%2Fperlmaven.com%2Ftesting-timeout-with-cmp-ok by @szabgab via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://perlmaven.com/testing-timeout-with-cmp-ok"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://perlmaven.com/testing-timeout-with-cmp-ok"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://szabgab.com/">Gabor Szabo</a>                         (<a href="https://metacpan.org/author/SZABGAB">SZABGAB</a>)                  </span>               <p style="font-size: 16px">
+                 It is easy to check equality using the 'is' function of Test::More, but how can you check if a number falls between two values? (screencast+article)
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/gabor_szabo.png" title="Gabor Szabo" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/melezhik/2016/06/httpssparrowhuborg-updated.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">sparrowhub.org updated</a> <a href="http://twitter.com/home?status=sparrowhub.org+updated+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fmelezhik%2F2016%2F06%2Fhttpssparrowhuborg-updated.html by @melezhik2 via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/melezhik/2016/06/httpssparrowhuborg-updated.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/melezhik/2016/06/httpssparrowhuborg-updated.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/melezhik/">Alexey Melezhik</a>                         (<a href="https://metacpan.org/author/MELEZHIK">MELEZHIK</a>)                  </span>               <p style="font-size: 16px">
+                 You might recall Sparrow provides automation and SparrowhHub is a list of plugins for it. In other words it is a repository of reusable automation scripts.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/alexey_melezhik.png" title="Alexey Melezhik" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="windows" />
+        <div style="font-size: 18px; font-weight: bold;">Windows</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://www.nu42.com/2016/06/remove-directory-from-path-windows-cmd.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Manipulate %PATH% in the current Windows cmd.exe window with help from Perl</a> <a href="http://twitter.com/home?status=Manipulate+%25PATH%25+in+the+current+Windows+cmd.exe+window+with+help+from+Perl+https%3A%2F%2Fwww.nu42.com%2F2016%2F06%2Fremove-directory-from-path-windows-cmd.html by @sinan_unur via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.nu42.com/2016/06/remove-directory-from-path-windows-cmd.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://www.nu42.com/2016/06/remove-directory-from-path-windows-cmd.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Sinan Unur                         (<a href="https://metacpan.org/author/NANIS">NANIS</a>)                  </span>               <p style="font-size: 16px">
+                 Then apparently there is <a href="https://github.com/xlat/pa">pa</a> as well by Nicolas Georges
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/sinan_unur.png" title="Sinan Unur" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="code" />
+        <div style="font-size: 18px; font-weight: bold;">Code</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://blog.afoolishmanifesto.com/posts/dbi-caller-info/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">DBI Caller Info</a> <a href="http://twitter.com/home?status=DBI+Caller+Info+https%3A%2F%2Fblog.afoolishmanifesto.com%2Fposts%2Fdbi-caller-info%2F by @frioux via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://blog.afoolishmanifesto.com/posts/dbi-caller-info/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://blog.afoolishmanifesto.com/posts/dbi-caller-info/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="https://blog.afoolishmanifesto.com/">Arthur Axel "fREW" Schmidt</a>                         (<a href="https://metacpan.org/author/FREW">FREW</a>)                  </span>               <p style="font-size: 16px">
+                 Adding Metadata to DBI Queries
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/frew.gif" title="Arthur Axel "fREW" Schmidt" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://www.effectiveperlprogramming.com/2016/06/perl-v5-24-adds-a-line-break-word-boundary/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Perl v5.24 adds a line break word boundary</a> <a href="http://twitter.com/home?status=Perl+v5.24+adds+a+line+break+word+boundary+http%3A%2F%2Fwww.effectiveperlprogramming.com%2F2016%2F06%2Fperl-v5-24-adds-a-line-break-word-boundary%2F by @briandfoy_perl via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.effectiveperlprogramming.com/2016/06/perl-v5-24-adds-a-line-break-word-boundary/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://www.effectiveperlprogramming.com/2016/06/perl-v5-24-adds-a-line-break-word-boundary/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by brian d foy                         (<a href="https://metacpan.org/author/BDFOY">BDFOY</a>)                  </span>               <p style="font-size: 16px">
+                 Perl v5.22 added a few new word boundary anchors such as \b{sb},  \b{wb}, and {gcb}. Perl v5.24 trumped that with \b{lb}.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/brian_d_foy.png" title="brian d foy" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://perlmaven.com/set-minimum-version-in-every-perl-file" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Set minimum version number in every Perl file</a> <a href="http://twitter.com/home?status=Set+minimum+version+number+in+every+Perl+file+http%3A%2F%2Fperlmaven.com%2Fset-minimum-version-in-every-perl-file by @szabgab via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://perlmaven.com/set-minimum-version-in-every-perl-file"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://perlmaven.com/set-minimum-version-in-every-perl-file"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://szabgab.com/">Gabor Szabo</a>                         (<a href="https://metacpan.org/author/SZABGAB">SZABGAB</a>)                  </span>               <p style="font-size: 16px">
+                 Use the Compatibility::PerlMinimumVersionAndWhy policy of Perl::Critic
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/gabor_szabo.png" title="Gabor Szabo" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://perlancar.wordpress.com/2016/06/10/cascade-bumping-of-prerequisite-version/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Cascade bumping of prerequisite version</a> <a href="http://twitter.com/home?status=Cascade+bumping+of+prerequisite+version+https%3A%2F%2Fperlancar.wordpress.com%2F2016%2F06%2F10%2Fcascade-bumping-of-prerequisite-version%2F by @stevenharyanto via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://perlancar.wordpress.com/2016/06/10/cascade-bumping-of-prerequisite-version/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://perlancar.wordpress.com/2016/06/10/cascade-bumping-of-prerequisite-version/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Steven Haryanto                         (<a href="https://metacpan.org/author/SHARYANTO">SHARYANTO</a>)                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="cpan" />
+        <div style="font-size: 18px; font-weight: bold;">CPAN</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://log.perl.org/2016/06/thanks-to-digital-craftsmen.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Thanks to Digital Craftsmen</a> <a href="http://twitter.com/home?status=Thanks+to+Digital+Craftsmen+http%3A%2F%2Flog.perl.org%2F2016%2F06%2Fthanks-to-digital-craftsmen.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://log.perl.org/2016/06/thanks-to-digital-craftsmen.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://log.perl.org/2016/06/thanks-to-digital-craftsmen.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />               <p style="font-size: 16px">
+                 ... for hosting, and helping to fix the European search.CPAN.org mirror.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://perltricks.com/article/what-s-new-on-cpan---May-2016/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">What's new on CPAN - May 2016</a> <a href="http://twitter.com/home?status=What%27s+new+on+CPAN+-+May+2016+http%3A%2F%2Fperltricks.com%2Farticle%2Fwhat-s-new-on-cpan---May-2016%2F by @PerlTricks via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://perltricks.com/article/what-s-new-on-cpan---May-2016/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://perltricks.com/article/what-s-new-on-cpan---May-2016/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://perltricks.com/">David Farrell</a>                         (<a href="https://metacpan.org/author/DFARRELL">DFARRELL</a>)                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="grants" />
+        <div style="font-size: 18px; font-weight: bold;">Grants</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://news.perlfoundation.org/2016/06/grant-report-rperl-user-docume-6.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Grant Report : RPerl User Documentation #2 - May 2016</a> <a href="http://twitter.com/home?status=Grant+Report+%3A+RPerl+User+Documentation+%232+-+May+2016+http%3A%2F%2Fnews.perlfoundation.org%2F2016%2F06%2Fgrant-report-rperl-user-docume-6.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://news.perlfoundation.org/2016/06/grant-report-rperl-user-docume-6.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://news.perlfoundation.org/2016/06/grant-report-rperl-user-docume-6.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Will Braswell                         (<a href="https://metacpan.org/author/WBRASWELL">WBRASWELL</a>)                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/will_braswell.png" title="Will Braswell" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="perl_5" />
+        <div style="font-size: 18px; font-weight: bold;">Perl 5</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/sawyer_x/2016/06/perl-5-porters-mailing-list-summary-may-30th---june-8th.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Perl 5 Porters Mailing List Summary: May 30th - June 8th</a> <a href="http://twitter.com/home?status=Perl+5+Porters+Mailing+List+Summary%3A+May+30th+-+June+8th+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fsawyer_x%2F2016%2F06%2Fperl-5-porters-mailing-list-summary-may-30th---june-8th.html by @PerlSawyer via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/sawyer_x/2016/06/perl-5-porters-mailing-list-summary-may-30th---june-8th.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/sawyer_x/2016/06/perl-5-porters-mailing-list-summary-may-30th---june-8th.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/sawyer_x/">Sawyer X</a>                         (<a href="https://metacpan.org/author/XSAWYERX">XSAWYERX</a>)                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/sawyer_x.png" title="Sawyer X" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://www.nu42.com/2016/06/msvc-printf-bug-affects-perl.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">An old Visual C printf bug affects Perl</a> <a href="http://twitter.com/home?status=An+old+Visual+C+printf+bug+affects+Perl+https%3A%2F%2Fwww.nu42.com%2F2016%2F06%2Fmsvc-printf-bug-affects-perl.html by @sinan_unur via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.nu42.com/2016/06/msvc-printf-bug-affects-perl.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://www.nu42.com/2016/06/msvc-printf-bug-affects-perl.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Sinan Unur                         (<a href="https://metacpan.org/author/NANIS">NANIS</a>)                  </span>               <p style="font-size: 16px">
+                 While currently neither Strawberry Perl nor ActivePerl are using Visual C, IMHO it is important that Sinan took upon himself to torture Perl with Visual C.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/sinan_unur.png" title="Sinan Unur" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="videos" />
+        <div style="font-size: 18px; font-weight: bold;">Videos</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/melezhik/2016/06/how-to-write-a-simple-nginx-installer-with-sparrow-in-4-minutes---nice-asciinema-video.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">How to write a simple nginx installer with sparrow in 4 minutes - nice asciinema video!</a> <a href="http://twitter.com/home?status=How+to+write+a+simple+nginx+installer+with+sparrow+in+4+minutes+-+nice+asciinema+video%21+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fmelezhik%2F2016%2F06%2Fhow-to-write-a-simple-nginx-installer-with-sparrow-in-4-minutes---nice-asciinema-video.html by @melezhik2 via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/melezhik/2016/06/how-to-write-a-simple-nginx-installer-with-sparrow-in-4-minutes---nice-asciinema-video.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/melezhik/2016/06/how-to-write-a-simple-nginx-installer-with-sparrow-in-4-minutes---nice-asciinema-video.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/melezhik/">Alexey Melezhik</a>                         (<a href="https://metacpan.org/author/MELEZHIK">MELEZHIK</a>)                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/alexey_melezhik.png" title="Alexey Melezhik" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="perl_6" />
+        <div style="font-size: 18px; font-weight: bold;">Perl 6</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://p6weekly.wordpress.com/2016/06/06/2016-23-friendlier-bisecting/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">2016.23 Friendlier Bisecting</a> <a href="http://twitter.com/home?status=2016.23+Friendlier+Bisecting+https%3A%2F%2Fp6weekly.wordpress.com%2F2016%2F06%2F06%2F2016-23-friendlier-bisecting%2F via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://p6weekly.wordpress.com/2016/06/06/2016-23-friendlier-bisecting/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://p6weekly.wordpress.com/2016/06/06/2016-23-friendlier-bisecting/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="https://p6weekly.wordpress.com/">Timo Paulssen</a>                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://6guts.wordpress.com/2016/06/12/grinding-out-performance-improvements/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">'grinding out performance improvements</a> <a href="http://twitter.com/home?status=%27grinding+out+performance+improvements+https%3A%2F%2F6guts.wordpress.com%2F2016%2F06%2F12%2Fgrinding-out-performance-improvements%2F by @jnthnwrthngtn via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://6guts.wordpress.com/2016/06/12/grinding-out-performance-improvements/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://6guts.wordpress.com/2016/06/12/grinding-out-performance-improvements/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="https://6guts.wordpress.com/">Jonathan Worthington</a>                         (<a href="https://metacpan.org/author/JONATHAN">JONATHAN</a>)                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/jonathan_worthington.png" title="Jonathan Worthington" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="weekly_collections" />
+        <div style="font-size: 18px; font-weight: bold;">Weekly collections</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://niceperl.blogspot.com/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">NICEPERL's lists</a> <a href="http://twitter.com/home?status=NICEPERL%27s+lists+http%3A%2F%2Fniceperl.blogspot.com%2F by @niceperl via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://niceperl.blogspot.com/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://niceperl.blogspot.com/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Miguel Prz                         (<a href="https://metacpan.org/author/NICEPERL">NICEPERL</a>)                  </span>               <p style="font-size: 16px">
+                 <a href="http://niceperl.blogspot.com/2016/06/lxxxiv-cpan-great-modules-released-last.html">Great modules released last week</a>;<br><a href="http://niceperl.blogspot.com/2016/06/ccxvi-metacpan-weekly-report-ioasync.html">MetaCPAN weekly report</a>;<br><a href="http://niceperl.blogspot.com/2016/06/ccxli-stackoverflow-perl-report.html">StackOverflow Perl report</a>.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="not_just_perl" />
+        <div style="font-size: 18px; font-weight: bold;">Not Just Perl</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://blog.afoolishmanifesto.com/posts/vim-session-workflow/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Vim Session Workflow</a> <a href="http://twitter.com/home?status=Vim+Session+Workflow+https%3A%2F%2Fblog.afoolishmanifesto.com%2Fposts%2Fvim-session-workflow%2F by @frioux via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://blog.afoolishmanifesto.com/posts/vim-session-workflow/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://blog.afoolishmanifesto.com/posts/vim-session-workflow/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="https://blog.afoolishmanifesto.com/">Arthur Axel "fREW" Schmidt</a>                         (<a href="https://metacpan.org/author/FREW">FREW</a>)                  </span>               <p style="font-size: 16px">
+                 Obsession
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/frew.gif" title="Arthur Axel "fREW" Schmidt" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="advocacy" />
+        <div style="font-size: 18px; font-weight: bold;">Advocacy</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/jonathan_w_taylor/2016/06/octothorpes-matter.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Octothorpes Matter!</a> <a href="http://twitter.com/home?status=Octothorpes+Matter%21+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fjonathan_w_taylor%2F2016%2F06%2Foctothorpes-matter.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/jonathan_w_taylor/2016/06/octothorpes-matter.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/jonathan_w_taylor/2016/06/octothorpes-matter.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />               <p style="font-size: 16px">
+                 There are no mentions of #perl together with #womenwhocode and only 2 together with #codenewbie. What to do?
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="events" />
+        <div style="font-size: 18px; font-weight: bold;">Events</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://www.activestate.com/blog/2016/06/perl-hacker-webinar?source=perlweekly" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Perl is dying...or is it?</a> <a href="http://twitter.com/home?status=Perl+is+dying...or+is+it%3F+http%3A%2F%2Fwww.activestate.com%2Fblog%2F2016%2F06%2Fperl-hacker-webinar%3Fsource%3Dperlweekly via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.activestate.com/blog/2016/06/perl-hacker-webinar?source=perlweekly"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://www.activestate.com/blog/2016/06/perl-hacker-webinar?source=perlweekly"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://news.perlfoundation.org/2016/06/the-perl-conference-update.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">The Perl Conference update - YAPC::NA newsletter #10</a> <a href="http://twitter.com/home?status=The+Perl+Conference+update+-+YAPC%3A%3ANA+newsletter+%2310+http%3A%2F%2Fnews.perlfoundation.org%2F2016%2F06%2Fthe-perl-conference-update.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://news.perlfoundation.org/2016/06/the-perl-conference-update.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://news.perlfoundation.org/2016/06/the-perl-conference-update.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="https://www.dwright.org/">Dan Wright</a>                         (<a href="https://metacpan.org/author/DWRIGHT">DWRIGHT</a>)                  </span>               <p style="font-size: 16px">
+                 Q & A with Larry Wall - Sunday Arrival Dinner - Tuesday night Social - Tutorials - Wednesday Night Pull Request Challenge - Lightning Talks - Call for Volunteers
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+
+<tr><td>
+
+
+
+
+
+<div id="main">
+<p>
+You know, you could get the Perl Weekly right in your mailbox. Every Week.<br>Free of charge!
+</p>
+  <div class="subform">
+    <form class="subscribe" action="http://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+    <span class="formlabel">Enter your e-mail:</span>
+    <input class="emailinput" name="email" size="20" />
+    <input class="awesome_button" type="submit" value="and click to sign up!" />
+    </form>
+    <div class="onemail">
+      Just ONE e-mail each Monday. Easy to unsubscribe. No spam. Your e-mail address is safe.
+    </div>
+  </div>
+
+</div>
+
+<div id="footer" style="
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+">
+(C) Copyright <a href="http://szabgab.com/">Gabor Szabo</a>. The articles are copyright the respective authors.</p>
+<p>This newsletter is about the Perl programming language.</p>
+</div>
+<div id="menu">
+  <ul>
+    <li>Sections:</li>
+  
+    <li><a href="#sponsors">Sponsors</a></li>
+  
+    <li><a href="#articles">Articles</a></li>
+  
+    <li><a href="#testing">Testing</a></li>
+  
+    <li><a href="#windows">Windows</a></li>
+  
+    <li><a href="#code">Code</a></li>
+  
+    <li><a href="#cpan">CPAN</a></li>
+  
+    <li><a href="#grants">Grants</a></li>
+  
+    <li><a href="#perl_5">Perl 5</a></li>
+  
+    <li><a href="#videos">Videos</a></li>
+  
+    <li><a href="#perl_6">Perl 6</a></li>
+  
+    <li><a href="#weekly_collections">Weekly collections</a></li>
+  
+    <li><a href="#not_just_perl">Not Just Perl</a></li>
+  
+    <li><a href="#advocacy">Advocacy</a></li>
+  
+    <li><a href="#events">Events</a></li>
+  
+  </ul>
+</div>
+
+
+
+
+<div id="social_icons">
+<a href="http://twitter.com/#!/perlweekly"><img src="/img/twitter32.png" alt="Perl Weekly on Twitter" /></a>
+<a href="https://plus.google.com/102874059713383300948"><img src="/img/gplus-32.png" alt="Perl Weekly page on Google+" /></a>
+<a href="http://www.facebook.com/PerlWeekly"><img src="/img/facebook32.png" alt="Like the Perl Weekly on FaceBook" /></a>
+<a href="http://feeds.feedburner.com/PerlWeekly" rel="alternate" type="application/rss+xml"><img src="/img/feed-icon32x32.png" alt="RSS Feed of the Perl Weekly. Updated once a week" /></a>
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12199211-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+
+</td></tr>
+</table>
+
+
+</body>
+</html>
