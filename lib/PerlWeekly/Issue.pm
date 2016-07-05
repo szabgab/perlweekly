@@ -59,7 +59,7 @@ sub generate {
 	return (
 		  $target eq 'web' ? $self->process_tt( 'tt/webpage.tt', @out )
 		: $target eq 'mail'
-		? $self->fixup_links->process_tt( 'tt/page.tt', @out )
+		? $self->fixup_links->process_tt( 'tt/mail.tt', @out )
 		: $target eq 'text'
 		? $self->fixup_links->wrap_text->process_tt( 'tt/text.tt', @out )
 		: $target eq 'rss' ? $self->process_rss
