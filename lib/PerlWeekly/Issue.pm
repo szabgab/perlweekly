@@ -57,7 +57,7 @@ sub generate {
 	$self->add_twitter;
 
 	return (
-		  $target eq 'web' ? $self->process_tt( 'tt/page.tt', @out )
+		  $target eq 'web' ? $self->process_tt( 'tt/webpage.tt', @out )
 		: $target eq 'mail'
 		? $self->fixup_links->process_tt( 'tt/page.tt', @out )
 		: $target eq 'text'
