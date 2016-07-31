@@ -7,8 +7,7 @@ use JSON qw/ from_json to_json /;
 use Path::Tiny qw/ path /;
 use Encode qw/ encode decode /;
 
-
-foreach my $file (glob "src/*.json") {
+foreach my $file ( glob "src/*.json" ) {
 	next if $file !~ m{/\d+.json$};
 	say $file;
 

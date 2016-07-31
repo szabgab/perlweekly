@@ -119,6 +119,7 @@ END_LATEST
 		or die $t->error;
 
 	my %editors_count = map { $_ => scalar @{ $editors{$_} } } keys %editors;
+
 	#print Dumper \%editors;
 	#print Dumper \%editors_count;
 	$t->process(
