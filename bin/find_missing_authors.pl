@@ -55,8 +55,8 @@ foreach my $weekly_file ( grep {/\d+\.json$/} path($src_dir)->children ) {
 					}
 				}
 				else {
-					say "No luck with $title in $weekly_file"
-						if $options{verbose};
+					#say "No luck with $title in $weekly_file"
+					#	if $options{verbose};
 				}
 			}
 		}
