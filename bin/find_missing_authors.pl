@@ -23,7 +23,8 @@ my $src_json
 	= encode( 'utf-8', scalar path("$src_dir/authors.json")->slurp_utf8 );
 my $authors = from_json( $src_json, { utf8 => 1 } );
 
-foreach my $weekly_file ( grep {/\d+\.json/} path($src_dir)->children ) {
+foreach my $weekly_file ( grep {/\d+\.json$/} path($src_dir)->children ) {
+	say "Processing $weekly_file" if $options{verbose};
 	$src_json = encode( 'utf-8', scalar( path($weekly_file)->slurp_utf8 ) );
 	my $data = from_json( $src_json, { utf8 => 1 } );
 
