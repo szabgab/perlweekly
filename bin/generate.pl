@@ -61,11 +61,12 @@ if ( $issue eq 'events' ) {
 }
 
 if ( $issue eq 'all' or $issue eq 'latest' ) {
-	my ( @issues, $last );
+	my ( @issues, $last, %editors );
 	my ($max) = max grep {/^\d+$/}
 		map { substr( basename($_), 0, -5 ) } glob 'src/*.json';
 	foreach my $i ( 1 .. $max ) {
 		my $pwissue = PerlWeekly::Issue->new( $i, $target );
+		push @{ $editors{ $pwissue->{editor} } }, $i;
 		$pwissue->{latest} = $max;
 		if ( $issue eq 'all' or $i == $max ) {
 			$pwissue->generate( $target, "html/archive/$i.html" );
@@ -117,13 +118,17 @@ END_LATEST
 		'html/archive/index.html' )
 		or die $t->error;
 
+	my %editors_count = map { $_ => scalar @{ $editors{$_} } } keys %editors;
+	#print Dumper \%editors;
+	#print Dumper \%editors_count;
 	$t->process(
 		'tt/index.tt',
 		{
 			latest              => $max,
 			next_issue_date     => $next->{date},
 			latest_issue_number => $max,
-			count               => $count
+			count               => $count,
+			editors             => \%editors_count,
 		},
 		'html/index.html'
 	) or die $t->error;
