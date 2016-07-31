@@ -34,6 +34,11 @@ sub new {
 	die "No date in $issue" if not $self->{date};
 	die "Invalid date format in $issue  (expected YYYY-MM-DD)"
 		if $self->{date} !~ /^\d\d\d\d-\d\d-\d\d$/;
+	if ($issue ne 'next') {
+		die "The 'editor' is missing from issue $issue.\n" if not $self->{editor};
+		die "The 'subject' is missing from issue $issue.\n" if not $self->{subject};
+		die "The 'header' is empty for issue $issue.\n" if not @{ $self->{header} };
+	}
 
 	for my $ch ( @{ $self->{chapters} } ) {
 		my $id = lc $ch->{title};
@@ -89,7 +94,6 @@ sub add_author_info {
 		= eval { from_json scalar( path("src/authors.json")->slurp_utf8 ) };
 	die "Could not read src/authors.json\n\n$@" if $@;
 
-	die "Missing editor" if not $self->{editor};
 
 # why is this called twice?
 #die Dumper $self->{editor} if not $authors->{ $self->{editor} };
