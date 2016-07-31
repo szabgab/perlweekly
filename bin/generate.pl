@@ -16,6 +16,7 @@ use JSON qw(from_json);
 use List::Util qw(max);
 
 use lib dirname( dirname abs_path($0) ) . '/lib';
+use PerlWeekly qw(get_authors);
 use PerlWeekly::Template qw();
 use PerlWeekly::Issue;
 
@@ -90,11 +91,48 @@ END_LATEST
 
 	delete $last->{latest_page};
 
-	my $authors
-		= eval { from_json scalar( path("src/authors.json")->slurp_utf8 ) };
+	my %articles_by;
+	my $authors = get_authors();
+	foreach my $issue (@issues) {
+
+		#say "   Issue: $issue->{issue}";
+		#die Dumper $issue;
+		foreach my $ch ( @{ $issue->{chapters} } ) {
+
+			#die Dumper $ch;
+			foreach my $entry ( @{ $ch->{entries} } ) {
+				if ( $entry->{author} ) {
+
+					#print Dumper $entry;
+					$entry->{issue} = $issue->{issue};
+					push @{ $articles_by{ $entry->{author}{key} } }, $entry;
+				}
+			}
+		}
+	}
+
+	#die Dumper \%articles_by;
+	mkdir 'html/a' if not -e 'html/a';
 
 	my $next = PerlWeekly::Issue->new( 'next', $target );
 	my $t = PerlWeekly::Template->new();
+
+	foreach my $author ( keys %$authors ) {
+
+		#die Dumper $authors->{$author};
+		#die Dumper $articles_by{$author};
+		$t->process(
+			'tt/articles_by_author.tt',
+			{
+				author   => $authors->{$author},
+				articles => [
+					sort { $a->{ts} cmp $b->{ts} } @{ $articles_by{$author} }
+				]
+			},
+			"html/a/$authors->{$author}{handler}.html"
+		) or die $t->error;
+	}
+
 	$t->process(
 		'tt/authors.tt',
 		{

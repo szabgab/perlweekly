@@ -1,4 +1,5 @@
 package PerlWeekly::Issue;
+use 5.010;
 use strict;
 use warnings;
 
@@ -15,6 +16,8 @@ use XML::RSS qw();
 use DateTime qw();
 use DateTime::Format::W3CDTF;
 use URL::Encode qw(url_encode_utf8);
+
+use PerlWeekly qw(get_authors);
 
 #use POSIX          qw();
 
@@ -47,6 +50,13 @@ sub new {
 		my $id = lc $ch->{title};
 		$id =~ s/\s+/_/g;
 		$ch->{id} = $id;
+		next if $issue eq 'next';
+		foreach my $e ( @{ $ch->{entries} } ) {
+			die "ts field missing for url $e->{url} in issue $issue.\n"
+				if not $e->{ts};
+
+#print "Invalid ts format for url $e->{url} in issue $issue: '$e->{ts}'.\n" if $e->{ts} !~ /^\d\d\d\d\.\d\d\.\d\d$/;
+		}
 	}
 
 	$self->{$target} = 1;
@@ -93,9 +103,7 @@ sub add_twitter {
 sub add_author_info {
 	my $self = shift;
 
-	my $authors
-		= eval { from_json scalar( path("src/authors.json")->slurp_utf8 ) };
-	die "Could not read src/authors.json\n\n$@" if $@;
+	my $authors = get_authors();
 
 # why is this called twice?
 #die Dumper $self->{editor} if not $authors->{ $self->{editor} };
@@ -236,10 +244,8 @@ sub process_rss {
 			warn "Missing text " . Dumper $e if not exists $e->{text};
 			my $text = $e->{text};
 
-#die Dumper $e;
-#die "Missing ts in " . Dumper $e if not $e->{ts};
-#die "Invalid ts format in " . Dumper $e if $e->{ts} =~ /^\d20\d\d\.\d\d\.\d\d$/;
-#my $ts = join '-', split /\./, $e->{ts};
+			#die Dumper $e;
+			#my $ts = join '-', split /\./, $e->{ts};
 			$dt->add( seconds => 1 );
 			push @items, {
 				title       => encode( 'utf-8', $e->{title} ),
