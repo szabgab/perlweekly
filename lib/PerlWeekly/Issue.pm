@@ -28,7 +28,14 @@ sub new {
 	my $self;
 	my $filename = "src/$issue.json";
 	die "File '$filename' does not exist.\n" if not -e $filename;
-	eval { $self = from_json scalar path($filename)->slurp_utf8 };
+	my $content = scalar path($filename)->slurp_utf8;
+	my @blogspot_urls = grep { $_ ne 'com' }
+		$content =~ m{https?://.*\.blogspot\.([\w.]*)/};
+	die "Issue $issue has a blogspot URL that is not .com: "
+		. Dumper \@blogspot_urls
+		if @blogspot_urls;
+
+	eval { $self = from_json $content };
 	if ($@) {
 		die "JSON exception in '$filename' $@";
 	}
@@ -52,6 +59,8 @@ sub new {
 		$ch->{id} = $id;
 		next if $issue eq 'next';
 		foreach my $e ( @{ $ch->{entries} } ) {
+			die "url field is mising in issue $issue for " . Dumper $e
+				if not $e->{url};
 			die "ts field missing for url $e->{url} in issue $issue.\n"
 				if not $e->{ts};
 
