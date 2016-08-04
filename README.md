@@ -101,6 +101,8 @@ Finally, I commit src/123.json and send a pull request to Gabor.
 The final touch
 -----------------
 
+This is done (partially) by Gabor before sending out th newsletter. Don't worry about it.
+
 * Run `bin/tidy_json.pl` to make the source JSON files unified.
 * Update src/next.json to have the next date (this is used on the front page)
 * Update src/count.txt from http://mail.perlweekly.com/mailman/admin/perlweekly/members
