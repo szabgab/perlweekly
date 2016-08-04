@@ -61,7 +61,7 @@ The 'editorial' process
 Gabor:
 -----
 
-I follow a bunch of RSS/Atom feeds of blogs. Look at some other resource such as http://blogs.perl.org  http://www.reddit.com/r/perl and probably a few others. I am subscribed to "perl" on Google Alerts. Sometimes people send me e-mails.
+I follow a bunch of RSS/Atom feeds of blogs. Look at some other resource such as http://blogs.perl.org  http://www.reddit.com/r/perl and probably a few others. I am subscribed to "perl" on Google Alerts. Sometimes people send me e-mails. As a side note, I am also posting quite a few links to https://twitter.com/perlweekly during the week, so if you are looking for a source for ideas, you can use that too.
 
 When I want to start preparing the next edition (and this can happen the day after the previous edition, or if I am too busy, then the day before the next edition is due) I copy  src/next.json to the appropriate src/###.json and manually update it.
 
@@ -107,7 +107,7 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 * Update src/next.json to have the next date (this is used on the front page)
 * Update src/count.txt from http://mail.perlweekly.com/mailman/admin/perlweekly/members
 * add sponsors, if there are any
-* Update the ```src/events.json``` by runnig ```bin/perl-events.pl``` and maybe by moving some old items to ```src/old_events.json```
+* Update the ```src/events.json``` by running ```bin/perl-events.pl``` and maybe by moving some old items to ```src/old_events.json```
 * Copy the section of events from the previous edition, and update it (remove old, add new)
 * Add authors where they are missing.
 * Run ispell on the source file and try not to "fix" British English with American English
@@ -124,7 +124,7 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
   that was held for approval and the other one as I am the list administrator. I follow the link in this
   second e-mail and approve the message to go out to the mailing list.
 
-* Then I go and paste the link of the latest editon in the Perl Developers group on Facebook, the Perl Weekly page on Google+,
+* Then I go and paste the link of the latest edition in the Perl Developers group on Facebook, the Perl Weekly page on Google+,
   LinkedIN, Twitter.
 
 
