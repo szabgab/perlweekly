@@ -14,46 +14,52 @@ to help but can be reordered/removed/replaced.
 
 The main part of the JSON has the following fields
 
- "date" : "2016-08-08",  # The publish date of the edition.
- "editor" : "",          # A key from the src/authors.json file.
- "subject" : "",         # The main subject line of the email.
- "header" : [            # The top text of the edition. Your 'editorial' comments.
-    "Bla...",
-    "More bla..."
- ],
- "footer" : [            # The same at the end of the edition. Usually unused.
- ],
- "chapters" : [          # The sections of the newsletter.
-     ...
- ]
+```
+"date" : "2016-08-08",  # The publish date of the edition.
+"editor" : "",          # A key from the src/authors.json file.
+"subject" : "",         # The main subject line of the email.
+"header" : [            # The top text of the edition. Your 'editorial' comments.
+   "Bla...",
+   "More bla..."
+],
+"footer" : [            # The same at the end of the edition. Usually unused.
+],
+"chapters" : [          # The sections of the newsletter.
+    ...
+]
+```
 
 Each section (chapter) has the following fields:
 
- "title" : "",     # Short title
- "sponsor" : 1,    # only used in the Sponsors section to make it stand out
- "header" : "",    # of the section. Rarely used.
- "footer" : "",    # at the bottom of each section. Rarely used.
- "entries" : [     # One entry per article we share.
- ]
+```
+"title" : "",     # Short title
+"sponsor" : 1,    # only used in the Sponsors section to make it stand out
+"header" : "",    # of the section. Rarely used.
+"footer" : "",    # at the bottom of each section. Rarely used.
+"entries" : [     # One entry per article we share.
+]
+```
 
 Each entry has the following fields:
 
- "title" : "",        # The title of the entry (usually the title original of the article)
- "author" : "",       # One of the keys from the src/authors.json file
- "text" : "",         # Whatever is our longer description of the article
-                      # Extra links can be added as <a href=\"http://..\">...</a>
- "url" : "",          # The real URL of the article
- "ts" : "2016.08.01", # The date of the article
- "tags" : []          # List of keywords. (Unfortunately not in use)
+```
+"title" : "",        # The title of the entry (usually the title original of the article)
+"author" : "",       # One of the keys from the src/authors.json file
+"text" : "",         # Whatever is our longer description of the article
+                     # Extra links can be added as <a href=\"http://..\">...</a>
+"url" : "",          # The real URL of the article
+"ts" : "2016.08.01", # The date of the article
+"tags" : []          # List of keywords. (Unfortunately not in use)
 
- "link" : ""          # Was used for a shortened bitly url, but it is currently not in use.
-
+"link" : ""          # Was used for a shortened bitly url, but it is currently not in use.
+```
 
 The 'editorial' process
 ========================
 
 
-*Gabor*:
+Gabor:
+-----
 
 I follow a bunch of RSS/Atom feeds of blogs. Look at some other resource such as http://blogs.perl.org  http://www.reddit.com/r/perl and probably a few others. I am subscribed to "perl" on Google Alerts. Sometimes people send me e-mails.
 
@@ -61,7 +67,8 @@ When I want to start preparing the next edition (and this can happen the day aft
 
 I update the 'title', 'text', 'url', 'author', and 'ts' fields. I have not touched the 'tags' for quite some time, though it would be nice to use that too and then display the values. At least on the web site.
 
-*Yanick*:
+Yanick:
+-------
 
 I first create a 'week-123' branch (where "123" is the current week number,
 natch). Then I copy my Markdown template in the src/ directory
