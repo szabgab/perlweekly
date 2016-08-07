@@ -114,11 +114,12 @@ sub add_author_info {
 
 	my $authors = get_authors();
 
-# TODO: this funciton is called twice and this function replaces the editor entry with the hash so 
+# TODO: this funciton is called twice and this function replaces the editor entry with the hash so
 # the checking should only be done when it is not a hash reference yet
 # but ultimately this should probably run only once.
-	if (not ref $self->{editor}) {
-		die "Editor '$self->{editor}' not found in src/authors.json" if not $authors->{ $self->{editor} };
+	if ( not ref $self->{editor} ) {
+		die "Editor '$self->{editor}' not found in src/authors.json"
+			if not $authors->{ $self->{editor} };
 	}
 	$self->{editor} = $authors->{ $self->{editor} };
 
