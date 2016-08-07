@@ -54,6 +54,23 @@ Each entry has the following fields:
 "link" : ""          # Was used for a shortened bitly url, but it is currently not in use.
 ```
 
+Checking your file
+===================
+
+You can generate the HTML files by running `perl bin/generate.pl web all` and then you can run `plackup` and visit http://127.0.0.1:5000/ to see the results.
+
+
+Linking to blogspot
+=====================
+
+The blogspot URLs should end with .com: blogspot has local URLs in every country so when you visit site.blogspot.com it will automatically redirect to site.blogspot.CC (Where CC is the country you are browsing from.) In order to avoid having blogspot links all over the world there is now a check that will make sure we use only .com
+
+Quotes
+========
+
+Apparently in JSON the values need to be within double quotes and internally, if you'd like to use double-quotes in one of the values you need to escape them.
+
+
 The 'editorial' process
 ========================
 
