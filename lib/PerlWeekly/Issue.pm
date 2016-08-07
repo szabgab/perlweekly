@@ -114,9 +114,12 @@ sub add_author_info {
 
 	my $authors = get_authors();
 
-# why is this called twice?
-#die Dumper $self->{editor} if not $authors->{ $self->{editor} };
-#die "Editor '$self->{editor}' not found in src/authors.json" if not $authors->{ $self->{editor} };
+# TODO: this funciton is called twice and this function replaces the editor entry with the hash so 
+# the checking should only be done when it is not a hash reference yet
+# but ultimately this should probably run only once.
+	if (not ref $self->{editor}) {
+		die "Editor '$self->{editor}' not found in src/authors.json" if not $authors->{ $self->{editor} };
+	}
 	$self->{editor} = $authors->{ $self->{editor} };
 
 	foreach my $ch ( @{ $self->{chapters} } ) {
