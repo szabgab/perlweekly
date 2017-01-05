@@ -10,7 +10,7 @@ if ( not $pw ) {
 }
 
 my $m = WWW::Mailman->new(
-	uri => 'http://mail.perlweekly.com/mailman/listinfo/perlweekly',
+	uri => 'https://mail.perlweekly.com/mailman/listinfo/perlweekly',
 	admin_password => $pw,
 );
 

@@ -122,7 +122,7 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 
 * Run `bin/tidy_json.pl` to make the source JSON files unified.
 * Update src/next.json to have the next date (this is used on the front page)
-* Update src/count.txt from http://mail.perlweekly.com/mailman/admin/perlweekly/members
+* Update src/count.txt from https://mail.perlweekly.com/mailman/admin/perlweekly/members
 * add sponsors, if there are any
 * Update the ```src/events.json``` by running ```bin/perl-events.pl``` and maybe by moving some old items to ```src/old_events.json```
 * Copy the section of events from the previous edition, and update it (remove old, add new)
