@@ -61,6 +61,7 @@ sub new {
 		foreach my $e ( @{ $ch->{entries} } ) {
 			die "url field is mising in issue $issue for " . Dumper $e
 				if not $e->{url};
+
 			#die "ts field missing for url $e->{url} in issue $issue.\n"
 			#	if not $e->{ts};
 
