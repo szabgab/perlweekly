@@ -55,14 +55,14 @@ sub new {
 
 	for my $ch ( @{ $self->{chapters} } ) {
 		my $id = lc $ch->{title};
-		$id =~ s/\s+/_/g;
+		$id =~ s/\W+/_/g;
 		$ch->{id} = $id;
 		next if $issue eq 'next';
 		foreach my $e ( @{ $ch->{entries} } ) {
 			die "url field is mising in issue $issue for " . Dumper $e
 				if not $e->{url};
-			die "ts field missing for url $e->{url} in issue $issue.\n"
-				if not $e->{ts};
+			#die "ts field missing for url $e->{url} in issue $issue.\n"
+			#	if not $e->{ts};
 
 #print "Invalid ts format for url $e->{url} in issue $issue: '$e->{ts}'.\n" if $e->{ts} !~ /^\d\d\d\d\.\d\d\.\d\d$/;
 		}
