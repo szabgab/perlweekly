@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+  <title>Perl Weekly Issue #300 - 2017-04-24 - 300th issue of Perl Weekly</title>
+ <link rel="stylesheet" type="text/css" href="/style.css" />
+ <script src="/js/jquery.js" type="text/javascript"></script>
+ <script src="/js/mailman.js" type="text/javascript"></script>
+ <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+ <script> 
+ $(document).ready(function() { 
+    if (document.referrer !== 'https://www.google.com/') { 
+       document.getElementById('registration').style.display = 'none'; 
+    }
+ });
+ </script>
+
+
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
+<tr><td>
+    <p id="logo">
+    <a href="http://perlweekly.com/" style="
+      background-color: #004065;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 40px;
+      font-weight: bold;
+      font-family: Gadget;
+    
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border: 1px solid #000;
+      padding: 10px;
+    ">Perl Weekly</a>
+    
+    </p>
+    <p id="issue"
+      style="border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      font-size: 18px;">
+    Issue #300 - 2017-04-24 - 300th issue of Perl Weekly
+    </p>
+    
+    <a href="/latest.html">latest</a> | <a href="/archive">archive</a> | by <a href="http://neilb.org/">Neil Bowers</a>
+
+    <div class="subform" id="registration">
+      <div class="onemail">
+        Don't miss the next issue!
+      </div>
+      <form class="subscribe" action="https://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+<span class="formlabel">Enter your e-mail:</span>
+<input class="emailinput" name="email" size="20" />
+<input class="awesome_button" type="submit" value="and click to sign up!" />
+</form>
+
+
+    </div>
+
+    <p>
+    <!-- start facebook SDK ?? -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=101520636611790";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- end facebook -->
+    
+    <div class="fb-like" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+    <a href="http://twitter.com/share" class="twitter-share-button"
+    data-text="Perl Weekly: 300th issue of Perl Weekly via @perlweekly" data-count="vertical">Tweet</a>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js">
+    </script>
+    
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="tall"></g:plusone>
+    
+</td></tr>
+
+<tr><td>
+    <table>
+    <tr><td>
+        
+        <p style="font-size: 16px">
+        This is the 300th issue of Perl Weekly!
+Nearly six years ago, Gabor put out <a href="http://perlweekly.com/archive/1.html">issue number 1</a>,
+and hasn't missed a week since.
+Various editors have come, and gone, and returned,
+but Gabor is still the driving force behind it. Thank you, Gabor.
+        </p>
+        
+        <p style="font-size: 16px">
+        If you're a CPAN author,
+please have a read of Ryan's article about one of the changes
+coming soon in Perl 5.26.0.
+        </p>
+        
+        <p style="font-size: 16px">
+        Neil
+        </p>
+        
+        <p style="font-size: 14px">
+        Neil Bowers
+        </p>
+    </td>
+    <td>
+        <img  style="right:0; bottom: 0;" src="/img/neil_bowers.png" title="Neil Bowers" />
+    </td></tr>
+    </table>
+</td></tr>
+
+
+    <tr><td>
+        <hr style="color: red" id="cpan_news" />
+        <div style="font-size: 18px; font-weight: bold;">CPAN News</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://niceperl.blogspot.com/2017/04/cxxix-cpan-great-modules-released-last.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">NICEPERL's lists</a> <a href="http://twitter.com/home?status=NICEPERL%27s+lists+http%3A%2F%2Fniceperl.blogspot.com%2F2017%2F04%2Fcxxix-cpan-great-modules-released-last.html by @niceperl via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://niceperl.blogspot.com/2017/04/cxxix-cpan-great-modules-released-last.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://niceperl.blogspot.com/2017/04/cxxix-cpan-great-modules-released-last.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://niceperl.blogspot.com/">Miguel Prz</a>                         (<a href="https://metacpan.org/author/NICEPERL">NICEPERL</a>)                  </span>               <p style="font-size: 16px">
+                 Miguel Prz (<a href="https://metacpan.org/author/NICEPERL">NICEPERL</a>)'s regular lists: <a href="http://niceperl.blogspot.com/2017/04/cxxix-cpan-great-modules-released-last.html">Great modules released last week</a>; <a href="http://niceperl.blogspot.com/2017/04/cclxi-metacpan-weekly-report.html">MetaCPAN weekly report</a>; <a href="http://niceperl.blogspot.com/2017/04/cclxxxv-stackoverflow-perl-report.html">StackOverflow Perl report</a>.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/dana_jacobsen/2017/04/alternatives-to-rand.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Alternatives to rand()</a> <a href="http://twitter.com/home?status=Alternatives+to+rand%28%29+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fdana_jacobsen%2F2017%2F04%2Falternatives-to-rand.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/dana_jacobsen/2017/04/alternatives-to-rand.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/dana_jacobsen/2017/04/alternatives-to-rand.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/dana_jacobsen/">Dana Jacobsen</a>                         (<a href="https://metacpan.org/author/DANAJ">DANAJ</a>)                  </span>               <p style="font-size: 16px">
+                 Dana reviewed CPAN modules you can use for random number generation, in place of the rand built-in.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/max_maischein/2017/04/virtual-spring-cleaning-part-2-of-xx---in-which-i-implement-fun-parts-of-excel.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Creating a pivot table from an SQL query</a> <a href="http://twitter.com/home?status=Creating+a+pivot+table+from+an+SQL+query+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fmax_maischein%2F2017%2F04%2Fvirtual-spring-cleaning-part-2-of-xx---in-which-i-implement-fun-parts-of-excel.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/max_maischein/2017/04/virtual-spring-cleaning-part-2-of-xx---in-which-i-implement-fun-parts-of-excel.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/max_maischein/2017/04/virtual-spring-cleaning-part-2-of-xx---in-which-i-implement-fun-parts-of-excel.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/max_maischein/">Max Maischein</a>                         (<a href="https://metacpan.org/author/CORION">CORION</a>)                  </span>               <p style="font-size: 16px">
+                 Max introduces his new module, <a href="https://metacpan.org/pod/DBIx::PivotQuery">DBIx::PivotQuery</a>, which lets you build pivot tables, similar to those you can use in Excel.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/grinnz/2017/04/autoloadautocan---autoloading-the-easy-way.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Autoload::AUTOCAN - Autoloading the easy way</a> <a href="http://twitter.com/home?status=Autoload%3A%3AAUTOCAN+-+Autoloading+the+easy+way+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fgrinnz%2F2017%2F04%2Fautoloadautocan---autoloading-the-easy-way.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/grinnz/2017/04/autoloadautocan---autoloading-the-easy-way.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/grinnz/2017/04/autoloadautocan---autoloading-the-easy-way.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/grinnz/">Dan Book</a>                         (<a href="https://metacpan.org/author/DBOOK">DBOOK</a>)                  </span>               <p style="font-size: 16px">
+                 Dand introduces his <a href="https://metacpan.org/pod/Autoload::AUTOCAN">Autoload::AUTOCAN</a> module, which makes it easier to do Autoload right.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="perl_5" />
+        <div style="font-size: 18px; font-weight: bold;">Perl 5</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/sawyer_x/2017/04/perl-5-porters-mailing-list-summary-april-11th-16th.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">P5P Mailing List Summary: April 11th-16th</a> <a href="http://twitter.com/home?status=P5P+Mailing+List+Summary%3A+April+11th-16th+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fsawyer_x%2F2017%2F04%2Fperl-5-porters-mailing-list-summary-april-11th-16th.html by @PerlSawyer via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/sawyer_x/2017/04/perl-5-porters-mailing-list-summary-april-11th-16th.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/sawyer_x/2017/04/perl-5-porters-mailing-list-summary-april-11th-16th.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/sawyer_x/">Sawyer X</a>                         (<a href="https://metacpan.org/author/XSAWYERX">XSAWYERX</a>)                  </span>               <p style="font-size: 16px">
+                 Sawyer's weekly update from the P5P mailing list.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/sawyer_x.png" title="Sawyer X" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/ryan_voots/2017/04/trials-and-troubles-with-changing-inc.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Trials and troubles with changing @INC</a> <a href="http://twitter.com/home?status=Trials+and+troubles+with+changing+%40INC+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fryan_voots%2F2017%2F04%2Ftrials-and-troubles-with-changing-inc.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/ryan_voots/2017/04/trials-and-troubles-with-changing-inc.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/ryan_voots/2017/04/trials-and-troubles-with-changing-inc.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Ryan Voots                         (<a href="https://metacpan.org/author/SIMCOP">SIMCOP</a>)                  </span>               <p style="font-size: 16px">
+                 Up to now, the <code>@INC</code> variable (used to search for modules when your program uses them), has had '.' (the current directory) in it. But this is a security risk, so in Perl 5.26 @INC will no longer contain '.'. Ryan goes through what that might mean for your CPAN distributions, and has assembled a list of distributions that appear to break with this change. If you're an author, check for your distribution(s) please!
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="perl_6" />
+        <div style="font-size: 18px; font-weight: bold;">Perl 6</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://6guts.wordpress.com/2017/04/22/massively-reducing-moarvm-fixed-size-allocator-contention/" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Massively reducing MoarVM Fixed Size Allocator contention</a> <a href="http://twitter.com/home?status=Massively+reducing+MoarVM+Fixed+Size+Allocator+contention+https%3A%2F%2F6guts.wordpress.com%2F2017%2F04%2F22%2Fmassively-reducing-moarvm-fixed-size-allocator-contention%2F by @jnthnwrthngtn via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://6guts.wordpress.com/2017/04/22/massively-reducing-moarvm-fixed-size-allocator-contention/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://6guts.wordpress.com/2017/04/22/massively-reducing-moarvm-fixed-size-allocator-contention/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="https://6guts.wordpress.com/">Jonathan Worthington</a>                         (<a href="https://metacpan.org/author/JONATHAN">JONATHAN</a>)                  </span>               <p style="font-size: 16px">
+                 Jonathan has made significant improvements to how MoarVM handles memory allocation in multithreaded applications.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/jonathan_worthington.png" title="Jonathan Worthington" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/zoffix_znet/2017/04/perl-6-io-tpf-grant-monthly-report-april-2017.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Perl 6 IO TPF Grant: Monthly Report (April, 2017)</a> <a href="http://twitter.com/home?status=Perl+6+IO+TPF+Grant%3A+Monthly+Report+%28April%2C+2017%29+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fzoffix_znet%2F2017%2F04%2Fperl-6-io-tpf-grant-monthly-report-april-2017.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/zoffix_znet/2017/04/perl-6-io-tpf-grant-monthly-report-april-2017.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/zoffix_znet/2017/04/perl-6-io-tpf-grant-monthly-report-april-2017.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/zoffix_znet/">Zoffix Znet (Pete Evstratov)</a>                         (<a href="https://metacpan.org/author/ZOFFIX">ZOFFIX</a>)                  </span>               <p style="font-size: 16px">
+                 An update on Zoffix's work on Perl 6 IO.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://strangelyconsistent.org/blog/the-root-of-all-eval" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">The root of all eval</a> <a href="http://twitter.com/home?status=The+root+of+all+eval+http%3A%2F%2Fstrangelyconsistent.org%2Fblog%2Fthe-root-of-all-eval by @carlmasak via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://strangelyconsistent.org/blog/the-root-of-all-eval"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://strangelyconsistent.org/blog/the-root-of-all-eval"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://masak.org/carl/">Carl Mäsak</a>                  </span>               <p style="font-size: 16px">
+                 Carl ruminates on Perl 6's EVAL built-in, which is a bit different from Perl 5's eval.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/carl_masak.png" title="Carl Mäsak" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="toolchain" />
+        <div style="font-size: 18px; font-weight: bold;">Toolchain</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/neilb/2017/04/the-perl-toolchain-summit-project-list.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">The Perl Toolchain Summit Project List</a> <a href="http://twitter.com/home?status=The+Perl+Toolchain+Summit+Project+List+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fneilb%2F2017%2F04%2Fthe-perl-toolchain-summit-project-list.html by @neilbowers via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/neilb/2017/04/the-perl-toolchain-summit-project-list.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/neilb/2017/04/the-perl-toolchain-summit-project-list.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://neilb.org/">Neil Bowers</a>                         (<a href="https://metacpan.org/author/NEILB">NEILB</a>)                  </span>               <p style="font-size: 16px">
+                 Before the Toolchain Summit starts, the attendees are asked to add their work list to the wiki. Everyone is invited to have a look at the project list, and let us know if there are additional things you want to suggest for inclusion (bug fixes, new features, etc).
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/neil_bowers.png" title="Neil Bowers" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/neilb/2017/04/specifying-the-type-of-your-cpan-dependencies.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Specifying the type of your CPAN dependencies</a> <a href="http://twitter.com/home?status=Specifying+the+type+of+your+CPAN+dependencies+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fneilb%2F2017%2F04%2Fspecifying-the-type-of-your-cpan-dependencies.html by @neilbowers via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/neilb/2017/04/specifying-the-type-of-your-cpan-dependencies.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/neilb/2017/04/specifying-the-type-of-your-cpan-dependencies.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://neilb.org/">Neil Bowers</a>                         (<a href="https://metacpan.org/author/NEILB">NEILB</a>)                  </span>               <p style="font-size: 16px">
+                 The third article in a series about the distribution metadata that you'll find in the META.json file. This article was supported by <a href="https://www.maxmind.com/en/home">MaxMind</a>, a gold sponsor for the summit.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/neil_bowers.png" title="Neil Bowers" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="conferences" />
+        <div style="font-size: 18px; font-weight: bold;">Conferences</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/wallisds/2017/04/the-perl-conference-usa-2017.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">The Perl Conference USA 2017</a> <a href="http://twitter.com/home?status=The+Perl+Conference+USA+2017+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fwallisds%2F2017%2F04%2Fthe-perl-conference-usa-2017.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/wallisds/2017/04/the-perl-conference-usa-2017.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/wallisds/2017/04/the-perl-conference-usa-2017.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Dawn S. Wallis                  </span>               <p style="font-size: 16px">
+                 The organisers of The Perl Conference (YAPC::NA as was) have started sharing parts of the schedule, and encourage interested parties to sign up now!
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="the_pull_request_challenge" />
+        <div style="font-size: 18px; font-weight: bold;">The Pull Request Challenge</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/e_choroba/2017/04/collisions-in-block-names-in-jemplate.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Collisions in Block Names in Jemplate</a> <a href="http://twitter.com/home?status=Collisions+in+Block+Names+in+Jemplate+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fe_choroba%2F2017%2F04%2Fcollisions-in-block-names-in-jemplate.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/e_choroba/2017/04/collisions-in-block-names-in-jemplate.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/e_choroba/2017/04/collisions-in-block-names-in-jemplate.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/e_choroba/">E. Choroba</a>                         (<a href="https://metacpan.org/author/CHOROBA">CHOROBA</a>)                  </span>               <p style="font-size: 16px">
+                 E Choroba got <a href="https://metacpan.org/pod/Jemplate">Jemplate</a> in the pull request challenge, and in fixing a bug in that, he ended up fixing the same bug in the Template Toolkit (Jemplate is an implementation of the Template Toolkit in Javascript).
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="perl_foundation" />
+        <div style="font-size: 18px; font-weight: bold;">Perl Foundation</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://news.perlfoundation.org/2017/04/grant-extension-request-mainta-3.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Grant extension request by Tony Cook</a> <a href="http://twitter.com/home?status=Grant+extension+request+by+Tony+Cook+http%3A%2F%2Fnews.perlfoundation.org%2F2017%2F04%2Fgrant-extension-request-mainta-3.html by @makoto_nozaki via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://news.perlfoundation.org/2017/04/grant-extension-request-mainta-3.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://news.perlfoundation.org/2017/04/grant-extension-request-mainta-3.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/makoto_nozaki/">Makoto Nozaki</a>                  </span>               <p style="font-size: 16px">
+                 Tony Cook has asked for an extension to his Perl 5 maintenance grant: $20k for another 400 hours of work.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://news.perlfoundation.org/2017/04/final-grant-report-migrating-b.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">The blogs.perl.org update grant has been cancelled</a> <a href="http://twitter.com/home?status=The+blogs.perl.org+update+grant+has+been+cancelled+http%3A%2F%2Fnews.perlfoundation.org%2F2017%2F04%2Ffinal-grant-report-migrating-b.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://news.perlfoundation.org/2017/04/final-grant-report-migrating-b.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://news.perlfoundation.org/2017/04/final-grant-report-migrating-b.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Mark A Jensen                         (<a href="https://metacpan.org/author/MAJENSEN">MAJENSEN</a>)                  </span>               <p style="font-size: 16px">
+                 In 2015 a grant was awarded to switch blogs.perl.org to a new blog engine. The grant has stalled, and so the grants committee has decided to cancel the grant. They would still welcome someone replacing the current engine behind blogs.perl.org.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="http://blogs.perl.org/users/aristotle/2017/04/kay-vs-tpf.html" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Alan Kay’s critique of the TPF grants program</a> <a href="http://twitter.com/home?status=Alan+Kay%E2%80%99s+critique+of+the+TPF+grants+program+http%3A%2F%2Fblogs.perl.org%2Fusers%2Faristotle%2F2017%2F04%2Fkay-vs-tpf.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/aristotle/2017/04/kay-vs-tpf.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/aristotle/2017/04/kay-vs-tpf.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/aristotle/">Aristotle Pagaltzis</a>                         (<a href="https://metacpan.org/author/ARISTOTLE">ARISTOTLE</a>)                  </span>               <p style="font-size: 16px">
+                 Aristotle quotes Alan Kay, suggesting that we should consider focussing on funding people who do good things for Perl, rather than worrying so much on specific projects.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="perl_maven" />
+        <div style="font-size: 18px; font-weight: bold;">Perl Maven</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://perlmaven.com/core-perl-oop-constructor-arguments" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Core Perl OOP: Constructor arguments</a> <a href="http://twitter.com/home?status=Core+Perl+OOP%3A+Constructor+arguments+https%3A%2F%2Fperlmaven.com%2Fcore-perl-oop-constructor-arguments by @szabgab via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://perlmaven.com/core-perl-oop-constructor-arguments"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://perlmaven.com/core-perl-oop-constructor-arguments"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://szabgab.com/">Gabor Szabo</a>                         (<a href="https://metacpan.org/author/SZABGAB">SZABGAB</a>)                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/gabor_szabo.png" title="Gabor Szabo" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_" />
+        <div style="font-size: 18px; font-weight: bold;"><a href="https://perl.careers/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly">Perl Jobs by Perl Careers</a></div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://perl.careers/jobs/perl-for-high-performance-senior-developer-west-london/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Perl for High Performance; Senior Developer, West London</a> <a href="http://twitter.com/home?status=Perl+for+High+Performance%3B+Senior+Developer%2C+West+London+https%3A%2F%2Fperl.careers%2Fjobs%2Fperl-for-high-performance-senior-developer-west-london%2F%3Futm_source%3Dperlweekly%26utm_campaign%3Dperlweekly%26utm_medium%3Dperlweekly via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://perl.careers/jobs/perl-for-high-performance-senior-developer-west-london/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://perl.careers/jobs/perl-for-high-performance-senior-developer-west-london/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />               <p style="font-size: 16px">
+                 Do you know how to solve problems in terms of queues and caches? Does the idea of truly scaling your architecture on AWS excite you? Not fazed by designing your workloads to be distributed?
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://perl.careers/jobs/perhaps-the-most-enlightened-perl-team-in-london/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Perhaps the most enlightened Perl team in London</a> <a href="http://twitter.com/home?status=Perhaps+the+most+enlightened+Perl+team+in+London+https%3A%2F%2Fperl.careers%2Fjobs%2Fperhaps-the-most-enlightened-perl-team-in-london%2F%3Futm_source%3Dperlweekly%26utm_campaign%3Dperlweekly%26utm_medium%3Dperlweekly via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://perl.careers/jobs/perhaps-the-most-enlightened-perl-team-in-london/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://perl.careers/jobs/perhaps-the-most-enlightened-perl-team-in-london/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />               <p style="font-size: 16px">
+                 It’s no secret that I used to run a Perl team myself in Central London, and was competing for talent with the other teams. By far the hardest team to compete with was the one whose technical leader was making sure his team were always using the best tools, was always taking a personal interest in his team’s technical output — adding his considerable technical knowledge and experience to the team, and was always talking about these things at various London Perl events.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <a href="https://perl.careers/jobs/science-background-or-a-passing-interest-in-life-sciences-juniormid-level-perl-developer-needed-in-london---/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly" style="
+                  font-size: 18px;
+                  font-weight: bold;
+                  ">Science background, or a passing interest in life sciences? Junior/mid-level Perl developer needed in London...</a> <a href="http://twitter.com/home?status=Science+background%2C+or+a+passing+interest+in+life+sciences%3F+Junior%2Fmid-level+Perl+developer+needed+in+London...+https%3A%2F%2Fperl.careers%2Fjobs%2Fscience-background-or-a-passing-interest-in-life-sciences-juniormid-level-perl-developer-needed-in-london---%2F%3Futm_source%3Dperlweekly%26utm_campaign%3Dperlweekly%26utm_medium%3Dperlweekly via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+
+               <a href="https://www.facebook.com/sharer/sharer.php?u=https://perl.careers/jobs/science-background-or-a-passing-interest-in-life-sciences-juniormid-level-perl-developer-needed-in-london---/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               <a href="https://plus.google.com/share?url=https://perl.careers/jobs/science-background-or-a-passing-interest-in-life-sciences-juniormid-level-perl-developer-needed-in-london---/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+
+               <br />               <p style="font-size: 16px">
+                 Friendly and quiet office in London (W1) looking for a Perl (or similar) developer with at least two years experience. You’re expected to have fullstack experience/abilities, from improvements on the client’s HTML front-end to backend services. It’s a small company, so there’s some fluidility expected between roles - a good place to expand on your jack-of-all-software-trades skillset.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+
+<tr><td>
+   <hr style="color: red" id="_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_" />
+
+  
+   <hr style="color: red" id="_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_" />
+  
+<div id="main">
+<p>
+You know, you could get the Perl Weekly right in your mailbox. Every Week.<br>Free of charge!
+</p>
+   <div class="subform">
+   <form class="subscribe" action="https://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+<span class="formlabel">Enter your e-mail:</span>
+<input class="emailinput" name="email" size="20" />
+<input class="awesome_button" type="submit" value="and click to sign up!" />
+</form>
+
+
+   <div class="onemail">
+      Just ONE e-mail each Monday. Easy to unsubscribe. No spam. Your e-mail address is safe.
+    </div>
+</div>
+
+</div>
+
+<div id="footer" style="
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+">
+(C) Copyright <a href="http://szabgab.com/">Gabor Szabo</a>. The articles are copyright the respective authors.</p>
+<p>This newsletter is about the Perl programming language.</p>
+</div>
+<div id="menu">
+  <ul>
+    <li>Sections:</li>
+  
+    <li><a href="#cpan_news">CPAN News</a></li>
+  
+    <li><a href="#perl_5">Perl 5</a></li>
+  
+    <li><a href="#perl_6">Perl 6</a></li>
+  
+    <li><a href="#toolchain">Toolchain</a></li>
+  
+    <li><a href="#conferences">Conferences</a></li>
+  
+    <li><a href="#the_pull_request_challenge">The Pull Request Challenge</a></li>
+  
+    <li><a href="#perl_foundation">Perl Foundation</a></li>
+  
+    <li><a href="#perl_maven">Perl Maven</a></li>
+  
+    <li><a href="#_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_"><a href="https://perl.careers/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly">Perl Jobs by Perl Careers</a></a></li>
+  
+  </ul>
+</div>
+
+
+<div id="social_icons">
+<a href="http://twitter.com/#!/perlweekly"><img src="/img/twitter32.png" alt="Perl Weekly on Twitter" /></a>
+<a href="https://plus.google.com/102874059713383300948"><img src="/img/gplus-32.png" alt="Perl Weekly page on Google+" /></a>
+<a href="http://www.facebook.com/PerlWeekly"><img src="/img/facebook32.png" alt="Like the Perl Weekly on FaceBook" /></a>
+<a href="http://feeds.feedburner.com/PerlWeekly" rel="alternate" type="application/rss+xml"><img src="/img/feed-icon32x32.png" alt="RSS Feed of the Perl Weekly. Updated once a week" /></a>
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12199211-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+</td></tr>
+</table>
+
+
+</body>
+</html>
