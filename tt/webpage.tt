@@ -16,6 +16,12 @@
 [% IF latest_page %]<link rel="canonical" href="http://perlweekly.com/archive/[% latest_page %].html"/>[% END %]
 </head>
 <body>
+<style>
+.share-links {
+  float: left;
+  padding-right: 2px;
+}
+</style>
 
 <table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
 <tr><td>
@@ -117,13 +123,22 @@
                 [% END %]
                >
                <p style="margin-left: 1.5em;">
-               <a href="[% e.url %]" style="
-                  font-size: 18px;
-                  font-weight: bold;
-                  ">[% e.title | html %]</a> <a href="http://twitter.com/home?status=[% e.twitter | html %]"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               <div class="share-links">
+                 <a href="[% e.url %]" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">[% e.title | html %]</a> <a href="http://twitter.com/home?status=[% e.twitter | html %]"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
 
-               <a href="https://www.facebook.com/sharer/sharer.php?u=[% e.url %]"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
-               <a href="https://plus.google.com/share?url=[% e.url %]"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=[% e.url %]"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=[% e.url %]"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="[% e.url %]" data-pocket-count="none" >Pocket</a>
+               </div>
 
                <br />
                [%- IF e.author -%]
@@ -201,5 +216,6 @@ You know, you could get the Perl Weekly right in your mailbox. Every Week.<br>Fr
 </table>
 
 
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
 </body>
 </html>
