@@ -42,7 +42,7 @@ sub new {
 	bless $self, $class;
 
 	die "No date in $issue" if not $self->{date};
-	die "Invalid date format in $issue  (expected YYYY-MM-DD)"
+	die "Invalid date format in $issue received '$self->{date}' (expected YYYY-MM-DD)"
 		if $self->{date} !~ /^\d\d\d\d-\d\d-\d\d$/;
 	if ( $issue ne 'next' ) {
 		die "The 'editor' is missing from issue $issue.\n"
