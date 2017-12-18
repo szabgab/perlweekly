@@ -35,7 +35,7 @@ foreach my $weekly_file ( grep {/\d+\.json$/} path($src_dir)->children ) {
 
 				# try to find the author amongst the entry text
 				my $title = $e->{title};
-				my $text = lc( $e->{text} // '' );
+				my $text  = lc( $e->{text} // '' );
 				$text =~ s/ /_/g;
 
 				if ( my @candidates
