@@ -121,6 +121,7 @@ The final touch
 This is done (and partially skipped) by Gabor before sending out the newsletter. Don't worry about it.
 
 * Run `bin/tidy_json.pl` to make the source JSON files unified.
+* Run `tidyall -a` to make the Perl source code tidy.
 * Update src/next.json to have the next date (this is used on the front page)
 * Update src/count.txt from https://mail.perlweekly.com/mailman/admin/perlweekly/members
 * add sponsors, if there are any
