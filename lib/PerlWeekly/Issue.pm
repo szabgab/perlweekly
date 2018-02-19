@@ -241,7 +241,7 @@ sub process_rss {
 	my @items;
 	push @items, {
 		title => encode( 'utf-8', "#$self->{issue} - $self->{subject}" ),
-		link        => "${url}archive/$self->{issue}.html",
+		link  => "${url}archive/$self->{issue}.html",
 		description => encode( 'utf-8', $text ),
 		dc          => {
 
