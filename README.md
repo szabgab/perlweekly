@@ -145,4 +145,11 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 * Then I go and paste the link of the latest edition in the Perl Developers group on Facebook, the Perl Weekly page on Google+,
   LinkedIN, Twitter.
 
+## Sources
+
+* [TPF news](http://news.perlfoundation.org/)
+* [Blogs Perl org](http://blogs.perl.org/)
+* [Reddit Perl](https://www.reddit.com/r/perl/)
+* [Reddit Perl 6](https://www.reddit.com/r/perl6/)
+* [Perl Monks](http://www.perlmonks.org/)
 
