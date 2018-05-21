@@ -212,6 +212,9 @@ sub collect_tags {
 	foreach my $issue (@issues) {
 		foreach my $ch ( @{ $issue->{chapters} } ) {
 			foreach my $e ( @{ $ch->{entries} } ) {
+                next if not $e->{tags};
+                die if not ref $e->{tags};
+                die if 'ARRAY' ne ref $e->{tags};
 				foreach my $tag ( @{ $e->{tags} } ) {
 					my $url = lc $tag;
 					$url =~ s/[^a-z0-9]+/_/g;
