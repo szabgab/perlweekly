@@ -49,7 +49,7 @@ my $count = 0;
 if ( open my $fh, '<', 'src/count.txt' ) {
 	my $sub_row = <$fh>;
 	chomp $sub_row;
-	(undef, $count) = split /\;/, $sub_row, 2;
+	( undef, $count ) = split /\;/, $sub_row, 2;
 	close $fh;
 }
 
