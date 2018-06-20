@@ -11,17 +11,22 @@
 <tr><td>
 <ul>
 [% FOR i IN issues %]
-<li>#[% i.number %] - [% i.date %] - <a href="/archive/[% i.number %].html">[% i.subject %]</a> ([% i.editor.name %])<br />
-<ul>
-[% FOR ch IN i.chapters %]
-   [% FOR e IN ch.entries %]
-     <li>
-     <a href="[% e.url %]" style="font-size: 18px; font-weight: bold; ">[% e.title %]</a>
-     </li>
-   [% END %]
-[% END %]
-</ul>
-</li>
+    <li>#[% i.number %] - [% i.date %] - <a href="/archive/[% i.number %].html">[% i.subject %]</a> ([% i.editor.name %])<br />
+    <ul>
+    [% FILTER collapse %]
+    [% FOR ch IN i.chapters %]
+       [% IF ch.sponsor  AND ch.sponsor == 2 %]
+       [% ELSE %]
+           [% FOR e IN ch.entries %]
+             <li>
+             <a href="[% e.url %]" style="font-size: 18px; font-weight: bold; ">[% e.title %]</a>
+             </li>
+           [% END %]
+       [% END %]
+    [% END %]
+    [% END %]
+    </ul>
+    </li>
 [% END %]
 </ul>
 </td></tr>
