@@ -14,7 +14,7 @@ sub main {
 		next if $file !~ m{/\d+.json$};
 		tidy($file);
 	}
-	foreach my $file ( "src/authors.json" ) {
+	foreach my $file ("src/authors.json") {
 		tidy($file);
 	}
 }
