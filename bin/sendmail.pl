@@ -50,7 +50,7 @@ my $msg = MIME::Lite->new(
 	To      => $opt{to},
 	Type    => 'multipart/alternative',
 	Subject => decode( 'utf-8', $subject ),    # worked on #118
-	                                           #Data     => $text,
+											   #Data     => $text,
 );
 
 my %type = (

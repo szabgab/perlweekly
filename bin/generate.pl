@@ -117,7 +117,7 @@ END_LATEST
 	mkdir 'html/a' if not -e 'html/a';
 
 	my $next = PerlWeekly::Issue->new( 'next', $target );
-	my $t = PerlWeekly::Template->new();
+	my $t    = PerlWeekly::Template->new();
 
 	foreach my $author ( keys %$authors ) {
 
@@ -182,7 +182,7 @@ END_LATEST
 	}
 
 	# Create sitemap.xml
-	my $URL = 'http://perlweekly.com';
+	my $URL   = 'http://perlweekly.com';
 	my @pages = { filename => "$URL/" };
 	push @pages, map { { filename => "$URL/$_" } } qw(
 		archive/

@@ -28,7 +28,7 @@ sub new {
 	my $self;
 	my $filename = "src/$issue.json";
 	die "File '$filename' does not exist.\n" if not -e $filename;
-	my $content = scalar path($filename)->slurp_utf8;
+	my $content       = scalar path($filename)->slurp_utf8;
 	my @blogspot_urls = grep { $_ ne 'com' }
 		$content =~ m{https?://.*\.blogspot\.([\w.]*)/};
 	die "Issue $issue has a blogspot URL that is not .com: "
@@ -271,7 +271,7 @@ sub process_rss {
 	#    creator => '???', # TODO should be the author of the original article
 					date => $dateparser->format_datetime($dt)
 					,    #"${ts}T00:00:00+00:00",
-					     #    subject => 'list of tags?',
+						 #    subject => 'list of tags?',
 				},
 			};
 		}
