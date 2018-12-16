@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+  <title>Perl Weekly Issue #386 - 2018-12-17 - Pull Request Challenge 2015 - 2018</title>
+ <link rel="stylesheet" type="text/css" href="/style.css" />
+ <script src="/js/jquery.js" type="text/javascript"></script>
+ <script src="/js/mailman.js" type="text/javascript"></script>
+ <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+ <script> 
+ $(document).ready(function() { 
+    if (document.referrer !== 'https://www.google.com/') { 
+       document.getElementById('registration').style.display = 'none'; 
+    }
+ });
+ </script>
+
+
+</head>
+<body>
+<style>
+.entry-title, .share-links {
+  float: left;
+  padding-right: 2px;
+}
+</style>
+
+<table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
+<tr><td>
+    <p id="logo">
+    <a href="http://perlweekly.com/" style="
+      background-color: #004065;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 40px;
+      font-weight: bold;
+      font-family: Gadget;
+    
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border: 1px solid #000;
+      padding: 10px;
+    ">Perl Weekly</a>
+    
+    </p>
+    <p id="issue"
+      style="border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      font-size: 18px;">
+    Issue #386 - 2018-12-17 - Pull Request Challenge 2015 - 2018
+    </p>
+    
+    <a href="/latest.html">latest</a> | <a href="/archive">archive</a> | by <a href="http://manwar.org/">Mohammad S. Anwar</a>
+
+    <div class="subform" id="registration">
+      <div class="onemail">
+        Don't miss the next issue!
+      </div>
+      <form class="subscribe" action="https://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+<span class="formlabel">Enter your e-mail:</span>
+<input class="emailinput" name="email" size="20" />
+<input class="awesome_button" type="submit" value="and click to sign up!" />
+</form>
+
+
+    </div>
+
+    <p>
+    <!-- start facebook SDK ?? -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=101520636611790";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- end facebook -->
+    
+    <div class="fb-like" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+    <a href="http://twitter.com/share" class="twitter-share-button"
+    data-text="Perl Weekly: Pull Request Challenge 2015 - 2018 via @perlweekly" data-count="vertical">Tweet</a>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js">
+    </script>
+    
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+    <g:plusone size="tall"></g:plusone>
+    
+</td></tr>
+
+<tr><td>
+    <table>
+    <tr><td>
+        
+        <p style="font-size: 16px">
+        Hi there
+        </p>
+        
+        <p style="font-size: 16px">
+        The Pull Request Challenge (PRC) is coming to an end on 31st Dec 2018. If you have not signed up to the challenge yet then this is your last chance to be a part of the glorious history of PRC. Just email neil@bowers.com, your github user name to get started. It would be great to end on high note. I would like to thank Neil Bowers for giving us the golden opportunity.
+        </p>
+        
+        <p style="font-size: 16px">
+        I am sure you are enjoying reading Advent Calendars daily dose of interesting article. Usually the Advent Calendar starts on 1st Dec but this time Dancer Advent Calendar is doing half marathon i.e. 12 days <a href="http://advent.perldancer.org/2018">Advent Calendar</a>. In the coming days, you will find more interesting articles about Dancer2 there.
+        </p>
+        
+        <p style="font-size: 16px">
+        There is one more interesting thing happening in the month of December i.e 24 Pull Request Challenge. If you haven't started yet then don't delay any further, only one week is left. It is the best time to contribute to your favourite distribution.
+        </p>
+        
+        <p style="font-size: 16px">
+        Enjoy festive season and this week newsletter as well
+        </p>
+        
+        <p style="font-size: 14px">
+        Mohammad S. Anwar
+        </p>
+    </td>
+    <td>
+        <img  style="right:0; bottom: 0;" src="/img/mohammad_anwar.png" title="Mohammad S. Anwar" />
+    </td></tr>
+    </table>
+</td></tr>
+
+
+    <tr><td>
+        <hr style="color: red" id="sponsors" />
+        <div style="font-size: 18px; font-weight: bold;">Sponsors</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://www.stickeryou.com/products/badges/812?utm_source=xnewsletter&utm_medium=email&utm_campaign=perlweekly" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Get top quality custom name badges for your team at StickerYou.com</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=Get+top+quality+custom+name+badges+for+your+team+at+StickerYou.com+https%3A%2F%2Fwww.stickeryou.com%2Fproducts%2Fbadges%2F812%3Futm_source%3Dxnewsletter%26utm_medium%3Demail%26utm_campaign%3Dperlweekly via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.stickeryou.com/products/badges/812?utm_source=xnewsletter&utm_medium=email&utm_campaign=perlweekly"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://www.stickeryou.com/products/badges/812?utm_source=xnewsletter&utm_medium=email&utm_campaign=perlweekly"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://www.stickeryou.com/products/badges/812?utm_source=xnewsletter&utm_medium=email&utm_campaign=perlweekly" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 StickerYou doesn’t just allow you to make custom stickers for your business. You can also brand your staff with <a href="https://www.stickeryou.com/products/badges/812?utm_source=xnewsletter&utm_medium=email&utm_campaign=perlweekly">custom name badges</a>.  It’s a great way to increase employee satisfaction & loyalty, amplify your brand identity and let your customers know you’re there to help. StickerYou.com allows you to order any size, any shape and any quantity. What are you waiting for?  Get your team branded gear for the new year!  Use code <b>PERL10</b> at checkout for an exclusive Perl Weekly discount.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="announcements" />
+        <div style="font-size: 18px; font-weight: bold;">Announcements</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="http://blogs.perl.org/users/brian_d_foy/2018/12/nominate-perl-heroes-for-the-2017-white-camel-awards-1.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Nominate Perl heroes for the 2018 White Camel Awards</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=Nominate+Perl+heroes+for+the+2018+White+Camel+Awards+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fbrian_d_foy%2F2018%2F12%2Fnominate-perl-heroes-for-the-2017-white-camel-awards-1.html by @briandfoy_perl via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/brian_d_foy/2018/12/nominate-perl-heroes-for-the-2017-white-camel-awards-1.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/brian_d_foy/2018/12/nominate-perl-heroes-for-the-2017-white-camel-awards-1.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="http://blogs.perl.org/users/brian_d_foy/2018/12/nominate-perl-heroes-for-the-2017-white-camel-awards-1.html" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/brian_d_foy/">brian d foy</a>                         (<a href="https://metacpan.org/author/BDFOY">BDFOY</a>)                  </span>               <p style="font-size: 16px">
+                 It's the 20th anniversary of the White Camel Awards!, Please do share your views.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/brian_d_foy.png" title="brian d foy" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://about.gitlab.com/2018/12/11/introducing-gitlab-serverless/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Announcing GitLab Serverless</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=Announcing+GitLab+Serverless+https%3A%2F%2Fabout.gitlab.com%2F2018%2F12%2F11%2Fintroducing-gitlab-serverless%2F via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://about.gitlab.com/2018/12/11/introducing-gitlab-serverless/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://about.gitlab.com/2018/12/11/introducing-gitlab-serverless/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://about.gitlab.com/2018/12/11/introducing-gitlab-serverless/" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Priyanka Sharma                  </span>               <p style="font-size: 16px">
+                 Serverless is the latest innovation in cloud computing that promises to alter the cost-benefit equation for enterprises.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://thehackernews.com/2018/12/sqlite-vulnerability.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Critical SQLite Flaw Leaves Millions of Apps Vulnerable to Hackers</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=Critical+SQLite+Flaw+Leaves+Millions+of+Apps+Vulnerable+to+Hackers+https%3A%2F%2Fthehackernews.com%2F2018%2F12%2Fsqlite-vulnerability.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://thehackernews.com/2018/12/sqlite-vulnerability.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://thehackernews.com/2018/12/sqlite-vulnerability.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://thehackernews.com/2018/12/sqlite-vulnerability.html" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Swati Khandelwal                  </span>               <p style="font-size: 16px">
+                 Cybersecurity researchers have discovered a critical vulnerability in widely used SQLite database software that exposes billions of deployments to hackers.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="articles" />
+        <div style="font-size: 18px; font-weight: bold;">Articles</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="http://blogs.perl.org/users/jason_a_crome/2018/12/its-the-twelve-days-of-dancer.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">It's the Twelve Days of Dancer!</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=It%27s+the+Twelve+Days+of+Dancer%21+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fjason_a_crome%2F2018%2F12%2Fits-the-twelve-days-of-dancer.html by @cromedome via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/jason_a_crome/2018/12/its-the-twelve-days-of-dancer.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/jason_a_crome/2018/12/its-the-twelve-days-of-dancer.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="http://blogs.perl.org/users/jason_a_crome/2018/12/its-the-twelve-days-of-dancer.html" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/jason_a_crome/">Jason A. Crome</a>                         (<a href="https://metacpan.org/author/CROMEDOME">CROMEDOME</a>)                  </span>               <p style="font-size: 16px">
+                 Jason came up with mini-advent calendar this year. There are already fun stuff out there. Check it out yourself <a href="http://advent.perldancer.org/2018/">here</a>
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/jason_crome.jpg" title="Jason A. Crome" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dev.to/blackcat_dev/object-oriented-programming--1oie" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Object Orient Programming</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=Object+Orient+Programming+https%3A%2F%2Fdev.to%2Fblackcat_dev%2Fobject-oriented-programming--1oie via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://dev.to/blackcat_dev/object-oriented-programming--1oie"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://dev.to/blackcat_dev/object-oriented-programming--1oie"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://dev.to/blackcat_dev/object-oriented-programming--1oie" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Sasa Blagojevic                  </span>               <p style="font-size: 16px">
+                 The aim of this article is to break down the major concepts of OOP for newbie developers in a more digestible format.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="discussion" />
+        <div style="font-size: 18px; font-weight: bold;">Discussion</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dev.to/geshan/you-can-do-it-in-sql-stop-writing-extra-code-for-it-lok" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">You Can Do it in SQL, Stop Writing Extra Code for it</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=You+Can+Do+it+in+SQL%2C+Stop+Writing+Extra+Code+for+it+https%3A%2F%2Fdev.to%2Fgeshan%2Fyou-can-do-it-in-sql-stop-writing-extra-code-for-it-lok via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://dev.to/geshan/you-can-do-it-in-sql-stop-writing-extra-code-for-it-lok"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://dev.to/geshan/you-can-do-it-in-sql-stop-writing-extra-code-for-it-lok"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://dev.to/geshan/you-can-do-it-in-sql-stop-writing-extra-code-for-it-lok" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Geshan Manandhar                  </span>               <p style="font-size: 16px">
+                 We usually don’t leverage SQL’s power of data manipulation and do the needed changes in code.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="code" />
+        <div style="font-size: 18px; font-weight: bold;">Code</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dev.to/h_ajsf/build-android-app-with-rust-2k92" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Build Android App with Rust</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=Build+Android+App+with+Rust+https%3A%2F%2Fdev.to%2Fh_ajsf%2Fbuild-android-app-with-rust-2k92 via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://dev.to/h_ajsf/build-android-app-with-rust-2k92"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://dev.to/h_ajsf/build-android-app-with-rust-2k92"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://dev.to/h_ajsf/build-android-app-with-rust-2k92" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Hasan Yousef                  </span>               <p style="font-size: 16px">
+                 Step by step instruction to build an Android App with Rust.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="web" />
+        <div style="font-size: 18px; font-weight: bold;">Web</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://blog.github.com/2018-12-13-new-open-source-projects/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">The State of the Octoverse: new open source projects in 2018</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=The+State+of+the+Octoverse%3A+new+open+source+projects+in+2018+https%3A%2F%2Fblog.github.com%2F2018-12-13-new-open-source-projects%2F via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://blog.github.com/2018-12-13-new-open-source-projects/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://blog.github.com/2018-12-13-new-open-source-projects/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://blog.github.com/2018-12-13-new-open-source-projects/" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Thomas Elliot                  </span>               <p style="font-size: 16px">
+                 This article is part of a series based on 2018 State of the Octoverse report—trends and insights into GitHub activity, the open source community, and more from the GitHub Data Science Team.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dev.to/simov/oauth-simplified-2pbd" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">OAuth Simplified</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=OAuth+Simplified+https%3A%2F%2Fdev.to%2Fsimov%2Foauth-simplified-2pbd via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://dev.to/simov/oauth-simplified-2pbd"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://dev.to/simov/oauth-simplified-2pbd"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://dev.to/simov/oauth-simplified-2pbd" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Simeon Velichkov                  </span>               <p style="font-size: 16px">
+                 Introduction to OAuth by Simeon Velickov.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dev.to/snowleo208/three-things-i-learn-after-fighting-with-google-pagespeed-3jk9" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Three things I learn after fighting with Google PageSpeed</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=Three+things+I+learn+after+fighting+with+Google+PageSpeed+https%3A%2F%2Fdev.to%2Fsnowleo208%2Fthree-things-i-learn-after-fighting-with-google-pagespeed-3jk9 via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://dev.to/snowleo208/three-things-i-learn-after-fighting-with-google-pagespeed-3jk9"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://dev.to/snowleo208/three-things-i-learn-after-fighting-with-google-pagespeed-3jk9"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://dev.to/snowleo208/three-things-i-learn-after-fighting-with-google-pagespeed-3jk9" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Yuki Cheung                  </span>               <p style="font-size: 16px">
+                 Yuki takes us through the maintaining landing page new design having loading issue.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="perl_6" />
+        <div style="font-size: 18px; font-weight: bold;">Perl 6</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://p6weekly.wordpress.com/2018/12/10/2018-49-50-diwali-landed/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">2018.49/50 Diwali Landed</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=2018.49%2F50+Diwali+Landed+https%3A%2F%2Fp6weekly.wordpress.com%2F2018%2F12%2F10%2F2018-49-50-diwali-landed%2F via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://p6weekly.wordpress.com/2018/12/10/2018-49-50-diwali-landed/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://p6weekly.wordpress.com/2018/12/10/2018-49-50-diwali-landed/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://p6weekly.wordpress.com/2018/12/10/2018-49-50-diwali-landed/" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by Elizabeth Mattijsen                         (<a href="https://metacpan.org/author/ELIZABETH">ELIZABETH</a>)                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/elizabeth_mattijsen.png" title="Elizabeth Mattijsen" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="weekly_collections" />
+        <div style="font-size: 18px; font-weight: bold;">Weekly collections</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="http://niceperl.blogspot.com/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">NICEPERL's lists</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=NICEPERL%27s+lists+http%3A%2F%2Fniceperl.blogspot.com%2F by @niceperl via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=http://niceperl.blogspot.com/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=http://niceperl.blogspot.com/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="http://niceperl.blogspot.com/" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://niceperl.blogspot.com/">Miguel Prz</a>                         (<a href="https://metacpan.org/author/NICEPERL">NICEPERL</a>)                  </span>               <p style="font-size: 16px">
+                 <a href="http://niceperl.blogspot.com/2018/12/ccxv-cpan-great-modules-released-last.html">Great modules released last week</a>;<br><a href="http://niceperl.blogspot.com/2018/12/cccxlvii-metacpan-weekly-report-htmltree.html">MetaCPAN weekly report</a>;<br><a href="http://niceperl.blogspot.com/2018/12/ccclxxi-stackoverflow-perl-report.html">StackOverflow Perl report</a>.
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="event_reports" />
+        <div style="font-size: 18px; font-weight: bold;">Event reports</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="http://blogs.perl.org/users/bennie/2018/12/rperl-in-paris---part-i.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">RPerl in Paris - Part I</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=RPerl+in+Paris+-+Part+I+http%3A%2F%2Fblogs.perl.org%2Fusers%2Fbennie%2F2018%2F12%2Frperl-in-paris---part-i.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=http://blogs.perl.org/users/bennie/2018/12/rperl-in-paris---part-i.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=http://blogs.perl.org/users/bennie/2018/12/rperl-in-paris---part-i.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="http://blogs.perl.org/users/bennie/2018/12/rperl-in-paris---part-i.html" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />                 <span style="font-size: 14px"> 
+                   by                           <a href="http://blogs.perl.org/users/bennie/">Bennie</a>                  </span>               <p style="font-size: 16px">
+                 Bennie shares the experience of presenting RPerl to Paris Perl Mongers.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/bennie.png" title="Bennie" width="80" />
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="events" />
+        <div style="font-size: 18px; font-weight: bold;">Events</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="http://act.yapc.eu/gpw2019/index.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">21st German Perl Workshop 2019</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=21st+German+Perl+Workshop+2019+http%3A%2F%2Fact.yapc.eu%2Fgpw2019%2Findex.html via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=http://act.yapc.eu/gpw2019/index.html"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=http://act.yapc.eu/gpw2019/index.html"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="http://act.yapc.eu/gpw2019/index.html" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 6th-8th March, 2019, in Munich
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dcbpw.org/dcbpw2019/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">DC Baltimore Perl Workshop 2019</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=DC+Baltimore+Perl+Workshop+2019+https%3A%2F%2Fdcbpw.org%2Fdcbpw2019%2F via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://dcbpw.org/dcbpw2019/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://dcbpw.org/dcbpw2019/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://dcbpw.org/dcbpw2019/" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 April 6th, 2019, Silver Spring, Maryland
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://perlconference.us/tpc-2019-pit/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">North American Perl Conference 2019</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=North+American+Perl+Conference+2019+https%3A%2F%2Fperlconference.us%2Ftpc-2019-pit%2F via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://perlconference.us/tpc-2019-pit/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://perlconference.us/tpc-2019-pit/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://perlconference.us/tpc-2019-pit/" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 June 2019 Pittsburgh
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://www.facebook.com/perlcon.eu/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">European PerlCon 2019</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=European+PerlCon+2019+https%3A%2F%2Fwww.facebook.com%2Fperlcon.eu%2F via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/perlcon.eu/"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://www.facebook.com/perlcon.eu/"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://www.facebook.com/perlcon.eu/" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 August 7-9, 2019 Riga, Latvia
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_" />
+        <div style="font-size: 18px; font-weight: bold;"><a href="https://perl.careers/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly">Perl Jobs by Perl Careers</a></div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://perl.careers/jobs/sometimes-its-about-the-people---perl-developer-in-west-london/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC303" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Sometimes, it's about the people - Perl developer in West London</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=Sometimes%2C+it%27s+about+the+people+-+Perl+developer+in+West+London+https%3A%2F%2Fperl.careers%2Fjobs%2Fsometimes-its-about-the-people---perl-developer-in-west-london%2F%3Futm_source%3Dperlweekly%26utm_medium%3Dperlweekly%26utm_campaign%3Dperlweekly%26utm_content%3DOSC303 via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://perl.careers/jobs/sometimes-its-about-the-people---perl-developer-in-west-london/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC303"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://perl.careers/jobs/sometimes-its-about-the-people---perl-developer-in-west-london/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC303"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://perl.careers/jobs/sometimes-its-about-the-people---perl-developer-in-west-london/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC303" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 Sometimes the team you get to work with makes all the difference, and this particular company has one of the best ones yet
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://perl.careers/jobs/londons-trendiest-office-space---lead-perl-developer/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC193" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">London's Trendiest Office Space - Lead and Mid-Level Perl Developer roles</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=London%27s+Trendiest+Office+Space+-+Lead+and+Mid-Level+Perl+Developer+roles+https%3A%2F%2Fperl.careers%2Fjobs%2Flondons-trendiest-office-space---lead-perl-developer%2F%3Futm_source%3Dperlweekly%26utm_medium%3Dperlweekly%26utm_campaign%3Dperlweekly%26utm_content%3DOSC193 via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://perl.careers/jobs/londons-trendiest-office-space---lead-perl-developer/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC193"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://perl.careers/jobs/londons-trendiest-office-space---lead-perl-developer/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC193"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://perl.careers/jobs/londons-trendiest-office-space---lead-perl-developer/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC193" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 Start your year with a change of scenery, join one of the strongest teams and work in one of the nicest offices available
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://perl.careers/jobs/fulltime-remote-perl-developer-with-experience-writing-apps-for-android/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC321" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Fulltime remote Perl Developer with experience writing apps for Android</a>
+               </div>
+               <div class="share-links">
+                 <a href="http://twitter.com/home?status=Fulltime+remote+Perl+Developer+with+experience+writing+apps+for+Android+https%3A%2F%2Fperl.careers%2Fjobs%2Ffulltime-remote-perl-developer-with-experience-writing-apps-for-android%2F%3Futm_source%3Dperlweekly%26utm_medium%3Dperlweekly%26utm_campaign%3Dperlweekly%26utm_content%3DOSC321 via @perlweekly"><img src="http://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://perl.careers/jobs/fulltime-remote-perl-developer-with-experience-writing-apps-for-android/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC321"><img src="http://perlweekly.com/img/facebook16.png" alt="Facebook"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://plus.google.com/share?url=https://perl.careers/jobs/fulltime-remote-perl-developer-with-experience-writing-apps-for-android/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC321"><img src="http://perlweekly.com/img/gplus-16.png" alt="Google+"></a>
+               </div>
+               <div class="share-links">
+                 <a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="https://perl.careers/jobs/fulltime-remote-perl-developer-with-experience-writing-apps-for-android/?utm_source=perlweekly&utm_medium=perlweekly&utm_campaign=perlweekly&utm_content=OSC321" data-pocket-count="none" >Pocket</a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 Looking for a chance to work from home?
+               </p>
+               
+               </div>
+           
+           </td></tr></table> 
+        </td></tr>
+    
+    
+
+
+<tr><td>
+   <hr style="color: red" id="_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_" />
+
+  
+   <hr style="color: red" id="_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_" />
+  
+<div id="main">
+<p>
+You know, you could get the Perl Weekly right in your mailbox. Every Week.<br>Free of charge!
+</p>
+   <div class="subform">
+   <form class="subscribe" action="https://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+<span class="formlabel">Enter your e-mail:</span>
+<input class="emailinput" name="email" size="20" />
+<input class="awesome_button" type="submit" value="and click to sign up!" />
+</form>
+
+
+   <div class="onemail">
+      Just ONE e-mail each Monday. Easy to unsubscribe. No spam. Your e-mail address is safe.
+    </div>
+</div>
+
+</div>
+
+<div id="footer" style="
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+">
+(C) Copyright <a href="http://szabgab.com/">Gabor Szabo</a>. The articles are copyright the respective authors.</p>
+<p>This newsletter is about the Perl programming language.</p>
+</div>
+<div id="menu">
+  <ul>
+    <li>Sections:</li>
+  
+    <li><a href="#sponsors">Sponsors</a></li>
+  
+    <li><a href="#announcements">Announcements</a></li>
+  
+    <li><a href="#articles">Articles</a></li>
+  
+    <li><a href="#discussion">Discussion</a></li>
+  
+    <li><a href="#code">Code</a></li>
+  
+    <li><a href="#web">Web</a></li>
+  
+    <li><a href="#perl_6">Perl 6</a></li>
+  
+    <li><a href="#weekly_collections">Weekly collections</a></li>
+  
+    <li><a href="#event_reports">Event reports</a></li>
+  
+    <li><a href="#events">Events</a></li>
+  
+    <li><a href="#_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_"><a href="https://perl.careers/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly">Perl Jobs by Perl Careers</a></a></li>
+  
+  </ul>
+</div>
+
+
+<div id="social_icons">
+<a href="http://twitter.com/#!/perlweekly"><img src="/img/twitter32.png" alt="Perl Weekly on Twitter" /></a>
+<a href="https://plus.google.com/102874059713383300948"><img src="/img/gplus-32.png" alt="Perl Weekly page on Google+" /></a>
+<a href="http://www.facebook.com/PerlWeekly"><img src="/img/facebook32.png" alt="Like the Perl Weekly on FaceBook" /></a>
+<a href="http://feeds.feedburner.com/PerlWeekly" rel="alternate" type="application/rss+xml"><img src="/img/feed-icon32x32.png" alt="RSS Feed of the Perl Weekly. Updated once a week" /></a>
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12199211-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+</td></tr>
+</table>
+
+
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+</body>
+</html>
