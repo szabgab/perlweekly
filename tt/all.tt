@@ -13,7 +13,6 @@
 [% FOR i IN issues %]
     <li>#[% i.number %] - [% i.date %] - <a href="/archive/[% i.number %].html">[% i.subject %]</a> ([% i.editor.name %])<br />
     <ul>
-    [% FILTER collapse %]
     [% FOR ch IN i.chapters %]
        [% IF ch.sponsor  AND ch.sponsor == 2 %]
        [% ELSE %]
@@ -23,7 +22,6 @@
              </li>
            [% END %]
        [% END %]
-    [% END %]
     [% END %]
     </ul>
     </li>
