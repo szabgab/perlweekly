@@ -5,7 +5,9 @@
    "header" : [
      "Hi there!",
      "I am surprised that after half a year of the redirecting of search.cpan.org, cpan.org still has a <a href=\"https://szabgab.com/ranking-of-perl-sites.html\">high Alexa rankings</a>. Any idea, why?",
-     "On another note,a few week ago I mentioned I am taking Spanish lessons via <a href=\"https://www.italki.com/i/EFbbfc?hl=en_us\">Italki</a>. Several people already used the affiliate link to sign up, and I've even received my first credit for the referral. If you'd like to practice <b>speaking</b> a foreign language, this is a great way to do it!",
+     "On another note, a few week ago I mentioned I am taking Spanish lessons via <a href=\"https://www.italki.com/i/EFbbfc?hl=en_us\">Italki</a>. Several people already used the affiliate link to sign up, and I've even received my first credit for the referral. If you'd like to practice <b>speaking</b> a foreign language, this is a great way to do it!",
+     "Oh, and have I already mentioned I am available to help your organization introduce test automation, refactor old code, set up a CI system and do all kinds of virtualizations.",
+     "Enjoy your week!"
    ],
    "footer" : [
    ],
@@ -26,46 +28,38 @@
          ]
       },
       {
-         "title" : "Sponsors",
-         "sponsor" : 1,
-         "entries" : [
-         ]
-      },
-      {
          "title" : "Announcements",
          "entries" : [
+            {
+               "title" : "Sparrow moves to Perl6",
+               "author" : "alexey_melezhik",
+               "text" : "I admit I don't understand this. I thought Sparrow is in Perl 6. <a href=\"https://github.com/melezhik/sparrowdo\">Sparrowdo</a> is in Perl 6. <a href=\"https://github.com/melezhik/sparrowform\">Sparroform</a> is in Perl 6. <a href=\"https://github.com/melezhik/sparky\">Sparky</a> is in Perl 6. <a href=\"https://github.com/melezhik/tomtit\">Tomtit</a> is in Perl 6. So what is moving now? Discuss it <a href=\"https://www.reddit.com/r/perl6/comments/ahbu54/sparrow_moves_to_perl6/\">here</a>.",
+               "url" : "http://blogs.perl.org/users/melezhik/2019/01/sparrow-moves-to-perl6.html",
+               "ts" : "2019.01",
+               "tags" : []
+            }
          ]
       },
       {
          "title" : "Articles",
          "entries" : [
             {
-               "title" : "",
-               "author" : "",
-               "text" : "",
-               "url" : "",
-               "ts" : "2019.01",
+               "title" : "Perl Blogs",
+               "author" : "rob_lauer",
+               "text" : "Rob is wondering what is the status of the new central blogging platform for Perl. There was no response (maybe because it is so hard to comment in the current bpo), but I don't think that should stop anyone from starting their own blog somewhere else. GitHub pages is a great and free way to write blog posts and Disqus can be used as a commenting engine or one could just link to a Reddit post where others could comment. Heck, one could even write a simple blogging engine in Perl 5 using AWS Lambda functions.",
+               "url" : "http://blogs.perl.org/users/rlauer/2019/01/perl-blogs.html",
+               "ts" : "2019.01.18",
                "tags" : []
-            }
+            },
             {
-               "title" : "",
-               "author" : "",
-               "text" : "",
-               "url" : "",
-               "ts" : "2019.01",
+               "title" : "Untrusted Numeric Input",
+               "author" : "tom_wyant",
+               "text" : "If you thought \d is good for making sure your input is made out of numbers, it seem you were wrong. Tom explains that \d matches <b>digits</b> even if they are not ASCII digits, somthing that could trip your math functions. He shows a number of ways to overcome the problem. I found this an excellent post, both because of the content and because of the healthy number of links. Something many bloggers seem to forget.",
+               "url" : "http://blogs.perl.org/users/tom_wyant/2019/01/untrusted-numeric-input.html",
+               "ts" : "2019.01.15",
                "tags" : []
             }
 
-         ]
-      },
-      {
-         "title" : "Discussion",
-         "entries" : [
-         ]
-      },
-      {
-         "title" : "Testing",
-         "entries" : [
          ]
       },
       {
@@ -84,23 +78,28 @@
       {
          "title" : "Web",
          "entries" : [
-          ]
-      },
-      {
-         "title" : "Perl and Hardware",
-         "entries" : [
-          ]
-      },
+            {
+               "title" : "AWS Lambdas, Furl &amp; LWP",
+               "author" : "rob_lauer",
+               "text" : "Amazon Lambda, aka. Serverless computing, allows you to create simple functions or complex applications, hand them over to Amazon and sop worrying about the number of servers you need to run. (Instead of that there are a lot of other fun things to worry about.) Anyway, up till now only a limited number of programming languages were supported and Perl was not one of them. Now thanks to Rob you can start to experiment with AWS Lambda using Perl 5 as well.",
+               "url" : "http://blogs.perl.org/users/rlauer/2019/01/aws-lambdas-furl-lwp.html",
+               "ts" : "2019.01.19",
+               "tags" : []
+            }
 
+          ]
+      },
       {
          "title" : "CPAN",
          "entries" : [
-          ]
-      },
-
-      {
-         "title" : "Fun",
-         "entries" : [
+            {
+               "title" : "Ranking of Perl sites",
+               "author" : "gabor_szabo",
+               "text" : "",
+               "url" : "https://szabgab.com/ranking-of-perl-sites.html",
+               "ts" : "2019.01.18",
+               "tags" : []
+            }
           ]
       },
       {
@@ -109,23 +108,34 @@
           ]
       },
       {
-         "title" : "Slides",
+         "title" : "Discussion",
          "entries" : [
+            {
+               "title" : "Simple way to run Perltidy and Perl::Critic on code before pushing to Github?",
+               "author" : "",
+               "text" : "I understand the motivation, but I don't think enforcing any tests before commit or before pushing to a remote repository is a good idea. These 'gateway tests' are supposed to protect the codebase, but I think they only cause harm. They make committing code take longer time. Even if thet only use Perltidy and Perl::Critic. But actually why use those? Isn't the correctness of the code more important? I think if someone starts with those two, they will soon enforce running the whole test suite before every commit or before every push. This will make people hate committing and they will do it much less frequently. Which contradicts the whole idea of Continuous Integration and reduces cooperation.",
+               "url" : "https://www.reddit.com/r/perl/comments/aghv6t/simple_way_to_run_perltidy_and_perlcritic_on_code/",
+               "ts" : "2019.01.16",
+               "tags" : []
+            }
           ]
       },
       {
-         "title" : "Perl 5",
+         "title" : "Perl 11",
          "entries" : [
+            {
+               "title" : "RPerl at FOSDEM",
+               "author" : "bennie",
+               "text" : "<a href=\"https://fosdem.org/\">FOSDEM</a> is a great conference for Free and Open Source Software where there has been a strong Perl presence for quite a few years thanks to Liz-and-Wendy. This year the team of the RPerl project will be also around the booth. If you have the time it is worth visiting this event and if you do so make sure you drop by the Perl booth!",
+               "url" : "http://blogs.perl.org/users/bennie/2019/01/rperl-at-fosdem.html",
+               "ts" : "2019.01.18",
+               "tags" : []
+            }
          ]
       },
       {
          "title" : "Perl Tutorial",
          "header" : "A section for newbies and for people who need some refreshing of their Perl knowledge. If you have questions or suggestions about the articles, let me know and I'll try to make the necessary changes. The included articles are from the <a href=\"https://perlmaven.com/perl-tutorial\">Perl Maven Tutorial</a> and are part of the <a href=\"https://leanpub.com/perl-maven\">Perl Maven eBook</a>.",
-         "entries" : [
-         ]
-      },
-      {
-         "title" : "Videos",
          "entries" : [
          ]
       },
@@ -139,14 +149,25 @@
                "url" : "http://blogs.perl.org/users/sylvain_colinet/2019/01/mis-using-perl-6-grammars-decompressing-zelda-3-gfx.html",
                "ts" : "2019.01.13",
                "tags" : []
+            },
+            {
+               "title" : "Exploring Type::Tiny Part 6: Some Interesting Type Libraries",
+               "author" : "toby_inkster",
+               "text" : "It is interesting to see how Perl, a language that lets you throw any kind of value at it and it does something with it, usually what you meant, got so many 3rd party libraries that help you restrict the type of values you accept. It shows that we like flexibility and strictness at the same time.",
+               "url" : "http://blogs.perl.org/users/toby_inkster/2019/01/exploring-typetiny-part-6-some-interesting-type-libraries.html",
+               "ts" : "2019.01.20",
+               "tags" : []
+            },
+            {
+               "title" : "2019.02 Is it Spring?",
+               "author" : "liztormato",
+               "text" : "Remember to read the weekly news about Perl 6!",
+               "url" : "https://p6weekly.wordpress.com/2019/01/14/2019-02-is-it-spring/",
+               "ts" : "2019.01.14",
+               "tags" : []
             }
 
          ]
-      },
-      {
-         "title" : "DevOps",
-         "entries" : [
-          ]
       },
       {
          "title" : "Other",
@@ -159,13 +180,7 @@
                "ts" : "2019.01",
                "tags" : []
             }
-
           ]
-      },
-      {
-         "title" : "Training",
-         "entries" : [
-         ]
       },
       {
          "title" : "Weekly collections",
@@ -174,21 +189,10 @@
                   "title" : "NICEPERL's lists",
                   "author" : "miguel_prz",
                   "url" : "http://niceperl.blogspot.com/",
-                  "text" : "<a href=\"\">Great modules released last week</a>;<br><a href=\"\">MetaCPAN weekly report</a>;<br><a href=\"\">StackOverflow Perl report</a>.",
+                  "text" : "<a href=\"http://blogs.perl.org/users/rlauer/2019/01/aws-lambdas-furl-lwp.html\">Great modules released last week</a>;<br><a href=\"http://niceperl.blogspot.com/2019/01/ccclii-metacpan-weekly-report-html5dom.html\">MetaCPAN weekly report</a>;<br><a href=\"http://niceperl.blogspot.com/2019/01/ccclxxvi-stackoverflow-perl-report.html\">StackOverflow Perl report</a>.",
                   "tags" : [],
-                  "ts" : "2019.12"
+                  "ts" : "2019.01.19"
               }
-         ]
-      },
-      {
-         "title" : "The corner of Gabor",
-         "header" : "A couple of entries sneaked in by Gabor.",
-         "entries" : [
-         ]
-      },
-      {
-         "title" : "Event reports",
-         "entries" : [
          ]
       },
       {
