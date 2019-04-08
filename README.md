@@ -91,7 +91,7 @@ I first create a 'week-123' branch (where "123" is the current week number,
 natch). Then I copy my Markdown template in the src/ directory
 
     cp template.mkd src/123.mkd
- 
+
 I keep all the feeds that I usually peruse in data/feeds.url, and I have a
 script that visit them all and auto-generate entries for anything that
 appeared in the last week
