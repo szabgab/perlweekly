@@ -153,4 +153,5 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 * [Reddit Perl](https://www.reddit.com/r/perl/)
 * [Reddit Perl 6](https://www.reddit.com/r/perl6/)
 * [Perl Monks](http://www.perlmonks.org/)
+* [Stack Overflow](https://stackoverflow.com/questions/tagged/perl)
 
