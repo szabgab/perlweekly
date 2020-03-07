@@ -142,7 +142,12 @@ END_LATEST
 	$t->process(
 		'tt/authors.tt',
 		{
-			authors => [ sort { $a->{name} cmp $b->{name} } values %$authors ]
+			authors => [
+				sort {
+					$a->{name} cmp $b->{name}
+						or $a->{handler} cmp $b->{handler}
+				} values %$authors
+			]
 		},
 		"$dir/authors.html"
 	) or die $t->error;
