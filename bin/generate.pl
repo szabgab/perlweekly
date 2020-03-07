@@ -144,7 +144,7 @@ END_LATEST
 		{
 			authors => [
 				sort {
-					$a->{name} cmp $b->{name}
+						   $a->{name} cmp $b->{name}
 						or $a->{handler} cmp $b->{handler}
 				} values %$authors
 			]
