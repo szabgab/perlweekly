@@ -21,6 +21,9 @@ use PerlWeekly::Template qw();
 use PerlWeekly::Issue;
 
 my $dir = 'html';
+for my $name ('archive', 'a', 'tags') {
+	mkdir "$dir/$name" if not -e "$dir/$name";
+}
 
 my ( $target, $issue ) = @ARGV;
 if (   not $target
@@ -116,7 +119,6 @@ END_LATEST
 	}
 
 	#die Dumper \%articles_by;
-	mkdir "$dir/a" if not -e "$dir/a";
 
 	my $next = PerlWeekly::Issue->new( 'next', $target );
 	my $t    = PerlWeekly::Template->new();
@@ -235,7 +237,6 @@ sub collect_tags {
 	$t->process( 'tt/tags.tt', { tags => \%tags }, "$dir/tags.html" )
 		or die $t->error;
 
-	mkdir "$dir/tags" if not -e "$dir/tags";
 	foreach my $url ( keys %tags ) {
 		$t->process(
 			'tt/tag.tt',
