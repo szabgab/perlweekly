@@ -20,6 +20,8 @@ use PerlWeekly qw(get_authors);
 use PerlWeekly::Template qw();
 use PerlWeekly::Issue;
 
+my $dir = 'html';
+
 my ( $target, $issue ) = @ARGV;
 if (   not $target
 	or not $issue
@@ -72,7 +74,7 @@ if ( $issue eq 'all' or $issue eq 'latest' ) {
 		push @{ $editors{ $pwissue->{editor} } }, $i;
 		$pwissue->{latest} = $max;
 		if ( $issue eq 'all' or $i == $max ) {
-			$pwissue->generate( $target, "html/archive/$i.html" );
+			$pwissue->generate( $target, "$dir/archive/$i.html" );
 		}
 		push @issues, $pwissue;
 		$last = $pwissue;
@@ -82,8 +84,8 @@ if ( $issue eq 'all' or $issue eq 'latest' ) {
 
 	$last->{latest_page} = $max;
 
-	#$last->generate( $target, "html/latest.html" );
-	open my $out, '>', 'html/latest.html' or die;
+	#$last->generate( $target, "$dir/latest.html" );
+	open my $out, '>', "$dir/latest.html" or die;
 	print $out <<"END_LATEST";
 <script>
 window.location = location.origin + "/archive/$max.html";
@@ -114,7 +116,7 @@ END_LATEST
 	}
 
 	#die Dumper \%articles_by;
-	mkdir 'html/a' if not -e 'html/a';
+	mkdir "$dir/a" if not -e "$dir/a";
 
 	my $next = PerlWeekly::Issue->new( 'next', $target );
 	my $t    = PerlWeekly::Template->new();
@@ -131,7 +133,7 @@ END_LATEST
 					sort { $a->{ts} cmp $b->{ts} } @{ $articles_by{$author} }
 				]
 			},
-			"html/a/$authors->{$author}{handler}.html"
+			"$dir/a/$authors->{$author}{handler}.html"
 		) or die $t->error;
 	}
 
@@ -140,14 +142,14 @@ END_LATEST
 		{
 			authors => [ sort { $a->{name} cmp $b->{name} } values %$authors ]
 		},
-		'html/authors.html'
+		"$dir/authors.html"
 	) or die $t->error;
 
 	$t->process( 'tt/archive.tt', { issues => \@issues, reverse => 0 },
-		'html/archive/reverse.html' )
+		"$dir/archive/reverse.html" )
 		or die $t->error;
 
-	$t->process( 'tt/all.tt', { issues => \@issues }, 'html/all.html' )
+	$t->process( 'tt/all.tt', { issues => \@issues }, "$dir/all.html" )
 		or die $t->error;
 
 	collect_tags(@issues);
@@ -155,7 +157,7 @@ END_LATEST
 
 	@issues = reverse @issues;
 	$t->process( 'tt/archive.tt', { issues => \@issues, reverse => 1 },
-		'html/archive/index.html' )
+		"$dir/archive/index.html" )
 		or die $t->error;
 
 	my %editors_count = map { $_ => scalar @{ $editors{$_} } } keys %editors;
@@ -171,14 +173,14 @@ END_LATEST
 			count               => $count,
 			editors             => \%editors_count,
 		},
-		'html/index.html'
+		"$dir/index.html"
 	) or die $t->error;
 	events_page();
 
 	foreach my $f (
 		qw(thankyou unsubscribe promotion sponsors promoting-perl-events))
 	{
-		$t->process( "tt/$f.tt", {}, "html/$f.html" ) or die $t->error;
+		$t->process( "tt/$f.tt", {}, "$dir/$f.html" ) or die $t->error;
 	}
 
 	# Create sitemap.xml
@@ -195,13 +197,13 @@ END_LATEST
 		promoting-perl-events.html
 	);
 	push @pages, map { { filename => "$URL/archive/$_.html" } } 1 .. $max;
-	$t->process( 'tt/sitemap.tt', { pages => \@pages }, 'html/sitemap.xml' )
+	$t->process( 'tt/sitemap.tt', { pages => \@pages }, "$dir/sitemap.xml" )
 		or die $t->error;
 
 }
 else {
 	PerlWeekly::Issue->new( $issue, $target )
-		->generate( $target, "html/archive/$issue.html" );
+		->generate( $target, "$dir/archive/$issue.html" );
 	print "done\n";
 }
 
@@ -230,10 +232,10 @@ sub collect_tags {
 	}
 
 	my $t = PerlWeekly::Template->new();
-	$t->process( 'tt/tags.tt', { tags => \%tags }, 'html/tags.html' )
+	$t->process( 'tt/tags.tt', { tags => \%tags }, "$dir/tags.html" )
 		or die $t->error;
 
-	mkdir 'html/tags' if not -e 'html/tags';
+	mkdir "$dir/tags" if not -e "$dir/tags";
 	foreach my $url ( keys %tags ) {
 		$t->process(
 			'tt/tag.tt',
@@ -242,7 +244,7 @@ sub collect_tags {
 				cnt     => $tags{$url}{cnt},
 				entries => $tags{$url}{entries}
 			},
-			"html/tags/$url.html"
+			"$dir/tags/$url.html"
 		) or die $t->error;
 	}
 
@@ -275,7 +277,7 @@ sub collect_links {
 		reverse sort { $count{$a} <=> $count{$b} or $a cmp $b } keys %count;
 	my $t = PerlWeekly::Template->new();
 	$t->process( 'tt/sources.tt', { sources => \@sources },
-		'html/sources.html' )
+		"$dir/sources.html" )
 		or die $t->error;
 
 	#print Dumper \%links;
@@ -290,7 +292,7 @@ sub events_page {
 	}
 	my $t = PerlWeekly::Template->new();
 	$t->process( 'tt/events.tt', { events => $events->{entries} },
-		'html/events.html' )
+		"$dir/events.html" )
 		or die $t->error;
 }
 
