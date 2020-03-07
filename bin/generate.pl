@@ -20,8 +20,8 @@ use PerlWeekly qw(get_authors);
 use PerlWeekly::Template qw();
 use PerlWeekly::Issue;
 
-my $dir = 'html';
-for my $name ('archive', 'a', 'tags') {
+my $dir = 'docs';
+for my $name ( 'archive', 'a', 'tags' ) {
 	mkdir "$dir/$name" if not -e "$dir/$name";
 }
 
@@ -59,7 +59,7 @@ if ( open my $fh, '<', 'src/count.txt' ) {
 }
 
 if ( $target ne 'web' ) {
-	PerlWeekly::Issue->new( $issue, $target )->generate($target);
+	PerlWeekly::Issue->new( $issue, $target, $dir )->generate($target);
 	exit;
 }
 
@@ -73,7 +73,7 @@ if ( $issue eq 'all' or $issue eq 'latest' ) {
 	my ($max) = max grep {/^\d+$/}
 		map { substr( basename($_), 0, -5 ) } glob 'src/*.json';
 	foreach my $i ( 1 .. $max ) {
-		my $pwissue = PerlWeekly::Issue->new( $i, $target );
+		my $pwissue = PerlWeekly::Issue->new( $i, $target, $dir );
 		push @{ $editors{ $pwissue->{editor} } }, $i;
 		$pwissue->{latest} = $max;
 		if ( $issue eq 'all' or $i == $max ) {
@@ -120,7 +120,7 @@ END_LATEST
 
 	#die Dumper \%articles_by;
 
-	my $next = PerlWeekly::Issue->new( 'next', $target );
+	my $next = PerlWeekly::Issue->new( 'next', $target, $dir );
 	my $t    = PerlWeekly::Template->new();
 
 	foreach my $author ( keys %$authors ) {
@@ -204,7 +204,7 @@ END_LATEST
 
 }
 else {
-	PerlWeekly::Issue->new( $issue, $target )
+	PerlWeekly::Issue->new( $issue, $target, $dir )
 		->generate( $target, "$dir/archive/$issue.html" );
 	print "done\n";
 }

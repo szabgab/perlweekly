@@ -23,7 +23,7 @@ use PerlWeekly qw(get_authors);
 
 sub new {
 	my $class = shift;
-	my ( $issue, $target ) = @_;
+	my ( $issue, $target, $dir ) = @_;
 
 	my $self;
 	my $filename = "src/$issue.json";
@@ -40,6 +40,7 @@ sub new {
 		die "JSON exception in '$filename' $@";
 	}
 	bless $self, $class;
+	$self->{dir} = $dir;
 
 	die "No date in $issue" if not $self->{date};
 	die
@@ -216,7 +217,8 @@ sub process_rss {
 	my $rss        = XML::RSS->new( version => '1.0' );
 	my $year       = 1900 + (localtime)[5];
 	my $dateparser = DateTime::Format::W3CDTF->new;
-	my $dt = $dateparser->parse_datetime("$self->{date}T10:00:00+00:00");
+	my $dt  = $dateparser->parse_datetime("$self->{date}T10:00:00+00:00");
+	my $dir = $self->{dir};
 
 	#die $dt;
 	$rss->channel(
@@ -283,7 +285,7 @@ sub process_rss {
 	}
 
 	#rss_item_count();
-	$rss->save('html/perlweekly.rss');
+	$rss->save("$dir/perlweekly.rss");
 	return;
 
 	#return $rss->as_string;
