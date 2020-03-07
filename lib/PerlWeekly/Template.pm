@@ -14,7 +14,7 @@ sub process {
 	$self->SUPER::process( $template, $params, \$result ) or return;
 	$result =~ s/\x{D}\x{A}/\x{A}/g;
 	if ($outfile) {
-		open my $fh, '>:encoding(UTF-8)', $outfile or die $!;
+		open my $fh, '>:encoding(UTF-8)', $outfile or die "Could not create file '$outfile': $!";
 		print $fh $result;
 		close $fh;
 	}
