@@ -24,7 +24,7 @@ sub tidy {
 	say $file;
 
 	my $src_json = encode( 'utf-8', scalar path($file)->slurp_utf8 );
-	my $data = from_json( $src_json, { utf8 => 1 } );
+	my $data     = from_json( $src_json, { utf8 => 1 } );
 	path($file)->spew_utf8(
 		decode(
 			'utf-8',

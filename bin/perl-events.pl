@@ -47,7 +47,7 @@ foreach my $e (@$yef) {
 	$e->{url} //= '';
 
 	#say $_->{url} for @{ $pw_events->{entries} };
-	my $found = any { $e->{url} eq $_->{url} } @{ $pw_events->{entries} };
+	my $found  = any { $e->{url} eq $_->{url} } @{ $pw_events->{entries} };
 	my $prefix = $found ? 'OK        ' : 'Missing:  ';
 	if ( not $e->{url} ) {
 		$prefix = 'NO URL:   ';

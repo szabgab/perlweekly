@@ -83,7 +83,7 @@ sub find_candidates {
 	my @candidates = grep { $text =~ /$_/ } @authors;
 
 	return @candidates if @candidates;
-	return () if !$try_harder;
+	return ()          if !$try_harder;
 
 	# try harder - try to find author bassed on real (?) name and blog url
 	foreach my $author ( sort keys( %{$authors} ) ) {
