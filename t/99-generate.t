@@ -22,4 +22,4 @@ my $status_after = `git status`;
 diag $status_after;
 
 is $status_after, $status_before, 'status remained the same';
-
+diag `git diff`;
