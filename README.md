@@ -129,6 +129,11 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 * Update Perl Tidy: `cpanm Code::TidyAll  Perl::Tidy`
 * Run `tidyall -a --refresh-cache` to make the Perl source code tidy.
 
+* Post on Reddit: https://www.reddit.com/r/perl/
+* Post on Twitter: https://twitter.com/perlweekly
+* LinkedIn: https://www.linkedin.com/groups/40830/
+
+
 * Update the ```src/events.json``` by running ```bin/perl-events.pl``` and maybe by moving some old items to ```src/old_events.json```
 * Add authors where they are missing.
 * Run ispell on the source file and try not to "fix" British English with American English
