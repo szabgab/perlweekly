@@ -131,7 +131,8 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 
 * Post on [Reddit](https://www.reddit.com/r/perl/)
 * Post on [Twitter](https://twitter.com/perlweekly)
-* Post in [LinkedIn](https://www.linkedin.com/groups/40830/)
+* Post on [LinkedIn](https://www.linkedin.com/groups/40830/)
+* Post on [Facebook](https://www.facebook.com/groups/perlcommunity/)
 
 
 * Update the ```src/events.json``` by running ```bin/perl-events.pl``` and maybe by moving some old items to ```src/old_events.json```
