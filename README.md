@@ -131,7 +131,8 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 
 * Post on [Reddit](https://www.reddit.com/r/perl/)
 * Post on [Twitter](https://twitter.com/perlweekly)
-* Post on [LinkedIn](https://www.linkedin.com/groups/40830/)
+* Post on [LinkedIn - Perl Mongers](https://www.linkedin.com/groups/40830/)
+* Post on [LinkedIn - Perl](https://www.linkedin.com/groups/106254/)
 * Post on [Facebook](https://www.facebook.com/groups/perlcommunity/)
 
 
