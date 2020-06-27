@@ -96,6 +96,14 @@ window.location = location.origin + "/archive/$max.html";
 END_LATEST
 	close $out;
 
+	open my $out_reg, '>', "$dir/register.html" or die;
+	print $out_reg <<"END_REGISTER";
+<script>
+window.location = "https://mail.perlweekly.com/cgi-bin/mailman/listinfo/perlweekly";
+</script>
+END_REGISTER
+	close $out_reg;
+
 	delete $last->{latest_page};
 
 	my %articles_by;
