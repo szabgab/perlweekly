@@ -242,9 +242,9 @@ sub process_rss {
 
 	my @items;
 	push @items, {
-		title => encode( 'utf-8', "#$self->{issue} - $self->{subject}" ),
+		title => "#$self->{issue} - $self->{subject}",
 		link  => "${url}archive/$self->{issue}.html",
-		description => encode( 'utf-8', $text ),
+		description => $text,
 		dc          => {
 
 	#    creator => '???', # TODO should be the author of the original article
@@ -265,9 +265,9 @@ sub process_rss {
 			#my $ts = join '-', split /\./, $e->{ts};
 			$dt->add( seconds => 1 );
 			push @items, {
-				title       => encode( 'utf-8', $e->{title} ),
+				title       => $e->{title},
 				link        => $e->{url},
-				description => encode( 'utf-8', $e->{text} ),
+				description => $e->{text},
 				dc          => {
 
 	#    creator => '???', # TODO should be the author of the original article
@@ -304,4 +304,3 @@ sub html2text {
 }
 
 1;
-
