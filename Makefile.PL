@@ -30,6 +30,7 @@ WriteMakefile(
 		'List::MoreUtils'        => 0,
 		'List::Util'             => 0,
 		'LWP::Simple'            => 0,
+		'MetaCPAN::Client'       => 0,
 		'MIME::Lite'             => 0,
 		'Path::Tiny'             => 0,
 		'PerlX::Maybe'           => 0,
