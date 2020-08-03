@@ -4,13 +4,18 @@
  <script src="/js/jquery.js" type="text/javascript"></script>
  <script src="/js/mailman.js" type="text/javascript"></script>
 
- <script> 
- $(document).ready(function() { 
-    if (document.referrer !== 'https://www.google.com/') { 
-       document.getElementById('registration').style.display = 'none'; 
+ <script>
+ $(document).ready(function() {
+    if (document.referrer !== 'https://www.google.com/') {
+       document.getElementById('registration').style.display = 'none';
     }
  });
  </script>
+
+<meta property="og:title" content="Perl Weekly Issue #[% issue %] - [% subject %]" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://perlweekly.com/archive/[% issue %].html" />
+<meta property="og:image" content="https://perlweekly.com/img/perl_weekly_471x75.png" />
 
 [% IF latest_page %]<link rel="canonical" href="http://perlweekly.com/archive/[% latest_page %].html"/>[% END %]
 </head>
@@ -32,14 +37,14 @@
       font-size: 40px;
       font-weight: bold;
       font-family: Gadget;
-    
+
       border-radius: 5px;
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px;
       border: 1px solid #000;
       padding: 10px;
     ">Perl Weekly</a>
-    
+
     </p>
     <p id="issue"
       style="border-bottom: 1px solid #ccc;
@@ -47,7 +52,7 @@
       font-size: 18px;">
     Issue #[% issue %] - [% date %] - [% subject %]
     </p>
-    
+
     <a href="/latest.html">latest</a> | <a href="/archive">archive</a> | by [% IF editor.url %]<a href="[% editor.url %]">[% editor.name %]</a>[% ELSE %][% editor.name %][% END %]
 
     <div class="subform" id="registration">
@@ -58,13 +63,13 @@
     </div>
 
     <p>
-    
+
     <a href="http://twitter.com/share" class="twitter-share-button"
     data-text="Perl Weekly: [% subject %] via @perlweekly" data-count="vertical">Tweet</a>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js">
     </script>
-    
-    
+
+
 </td></tr>
 
 <tr><td>
@@ -123,8 +128,8 @@
 
                <br />
                [%- IF e.author -%]
-                 <span style="font-size: 14px"> 
-                   by 
+                 <span style="font-size: 14px">
+                   by
                        [%- IF e.author.url -%]
                           <a href="[% e.author.url %]">[%- e.author.name -%]</a>
                        [%- ELSE -%]
@@ -144,7 +149,7 @@
                [% END %]
                </div>
            [% IF e.img %]</td><td style="width:100px"><img src="[% UNLESS web %]http://perlweekly.com[% END %][% e.img %]" title="[% e.img_title %]" width="80" />[% END %]
-           </td></tr></table> 
+           </td></tr></table>
         </td></tr>
     [% END %]
     [% IF ch.footer %]
