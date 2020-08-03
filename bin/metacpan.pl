@@ -33,6 +33,6 @@ if ( not $done ) {
 }
 
 printf
-	"Last week there were a total of %s uploads to CPAN of a %s distinct distributions by %s different authors.\n",
+	"Last week there were a total of %s uploads to CPAN of %s distinct distributions by %s different authors.\n",
 	$total, scalar( keys %distros ), scalar( keys %authors ),
 
