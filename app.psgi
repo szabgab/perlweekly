@@ -4,7 +4,7 @@ use warnings;
 use Plack::Builder;
 
 use Plack::App::File;
-my $app = Plack::App::File->new(root => 'html')->to_app;
+my $app = Plack::App::File->new(root => 'docs')->to_app;
 
 builder {
       enable "DirIndex", dir_index => 'index.html';
