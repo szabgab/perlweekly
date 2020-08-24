@@ -29,6 +29,7 @@ WriteMakefile(
 		'List::AllUtils'         => 0,
 		'List::MoreUtils'        => 0,
 		'List::Util'             => 0,
+		'Log::Log4perl'          => 0,
 		'LWP::Simple'            => 0,
 		'MetaCPAN::Client'       => 0,
 		'MIME::Lite'             => 0,
