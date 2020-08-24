@@ -161,7 +161,7 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 * [TPF news](http://news.perlfoundation.org/)
 * [Blogs Perl org](http://blogs.perl.org/)
 * [Reddit Perl](https://www.reddit.com/r/perl/)
-* [Reddit Perl 6](https://www.reddit.com/r/perl6/)
+* [Reddit Rakulang](https://www.reddit.com/r/rakulang)
 * [Perl Monks](http://www.perlmonks.org/)
 * [Stack Overflow](https://stackoverflow.com/questions/tagged/perl)
 
