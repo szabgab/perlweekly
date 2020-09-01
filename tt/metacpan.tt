@@ -18,11 +18,34 @@ Data taken from <a href="https://metacpan.org/">MetaCPAN</a> using the <a href="
     <li>Number of different authors.</li>
     <li>Number of distributions with link to VCS.</li>
     <li>Number of distributions with CI.</li>
+    <li>Missing VCS - percent of all the distributions uploaded the previous week.</li>
+    <li>Missing CI - percent of all the distributions that have VCS link.</li>
 </ul>
 
-<pre>
-[% content %]
-</pre>
+<table>
+   <tr>
+     <th>issue</th>
+     <th>uploads</th>
+     <th>dists</th>
+     <th>auths</th>
+     <th>has VCS</th>
+     <th>has CI</th>
+     <th>No VCS (%)</th>
+     <th>No CI (%)</th>
+   </tr>
+[% FOR meta IN metacpan %]
+   <tr>
+     <td><a href="/archive/[% meta.issue %].html">[% meta.issue %]</a></td>
+     <td>[% meta.uploads %]</td>
+     <td>[% meta.distros %]</td>
+     <td>[% meta.authors %]</td>
+     <td>[% meta.has_vcs %]</td>
+     <td>[% meta.has_ci %]</td>
+     <td>[% meta.missing_vcs %]</td>
+     <td>[% meta.missing_ci %]</td>
+   </tr>
+[% END %]
+</table>
 
   <p>
   If you are not yet subscribed, you can do it now. Free of charge:

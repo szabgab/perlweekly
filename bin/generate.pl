@@ -14,7 +14,6 @@ use File::Basename qw(basename dirname);
 use Path::Tiny qw(path);
 use JSON qw(from_json);
 use List::Util qw(max);
-use Text::CSV;
 
 use lib dirname( dirname abs_path($0) ) . '/lib';
 use PerlWeekly qw(get_authors);
@@ -66,6 +65,7 @@ if ( $target ne 'web' ) {
 
 if ( $issue eq 'events' ) {
 	events_page();
+	metacpan_page();
 	exit;
 }
 
@@ -301,12 +301,30 @@ sub collect_links {
 }
 
 sub metacpan_page {
+	my @metacpan;
+
 	my $filename = path("src/metacpan.txt");
-	my $metacpan = $filename->slurp_utf8();
-	$metacpan =~ s/;/ /g;
+	my @lines    = $filename->lines_utf8( { chomp => 1 } );
+	my @header   = split /\s*;\s*/, shift @lines;
+	for my $line (@lines) {
+		next if $line =~ /^\s*$/;
+		my @line_data = split /\s*;\s*/, $line;
+		$line_data[0] =~ s/#//;
+		my %h;
+		@h{@header} = @line_data;
+		if ( $h{has_vcs} ) {
+			$h{missing_vcs}
+				= int( 100 * ( $h{distros} - $h{has_vcs} ) / $h{distros} );
+		}
+		if ( $h{has_ci} ) {
+			$h{missing_ci}
+				= int( 100 * ( $h{has_vcs} - $h{has_ci} ) / $h{has_vcs} );
+		}
+		push @metacpan, \%h;
+	}
 
 	my $t = PerlWeekly::Template->new();
-	$t->process( 'tt/metacpan.tt', { content => $metacpan },
+	$t->process( 'tt/metacpan.tt', { metacpan => \@metacpan },
 		"$dir/metacpan.html" )
 		or die $t->error;
 
