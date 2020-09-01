@@ -14,6 +14,7 @@ use File::Basename qw(basename dirname);
 use Path::Tiny qw(path);
 use JSON qw(from_json);
 use List::Util qw(max);
+use Text::CSV;
 
 use lib dirname( dirname abs_path($0) ) . '/lib';
 use PerlWeekly qw(get_authors);
@@ -191,6 +192,7 @@ END_REGISTER
 		"$dir/index.html"
 	) or die $t->error;
 	events_page();
+    metacpan_page();
 
 	foreach my $f (
 		qw(thankyou unsubscribe promotion sponsors promoting-perl-events))
@@ -296,6 +298,17 @@ sub collect_links {
 
 	#print Dumper \%links;
 	#print Dumper \%count;
+}
+
+sub metacpan_page {
+	my $filename = path("src/metacpan.txt");
+    my $metacpan = $filename->slurp_utf8();
+
+	my $t = PerlWeekly::Template->new();
+	$t->process( 'tt/metacpan.tt', { content => $metacpan },
+		"$dir/metacpan.html" )
+		or die $t->error;
+
 }
 
 sub events_page {
