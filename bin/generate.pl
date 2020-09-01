@@ -192,7 +192,7 @@ END_REGISTER
 		"$dir/index.html"
 	) or die $t->error;
 	events_page();
-    metacpan_page();
+	metacpan_page();
 
 	foreach my $f (
 		qw(thankyou unsubscribe promotion sponsors promoting-perl-events))
@@ -302,7 +302,7 @@ sub collect_links {
 
 sub metacpan_page {
 	my $filename = path("src/metacpan.txt");
-    my $metacpan = $filename->slurp_utf8();
+	my $metacpan = $filename->slurp_utf8();
 
 	my $t = PerlWeekly::Template->new();
 	$t->process( 'tt/metacpan.tt', { content => $metacpan },
