@@ -303,6 +303,7 @@ sub collect_links {
 sub metacpan_page {
 	my $filename = path("src/metacpan.txt");
 	my $metacpan = $filename->slurp_utf8();
+	$metacpan =~ s/;/ /g;
 
 	my $t = PerlWeekly::Template->new();
 	$t->process( 'tt/metacpan.tt', { content => $metacpan },
