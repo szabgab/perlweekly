@@ -309,7 +309,7 @@ sub metacpan_page {
 	for my $line (@lines) {
 		next if $line =~ /^\s*$/;
 		my @line_data = split /\s*;\s*/, $line;
-		$line_data[0] =~ s/#//;
+		$line_data[0] =~ s/\s*#//;
 		my %h;
 		@h{@header} = @line_data;
 		if ( $h{has_vcs} ) {
