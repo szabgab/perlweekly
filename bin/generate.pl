@@ -117,6 +117,9 @@ END_REGISTER
 
 			#die Dumper $ch;
 			foreach my $entry ( @{ $ch->{entries} } ) {
+				if ( $entry->{title} =~ /^\s*$/ ) {
+					die "Issue '$issue->{issue}' is missing a title\n";
+				}
 				if ( $entry->{author} ) {
 
 					#print Dumper $entry;
