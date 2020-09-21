@@ -49,7 +49,7 @@ while ( my $item = $rset->next ) {
 	if ( $data{vcs_url} ) {
 		$vcs_count++;
 	}
-	if ( $data{travis} or $data{github_actions} ) {
+	if ( $data{has_ci} ) {
 		$ci_count++;
 	}
 }
