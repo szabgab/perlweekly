@@ -125,6 +125,7 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 * add sponsors, if there are any
 * Copy the section of events from the previous edition, and update it (remove old, add new)
 * Run the `bin/metacpan.pl` to get the latest statistics and update src/metacpan.txt
+* Run the `bin/stats.pl` to get the latest statistics.
 
 * Run `bin/tidy_json.pl` to make the source JSON files unified.
 * Update Perl Tidy: `cpanm Code::TidyAll  Perl::Tidy`
