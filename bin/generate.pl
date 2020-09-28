@@ -66,6 +66,7 @@ if ( $target ne 'web' ) {
 if ( $issue eq 'events' ) {
 	events_page();
 	metacpan_page();
+    stats_page();
 	exit;
 }
 
@@ -196,6 +197,7 @@ END_REGISTER
 	) or die $t->error;
 	events_page();
 	metacpan_page();
+    stats_page();
 
 	foreach my $f (
 		qw(thankyou unsubscribe promotion sponsors promoting-perl-events))
@@ -302,6 +304,32 @@ sub collect_links {
 	#print Dumper \%links;
 	#print Dumper \%count;
 }
+
+sub stats_page {
+	my @stats;
+
+	my $filename = path("src/stats.txt");
+	my @lines    = $filename->lines_utf8( { chomp => 1 } );
+	my @header   = split /\s*;\s*/, shift @lines;
+	for my $line (@lines) {
+		next if $line =~ /^\s*$/;
+		my @line_data = split /\s*;\s*/, $line;
+		$line_data[0] =~ s/\s*#//;
+		my %h;
+		@h{@header} = @line_data;
+		push @stats, \%h;
+	}
+
+    shift @header; # get rid of  "issue" for special treatment
+	my $t = PerlWeekly::Template->new();
+	$t->process( 'tt/stats.tt', {
+        header => \@header,
+        stats => \@stats,
+    }, "$dir/stats.html" )
+		or die $t->error;
+
+}
+
 
 sub metacpan_page {
 	my @metacpan;
