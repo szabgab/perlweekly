@@ -1,0 +1,56 @@
+[% INCLUDE tt/incl/header.tt %]
+  <title>Weekly Statistics</title>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <script src="/js/jquery.js" type="text/javascript"></script>
+  <script src="/js/mailman.js" type="text/javascript"></script>
+</head>
+<body id="home">
+
+<div id="main">
+
+<h2>Reports from the previous weeks</h2>
+
+Data collected using the <a href="https://github.com/szabgab/perlweekly/blob/master/bin/stats.pl">stats.pl</a> script.
+
+<ul>
+    <li><a href="https://dev.to/t/perl/top/week">DevTo</a></li>
+    <li><a href="https://www.reddit.com/r/perl/">Reddit</a></li>
+    <li><a href="https://www.perl.com/">Perl.com</a></li>
+    <li><a href="https://perlmaven.com/">Perl Maven</a></li>
+    <li><a href="https://news.perlfoundation.org/">TPF</a> The Perl Foundation news</li>
+    <li><a href="http://blogs.perl.org/">BPO</a> blogs.perl.org</li>
+    <li><a href="https://perlhacks.com/">Perl Hacks</a></li>
+    <li><a href="https://blog.perl-academy.de/">Perl Academy</a></li>
+</ul>
+
+<table>
+   <tr>
+     <th>issue</th>
+[% FOR name IN header %]
+     <th>[% name %]</th>
+[% END %]
+   </tr>
+[% FOR stat IN stats %]
+   <tr>
+     <td><a href="/archive/[% stat.issue %].html">[% stat.issue %]</a></td>
+     [% FOR name IN header %]
+        <td>[% stat.$name %]</td>
+     [% END %]
+   </tr>
+[% END %]
+</table>
+
+  <p>
+  If you are not yet subscribed, you can do it now. Free of charge:
+  </p>
+   [% INCLUDE tt/incl/subscribe.tt %]
+<p>
+This newsletter is about the Perl Programming languages.
+</p>
+
+</div>
+
+[% INCLUDE tt/incl/tracking.tt %]
+
+</body>
+</html>
