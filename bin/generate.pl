@@ -66,7 +66,7 @@ if ( $target ne 'web' ) {
 if ( $issue eq 'events' ) {
 	events_page();
 	metacpan_page();
-    stats_page();
+	stats_page();
 	exit;
 }
 
@@ -197,7 +197,7 @@ END_REGISTER
 	) or die $t->error;
 	events_page();
 	metacpan_page();
-    stats_page();
+	stats_page();
 
 	foreach my $f (
 		qw(thankyou unsubscribe promotion sponsors promoting-perl-events))
@@ -320,16 +320,18 @@ sub stats_page {
 		push @stats, \%h;
 	}
 
-    shift @header; # get rid of  "issue" for special treatment
+	shift @header;    # get rid of  "issue" for special treatment
 	my $t = PerlWeekly::Template->new();
-	$t->process( 'tt/stats.tt', {
-        header => \@header,
-        stats => \@stats,
-    }, "$dir/stats.html" )
-		or die $t->error;
+	$t->process(
+		'tt/stats.tt',
+		{
+			header => \@header,
+			stats  => \@stats,
+		},
+		"$dir/stats.html"
+	) or die $t->error;
 
 }
-
 
 sub metacpan_page {
 	my @metacpan;
