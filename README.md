@@ -123,7 +123,7 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 * Update src/next.json to have the next date (this is used on the front page)
 * Update src/count.txt from https://mail.perlweekly.com/mailman/admin/perlweekly/members
 * add sponsors, if there are any
-* Copy the section of events from the previous edition, and update it (remove old, add new)
+* Update the src/events.json file and copy the section of events from it.
 * Run the `bin/metacpan.pl` to get the latest statistics and update src/metacpan.txt
 * Run the `bin/stats.pl` to get the latest statistics.
 
