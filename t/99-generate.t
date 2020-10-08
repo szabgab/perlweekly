@@ -7,7 +7,8 @@ use warnings;
 use Test::More;
 
 my $git = `which git`;
-plan skip_all => 'Need git client' if not $git;
+plan skip_all => 'Need git client'     if not $git;
+plan skip_all => 'Not in Pull-Request' if $ENV{TRAVIS_PULL_REQUEST_SHA};
 
 plan tests => 2;
 
