@@ -6,21 +6,21 @@ use warnings;
 
 use Test::More;
 
-my $git = `which git`;
-plan skip_all => 'Need git client'     if not $git;
-plan skip_all => 'Not in Pull-Request' if $ENV{TRAVIS_PULL_REQUEST_SHA};
-
-plan tests => 2;
+my $git = qx{which git};
 
 my $status_before = `git status`;
 diag $status_before;
 
-my $out = `$^X bin/generate.pl web all`;
+my $out = qx{$^X bin/generate.pl web all};
 
 is $out, '', 'out is empty';
 
-my $status_after = `git status`;
+my $status_after = qx{git status};
 diag $status_after;
 
-is $status_after, $status_before, 'status remained the same';
-diag `git diff`;
+# Need git client and not to be a in Pull-Request where the content might change
+if ( $git and not $ENV{TRAVIS_PULL_REQUEST_SHA} ) {
+	is $status_after, $status_before, 'status remained the same';
+	diag `git diff`;
+}
+done_testing();
