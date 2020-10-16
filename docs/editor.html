@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+  <title>Perl Weekly - all the articles</title>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <script src="/js/jquery.js" type="text/javascript"></script>
+  <script src="/js/mailman.js" type="text/javascript"></script>
+</head>
+
+<body id="home">
+<style>
+input {
+    width: 1000px;
+}
+textarea {
+    width: 1000px;
+    height: 150px;
+}
+</style>
+<script>
+(function() {
+    function setup() {
+        document.getElementById('title').value = "Replace this text";
+        document.getElementById('url').value = "https://replace-this-url.com/";
+        document.getElementById('text').value = "Some text that might also include <a href=\"https://replace-this-url.com/\">a url</a>.";
+        document.getElementById('title').addEventListener('input', show);
+        document.getElementById('url').addEventListener('input', show);
+        document.getElementById('text').addEventListener('input', show);
+        show();
+    }
+    function show() {
+        let title = document.getElementById('title').value;
+        let url = document.getElementById('url').value;
+        let text = document.getElementById('text').value;
+
+        let data = {
+            title: title,
+            url: url,
+            text: text
+        };
+        document.getElementById('json').value = JSON.stringify(data, undefined, 2)
+
+
+        let entry_title = "<a href=\"" + url + "\">" + title + "</a>"
+        document.getElementById('entry-title').innerHTML = entry_title;
+        document.getElementById('title-size').innerHTML = title.length;
+        document.getElementById('text-full-size').innerHTML = text.length;
+        document.getElementById('entry-text').innerHTML = text;
+        let visible_text = document.getElementById('entry-text').innerText;
+        document.getElementById('text-display-size').innerHTML = visible_text.length;
+    }
+    setTimeout(setup, 100)
+}())
+</script>
+
+<h2>Edit an entry</h2>
+<table>
+    <tr><td>Title:</td><td><input id="title"> (Length: <span id="title-size"></span>)</td></tr>
+    <tr><td>URL:</td><td><input id="url"></td></tr>
+    <tr><td>Text:</td><td><textarea id="text"></textarea> (Dsiplay length: <span id="text-display-size"></span> Full length: <span id="text-full-size"></span>)</td></tr>
+</table>
+
+
+<h2>Display</h2>
+<div id="entry-title" class="entry-title"></div>
+<div id="entry-text"></div>
+
+<h2>JSON</h2>
+<textarea id="json"></textarea>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+  <title>Perl Weekly - all the articles</title>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <script src="/js/jquery.js" type="text/javascript"></script>
+  <script src="/js/mailman.js" type="text/javascript"></script>
+</head>
+<body id="home">
+
