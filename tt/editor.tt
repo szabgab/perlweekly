@@ -30,17 +30,22 @@ textarea {
         let title = document.getElementById('title').value;
         let url = document.getElementById('url').value;
         let text = document.getElementById('text').value;
-        document.getElementById('title-size').innerHTML = title.length;
-        document.getElementById('text-full-size').innerHTML = text.length;
-        let entry_title = "<a href=\"" + url + "\">" + title + "</a>"
+
         let data = {
             title: title,
             url: url,
             text: text
         };
-        document.getElementById('entry-title').innerHTML = entry_title;
-        document.getElementById('entry-text').innerHTML = text;
         document.getElementById('json').value = JSON.stringify(data, undefined, 2)
+
+
+        let entry_title = "<a href=\"" + url + "\">" + title + "</a>"
+        document.getElementById('entry-title').innerHTML = entry_title;
+        document.getElementById('title-size').innerHTML = title.length;
+        document.getElementById('text-full-size').innerHTML = text.length;
+        document.getElementById('entry-text').innerHTML = text;
+        let visible_text = document.getElementById('entry-text').innerText;
+        document.getElementById('text-display-size').innerHTML = visible_text.length;
     }
     setTimeout(setup, 100)
 }())
@@ -48,9 +53,9 @@ textarea {
 
 <h2>Edit an entry</h2>
 <table>
-    <tr><td>Title:</td><td><input id="title"> (<span id="title-size"></span>)</td></tr>
+    <tr><td>Title:</td><td><input id="title"> (Length: <span id="title-size"></span>)</td></tr>
     <tr><td>URL:</td><td><input id="url"></td></tr>
-    <tr><td>Text:</td><td><textarea id="text"></textarea> (<span id="text-display-size"></span>/<span id="text-full-size"></span>)</td></tr>
+    <tr><td>Text:</td><td><textarea id="text"></textarea> (Dsiplay length: <span id="text-display-size"></span> Full length: <span id="text-full-size"></span>)</td></tr>
 </table>
 
 
