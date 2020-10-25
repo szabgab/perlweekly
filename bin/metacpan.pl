@@ -8,6 +8,15 @@ use File::Spec           ();
 use Log::Log4perl        ();
 use Log::Log4perl::Level ();
 use FindBin              ();
+use Getopt::Long qw(GetOptions);
+
+my $run;
+my $days = 7;
+
+GetOptions(
+    "run"    => \$run,
+    "days:i" => \$days,
+) or usage();
 
 # clone https://github.com/szabgab/cpan-digger-new
 use lib File::Spec->catdir( $FindBin::Bin, '..', '..', 'cpan-digger-new' );
@@ -19,9 +28,14 @@ my $log_level = 'DEBUG';
 Log::Log4perl->easy_init( Log::Log4perl::Level::to_priority($log_level) );
 
 my $dt = DateTime->now;
-die "We are only supposed to run this on Monday!\n" if $dt->day_of_week != 1;
+
+if (not $run) {
+    $run = $dt->day_of_week == 1;
+}
+die "We are only supposed to run this on Monday! Override it by passing --run\n" if not $run;
+
 my $today       = $dt->ymd;
-my $last_monday = $dt->add( days => -7 )->ymd;
+my $last_monday = $dt->add( days => -$days )->ymd;
 
 my $mcpan = MetaCPAN::Client->new();
 my $rset  = $mcpan->recent($recent);
@@ -63,4 +77,14 @@ printf
 	"Last week there were a total of %s uploads to CPAN of %s distinct distributions by %s different authors. Number of distributions with link to VCS: %s. Number of distros with CI: %s.\n",
 	$total, scalar( keys %distros ), scalar( keys %authors ), $vcs_count,
 	$ci_count;
+
+
+sub usage {
+    print <<"END";
+Usage: $0
+       --run        To run on any day, not only on Sunday
+       --days N     How many days to report. Defaults to 7 days.
+END
+    exit();
+}
 
