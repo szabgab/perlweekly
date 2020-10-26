@@ -17,13 +17,12 @@ my $verbose;
 my $help;
 
 GetOptions(
-    "run"     => \$run,
-    "days:i"  => \$days,
-    "verbose" => \$verbose,
-    "help"    => \$help,
+	"run"     => \$run,
+	"days:i"  => \$days,
+	"verbose" => \$verbose,
+	"help"    => \$help,
 ) or usage();
 usage() if $help;
-
 
 # clone https://github.com/szabgab/cpan-digger-new
 use lib File::Spec->catdir( $FindBin::Bin, '..', '..', 'cpan-digger-new' );
@@ -36,10 +35,12 @@ Log::Log4perl->easy_init( Log::Log4perl::Level::to_priority($log_level) );
 
 my $dt = DateTime->now;
 
-if (not $run) {
-    $run = $dt->day_of_week == 1;
+if ( not $run ) {
+	$run = $dt->day_of_week == 1;
 }
-die "We are only supposed to run this on Monday! Override it by passing --run\n" if not $run;
+die
+	"We are only supposed to run this on Monday! Override it by passing --run\n"
+	if not $run;
 
 my $today       = $dt->ymd;
 my $last_monday = $dt->add( days => -$days )->ymd;
@@ -72,9 +73,11 @@ while ( my $item = $rset->next ) {
 	}
 	if ( $data{has_ci} ) {
 		$ci_count++;
-	} else {
-        print "No CI for https://metacpan.org/release/$data{distribution}\n" if $verbose;
-    }
+	}
+	else {
+		print "No CI for https://metacpan.org/release/$data{distribution}\n"
+			if $verbose;
+	}
 }
 
 if ( not $done ) {
@@ -87,9 +90,8 @@ printf
 	$total, scalar( keys %distros ), scalar( keys %authors ), $vcs_count,
 	$ci_count;
 
-
 sub usage {
-    print <<"END";
+	print <<"END";
 Usage: $0
        --run        To run on any day, not only on Sunday.
        --days N     How many days to report. Defaults to 7 days.
@@ -100,6 +102,6 @@ Usage: $0
 Report for Perl Weekly is created by the defaults.
 
 END
-    exit();
+	exit();
 }
 
