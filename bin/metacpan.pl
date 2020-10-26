@@ -9,14 +9,21 @@ use Log::Log4perl        ();
 use Log::Log4perl::Level ();
 use FindBin              ();
 use Getopt::Long qw(GetOptions);
+use Data::Dumper qw(Dumper);
 
 my $run;
 my $days = 7;
+my $verbose;
+my $help;
 
 GetOptions(
-    "run"    => \$run,
-    "days:i" => \$days,
+    "run"     => \$run,
+    "days:i"  => \$days,
+    "verbose" => \$verbose,
+    "help"    => \$help,
 ) or usage();
+usage() if $help;
+
 
 # clone https://github.com/szabgab/cpan-digger-new
 use lib File::Spec->catdir( $FindBin::Bin, '..', '..', 'cpan-digger-new' );
@@ -65,7 +72,9 @@ while ( my $item = $rset->next ) {
 	}
 	if ( $data{has_ci} ) {
 		$ci_count++;
-	}
+	} else {
+        print "No CI for https://metacpan.org/release/$data{distribution}\n" if $verbose;
+    }
 }
 
 if ( not $done ) {
@@ -82,8 +91,14 @@ printf
 sub usage {
     print <<"END";
 Usage: $0
-       --run        To run on any day, not only on Sunday
+       --run        To run on any day, not only on Sunday.
        --days N     How many days to report. Defaults to 7 days.
+       --verbose    Print a bit more report.
+
+       --help       This help.
+
+Report for Perl Weekly is created by the defaults.
+
 END
     exit();
 }
