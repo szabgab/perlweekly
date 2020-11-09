@@ -124,7 +124,7 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 * Update src/count.txt from https://mail.perlweekly.com/mailman/admin/perlweekly/members
 * add sponsors, if there are any
 * Update the src/events.json file and copy the section of events from it.
-* Run the `bin/metacpan.pl` to get the latest statistics and update src/metacpan.txt
+* Run the `cpan-digger --recent 1000 --report --days 7 --vcs` to get the latest statistics and update src/metacpan.txt
 * Run the `bin/stats.pl` to get the latest statistics.
 
 * Run `bin/tidy_json.pl` to make the source JSON files unified.
