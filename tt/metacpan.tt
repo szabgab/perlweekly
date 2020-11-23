@@ -17,9 +17,11 @@ Data taken from <a href="https://metacpan.org/">MetaCPAN</a> using <a href="http
     <li>Number of distinct distributions.</li>
     <li>Number of different authors.</li>
     <li>Number of distributions with link to VCS.</li>
+    <li>Number of distributions with Bugtracker.</li>
     <li>Number of distributions with CI.</li>
     <li>Missing VCS - percent of all the distributions uploaded the previous week.</li>
-    <li>Missing CI - percent of all the distributions that have VCS link.</li>
+    <li>Missing Bugz - percent of all the distributions that have no link to bugtracker out of total uploaded.</li>
+    <li>Missing CI - percent of all the distributions that have no CI out of those that have VCS link.</li>
 </ul>
 
 <table>
@@ -28,9 +30,11 @@ Data taken from <a href="https://metacpan.org/">MetaCPAN</a> using <a href="http
      <th>uploads</th>
      <th>dists</th>
      <th>auths</th>
-     <th>has VCS</th>
-     <th>has CI</th>
+     <th>VCS</th>
+     <th>Bugz</th>
+     <th>CI</th>
      <th>No VCS (%)</th>
+     <th>No Bugz (%)</th>
      <th>No CI (%)</th>
    </tr>
 [% FOR meta IN metacpan %]
@@ -40,11 +44,11 @@ Data taken from <a href="https://metacpan.org/">MetaCPAN</a> using <a href="http
      <td>[% meta.distros %]</td>
      <td>[% meta.authors %]</td>
      <td>[% meta.has_vcs %]</td>
-     <td>[% meta.has_ci %]</td>
      <td>[% meta.has_bugz %]</td>
+     <td>[% meta.has_ci %]</td>
      <td>[% meta.missing_vcs %]</td>
-     <td>[% meta.missing_ci %]</td>
      <td>[% meta.missing_bugz %]</td>
+     <td>[% meta.missing_ci %]</td>
    </tr>
 [% END %]
 </table>
