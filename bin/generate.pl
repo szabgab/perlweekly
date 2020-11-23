@@ -354,6 +354,10 @@ sub metacpan_page {
 			$h{missing_ci}
 				= int( 100 * ( $h{has_vcs} - $h{has_ci} ) / $h{has_vcs} );
 		}
+		if ( $h{has_bugz} ) {
+			$h{missing_bugz}
+				= int( 100 * ( $h{has_vcs} - $h{has_bugz} ) / $h{has_bugz} );
+		}
 		push @metacpan, \%h;
 	}
 
