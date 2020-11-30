@@ -125,7 +125,7 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 * add sponsors, if there are any
 * Update the src/events.json file and copy the section of events from it.
 * Run the `cpan-digger --recent 1000 --report --days 7 --vcs` to get the latest statistics and update src/metacpan.txt
-* Run the `bin/stats.pl` to get the latest statistics.
+* Run the `bin/stats.pl` to get the latest statistics and update src/stats.txt
 
 * Run `bin/tidy_json.pl` to make the source JSON files unified.
 * Update Perl Tidy: `cpanm Code::TidyAll  Perl::Tidy`
