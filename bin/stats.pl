@@ -75,8 +75,11 @@ for my $site (@sites) {
 }
 
 #say '------------------';
+my $str = "";
 print "Number of posts last week:";
 for my $site ( sort keys %counter ) {
 	print " $site: $counter{$site};";
+    $str .= "  $counter{$site};";
 }
 print "\n";
+print "$str\n";
