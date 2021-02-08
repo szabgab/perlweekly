@@ -79,7 +79,7 @@ my $str = "";
 print "Number of posts last week:";
 for my $site ( sort keys %counter ) {
 	print " $site: $counter{$site};";
-    $str .= "  $counter{$site};";
+	$str .= "  $counter{$site};";
 }
 print "\n";
 print "$str\n";
