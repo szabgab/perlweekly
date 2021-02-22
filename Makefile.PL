@@ -52,6 +52,7 @@ WriteMakefile(
 		'Plack::Builder'         => 0,
 		'Plack::Middleware::DirIndex' => 0,
 		'URL::Encode'                 => 0,
+		'Email::SendGrid::V3'    => 0,
 	},
 	dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
 	clean               => { FILES => 'Perl-Maven-*' },
