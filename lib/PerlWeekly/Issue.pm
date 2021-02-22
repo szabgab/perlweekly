@@ -14,7 +14,8 @@ use PerlWeekly::Template qw();
 use Text::Wrap qw(wrap);
 use XML::RSS qw();
 use DateTime qw();
-use DateTime::Format::W3CDTF;
+use DateTime::Format::W3CDTF ();
+use DateTime::Format::ISO8601 ();
 use URL::Encode qw(url_encode_utf8);
 
 use PerlWeekly qw(get_authors);
@@ -46,6 +47,7 @@ sub new {
 	die
 		"Invalid date format in $issue received '$self->{date}' (expected YYYY-MM-DD)"
 		if $self->{date} !~ /^\d\d\d\d-\d\d-\d\d$/;
+    DateTime::Format::ISO8601->parse_datetime( $self->{date} ); # just verify it
 	if ( $issue ne 'next' ) {
 		die "The 'editor' is missing from issue $issue.\n"
 			if not $self->{editor};
