@@ -225,8 +225,8 @@ sub process_rss {
 
 	#die $dt;
 	$rss->channel(
-		title => 'Perl Weekly newsletter',
-		link  => $url,
+		title       => 'Perl Weekly newsletter',
+		link        => $url,
 		description =>
 			'A free, once a week e-mail round-up of hand-picked news and articles about Perl.',
 		dc => {
