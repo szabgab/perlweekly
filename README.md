@@ -161,3 +161,9 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 
 * [See sources](https://perlweekly.com/sources.html)
 
+## Timezones
+
+EDT -04:00
+EST -05:00
+
+PDT -07:00
