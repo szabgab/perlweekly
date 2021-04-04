@@ -13,6 +13,7 @@ WriteMakefile(
 		: ()),
 	PL_FILES            => {},
 	PREREQ_PM => {
+        'Carp::Always'           => 0,
 		'Cwd'                    => 0,
 		'Data::Dumper'           => 0,
 		'Data::ICal'             => 0,
