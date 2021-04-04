@@ -382,23 +382,20 @@ sub events_page {
 		die "JSON exception in src/events.json\n\n$@";
 	}
 
+    my $w3c = DateTime::Format::W3CDTF->new(strict => 1);
 	my $calendar = Data::ICal->new;
 	my $now      = DateTime->now;
-	my $parser   = DateTime::Format::Strptime->new( pattern => '%Y.%m.%d' );
-	my @entries  = grep { $parser->parse_datetime( $_->{ts} ) > $now }
+	my @entries  = grep { $w3c->parse_datetime( $_->{begin} ) > $now }
 		@{ $events->{entries} };
 	my $t = PerlWeekly::Template->new();
 	$t->process( 'tt/events.tt', { events => \@entries }, "$dir/events.html" )
 		or die $t->error;
 
-    my $w3c = DateTime::Format::W3CDTF->new(strict => 1);
 
 	for my $entry (@entries) {
 		my $event = Data::ICal::Entry::Event->new;
 
-        my $dstart = $entry->{begin}
-                ? $w3c->parse_datetime( $entry->{begin} )
-                : $parser->parse_datetime( $entry->{ts} );
+        my $dstart = $w3c->parse_datetime( $entry->{begin} );
         my ($end, $duration);
         if ($entry->{end}) {
             $end =  DateTime::Format::ICal->format_datetime($w3c->parse_datetime( $entry->{end} ));
