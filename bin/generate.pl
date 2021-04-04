@@ -14,6 +14,8 @@ use File::Basename qw(basename dirname);
 use Path::Tiny qw(path);
 use JSON qw(from_json);
 use List::Util qw(max);
+use DateTime::Format::Strptime;
+use DateTime;
 
 use lib dirname( dirname abs_path($0) ) . '/lib';
 use PerlWeekly qw(get_authors);
@@ -374,9 +376,13 @@ sub events_page {
 	if ($@) {
 		die "JSON exception in src/events.json\n\n$@";
 	}
+
+	my $now     = DateTime->now;
+	my $parser  = DateTime::Format::Strptime->new( pattern => '%Y.%m.%d' );
+	my @entries = grep { $parser->parse_datetime( $_->{ts} ) > $now }
+		@{ $events->{entries} };
 	my $t = PerlWeekly::Template->new();
-	$t->process( 'tt/events.tt', { events => $events->{entries} },
-		"$dir/events.html" )
+	$t->process( 'tt/events.tt', { events => \@entries }, "$dir/events.html" )
 		or die $t->error;
 }
 

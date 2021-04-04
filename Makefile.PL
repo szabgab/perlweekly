@@ -22,6 +22,7 @@ WriteMakefile(
 		'DateTime'               => 0,
 		'DateTime::Format::W3CDTF'  => 0,
 		'DateTime::Format::ISO8601' => 0,
+        'DateTime::Format::Strptime' => 0,
 		'Encode'                 => 0,
 		'File::Basename'         => 0,
 		'File::Serialize'        => 0,
