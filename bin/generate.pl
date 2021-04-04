@@ -15,11 +15,11 @@ use File::Basename qw(basename dirname);
 use Path::Tiny qw(path);
 use JSON qw(from_json);
 use List::Util qw(max);
-use Data::ICal ();
-use Data::ICal::Entry::Event ();
+use Data::ICal                 ();
+use Data::ICal::Entry::Event   ();
 use DateTime::Format::Strptime ();
-use DateTime::Format::ICal   ();
-use DateTime ();
+use DateTime::Format::ICal     ();
+use DateTime                   ();
 
 use lib dirname( dirname abs_path($0) ) . '/lib';
 use PerlWeekly qw(get_authors);
@@ -381,27 +381,29 @@ sub events_page {
 		die "JSON exception in src/events.json\n\n$@";
 	}
 
-    my $calendar = Data::ICal->new;
-	my $now     = DateTime->now;
-	my $parser  = DateTime::Format::Strptime->new( pattern => '%Y.%m.%d' );
-	my @entries = grep { $parser->parse_datetime( $_->{ts} ) > $now }
+	my $calendar = Data::ICal->new;
+	my $now      = DateTime->now;
+	my $parser   = DateTime::Format::Strptime->new( pattern => '%Y.%m.%d' );
+	my @entries  = grep { $parser->parse_datetime( $_->{ts} ) > $now }
 		@{ $events->{entries} };
 	my $t = PerlWeekly::Template->new();
 	$t->process( 'tt/events.tt', { events => \@entries }, "$dir/events.html" )
 		or die $t->error;
 
-    for my $entry (@entries) {
-	    my $event = Data::ICal::Entry::Event->new;
-	    $event->add_properties(
-	    	summary     => $entry->{title},
-	    	description => join( "\n\n", $entry->{url}, $entry->{text}),
-	    	dtstart     => DateTime::Format::ICal->format_datetime($parser->parse_datetime( $entry->{ts} )),
-	    	location    => $entry->{url},
-	    	duration => 'PT2H0M0S',
-	    );
-	    $calendar->add_entry($event);
-    }
-    open my $fh, '>', 'docs/perlweekly.ical' or die;
-    print $fh $calendar->as_string;
+	for my $entry (@entries) {
+		my $event = Data::ICal::Entry::Event->new;
+		$event->add_properties(
+			summary     => $entry->{title},
+			description => join( "\n\n", $entry->{url}, $entry->{text} ),
+			dtstart     => DateTime::Format::ICal->format_datetime(
+				$parser->parse_datetime( $entry->{ts} )
+			),
+			location => $entry->{url},
+			duration => 'PT2H0M0S',
+		);
+		$calendar->add_entry($event);
+	}
+	open my $fh, '>', 'docs/perlweekly.ical' or die;
+	print $fh $calendar->as_string;
 }
 
