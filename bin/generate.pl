@@ -19,6 +19,7 @@ use Data::ICal                 ();
 use Data::ICal::Entry::Event   ();
 use DateTime::Format::Strptime ();
 use DateTime::Format::ICal     ();
+use DateTime::Format::W3CDTF   ();
 use DateTime                   ();
 
 use lib dirname( dirname abs_path($0) ) . '/lib';
@@ -390,16 +391,27 @@ sub events_page {
 	$t->process( 'tt/events.tt', { events => \@entries }, "$dir/events.html" )
 		or die $t->error;
 
+    my $w3c = DateTime::Format::W3CDTF->new(strict => 1);
+
 	for my $entry (@entries) {
 		my $event = Data::ICal::Entry::Event->new;
+
+        my $dstart = $entry->{begin}
+                ? $w3c->parse_datetime( $entry->{begin} )
+                : $parser->parse_datetime( $entry->{ts} );
+        my ($end, $duration);
+        if ($entry->{end}) {
+            $end =  DateTime::Format::ICal->format_datetime($w3c->parse_datetime( $entry->{end} ));
+        } else {
+            $duration = DateTime::Format::ICal->format_duration(DateTime::Duration->new(hours => 2, minutes => 0));
+        }
+
 		$event->add_properties(
 			summary     => $entry->{title},
 			description => join( "\n\n", $entry->{url}, $entry->{text} ),
-			dtstart     => DateTime::Format::ICal->format_datetime(
-				$parser->parse_datetime( $entry->{ts} )
-			),
+			dtstart     => DateTime::Format::ICal->format_datetime( $dstart ),
 			location => $entry->{url},
-			duration => 'PT2H0M0S',
+            ($end ? (dtend => $end) : (duration => $duration)),
 		);
 		$calendar->add_entry($event);
 	}
