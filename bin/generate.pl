@@ -382,7 +382,7 @@ sub events_page {
 		die "JSON exception in src/events.json\n\n$@";
 	}
 
-    my $w3c = DateTime::Format::W3CDTF->new(strict => 1);
+	my $w3c      = DateTime::Format::W3CDTF->new( strict => 1 );
 	my $calendar = Data::ICal->new;
 	my $now      = DateTime->now;
 	my @entries  = grep { $w3c->parse_datetime( $_->{begin} ) > $now }
@@ -391,24 +391,26 @@ sub events_page {
 	$t->process( 'tt/events.tt', { events => \@entries }, "$dir/events.html" )
 		or die $t->error;
 
-
 	for my $entry (@entries) {
 		my $event = Data::ICal::Entry::Event->new;
 
-        my $dstart = $w3c->parse_datetime( $entry->{begin} );
-        my ($end, $duration);
-        if ($entry->{end}) {
-            $end =  DateTime::Format::ICal->format_datetime($w3c->parse_datetime( $entry->{end} ));
-        } else {
-            $duration = DateTime::Format::ICal->format_duration(DateTime::Duration->new(hours => 2, minutes => 0));
-        }
+		my $dstart = $w3c->parse_datetime( $entry->{begin} );
+		my ( $end, $duration );
+		if ( $entry->{end} ) {
+			$end = DateTime::Format::ICal->format_datetime(
+				$w3c->parse_datetime( $entry->{end} ) );
+		}
+		else {
+			$duration = DateTime::Format::ICal->format_duration(
+				DateTime::Duration->new( hours => 2, minutes => 0 ) );
+		}
 
 		$event->add_properties(
 			summary     => $entry->{title},
 			description => join( "\n\n", $entry->{url}, $entry->{text} ),
-			dtstart     => DateTime::Format::ICal->format_datetime( $dstart ),
-			location => $entry->{url},
-            ($end ? (dtend => $end) : (duration => $duration)),
+			dtstart     => DateTime::Format::ICal->format_datetime($dstart),
+			location    => $entry->{url},
+			( $end ? ( dtend => $end ) : ( duration => $duration ) ),
 		);
 		$calendar->add_entry($event);
 	}
