@@ -377,10 +377,13 @@ sub metacpan_page {
 
 sub events_page {
 	my $events;
-	eval { $events = from_json scalar path("src/events.json")->slurp_utf8; };
+	my $filepath = path("src/events.json");
+	eval { $events = from_json scalar $filepath->slurp_utf8; };
 	if ($@) {
 		die "JSON exception in src/events.json\n\n$@";
 	}
+	my $modify_time = ( stat($filepath) )[9];
+	my $changed     = DateTime->from_epoch( epoch => $modify_time );
 
 	my $w3c      = DateTime::Format::W3CDTF->new( strict => 1 );
 	my $calendar = Data::ICal->new;
@@ -410,7 +413,7 @@ sub events_page {
 			description => join( "\n\n", $entry->{url}, $entry->{text} ),
 			dtstart     => DateTime::Format::ICal->format_datetime($dstart),
 			location    => $entry->{url},
-			dtstamp     => DateTime::Format::ICal->format_datetime($now),
+			dtstamp     => DateTime::Format::ICal->format_datetime($changed),
 			uid         => DateTime::Format::ICal->format_datetime($dstart)
 				. $entry->{url},
 			( $end ? ( dtend => $end ) : ( duration => $duration ) ),
