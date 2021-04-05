@@ -1,0 +1,344 @@
+{
+   "date" : "2021-04-05",
+   "editor" : "mohammad_anwar",
+   "subject" : "Perl Memory Management",
+   "header" : [
+      "Hi there",
+      "One topic that rarely talked about with reference to Perl is \"Memory Management\". Could it be that, being a developer, you don't need to worry about it? Possibly yes as Perl garbage collection is very efficient. However you still have to take care of circular data structure manually. To get to the bottom of the matter, one has to be aware of two things, \"ref count\" and \"weak ref\". Can CPAN help me with it? Yes, there is a module <a href=\"https://metacpan.org/pod/Devel::Peek\">Devel::Peek</a> available on CPAN. You can figure out about the \"ref count\". How about \"weak ref\" now? Well, again CPAN is handy, you have <a href=\"https://metacpan.org/pod/Scalar::Util\">Scalar::Util</a> readily available on CPAN, which provides subroutine weaken() to create \"weak ref\". What is the point of creating \"weak ref\"? Well, in Perl, the \"weak ref\" doesn't affect the \"ref count\" and in a way helps you stop memory leak. I have yet to come across simple working example to demonstrate this behaviour. However, you might find the two recipes <a href=\"https://docstore.mik.ua/orelly/perl4/cook/ch11_16.htm\">11.15</a> and <a href=\"https://docstore.mik.ua/orelly/perl4/cook/ch13_14.htm\">13.13</a> from the good old friend, \"Perl Cookbook, second edition\" very useful. There is another post, <a href=\"https://www.perl.com/article/the-trouble-with-reference-counting\">The Trouble with Reference Counting</a> by David Farrell is also very interesting.",
+      "Talking about book, I would recommend you take a look at <a href=\"https://leanpub.com/perl_new_features\">Perl New Features</a> by brian d foy. This book will take you to a memorable journey from Perl v5.10 to v5.32.",
+      "To all readers from England, enjoy the Monday bank holiday and rest of world start your week on a happy note starting with the weekly newsletter."
+   ],
+   "footer" : [
+   ],
+   "chapters" : [
+      {
+         "title" : "Sponsors",
+         "sponsor" : 1,
+         "entries" : [
+         ]
+      },
+      {
+         "title" : "Announcements",
+         "entries" : [
+            {
+               "title" : "Kent Fredric's CPAN distributions are available for adoption",
+               "author" : "neil_bowers",
+               "text" : "Neil appeal to all CPAN contributors if they are willing to adop Kent Fredric's distribution.",
+               "url" : "http://blogs.perl.org/users/neilb/2021/04/kent-fredrics-cpan-distributions.html",
+               "ts" : "2021.04.01"
+            },
+            {
+               "title" : "TPRCIC 2021 - Call for papers",
+               "author" : "nic_evans",
+               "text" : "The Perl and Raku Conference in the Cloud 2021 celebrates all things Perl and Raku from 8-10 June with group meetings (BOFs) on the Monday and Friday each side of the main event.",
+               "url" : "https://news.perlfoundation.org/post/tprcic2021callforpapers",
+               "ts" : "2021.04.03"
+            }
+         ]
+      },
+      {
+         "title" : "Articles",
+         "entries" : [
+            {
+               "title" : "Switch lots of things on at once",
+               "author" : "ben_bullock",
+               "text" : "Interesting blog by Ben talking about boiler pate solution.",
+               "url" : "http://blogs.perl.org/users/ben_bullock/2021/03/switch-lots-of-things-on-at-once.html",
+               "ts" : "2021.03.30"
+            },
+            {
+               "title" : "Security Issues in Perl IP Address distros",
+               "author" : "dave_rolsky",
+               "text" : "Security Issues in Perl IP Address distros.",
+               "url" : "https://blog.urth.org/2021/03/29/security-issues-in-perl-ip-address-distros/",
+               "ts" : "2021.03.29"
+            }
+         ]
+      },
+      {
+         "title" : "Discussion",
+         "entries" : [
+            {
+               "title" : "The Zen of Test Suites",
+               "author" : "curtis_ovid_poe",
+               "text" : "This should be serve as text for any beginner learning to code. I find it very useful and would definitely bookmark it for future reference.",
+               "url" : "https://dev.to/ovid/the-zen-of-test-suites-304f",
+               "ts" : "2021.03.30"
+            }
+         ]
+      },
+      {
+         "title" : "Web",
+         "entries" : [
+            {
+               "title" : "Monthly Report - March",
+               "author" : "mohammad_anwar",
+               "text" : "Following the tradition, here is my monthly report for March 2020.",
+               "url" : "http://blogs.perl.org/users/mohammad_s_anwar/2021/04/monthly-report---march-2.html",
+               "ts" : "2021.04.02"
+            }
+         ]
+      },
+      {
+         "title" : "CPAN",
+         "entries" : [
+            {
+               "title" : "CPAN Report 2020",
+               "author" : "neil_bowers",
+               "text" : "Neil came up with extensive report with regard to the activities on CPAN in the year 2020.",
+               "url" : "http://neilb.org/2021/03/03/cpan-report-2021.html",
+               "ts" : "2021.04.03"
+            },
+            {
+               "title" : "CPAN utils",
+               "author" : "thibault_duponchelle",
+               "text" : "Cool collection of CPAN utils ever.",
+               "url" : "https://dev.to/thibaultduponchelle/cpan-utils-4g4p",
+               "ts" : "2021.03.31"
+            },
+            {
+               "title" : "Distar - A CPAN Distribution Author Tool",
+               "author" : "graham_knop",
+               "text" : "Check out the introduction to Distar, new shiny handy tool for CPAN distribution author.",
+               "url" : "https://dev.to/haarg/distar-a-cpan-distribution-author-tool-5e95",
+               "ts" : "2021.03.31"
+            },
+            {
+               "author" : "flavio_poletti",
+               "text" : "Flavio contribution to Crypt::LE is very handy. Please checkout it.",
+               "title" : "A pull request for Crypt::LE",
+               "url" : "https://github.polettix.it/ETOOBUSY/2021/03/30/crypt-le-pr/",
+               "ts" : "2021.03.30"
+            },
+            {
+               "author" : "flavio_poletti",
+               "text" : "Flavio shared the power of Date::Parse. Find out yourself the secret.",
+               "title" : "Date::Parse",
+               "url" : "https://github.polettix.it/ETOOBUSY/2021/04/04/date-parse/",
+               "ts" : "2021.04."
+            }
+         ]
+      },
+      {
+         "title" : "Perl Weekly Challenge",
+         "header" : "<a href=\"https://perlweeklychallenge.org/\">The Weekly Challenge</a> by <a href=\"http://www.manwar.org/\">Mohammad Anwar</a> will help you step out from your comfort-zone. You can even win prize money of $50 Amazon voucher by participating in the weekly challenge. We pick one winner at the end of each month among all the contributors during that month. The monthly prize is kindly sponsored by Peter Sergeant of <a href=\"https://perl.careers/\">PerlCareers</a>.",
+         "entries" : [
+            {
+               "author" : "mohammad_anwar",
+               "tags" : [],
+               "text" : "Welcome a new week with couple of fun tasks \"Self-descriptive Numbers\" and \"List Methods\". If you are new to the weekly challenge then why not join us and have fun every week. For more information, please read <a href=\"https://perlweeklychallenge.org/faq\">FAQ</a> page.",
+               "title" : "The Weekly Challenge - 107",
+               "ts" : "2021.04.05",
+               "url" : "https://perlweeklychallenge.org/blog/perl-weekly-challenge-107"
+            },
+            {
+               "author" : "mohammad_anwar",
+               "tags" : [],
+               "text" : "Enjoy a quick recap of last week's contributions by Team PWC dealing with the \"Maximum Gap\" and \"Decimal String\" tasks in Perl and Raku. You will find plenty of solutions to keep you busy.",
+               "title" : "RECAP - The Weekly Challenge - 106",
+               "ts" : "2021.04.05",
+               "url" : "https://perlweeklychallenge.org/blog/recap-challenge-106"
+            },
+            {
+               "author" : "aaron_smith",
+               "tags" : [],
+               "text" : "Once again, Aaron shared some cool Raku magic. Thanks and keep it up.",
+               "title" : "Perl Weekly Challenge 106",
+               "ts" : "2021.03.29",
+               "url" : "https://aaronreidsmith.github.io/blog/perl-weekly-challenge-106/"
+            },
+            {
+               "author" : "abigail",
+               "tags" : [],
+               "text" : "Abigail once again showing off his skill and presented his solutions in an elegant blog.",
+               "title" : "Perl Weekly Challenge 106: Maximum Gap",
+               "ts" : "2021.04.04",
+               "url" : "https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-106-1.html"
+            },
+            {
+               "author" : "abigail",
+               "tags" : [],
+               "text" : "Abigail discussion about the Decimal String is too technical and worth reading. Thanks for sharing the knowledge.",
+               "title" : "Perl Weekly Challenge 106: Decimal String",
+               "ts" : "2021.04.04",
+               "url" : "https://abigail.github.io/HTML/Perl-Weekly-Challenge/week-106-2.html"
+            },
+            {
+               "author" : "adam_russell",
+               "tags" : [],
+               "text" : "Adam's note section for the Decimal String task is eye opener for me. I will go back later to get the better understanding.",
+               "title" : "Recursion and Repeated Decimals: The Weekly Challenge 106",
+               "ts" : "2021.04.04",
+               "url" : "http://www.rabbitfarm.com/cgi-bin/blosxom/perl/2021/04/04"
+            },
+            {
+               "author" : "arne_sommer",
+               "tags" : [],
+               "text" : "Arne always presents his case with reference document which gives you the complete picture. Keep it up.",
+               "title" : "String the Gap with Raku",
+               "ts" : "2021.04.04",
+               "url" : "https://raku-musings.com/string-gap.html"
+            },
+            {
+               "author" : "dave_jacoby",
+               "tags" : [],
+               "text" : "Dave raised the notorious issue when printing decimal fraction using sprintf().",
+               "title" : "Just Got Poked: Perl Weekly Challenge 106 and Other News",
+               "ts" : "2021.04.03",
+               "url" : "https://jacoby.github.io/2021/04/03/just-got-poked-perl-weekly-challenge-106-and-other-news.html"
+            },
+            {
+               "author" : "flavio_poletti",
+               "tags" : [],
+               "text" : "Flavio style of blogging is really cool as you not get the fine solution but also fun discussion as well.",
+               "title" : "PWC106 - Maximum Gap",
+               "ts" : "2021.03.31",
+               "url" : "https://github.polettix.it/ETOOBUSY/2021/03/31/pwc106-maximum-gap/"
+            },
+            {
+               "author" : "flavio_poletti",
+               "tags" : [],
+               "text" : "Flavio took the pain to go beyond what was expected in the task. I need to revisit to get to the bottom of it.",
+               "title" : "PWC106 - Decimal String",
+               "ts" : "2021.04.01",
+               "url" : "https://github.polettix.it/ETOOBUSY/2021/04/01/pwc106-decimal-string/"
+            },
+            {
+               "author" : "laurent_rosenfeld",
+               "tags" : [],
+               "text" : "Laurent showing his expertise in multiple languages in the blog. Incredible.",
+               "title" : "Perl Weekly Challenge 106: Maximum Gap and Decimal String",
+               "ts" : "2021.04.02",
+               "url" : "http://blogs.perl.org/users/laurent_r/2021/04/perl-weekly-challenge-106-maximum-gap-and-decimal-string.html"
+            },
+            {
+               "author" : "luca_ferrari",
+               "tags" : [],
+               "text" : "Luca used his Raku skill and made both tasks look like school boy task. Simply the best.",
+               "title" : "Perl Weekly Challenge 106: quick and easy",
+               "ts" : "2021.03.29",
+               "url" : "https://fluca1978.github.io/2021/03/29/PerlWeeklyChallenge106.html"
+            },
+            {
+               "author" : "roger_bell_west",
+               "tags" : [],
+               "text" : "Roger shared the cool algorithm to deal with the Decimal String task. Thanks for sharing.",
+               "title" : "Perl Weekly Challenge 106: Maximum Decimal",
+               "ts" : "2021.03.31",
+               "url" : "https://blog.firedrake.org/archive/2021/03/Perl_Weekly_Challenge_106__Maximum_Decimal.html"
+            },
+            {
+               "author" : "simon_green",
+               "tags" : [],
+               "text" : "Simon shared his research while working on Decimal String task. We all get it for FREE, thank you.",
+               "title" : "Weekly Challenge 106",
+               "ts" : "2021.04.04",
+               "url" : "https://dev.to/simongreennet/weekly-challenge-106-1cn7"
+            },
+            {
+               "author" : "luis_mochan",
+               "tags" : [],
+               "text" : "Just loved the hack for the Decimal String task. Beauty.",
+               "title" : "Perl Weekly Challenge 106.",
+               "ts" : "2021.04.",
+               "url" : "https://wlmb.github.io/2021/03/29/PWC106/"
+            }
+         ]
+      },
+      {
+         "title" : "Perl Tutorial",
+         "header" : "A section for newbies and for people who need some refreshing of their Perl knowledge. If you have questions or suggestions about the articles, let me know and I'll try to make the necessary changes. The included articles are from the <a href=\"https://perlmaven.com/perl-tutorial\">Perl Maven Tutorial</a> and are part of the <a href=\"https://leanpub.com/perl-maven\">Perl Maven eBook</a>.",
+         "entries" : [
+         ]
+      },
+      {
+         "title" : "Videos",
+         "entries" : [
+            {
+               "author" : "lance_wicks",
+               "tags" : [],
+               "text" : "",
+               "title" : "Live Video - Maximum Gap by Lance Wicks",
+               "ts" : "2021.04.",
+               "url" : "https://www.youtube.com/watch?v=E4Bwh-FVTns"
+            },
+            {
+               "author" : "mohammad_anwar",
+               "tags" : [],
+               "text" : "",
+               "title" : "Live Video - Fun Time by Mohammad Anwar",
+               "ts" : "2021.04.04",
+               "url" : "https://youtu.be/o67LcSa2bC8"
+            },
+            {
+               "author" : "mohammad_anwar",
+               "tags" : [],
+               "text" : "",
+               "title" : "Live Video - Maximum Gap by Mohammad Anwar",
+               "ts" : "2021.04.03",
+               "url" : "https://youtu.be/h8NppRqAZaE"
+            }
+         ]
+      },
+      {
+         "title" : "Rakudo",
+         "entries" : [
+            {
+               "author" : "liztormato",
+               "tags" : [],
+               "text" : "",
+               "title" : "2021.13 Games Pop",
+               "ts" : "2021.03.29",
+               "url" : "https://rakudoweekly.blog/2021/03/29/2021-13-games-pop/"
+            }
+         ]
+      },
+      {
+         "title" : "Training",
+         "entries" : [
+         ]
+      },
+      {
+         "title" : "Weekly collections",
+         "entries" : [
+              {
+                  "title" : "NICEPERL's lists",
+                  "author" : "miguel_prz",
+                  "url" : "http://niceperl.blogspot.com/",
+                  "text" : "<a href=\"https://niceperl.blogspot.com/2021/04/cccxxxv-12-cpan-great-modules-released.html\">Great modules released last week</a>;<br><a href=\"https://niceperl.blogspot.com/2021/04/cdlxi-metacpan-weekly-report-mojolicious.html\">MetaCPAN weekly report</a>;<br><a href=\"https://niceperl.blogspot.com/2021/04/cdlxxxiv-stackoverflow-perl-report.html\">StackOverflow Perl report</a>.",
+                  "ts" : "2021.04.03"
+              }
+         ]
+      },
+      {
+         "title" : "The corner of Gabor",
+         "header" : "A couple of entries sneaked in by Gabor.",
+         "entries" : [
+         ]
+      },
+      {
+         "title" : "Events",
+         "entries" : [
+            {
+               "text" : "Wednesday, April 14, 2021",
+               "title" : "Purdue Perl Mongers - HackLafayette",
+               "ts" : "2021.04.14",
+               "url" : "https://www.meetup.com/hacklafayette/"
+            },
+            {
+               "text" : "Thursday, April 22, 2021",
+               "title" : "Toronto Perl Mongers Online Meeting",
+               "ts" : "2021.04.22",
+               "url" : "https://www.meetup.com/Toronto-Perl-Mongers/"
+            },
+            {
+               "author" : "",
+               "text" : "Online 9-11 June 2021.",
+               "title" : "The Perl and Raku Conference in the Cloud 2021 ",
+               "ts" : "2021.06.09",
+               "url" : "https://news.perlfoundation.org/post/savethedatetprc2021"
+            }
+         ]
+      }
+   ]
+}
