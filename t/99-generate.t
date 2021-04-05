@@ -15,6 +15,9 @@ my $out = qx{$^X bin/generate.pl web all};
 
 is $out, '', 'out is empty';
 
+# Disregard changed to the ical file that depend on the file modify date and thus might be different after cloning the file from the repo
+qx{git checkout docs/perlweekly.ical};
+
 my $status_after = $git ? qx{git status} : '';
 diag $status_after;
 

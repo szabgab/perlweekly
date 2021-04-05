@@ -8,12 +8,19 @@ use autodie;
 binmode( STDOUT, ":encoding(UTF-8)" );
 binmode( STDERR, ":encoding(UTF-8)" );
 
+use Carp::Always;
 use Cwd qw(abs_path);
 use Data::Dumper qw(Dumper);
 use File::Basename qw(basename dirname);
 use Path::Tiny qw(path);
 use JSON qw(from_json);
 use List::Util qw(max);
+use Data::ICal                 ();
+use Data::ICal::Entry::Event   ();
+use DateTime::Format::Strptime ();
+use DateTime::Format::ICal     ();
+use DateTime::Format::W3CDTF   ();
+use DateTime                   ();
 
 use lib dirname( dirname abs_path($0) ) . '/lib';
 use PerlWeekly qw(get_authors);
@@ -370,13 +377,50 @@ sub metacpan_page {
 
 sub events_page {
 	my $events;
-	eval { $events = from_json scalar path("src/events.json")->slurp_utf8; };
+	my $filepath = path("src/events.json");
+	eval { $events = from_json scalar $filepath->slurp_utf8; };
 	if ($@) {
 		die "JSON exception in src/events.json\n\n$@";
 	}
+	my $modify_time = ( stat($filepath) )[9];
+	my $changed     = DateTime->from_epoch( epoch => $modify_time );
+
+	my $w3c      = DateTime::Format::W3CDTF->new( strict => 1 );
+	my $calendar = Data::ICal->new;
+	my $now      = DateTime->now;
+	my @entries  = grep { $w3c->parse_datetime( $_->{begin} ) > $now }
+		@{ $events->{entries} };
 	my $t = PerlWeekly::Template->new();
-	$t->process( 'tt/events.tt', { events => $events->{entries} },
-		"$dir/events.html" )
+	$t->process( 'tt/events.tt', { events => \@entries }, "$dir/events.html" )
 		or die $t->error;
+
+	for my $entry (@entries) {
+		my $event = Data::ICal::Entry::Event->new;
+
+		my $dstart = $w3c->parse_datetime( $entry->{begin} );
+		my ( $end, $duration );
+		if ( $entry->{end} ) {
+			$end = DateTime::Format::ICal->format_datetime(
+				$w3c->parse_datetime( $entry->{end} ) );
+		}
+		else {
+			$duration = DateTime::Format::ICal->format_duration(
+				DateTime::Duration->new( hours => 2, minutes => 0 ) );
+		}
+
+		$event->add_properties(
+			summary     => $entry->{title},
+			description => join( "\n\n", $entry->{url}, $entry->{text} ),
+			dtstart     => DateTime::Format::ICal->format_datetime($dstart),
+			location    => $entry->{url},
+			dtstamp     => DateTime::Format::ICal->format_datetime($changed),
+			uid         => DateTime::Format::ICal->format_datetime($dstart)
+				. $entry->{url},
+			( $end ? ( dtend => $end ) : ( duration => $duration ) ),
+		);
+		$calendar->add_entry($event);
+	}
+	open my $fh, '>', 'docs/perlweekly.ical' or die;
+	print $fh $calendar->as_string;
 }
 
