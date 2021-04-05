@@ -410,6 +410,9 @@ sub events_page {
 			description => join( "\n\n", $entry->{url}, $entry->{text} ),
 			dtstart     => DateTime::Format::ICal->format_datetime($dstart),
 			location    => $entry->{url},
+			dtstamp     => DateTime::Format::ICal->format_datetime($now),
+			uid         => DateTime::Format::ICal->format_datetime($dstart)
+				. $entry->{url},
 			( $end ? ( dtend => $end ) : ( duration => $duration ) ),
 		);
 		$calendar->add_entry($event);
