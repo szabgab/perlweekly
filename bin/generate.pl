@@ -394,10 +394,22 @@ sub events_page {
 	$t->process( 'tt/events.tt', { events => \@entries }, "$dir/events.html" )
 		or die $t->error;
 
+	my $prev_date;
 	for my $entry (@entries) {
 		my $event = Data::ICal::Entry::Event->new;
 
 		my $dstart = $w3c->parse_datetime( $entry->{begin} );
+
+		# Verify starting dates are in order
+		if ( not $prev_date ) {
+			$prev_date = $dstart;
+		}
+		if ( $dstart < $prev_date ) {
+			die
+				"'$entry->{title}' is scheduled before the previous entry in events.json";
+		}
+		$prev_date = $dstart;
+
 		my ( $end, $duration );
 		if ( $entry->{end} ) {
 			$end = DateTime::Format::ICal->format_datetime(
