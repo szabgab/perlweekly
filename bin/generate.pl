@@ -35,7 +35,7 @@ for my $name ( 'archive', 'a', 'tags' ) {
 my ( $target, $issue ) = @ARGV;
 if (   not $target
 	or not $issue
-	or $target !~ /^(mail|text|web|rss)$/
+	or $target !~ /^(mail|text|web|rss|indexrss)$/
 	or not $issue )
 {
 	warn <<"END_USAGE";
@@ -44,6 +44,7 @@ Usage: $0
    mail  ISSUE          an html version to be sent by e-mail
    text  ISSUE          a text version to be sent by e-mail
    rss   ISSUE          (no output)
+   indexrss ISSUE       (no output)
 
    ISSUE is a number or the word sources
 
@@ -63,6 +64,34 @@ if ( open my $fh, '<', 'src/count.txt' ) {
 	chomp $sub_row;
 	( undef, $count ) = split /\;/, $sub_row, 2;
 	close $fh;
+}
+
+if ( $target eq 'indexrss' ) {
+	my @issues;
+	my $latest;
+
+	my ($min, $max);
+	if ( $issue eq 'latest' ) {
+		$max = max grep {/^\d+$/}
+			map { substr( basename($_), 0, -5 ) } glob 'src/*.json';
+	} else {
+		$max = $issue;
+	}
+
+	my $issues_in_index = 10;
+	$min = $max - $issues_in_index + 1;
+
+	for ( $min .. $max ) {
+		unshift @issues, PerlWeekly::Issue->new( $_, $target, $dir );
+	}
+
+	my $rss = $issues[0]->process_rss_header;
+	for (@issues) {
+		$rss->add_item( %{ $_->process_rss_header_item($rss) } );
+	}
+
+	$rss->save("$dir/index.rss");
+	exit;
 }
 
 if ( $target ne 'web' ) {
@@ -435,4 +464,3 @@ sub events_page {
 	open my $fh, '>', 'docs/perlweekly.ical' or die;
 	print $fh $calendar->as_string;
 }
-
