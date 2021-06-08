@@ -213,15 +213,12 @@ sub process_tt {
 	$t->process( $tmpl, $self, @_ ) or die $t->error;
 }
 
-sub process_rss {
+sub process_rss_header {
 	my $self = shift;
 
 	my $url        = 'http://perlweekly.com/';
 	my $rss        = XML::RSS->new( version => '1.0' );
 	my $year       = 1900 + (localtime)[5];
-	my $dateparser = DateTime::Format::W3CDTF->new;
-	my $dt  = $dateparser->parse_datetime("$self->{date}T10:00:00+00:00");
-	my $dir = $self->{dir};
 
 	#die $dt;
 	$rss->channel(
@@ -241,12 +238,21 @@ sub process_rss {
 		}
 	);
 
+	return $rss;
+}
+
+sub process_rss_header_item {
+	my $self = shift;
+	my ($rss) = @_;
+
+	my $dateparser = DateTime::Format::W3CDTF->new;
+	my $dt  = $dateparser->parse_datetime("$self->{date}T10:00:00+00:00");
+
 	my $text = join "\n", map {"<p>$_</p>"} @{ $self->{header} };
 
-	my @items;
-	push @items, {
+	return {
 		title       => "#$self->{issue} - $self->{subject}",
-		link        => "${url}archive/$self->{issue}.html",
+		link        => "$rss->{channel}{link}archive/$self->{issue}.html",
 		description => $text,
 		dc          => {
 
@@ -255,6 +261,20 @@ sub process_rss {
 			subject => 'list of tags?',
 		}
 	};
+}
+
+sub process_rss {
+	my $self = shift;
+
+	my $rss = $self->process_rss_header;
+
+	my $text = join "\n", map {"<p>$_</p>"} @{ $self->{header} };
+
+	my @items;
+	push @items, $self->process_header_item($rss);
+
+	my $dateparser = DateTime::Format::W3CDTF->new;
+	my $dt  = $dateparser->parse_datetime("$self->{date}T10:00:00+00:00");
 
 	#    $self->{header};
 	foreach my $ch ( @{ $self->{chapters} } ) {
@@ -288,7 +308,7 @@ sub process_rss {
 	}
 
 	#rss_item_count();
-	$rss->save("$dir/perlweekly.rss");
+	$rss->save("$self->{dir}/perlweekly.rss");
 	return;
 
 	#return $rss->as_string;
