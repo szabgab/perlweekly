@@ -271,7 +271,7 @@ sub process_rss {
 	my $text = join "\n", map {"<p>$_</p>"} @{ $self->{header} };
 
 	my @items;
-	push @items, $self->process_header_item($rss);
+	push @items, $self->process_rss_header_item($rss);
 
 	my $dateparser = DateTime::Format::W3CDTF->new;
 	my $dt  = $dateparser->parse_datetime("$self->{date}T10:00:00+00:00");
