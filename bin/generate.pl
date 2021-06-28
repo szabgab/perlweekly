@@ -67,7 +67,7 @@ if ( open my $fh, '<', 'src/count.txt' ) {
 }
 
 if ( $target eq 'indexrss' ) {
-    generate_index_rss($issue);
+	generate_index_rss($issue);
 	exit;
 }
 
@@ -236,7 +236,7 @@ END_REGISTER
 	$t->process( 'tt/sitemap.tt', { pages => \@pages }, "$dir/sitemap.xml" )
 		or die $t->error;
 
-    generate_index_rss('latest');
+	generate_index_rss('latest');
 }
 else {
 	PerlWeekly::Issue->new( $issue, $target, $dir )
@@ -444,16 +444,17 @@ sub events_page {
 }
 
 sub generate_index_rss {
-    my ($issue) = @_;
+	my ($issue) = @_;
 
 	my @issues;
 	my $latest;
 
-	my ($min, $max);
+	my ( $min, $max );
 	if ( $issue eq 'latest' ) {
 		$max = max grep {/^\d+$/}
 			map { substr( basename($_), 0, -5 ) } glob 'src/*.json';
-	} else {
+	}
+	else {
 		$max = $issue;
 	}
 
@@ -471,5 +472,4 @@ sub generate_index_rss {
 
 	$rss->save("$dir/index.rss");
 }
-
 

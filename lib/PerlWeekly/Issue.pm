@@ -216,14 +216,14 @@ sub process_tt {
 sub process_rss_header {
 	my $self = shift;
 
-	my $url        = 'http://perlweekly.com/';
-	my $rss        = XML::RSS->new( version => '1.0' );
-	my $year       = 1900 + (localtime)[5];
+	my $url  = 'http://perlweekly.com/';
+	my $rss  = XML::RSS->new( version => '1.0' );
+	my $year = 1900 + (localtime)[5];
 
 	#die $dt;
 	$rss->channel(
-		title       => 'Perl Weekly newsletter',
-		link        => $url,
+		title => 'Perl Weekly newsletter',
+		link  => $url,
 		description =>
 			'A free, once a week e-mail round-up of hand-picked news and articles about Perl.',
 		dc => {
@@ -246,7 +246,7 @@ sub process_rss_header_item {
 	my ($rss) = @_;
 
 	my $dateparser = DateTime::Format::W3CDTF->new;
-	my $dt  = $dateparser->parse_datetime("$self->{date}T10:00:00+00:00");
+	my $dt = $dateparser->parse_datetime("$self->{date}T10:00:00+00:00");
 
 	my $text = join "\n", map {"<p>$_</p>"} @{ $self->{header} };
 
@@ -274,7 +274,7 @@ sub process_rss {
 	push @items, $self->process_rss_header_item($rss);
 
 	my $dateparser = DateTime::Format::W3CDTF->new;
-	my $dt  = $dateparser->parse_datetime("$self->{date}T10:00:00+00:00");
+	my $dt = $dateparser->parse_datetime("$self->{date}T10:00:00+00:00");
 
 	#    $self->{header};
 	foreach my $ch ( @{ $self->{chapters} } ) {

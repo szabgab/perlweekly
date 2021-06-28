@@ -49,7 +49,7 @@ my @entries = sort { $a->issued <=> $b->issued }
 
 for my $entry (@entries) {
 	$target->append(
-		join "\n",      '### ' . $entry->title,
+		join "\n", '### ' . $entry->title,
 		$entry->link,   eval { $entry->issued->ymd } || '????-??-??',
 		$entry->author, "\n\n",
 	);
