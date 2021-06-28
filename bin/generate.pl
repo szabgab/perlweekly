@@ -67,30 +67,7 @@ if ( open my $fh, '<', 'src/count.txt' ) {
 }
 
 if ( $target eq 'indexrss' ) {
-	my @issues;
-	my $latest;
-
-	my ($min, $max);
-	if ( $issue eq 'latest' ) {
-		$max = max grep {/^\d+$/}
-			map { substr( basename($_), 0, -5 ) } glob 'src/*.json';
-	} else {
-		$max = $issue;
-	}
-
-	my $issues_in_index = 10;
-	$min = $max - $issues_in_index + 1;
-
-	for ( $min .. $max ) {
-		unshift @issues, PerlWeekly::Issue->new( $_, $target, $dir );
-	}
-
-	my $rss = $issues[0]->process_rss_header;
-	for (@issues) {
-		$rss->add_item( %{ $_->process_rss_header_item($rss) } );
-	}
-
-	$rss->save("$dir/index.rss");
+    generate_index_rss($issue);
 	exit;
 }
 
@@ -259,6 +236,7 @@ END_REGISTER
 	$t->process( 'tt/sitemap.tt', { pages => \@pages }, "$dir/sitemap.xml" )
 		or die $t->error;
 
+    generate_index_rss('latest');
 }
 else {
 	PerlWeekly::Issue->new( $issue, $target, $dir )
@@ -464,3 +442,34 @@ sub events_page {
 	open my $fh, '>', 'docs/perlweekly.ical' or die;
 	print $fh $calendar->as_string;
 }
+
+sub generate_index_rss {
+    my ($issue) = @_;
+
+	my @issues;
+	my $latest;
+
+	my ($min, $max);
+	if ( $issue eq 'latest' ) {
+		$max = max grep {/^\d+$/}
+			map { substr( basename($_), 0, -5 ) } glob 'src/*.json';
+	} else {
+		$max = $issue;
+	}
+
+	my $issues_in_index = 10;
+	$min = $max - $issues_in_index + 1;
+
+	for ( $min .. $max ) {
+		unshift @issues, PerlWeekly::Issue->new( $_, $target, $dir );
+	}
+
+	my $rss = $issues[0]->process_rss_header;
+	for (@issues) {
+		$rss->add_item( %{ $_->process_rss_header_item($rss) } );
+	}
+
+	$rss->save("$dir/index.rss");
+}
+
+
