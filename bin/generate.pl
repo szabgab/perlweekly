@@ -220,7 +220,7 @@ END_REGISTER
 	}
 
 	# Create sitemap.xml
-	my $URL   = 'http://perlweekly.com';
+	my $URL   = 'https://perlweekly.com';
 	my @pages = { filename => "$URL/" };
 	push @pages, map { { filename => "$URL/$_" } } qw(
 		archive/

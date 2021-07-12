@@ -3,7 +3,7 @@
 
 Website of the Perl Weekly newsletter
 
-http://perlweekly.com/
+https://perlweekly.com/
 
 The source format
 ==================

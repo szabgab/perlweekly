@@ -216,7 +216,7 @@ sub process_tt {
 sub process_rss_header {
 	my $self = shift;
 
-	my $url  = 'http://perlweekly.com/';
+	my $url  = 'https://perlweekly.com/';
 	my $rss  = XML::RSS->new( version => '1.0' );
 	my $year = 1900 + (localtime)[5];
 
