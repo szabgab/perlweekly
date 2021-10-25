@@ -3,7 +3,7 @@
 
 Website of the Perl Weekly newsletter
 
-http://perlweekly.com/
+https://perlweekly.com/
 
 The source format
 ==================
@@ -78,7 +78,8 @@ The 'editorial' process
 Gabor:
 -----
 
-I follow a bunch of RSS/Atom feeds of blogs. Look at some other resource such as http://blogs.perl.org  http://www.reddit.com/r/perl and probably a few others. I am subscribed to "perl" on Google Alerts. Sometimes people send me e-mails. As a side note, I am also posting quite a few links to https://twitter.com/perlweekly during the week, so if you are looking for a source for ideas, you can use that too.
+I follow a bunch of RSS/Atom feeds of blogs. Look at some other resources such as http://blogs.perl.org  http://www.reddit.com/r/perl and probably a few others. I am subscribed to "perl" on Google Alerts. Sometimes people send me e-mails. As a side note, I am also posting quite a few links to https://twitter.com/perlweekly during the week, so if you are looking for a source for ideas, you can use that too.
+I also check [The Perl PLanetarium](https://perl.theplanetarium.org/)
 
 When I want to start preparing the next edition (and this can happen the day after the previous edition, or if I am too busy, then the day before the next edition is due) I copy  src/next.json to the appropriate src/###.json and manually update it.
 

@@ -35,7 +35,7 @@ for my $name ( 'archive', 'a', 'tags' ) {
 my ( $target, $issue ) = @ARGV;
 if (   not $target
 	or not $issue
-	or $target !~ /^(mail|text|web|rss)$/
+	or $target !~ /^(mail|text|web|rss|indexrss)$/
 	or not $issue )
 {
 	warn <<"END_USAGE";
@@ -44,6 +44,7 @@ Usage: $0
    mail  ISSUE          an html version to be sent by e-mail
    text  ISSUE          a text version to be sent by e-mail
    rss   ISSUE          (no output)
+   indexrss ISSUE       (no output)
 
    ISSUE is a number or the word sources
 
@@ -63,6 +64,11 @@ if ( open my $fh, '<', 'src/count.txt' ) {
 	chomp $sub_row;
 	( undef, $count ) = split /\;/, $sub_row, 2;
 	close $fh;
+}
+
+if ( $target eq 'indexrss' ) {
+	generate_index_rss($issue);
+	exit;
 }
 
 if ( $target ne 'web' ) {
@@ -214,7 +220,7 @@ END_REGISTER
 	}
 
 	# Create sitemap.xml
-	my $URL   = 'http://perlweekly.com';
+	my $URL   = 'https://perlweekly.com';
 	my @pages = { filename => "$URL/" };
 	push @pages, map { { filename => "$URL/$_" } } qw(
 		archive/
@@ -230,6 +236,7 @@ END_REGISTER
 	$t->process( 'tt/sitemap.tt', { pages => \@pages }, "$dir/sitemap.xml" )
 		or die $t->error;
 
+	generate_index_rss('latest');
 }
 else {
 	PerlWeekly::Issue->new( $issue, $target, $dir )
@@ -394,10 +401,22 @@ sub events_page {
 	$t->process( 'tt/events.tt', { events => \@entries }, "$dir/events.html" )
 		or die $t->error;
 
+	my $prev_date;
 	for my $entry (@entries) {
 		my $event = Data::ICal::Entry::Event->new;
 
 		my $dstart = $w3c->parse_datetime( $entry->{begin} );
+
+		# Verify starting dates are in order
+		if ( not $prev_date ) {
+			$prev_date = $dstart;
+		}
+		if ( $dstart < $prev_date ) {
+			die
+				"'$entry->{title}' is scheduled before the previous entry in events.json";
+		}
+		$prev_date = $dstart;
+
 		my ( $end, $duration );
 		if ( $entry->{end} ) {
 			$end = DateTime::Format::ICal->format_datetime(
@@ -422,5 +441,35 @@ sub events_page {
 	}
 	open my $fh, '>', 'docs/perlweekly.ical' or die;
 	print $fh $calendar->as_string;
+}
+
+sub generate_index_rss {
+	my ($issue) = @_;
+
+	my @issues;
+	my $latest;
+
+	my ( $min, $max );
+	if ( $issue eq 'latest' ) {
+		$max = max grep {/^\d+$/}
+			map { substr( basename($_), 0, -5 ) } glob 'src/*.json';
+	}
+	else {
+		$max = $issue;
+	}
+
+	my $issues_in_index = 10;
+	$min = $max - $issues_in_index + 1;
+
+	for ( $min .. $max ) {
+		unshift @issues, PerlWeekly::Issue->new( $_, $target, $dir );
+	}
+
+	my $rss = $issues[0]->process_rss_header;
+	for (@issues) {
+		$rss->add_item( %{ $_->process_rss_header_item($rss) } );
+	}
+
+	$rss->save("$dir/index.rss");
 }
 
