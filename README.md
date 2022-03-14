@@ -132,6 +132,20 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 * Update Perl Tidy: `cpanm Code::TidyAll  Perl::Tidy`
 * Run `tidyall -a --refresh-cache` to make the Perl source code tidy.
 
+* Open an issue on GitHub asking for copy-editing and mentining the volunteers:
+
+```
+Hi, the new Perl Weekly edition is ready for copy-editing. If you have the time to do it,
+please comment on this issue so the others will see that someone already works on it and we
+avoid duplicate work and conflicting PRs. If you'd like to de-volunteer, please tell @szabgab
+so next time he won't include you. Thank you.
+@bigpresh, @hbarnard, @jjatria, @knowledgejunkie, @matthewpersico
+
+Please only edit the source file:
+
+```
+
+
 * Post on [Reddit](https://www.reddit.com/r/perl/)
 * Post on [Twitter](https://twitter.com/perlweekly) #perl #rakulang
 * Post on [LinkedIn - Perl Mongers](https://www.linkedin.com/groups/40830/)
