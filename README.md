@@ -140,7 +140,7 @@ please comment on this issue so the others will see that someone already works o
 avoid duplicate work and conflicting PRs. If you'd like to de-volunteer, please tell @szabgab
 so next time he won't include you. Thank you.
 
-@bigpresh, @hbarnard, @jjatria, @knowledgejunkie, @matthewpersico
+@bigpresh, @jjatria, @knowledgejunkie, @matthewpersico
 
 Please only edit the source file:
 
