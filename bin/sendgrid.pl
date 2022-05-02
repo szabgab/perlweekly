@@ -137,6 +137,8 @@ sub sendmail {
 		->add_content( 'text/plain', $text )
 		->add_content( 'text/html', $html )
 		->add_envelope( to => [$to] )
+        ->click_tracking(0)
+        ->open_tracking(0)
         ->send;
 	return $result;
 }
