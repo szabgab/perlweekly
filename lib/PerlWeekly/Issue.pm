@@ -290,9 +290,7 @@ sub process_rss {
 				link        => $e->{url},
 				description => $e->{text},
 				dc          => {
-					date => $dateparser->format_datetime($dt)
-					,    #"${ts}T00:00:00+00:00",
-						 #    subject => 'list of tags?',
+					date    => $dateparser->format_datetime($dt),
 				},
 			};
 		}
