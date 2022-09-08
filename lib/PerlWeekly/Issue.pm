@@ -82,22 +82,23 @@ sub new {
 }
 
 sub generate {
-	my $self   = shift;
-	my $target = shift;
-	my @out    = @_ ? shift : ();
+	my $self = shift;
+	my ( $target, @filename ) = @_;
 
 	$self->add_author_info;
 	$self->add_twitter;
 
-	return (
-		  $target eq 'web' ? $self->process_tt( 'tt/webpage.tt', @out )
-		: $target eq 'mail'
-		? $self->fixup_links->process_tt( 'tt/mail.tt', @out )
-		: $target eq 'text'
-		? $self->fixup_links->wrap_text->process_tt( 'tt/text.tt', @out )
-		: $target eq 'rss' ? $self->process_rss
-		:                    die "Unknown target '$target'\n"
-	);
+	return $self->process_rss if $target eq 'rss';
+
+	my $template
+		= $target eq 'web'  ? 'tt/webpage.tt'
+		: $target eq 'mail' ? 'tt/mail.tt'
+		: $target eq 'text' ? 'tt/text.tt'
+		: die "Unknown target '$target'\n";
+
+	$self->fixup_links if grep $target eq $_, qw( mail text );
+	$self->wrap_text if $target eq 'text';
+	$self->process_tt( $template, @filename );
 }
 
 sub add_twitter {
@@ -179,7 +180,6 @@ sub fixup_links {
 	foreach my $h ( @{ $self->{header} } ) {
 		$h =~ s{<a href="#\w+">([^<]+)</a>}{$1}g;
 	}
-	return $self;
 }
 
 sub wrap_text {
@@ -202,7 +202,6 @@ sub wrap_text {
 		$h = html2text($h);
 		$h = wrap( '', '', $h );
 	}
-	return $self;
 }
 
 sub process_tt {
@@ -255,10 +254,8 @@ sub process_rss_header_item {
 		link        => "$rss->{channel}{link}archive/$self->{issue}.html",
 		description => $text,
 		dc          => {
-
-	#    creator => '???', # TODO should be the author of the original article
 			date    => $dateparser->format_datetime($dt),
-			subject => 'list of tags?',
+			subject => 'editorial',
 		}
 	};
 }
@@ -292,11 +289,7 @@ sub process_rss {
 				link        => $e->{url},
 				description => $e->{text},
 				dc          => {
-
-	#    creator => '???', # TODO should be the author of the original article
-					date => $dateparser->format_datetime($dt)
-					,    #"${ts}T00:00:00+00:00",
-						 #    subject => 'list of tags?',
+					date    => $dateparser->format_datetime($dt),
 				},
 			};
 		}

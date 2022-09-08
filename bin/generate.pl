@@ -213,7 +213,7 @@ END_REGISTER
 	stats_page();
 
 	foreach my $f (
-		qw(thankyou unsubscribe promotion sponsors promoting-perl-events editor)
+		qw(thankyou unsubscribe promotion sponsors promoting-perl-events editor subscribe)
 		)
 	{
 		$t->process( "tt/$f.tt", {}, "$dir/$f.html" ) or die $t->error;
