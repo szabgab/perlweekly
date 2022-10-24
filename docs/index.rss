@@ -22,6 +22,7 @@
 <syn:updatePeriod>weekly</syn:updatePeriod>
 <items>
  <rdf:Seq>
+  <rdf:li rdf:resource="https://perlweekly.com/archive/587.html" />
   <rdf:li rdf:resource="https://perlweekly.com/archive/586.html" />
   <rdf:li rdf:resource="https://perlweekly.com/archive/585.html" />
   <rdf:li rdf:resource="https://perlweekly.com/archive/584.html" />
@@ -31,10 +32,22 @@
   <rdf:li rdf:resource="https://perlweekly.com/archive/580.html" />
   <rdf:li rdf:resource="https://perlweekly.com/archive/579.html" />
   <rdf:li rdf:resource="https://perlweekly.com/archive/578.html" />
-  <rdf:li rdf:resource="https://perlweekly.com/archive/577.html" />
  </rdf:Seq>
 </items>
 </channel>
+<item rdf:about="https://perlweekly.com/archive/587.html">
+<title>#587 - Continuous Integration for Perl modules</title>
+<link>https://perlweekly.com/archive/587.html</link>
+<description>&#x3C;p&#x3E;Hi there!&#x3C;/p&#x3E;
+&#x3C;p&#x3E;For years Perl was a long way ahead of the other languages in terms of testing the modules. The volunteers of the &#x3C;a href=&#x22;http://cpantesters.org/&#x22;&#x3E;CPAN Testers&#x3C;/a&#x3E; provide an excellent service. Every time a new module or a new version of an older module is uploaded to CPAN (via &#x3C;a href=&#x22;https://pause.perl.org/&#x22;&#x3E;PAUSE&#x3C;/a&#x3E;) within days and sometimes even within hours the CPAN Testers would download the new release, test it on their machines, and send a report to the author. Sometimes they would even open issues/tickets manually to report the problem and help the author(s) fix them.&#x3C;/p&#x3E;
+&#x3C;p&#x3E;These days, however, Open Source developers can use a number of free Continuous Integration systems that would give them feedback much sooner: On every push to GitHub or GitLab. They can run the author or release tests on these systems. They can configure to test other modules that use their module (reverse dependencies) to make sue the new changes don&#x27;t have a negative impact on these users. They can can even re-run all the tests every day making sure that changes in the dependencies of the module don&#x27;t break it. (CPAN Testers usually run the tests of a module only if you release a new version or if your module is a dependency of something that was released.)&#x3C;/p&#x3E;
+&#x3C;p&#x3E;By catching certain issues before they release a new version they provide a better experience to every user of CPAN and they also take some of the manual work off the shoulders of the CPAN Testers who are few.&#x3C;/p&#x3E;
+&#x3C;p&#x3E;For many years Travis-CI was the de-facto standard to set up CI for GitHub-based project. These days it is primarily GitHub Actions.&#x3C;/p&#x3E;
+&#x3C;p&#x3E;So, I have been on a quest to configure GitHub Actions to all the Perl projects where the author is interested. I have &#x3C;a href=&#x22;https://perlmaven.com/os&#x22;&#x3E;documented some of these&#x3C;/a&#x3E; and I have written on &#x3C;a href=&#x22;https://perlmaven.com/ci&#x22;&#x3E;Why and how to CI&#x3C;/a&#x3E;. I use the &#x3C;a href=&#x22;https://cpan-digger.perlmaven.com/&#x22;&#x3E;CPAN Digger&#x3C;/a&#x3E; to locate candidates, but if you&#x27;d like to get help with setting up CI, open an issue on your project and tag &#x3C;a href=&#x22;https://github.com/szabgab/&#x22;&#x3E;me&#x3C;/a&#x3E;. If you like my quest, feel free to &#x3C;a href=&#x22;https://szabgab.com/support.html&#x22;&#x3E;sponsor me&#x3C;/a&#x3E; so I&#x27;ll be able to allocate more time to this. Oh, and if your company needs help with CI and test automation, I offer that as a service.&#x3C;/p&#x3E;
+&#x3C;p&#x3E;Enjoy your week!&#x3C;/p&#x3E;</description>
+<dc:date>2022-10-24T10:00:00Z</dc:date>
+<dc:subject>editorial</dc:subject>
+</item>
 <item rdf:about="https://perlweekly.com/archive/586.html">
 <title>#586 - Perl and Camel</title>
 <link>https://perlweekly.com/archive/586.html</link>
@@ -166,20 +179,6 @@
 &#x3C;p&#x3E;Last but not the least, I would like to recommend &#x3C;a href=&#x22;https://leanpub.com/learning_perl_exercises&#x22;&#x3E;Learning Perl Exercises&#x3C;/a&#x3E; by &#x3C;strong&#x3E;brian d foy&#x3C;/strong&#x3E;. I am sure, you will find it handy.&#x3C;/p&#x3E;
 &#x3C;p&#x3E;Enjoy the rest of the newsletter.&#x3C;/p&#x3E;</description>
 <dc:date>2022-08-22T10:00:00Z</dc:date>
-<dc:subject>editorial</dc:subject>
-</item>
-<item rdf:about="https://perlweekly.com/archive/577.html">
-<title>#577 - Optimism and numbers</title>
-<link>https://perlweekly.com/archive/577.html</link>
-<description>&#x3C;p&#x3E;Hi there!&#x3C;/p&#x3E;
-&#x3C;p&#x3E;last week Mohammad expressed his optimism about Perl rising again. It&#x27;s nice to have a gut feeling about that, but I would also like to see the numbers. So I looked at the stats I&#x27;ve been collecting for a while: The number of &#x3C;a href=&#x22;https://szabgab.com/cpan-number-of-visits.html&#x22;&#x3E;visits to CPAN&#x3C;/a&#x3E;. More specifically these are the number of &#x22;entrances&#x22; to MetaCPAN (and in earlier times to SCO as well.) as measured by Google Analytics.&#x3C;/p&#x3E;
-&#x3C;p&#x3E;My assumption is that we can measure well the level of Perl usage by the number of visits to &#x3C;a href=&#x22;https://metacpan.org/&#x22;&#x3E;MetaCPAN&#x3C;/a&#x3E;.&#x3C;/p&#x3E;
-&#x3C;p&#x3E;The number for July 2022 does not indicate any (positive) changes, but it is probably too early to see any effects anyway.&#x3C;/p&#x3E;
-&#x3C;p&#x3E;However, looking at the numbers I noticed that there was a nice increase in the activity in 2012. Actually starting in August 2011. This increased activity lasted about a year then the decline continued and by 2014 the activity was below that of the 2011 level.&#x3C;/p&#x3E;
-&#x3C;p&#x3E;I could find 2 Perl-related events preceding the increased activity. In May 2011 the release of perl 5.14 and in July the opening of MetaCPAN. Neither seem to explain the change. So I am turning to you:&#x3C;/p&#x3E;
-&#x3C;p&#x3E;What other things happened in or out of the Perl community that might explain that sudden increase of visitors to CPAN?&#x3C;/p&#x3E;
-&#x3C;p&#x3E;Enjoy your week!&#x3C;/p&#x3E;</description>
-<dc:date>2022-08-15T10:00:00Z</dc:date>
 <dc:subject>editorial</dc:subject>
 </item>
 </rdf:RDF>
