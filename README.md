@@ -182,3 +182,5 @@ EDT -04:00
 EST -05:00
 
 PDT -07:00
+
+Sending edition 588 took 36 minutes with sendgrid
