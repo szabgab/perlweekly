@@ -94,6 +94,7 @@ sub generate {
 		= $target eq 'web'  ? 'tt/webpage.tt'
 		: $target eq 'mail' ? 'tt/mail.tt'
 		: $target eq 'text' ? 'tt/text.tt'
+		: $target eq 'md'   ? 'tt/md.tt'
 		: die "Unknown target '$target'\n";
 
 	$self->fixup_links if grep $target eq $_, qw( mail text );

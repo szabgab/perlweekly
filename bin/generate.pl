@@ -35,7 +35,7 @@ for my $name ( 'archive', 'a', 'tags' ) {
 my ( $target, $issue ) = @ARGV;
 if (   not $target
 	or not $issue
-	or $target !~ /^(mail|text|web|rss|indexrss)$/
+	or $target !~ /^(mail|text|md|web|rss|indexrss)$/
 	or not $issue )
 {
 	warn <<"END_USAGE";
@@ -43,6 +43,7 @@ Usage: $0
    web   ISSUE
    mail  ISSUE          an html version to be sent by e-mail
    text  ISSUE          a text version to be sent by e-mail
+   md    ISSUE          a markdown version to be posted on dev.to
    rss   ISSUE          (no output)
    indexrss ISSUE       (no output)
 

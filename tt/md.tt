@@ -1,0 +1,47 @@
+---
+title: Perl Weekly #[% issue %] - [% subject %]
+published: false
+description: 
+tags: perl
+# cover_image: https://direct_url_to_image.jpg
+# Use a ratio of 100:42 for best results.
+published_at: [% date %] 22:42 +0000
+canonical_url: https://perlweekly.com/archive/[% issue %].html
+series: perl-weekly
+---
+
+Originally published at [Perl Weekly [% issue %]](https://perlweekly.com/archive/[% issue %].html)
+
+[% FOR text IN header %]
+[% text %]
+[% END %]
+  --
+  Your editor: [% editor.name %].
+
+[% FOR ch IN chapters %]
+## [% ch.title %]
+[% IF ch.header %][% ch.header %][% END %]
+  [% FOR e IN ch.entries %]
+### [[% e.title %]]([% e.url %])
+
+[% e.text %]
+
+  [% END %]
+[% IF ch.footer %][% ch.footer %][% END %]
+---
+[% END %]
+
+[% FOR text IN footer %]
+[% text %]
+
+[% END %]
+
+You joined the Perl Weekly to get weekly e-mails about the Perl programming language and related topics.
+
+Want to see more? See the [archives](https://perlweekly.com/archive/) of all the issues.
+
+Not yet subscribed to the newsletter? [Join us free of charge](https://perlweekly.com/subscribe.html)!
+
+(C) Copyright [Gabor Szabo](https://szabgab.com/)
+The articles are copyright the respective authors.
+
