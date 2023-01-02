@@ -15,13 +15,14 @@
 <link>https://perlweekly.com/</link>
 <description>A free, once a week e-mail round-up of hand-picked news and articles about Perl.</description>
 <dc:language>en-us</dc:language>
-<dc:rights>Copyright 2011-2022, Gabor Szabo</dc:rights>
+<dc:rights>Copyright 2011-2023, Gabor Szabo</dc:rights>
 <dc:publisher>szabgab@gmail.com</dc:publisher>
 <syn:updateBase>2011-08-01T00:00+00:00</syn:updateBase>
 <syn:updateFrequency>1</syn:updateFrequency>
 <syn:updatePeriod>weekly</syn:updatePeriod>
 <items>
  <rdf:Seq>
+  <rdf:li rdf:resource="https://perlweekly.com/archive/597.html" />
   <rdf:li rdf:resource="https://perlweekly.com/archive/596.html" />
   <rdf:li rdf:resource="https://perlweekly.com/archive/595.html" />
   <rdf:li rdf:resource="https://perlweekly.com/archive/594.html" />
@@ -31,10 +32,22 @@
   <rdf:li rdf:resource="https://perlweekly.com/archive/590.html" />
   <rdf:li rdf:resource="https://perlweekly.com/archive/589.html" />
   <rdf:li rdf:resource="https://perlweekly.com/archive/588.html" />
-  <rdf:li rdf:resource="https://perlweekly.com/archive/587.html" />
  </rdf:Seq>
 </items>
 </channel>
+<item rdf:about="https://perlweekly.com/archive/597.html">
+<title>#597 - Happy New Year!</title>
+<link>https://perlweekly.com/archive/597.html</link>
+<description>&#x3C;p&#x3E;Hi there!&#x3C;/p&#x3E;
+&#x3C;p&#x3E;I hope you had a successful 2022 and you are ready for the next year. I certainly have lots of plans. As always. They are also changing a lot all the time. One of them is a new course I am working on called &#x3C;a href=&#x22;https://osdc.code-maven.com/&#x22;&#x3E;OSDC - Open Source Development Course&#x3C;/a&#x3E;. It is a hands-on course that covers git/GitHub/GitLab/Testing/CI using real-world open source projects. It is also not only a plan, I am starting the first session next Sunday. It will be given in Hebrew.&#x3C;/p&#x3E;
+&#x3C;p&#x3E;For the course I started to collect &#x3C;a href=&#x22;https://github.com/szabgab/open-source-by-corporations&#x22;&#x3E;Open Source projects developed by corporations&#x3C;/a&#x3E;. There are a few where the product is open source such as Redis and Elastic. There are others where the company shares some of its code as open source such as Netflix, Facebook, or Booking.com.&#x3C;/p&#x3E;
+&#x3C;p&#x3E;I&#x27;d like to ask for your help. Look around at your company and maybe other companies and let me know which one shares projects using an Open Source license. It would help me and the participants of this courses a lot. For the purpose of the course and for my collection the programming languages don&#x27;t matter.&#x3C;/p&#x3E;
+&#x3C;p&#x3E;However, if you can also point out Perl-based projects, that would be even better. Then I could feature these projects in the newsletter. Let&#x27;s start now with one I already found:&#x3C;/p&#x3E;
+&#x3C;p&#x3E;&#x3C;a href=&#x22;https://github.com/bookingcom/pakket&#x22;&#x3E;pakket&#x3C;/a&#x3E; by &#x3C;a href=&#x22;https://www.booking.com/&#x22;&#x3E;Booking.com&#x3C;/a&#x3E; is an Unopinionated Meta-Packaging System that allows you to manage dependencies. It works by trying to avoid work.&#x3C;/p&#x3E;
+&#x3C;p&#x3E;Enjoy your year!&#x3C;/p&#x3E;</description>
+<dc:date>2023-01-02T10:00:00Z</dc:date>
+<dc:subject>editorial</dc:subject>
+</item>
 <item rdf:about="https://perlweekly.com/archive/596.html">
 <title>#596 - New Year Resolution</title>
 <link>https://perlweekly.com/archive/596.html</link>
@@ -151,19 +164,6 @@
 &#x3C;p&#x3E;If you want to have fun and share your knowledge every week with others then please do join us here on &#x3C;a href=&#x22;https://theweeklychallenge.org&#x22;&#x3E;The Weekly Challenge&#x3C;/a&#x3E;. Also please don&#x27;t forget to checkout the experience of our &#x3C;a href=&#x22;https://theweeklychallenge.org/champions&#x22;&#x3E;champions&#x3C;/a&#x3E;.&#x3C;/p&#x3E;
 &#x3C;p&#x3E;Enjoy rest of the newsletter.&#x3C;/p&#x3E;</description>
 <dc:date>2022-10-31T10:00:00Z</dc:date>
-<dc:subject>editorial</dc:subject>
-</item>
-<item rdf:about="https://perlweekly.com/archive/587.html">
-<title>#587 - Continuous Integration for Perl modules</title>
-<link>https://perlweekly.com/archive/587.html</link>
-<description>&#x3C;p&#x3E;Hi there!&#x3C;/p&#x3E;
-&#x3C;p&#x3E;For years Perl was a long way ahead of the other languages in terms of testing the modules. The volunteers of the &#x3C;a href=&#x22;http://cpantesters.org/&#x22;&#x3E;CPAN Testers&#x3C;/a&#x3E; provide an excellent service. Every time a new module or a new version of an older module is uploaded to CPAN (via &#x3C;a href=&#x22;https://pause.perl.org/&#x22;&#x3E;PAUSE&#x3C;/a&#x3E;) within days and sometimes even within hours the CPAN Testers would download the new release, test it on their machines, and send a report to the author. Sometimes they would even open issues/tickets manually to report the problem and help the author(s) fix them.&#x3C;/p&#x3E;
-&#x3C;p&#x3E;These days, however, Open Source developers can use a number of free Continuous Integration systems that would give them feedback much sooner: On every push to GitHub or GitLab. They can run the author or release tests on these systems. They can configure to test other modules that use their module (reverse dependencies) to make sure the new changes don&#x27;t have a negative impact on these users. They can can even re-run all the tests every day making sure that changes in the dependencies of the module don&#x27;t break it. (CPAN Testers usually run the tests of a module only if you release a new version or if your module is a dependency of something that was released.)&#x3C;/p&#x3E;
-&#x3C;p&#x3E;By catching certain issues before they release a new version they provide a better experience to every user of CPAN and they also take some of the manual work off the shoulders of the CPAN Testers who are few.&#x3C;/p&#x3E;
-&#x3C;p&#x3E;For many years Travis-CI was the de-facto standard to set up CI for GitHub-based project. These days it is primarily GitHub Actions.&#x3C;/p&#x3E;
-&#x3C;p&#x3E;So, I have been on a quest to configure GitHub Actions to all the Perl projects where the author is interested. I have &#x3C;a href=&#x22;https://perlmaven.com/os&#x22;&#x3E;documented some of these&#x3C;/a&#x3E; and I have written on &#x3C;a href=&#x22;https://perlmaven.com/ci&#x22;&#x3E;Why and how to CI&#x3C;/a&#x3E;. I use the &#x3C;a href=&#x22;https://cpan-digger.perlmaven.com/&#x22;&#x3E;CPAN Digger&#x3C;/a&#x3E; to locate candidates, but if you&#x27;d like to get help with setting up CI, open an issue on your project and tag &#x3C;a href=&#x22;https://github.com/szabgab/&#x22;&#x3E;me&#x3C;/a&#x3E;. If you like my quest, feel free to &#x3C;a href=&#x22;https://szabgab.com/support.html&#x22;&#x3E;sponsor me&#x3C;/a&#x3E; so I&#x27;ll be able to allocate more time to this. Oh, and if your company needs help with CI and test automation, I offer that as a service.&#x3C;/p&#x3E;
-&#x3C;p&#x3E;Enjoy your week!&#x3C;/p&#x3E;</description>
-<dc:date>2022-10-24T10:00:00Z</dc:date>
 <dc:subject>editorial</dc:subject>
 </item>
 </rdf:RDF>
