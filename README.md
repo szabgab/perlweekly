@@ -122,16 +122,17 @@ This is done (and partially skipped) by Gabor before sending out the newsletter.
 
 * Update src/next.json to have the next date (this is used on the front page)
 * Update src/count.txt from the list of subscribers kept in a private repo
+* Update src/events.json file and copy the section of events from it.
+* Update src/metacpan.txt by the `cpan-digger --recent 1000 --report --days 7 --vcs` to get the latest statistics.
+* Update src/stats.txt Run the `bin/stats.pl` to get the latest statistics.
+* add jobs
 * add sponsors, if there are any
-* Update the src/events.json file and copy the section of events from it.
-* Run the `bin/stats.pl` to get the latest statistics and update src/stats.txt
 
 * Run `bin/tidy_json.pl` to make the source JSON files unified.
 * Update Perl Tidy: `cpanm Code::TidyAll  Perl::Tidy`
 * Run `tidyall -a --refresh-cache` to make the Perl source code tidy.
 
-* Open an issue on GitHub asking for copy-editing and mentining the volunteers:
-* Run the `cpan-digger --recent 1000 --report --days 7 --vcs` to get the latest statistics and update src/metacpan.txt
+* Open an issue on GitHub asking for copy-editing and mentining the volunteers
 
 ```
 The new Perl Weekly edition is ready for copy-editing. If you have the time to do it,
