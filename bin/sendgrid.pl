@@ -70,8 +70,14 @@ sub main {
     if ($opt{tofile}) {
         # read file and send email to each address
         open my $fh, '<', $opt{tofile} or die "Could not open '$opt{tofile}' $!";
-        while (my $row = <$fh>) {
-            chomp $row;
+        my @rows = <$fh>;
+        chomp @rows;
+        my $total = scalar @rows;
+        my $count = 0;
+        my $start_time = time();
+        for my $row (@rows) {
+            $count++;
+            my $current_time = time();
             next if $row =~ /^\s*(#.*)?$/;
             my ($name, $to) = split_row($row);
             next if $sent->{$to};
@@ -94,9 +100,11 @@ sub main {
             };
 
             save($sent);
+            my $remaining = int(($total-$count) * ($current_time-$start_time) / $count);
+            my $progress = "($count/$total remaining $remaining seconds)";
 	        say $result->{success}
-		    ? "  It worked"
-		    : "  It failed: $result->{reason}";
+		    ? "  It worked $progress"
+		    : "  It failed: $result->{reason} $progress";
         }
     }
 }
