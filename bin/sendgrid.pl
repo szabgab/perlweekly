@@ -100,8 +100,9 @@ sub main {
             };
 
             save($sent);
-            my $remaining = int(($total-$count) * ($current_time-$start_time) / $count);
-            my $progress = "($count/$total remaining $remaining seconds)";
+            my $elapsed_time = $current_time-$start_time;
+            my $remaining = int(($total-$count) * $elapsed_time / $count);
+            my $progress = "($count/$total remaining $remaining seconds (elapsed time $elapsed_time))";
 	        say $result->{success}
 		    ? "  It worked $progress"
 		    : "  It failed: $result->{reason} $progress";
