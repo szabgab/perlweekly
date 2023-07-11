@@ -106,6 +106,7 @@ if ( $issue eq 'all' or $issue eq 'latest' ) {
 	#$last->generate( $target, "$dir/latest.html" );
 	open my $out, '>', "$dir/latest.html" or die;
 	print $out <<"END_LATEST";
+<meta http-equiv="REFRESH" content="1; url=/archive/$max.html">
 <script>
 window.location = location.origin + "/archive/$max.html";
 </script>
