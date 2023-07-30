@@ -125,7 +125,7 @@ sub split_row {
 
 sub get_api_key {
 	my $config_file = 'config.txt';
-	open my $fh, '<', $config_file or die;
+	open my $fh, '<', $config_file or die "Could not open '$config_file': $!";
 	my $row = <$fh>;
 	chomp $row;
 	close $fh;
