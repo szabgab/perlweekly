@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+  <title>Perl Weekly Issue #638 - 2023-10-16 - Dancing Perl?</title>
+ <link rel="stylesheet" type="text/css" href="/style.css" />
+
+ <script>
+ $(document).ready(function() {
+    if (document.referrer !== 'https://www.google.com/') {
+       document.getElementById('registration').style.display = 'none';
+    }
+ });
+ </script>
+
+<meta property="og:title" content="Perl Weekly Issue #638 - Dancing Perl?" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://perlweekly.com/archive/638.html" />
+<meta property="og:image" content="https://perlweekly.com/img/perl_weekly_479x218.png" />
+
+
+</head>
+<body>
+<style>
+.entry-title, .share-links {
+  float: left;
+  padding-right: 2px;
+}
+</style>
+
+<table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
+<tr><td>
+    <p id="logo">
+    <a href="https://perlweekly.com/" style="
+      background-color: #004065;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 40px;
+      font-weight: bold;
+      font-family: Gadget;
+
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border: 1px solid #000;
+      padding: 10px;
+    ">Perl Weekly</a>
+
+    </p>
+    <p id="issue"
+      style="border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      font-size: 18px;">
+    Issue #638 - 2023-10-16 - Dancing Perl?
+    </p>
+
+    <a href="https://perlweekly.com/latest.html">latest</a> | <a href="https://perlweekly.com/archive">archive</a> | edited by <a href="http://manwar.org/">Mohammad S. Anwar</a>
+    
+        <div>
+        This edition was made possible by the <a href="https://www.patreon.com/manwar">supporters of our cause</a>.
+        </div>
+    
+    <div class="subform" id="registration">
+      <div class="onemail">
+        Don't miss the next issue!
+      </div>
+      <!--
+<form class="subscribe" action="https://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+<span class="formlabel">Enter your e-mail:</span>
+<input class="emailinput" name="email" size="20" />
+<input class="awesome_button" type="submit" value="and click to sign up!" />
+</form>
+-->
+
+<!--
+<form class="subscribe" action="https://mail.perlweekly.com/cgi-bin/mailman/listinfo/perlweekly" method="GET">
+<input class="awesome_button" type="submit" value="Click to sign up!" />
+</form>
+-->
+
+<form class="subscribe" action="/subscribe.html" method="GET">
+<input class="awesome_button" type="submit" value="Click to sign up!" />
+</form>
+
+    </div>
+
+    <p>
+
+    <a href="https://twitter.com/share" class="twitter-share-button"
+    data-text="Perl Weekly: Dancing Perl? via @perlweekly" data-count="vertical">Tweet</a>
+    <script type="text/javascript" src="https://platform.twitter.com/widgets.js">
+    </script>
+
+
+</td></tr>
+
+<tr><td>
+    <table>
+    <tr><td>
+        
+        <p style="font-size: 16px">
+        Hi there,
+        </p>
+        
+        <p style="font-size: 16px">
+        What a great and pleasant surprise announcement of the release of <a href="https://blogs.perl.org/users/jason_a_crome/2023/10/announcing-dancer2-100.html">Dancer2 1.0.0</a> by the <strong>Dancer Core Team</strong> !!!
+        </p>
+        
+        <p style="font-size: 16px">
+        I am a big fan of <strong>Dancer2</strong>, so I follow closely the development of my favourite web framework. If you remember there was another announcement recently about change in the core team as <a href="https://blogs.perl.org/users/jason_a_crome/2023/09/announcing-dancer-core-team-changes.html">Ruth Holloway</a> joining the core team. I am very happy that it is in safe hand and actively developed/maintained by the core team.
+        </p>
+        
+        <p style="font-size: 16px">
+        The <strong>Hacktoberfest 2023</strong> is still going on. Have you done the minimum pull request required to complete the challenge? If not then you still have time to do. Please make sure you submit your pull request before the deadline i.e. last day of the month. In the year <strong>2019</strong>, I managed to submit <strong>160 pull requests</strong> in one month. Unfortunately for the last couple of years, I haven't participated in the event because of other commitments.
+        </p>
+        
+        <p style="font-size: 16px">
+        Do you want to play with <strong>AI</strong>? Luckily we have <a href="https://chatgpu.ai/pages/navi-ai">Navi AI</a>. I strongly recommend, you give it a go.
+        </p>
+        
+        <p style="font-size: 16px">
+        Last but not the least, let us all pray for the peace in both sides of the conflicts. I don't watch news these days as they are full of heart breaking news.
+        </p>
+        
+        <p style="font-size: 16px">
+        Enjoy the rest of the newsletter.
+        </p>
+        
+        <p style="font-size: 14px">
+        Mohammad S. Anwar
+        </p>
+    </td>
+    <td>
+        <img  style="right:0; bottom: 0;" src="/img/mohammad_anwar.png" title="Mohammad S. Anwar" />
+    </td></tr>
+    </table>
+</td></tr>
+
+
+    <tr><td>
+        <hr style="color: red" id="announcements" />
+        <div style="font-size: 18px; font-weight: bold;">Announcements</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://blogs.perl.org/users/jason_a_crome/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Announcing Dancer2 1.0.0</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Announcing+Dancer2+1.0.0+https%3A%2F%2Fblogs.perl.org%2Fusers%2Fjason_a_crome%2F by @cromedome via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://blogs.perl.org/users/jason_a_crome/">Jason A. Crome</a>                         (<a href="https://metacpan.org/author/CROMEDOME">CROMEDOME</a>)                  </span>               <p style="font-size: 16px">
+                 Latest release of Dancer2 now following semantic versioning. Jason shared the details of latest release.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/jason_crome.jpg" title="Jason A. Crome" width="80" />
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://blogs.perl.org/users/psc/2023/10/this-week-in-psc-120.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">This week in PSC (120)</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=This+week+in+PSC+%28120%29+https%3A%2F%2Fblogs.perl.org%2Fusers%2Fpsc%2F2023%2F10%2Fthis-week-in-psc-120.html via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 PSC shared the topics last discussed. Thank you PSC.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="articles" />
+        <div style="font-size: 18px; font-weight: bold;">Articles</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://bbrtj.eu/blog/article/bitcoin-crypto-2-released" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Bitcoin::Crypto version 2.000 released!</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Bitcoin%3A%3ACrypto+version+2.000+released%21+https%3A%2F%2Fbbrtj.eu%2Fblog%2Farticle%2Fbitcoin-crypto-2-released via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://brtastic.xyz/">Bartosz Jarzyna</a>                  </span>               <p style="font-size: 16px">
+                 Are you Bitcoin fan? Then this is for you, do checkout.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://github.com/hightowe/pushover-notify" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">pushover.net</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=pushover.net+https%3A%2F%2Fgithub.com%2Fhightowe%2Fpushover-notify via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Lester Hightower                  </span>               <p style="font-size: 16px">
+                 A simple command-line Pushover.net notifier script, written in Perl
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="the_weekly_challenge" />
+        <div style="font-size: 18px; font-weight: bold;">The Weekly Challenge</div>
+        
+            <p style="font-size: 16px"><a href="https://theweeklychallenge.org/">The Weekly Challenge</a> by <a href="http://www.manwar.org/">Mohammad Anwar</a> will help you step out of your comfort-zone. You can even win prize money of $50 Amazon voucher by participating in the weekly challenge. We pick one winner at the end of the month from among all of the contributors during the month. The monthly prize is kindly sponsored by Peter Sergeant of <a href="https://perl.careers/">PerlCareers</a>.</p>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-239" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">The Weekly Challenge - 239</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=The+Weekly+Challenge+-+239+https%3A%2F%2Ftheweeklychallenge.org%2Fblog%2Fperl-weekly-challenge-239 by @cpan_author via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://manwar.org/">Mohammad S. Anwar</a>                         (<a href="https://metacpan.org/author/MANWAR">MANWAR</a>)                  </span>               <p style="font-size: 16px">
+                 Welcome to a new week with a couple of fun tasks: "Same String" and "Consistent Strings". If you are new to the weekly challenge, why not join us and have fun every week? For more information, please read the <a href="https://theweeklychallenge.org/faq">FAQ</a>.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/mohammad_anwar.png" title="Mohammad S. Anwar" width="80" />
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://theweeklychallenge.org/blog/recap-challenge-238" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">RECAP - The Weekly Challenge - 238</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=RECAP+-+The+Weekly+Challenge+-+238+https%3A%2F%2Ftheweeklychallenge.org%2Fblog%2Frecap-challenge-238 by @cpan_author via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://manwar.org/">Mohammad S. Anwar</a>                         (<a href="https://metacpan.org/author/MANWAR">MANWAR</a>)                  </span>               <p style="font-size: 16px">
+                 Enjoy a quick recap of last week's contributions by Team PWC dealing with the "Running Sum" and "Persistence Sort" tasks in Perl and Raku. You will find plenty of solutions to keep you busy.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/mohammad_anwar.png" title="Mohammad S. Anwar" width="80" />
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://theweeklychallenge.org/blog/meet-the-champion-2023-09/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Meet The Champion - Robbie Hatley</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Meet+The+Champion+-+Robbie+Hatley+https%3A%2F%2Ftheweeklychallenge.org%2Fblog%2Fmeet-the-champion-2023-09%2F by @cpan_author via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://manwar.org/">Mohammad S. Anwar</a>                         (<a href="https://metacpan.org/author/MANWAR">MANWAR</a>)                  </span>               <p style="font-size: 16px">
+                 Please checkout the interview with the latest champion of The Weekly Challenge.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/mohammad_anwar.png" title="Mohammad S. Anwar" width="80" />
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://deadmarshal.blogspot.com/2023/10/twc238.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">TWC238</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=TWC238+https%3A%2F%2Fdeadmarshal.blogspot.com%2F2023%2F10%2Ftwc238.html via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Ali Moradi                  </span>               <p style="font-size: 16px">
+                 CPAN is always handy when it comes for regular use. The end result is compact and concise.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://raku-musings.com/persistently-running.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Persistently Running</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Persistently+Running+https%3A%2F%2Fraku-musings.com%2Fpersistently-running.html via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Arne Sommer                  </span>               <p style="font-size: 16px">
+                 The cool use of map in Raku, although gather/take could do the job. Plenty of choices available for you in Raku.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://variousandsundry.com/running-sum-or-i-love-recursion/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Running Sum, or &quot;I ♥️ Recursion”&quot;</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Running+Sum%2C+or+%22I+%E2%99%A5%EF%B8%8F+Recursion%E2%80%9D%22+https%3A%2F%2Fvariousandsundry.com%2Frunning-sum-or-i-love-recursion%2F via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Augie De Blieck Jr.                  </span>               <p style="font-size: 16px">
+                 For first time, I would say this is worth checking. Lots of interesting thing for you to take a look.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://variousandsundry.com/persistence-sort-in-which-i-give-up-and-use-a-global/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Persistence Sort, In Which I Give Up and Use a Global</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Persistence+Sort%2C+In+Which+I+Give+Up+and+Use+a+Global+https%3A%2F%2Fvariousandsundry.com%2Fpersistence-sort-in-which-i-give-up-and-use-a-global%2F via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Augie De Blieck Jr.                  </span>               <p style="font-size: 16px">
+                 Recusion seems to be more apt for this task as suggested in the blog post. Well structured post, I must admit.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dev.to/boblied/pwc-238-running-and-persistence-4kla" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Running and Persistence</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Running+and+Persistence+https%3A%2F%2Fdev.to%2Fboblied%2Fpwc-238-running-and-persistence-4kla via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Bob Lied                  </span>               <p style="font-size: 16px">
+                 What an inspiration story to begin the blog post, thanks for sharing.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://jacoby.github.io/2023/10/09/you-cant.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">You Can't Touch This!</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=You+Can%27t+Touch+This%21+https%3A%2F%2Fjacoby.github.io%2F2023%2F10%2F09%2Fyou-cant.html by @jacobydave via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://varlogrant.blogspot.com/">Dave Jacoby</a>                         (<a href="https://metacpan.org/author/JACOBY">JACOBY</a>)                  </span>               <p style="font-size: 16px">
+                 Interesting fact about 238, very impressive. Thanks for sharing the knowledge with us.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/dave_jacoby.jpg" title="Dave Jacoby" width="80" />
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://www.braincells.com/perl/2023/10/perl_weekly_challenge_week_238.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Perl Weekly Challenge: Week 238</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Perl+Weekly+Challenge%3A+Week+238+https%3A%2F%2Fwww.braincells.com%2Fperl%2F2023%2F10%2Fperl_weekly_challenge_week_238.html via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Jaldhar H. Vyas                  </span>               <p style="font-size: 16px">
+                 Raku once again showing off the cool features. Please checkout the elegant one-liner.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://blogs.perl.org/users/laurent_r/2023/10/perl-weekly-challenge-238-running-sum.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Perl Weekly Challenge 238: Running Sum</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Perl+Weekly+Challenge+238%3A+Running+Sum+https%3A%2F%2Fblogs.perl.org%2Fusers%2Flaurent_r%2F2023%2F10%2Fperl-weekly-challenge-238-running-sum.html via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Laurent Rosenfeld                  </span>               <p style="font-size: 16px">
+                 Use of reduction meta-operator in Raku and smilar a;ternate in Perl. Highly recommended.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://blogs.perl.org/users/laurent_r/2023/10/perl-weekly-challenge-238-persistence-sort.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Perl Weekly Challenge 238: Persistence Sort</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Perl+Weekly+Challenge+238%3A+Persistence+Sort+https%3A%2F%2Fblogs.perl.org%2Fusers%2Flaurent_r%2F2023%2F10%2Fperl-weekly-challenge-238-persistence-sort.html via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Laurent Rosenfeld                  </span>               <p style="font-size: 16px">
+                 Having Raku and Perl solutions side-by-side is fun and easy way to learn the tricks. Thanks for sharing.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://egroup.kolouch.org/nextcloud/sites/lubos/2023-10-09_Weekly_challenge_238" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">THE WEEKLY CHALLENGE - 238</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=THE+WEEKLY+CHALLENGE+-+238+https%3A%2F%2Fegroup.kolouch.org%2Fnextcloud%2Fsites%2Flubos%2F2023-10-09_Weekly_challenge_238 via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Lubos Kolouch                  </span>               <p style="font-size: 16px">
+                 Perl and Raku can be so similar doing the same task. Even Python is not far. Keep sharing the knowledge every week.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://fluca1978.github.io/2023/10/09/PerlWeeklyChallenge238.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">running sums and multiplications</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=running+sums+and+multiplications+https%3A%2F%2Ffluca1978.github.io%2F2023%2F10%2F09%2FPerlWeeklyChallenge238.html via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://fluca1978.blogspot.com">Luca Ferrari</a>                  </span>               <p style="font-size: 16px">
+                 What a surprise, we got Python for the first time. No wonder, it is the most popular choice after Perl and Raku.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://wlmb.github.io/2023/10/09/PWC238/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Master of one-liner in Perl is once again sharing another masterpiece. Keep it up great work.</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Master+of+one-liner+in+Perl+is+once+again+sharing+another+masterpiece.+Keep+it+up+great+work.+https%3A%2F%2Fwlmb.github.io%2F2023%2F10%2F09%2FPWC238%2F via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          W Luis Mochan                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-238/matthias-muth#readme" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Reduced Arrays, Reduced Numbers, Reduced Code</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Reduced+Arrays%2C+Reduced+Numbers%2C+Reduced+Code+https%3A%2F%2Fgithub.com%2Fmanwar%2Fperlweeklychallenge-club%2Ftree%2Fmaster%2Fchallenge-238%2Fmatthias-muth%23readme via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Matthias Muth                  </span>               <p style="font-size: 16px">
+                 Nice to know about two cool functions 'reduce' and 'reductions' from List::Utils. Thanks for sharing.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://packy.dardan.com/2023/10/09/be-runnin-up-that-sum-be-persisten-up-that-sort/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Be Runnin’ Up That Sum, Be Persisten’ Up That Sort</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Be+Runnin%E2%80%99+Up+That+Sum%2C+Be+Persisten%E2%80%99+Up+That+Sort+https%3A%2F%2Fpacky.dardan.com%2F2023%2F10%2F09%2Fbe-runnin-up-that-sum-be-persisten-up-that-sort%2F via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://blogs.perl.org/users/packy_anderson/">Packy Anderson</a>                         (<a href="https://metacpan.org/author/PACKY">PACKY</a>)                  </span>               <p style="font-size: 16px">
+                 You are presented with different ways of dealing a task. Highly recommended.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/238" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Running persistence</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Running+persistence+http%3A%2F%2Fccgi.campbellsmiths.force9.co.uk%2Fchallenge%2F238 via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Peter Campbell Smith                  </span>               <p style="font-size: 16px">
+                 Simple yet elegant solution with cool interface to try it yourself. Thank you.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://hatley-software.blogspot.com/2023/10/robbie-hatleys-solutions-to-weekly_9.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">The Weekly Challenge #238</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=The+Weekly+Challenge+%23238+https%3A%2F%2Fhatley-software.blogspot.com%2F2023%2F10%2Frobbie-hatleys-solutions-to-weekly_9.html via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://hatley-software.blogspot.com/">Robbie Hatley</a>                  </span>               <p style="font-size: 16px">
+                 Short and precise description of Perl solutions by the latest champion.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://blog.firedrake.org/archive/2023/10/The_Weekly_Challenge_238__Running_Persistence.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Running Persistence</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Running+Persistence+https%3A%2F%2Fblog.firedrake.org%2Farchive%2F2023%2F10%2FThe_Weekly_Challenge_238__Running_Persistence.html via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://blog.firedrake.org/">Roger Bell West</a>                         (<a href="https://metacpan.org/author/FIREDRAKE">FIREDRAKE</a>)                  </span>               <p style="font-size: 16px">
+                 Variable free solution in PostScript? Well it is new to me. Thanks for sharing the knowledge.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dev.to/simongreennet/counting-and-sorting-4136" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Counting and sorting</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Counting+and+sorting+https%3A%2F%2Fdev.to%2Fsimongreennet%2Fcounting-and-sorting-4136 via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Simon Green                  </span>               <p style="font-size: 16px">
+                 Use of lambda in Python is fun. Even the Perl magic is worth checking.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="rakudo" />
+        <div style="font-size: 18px; font-weight: bold;">Rakudo</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://rakudoweekly.blog/2023/10/09/2023-41-free-in-three/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">2023.41 Free In Three</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=2023.41+Free+In+Three+https%3A%2F%2Frakudoweekly.blog%2F2023%2F10%2F09%2F2023-41-free-in-three%2F via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Elizabeth Mattijsen                         (<a href="https://metacpan.org/author/ELIZABETH">ELIZABETH</a>)                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/elizabeth_mattijsen.png" title="Elizabeth Mattijsen" width="80" />
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="weekly_collections" />
+        <div style="font-size: 18px; font-weight: bold;">Weekly collections</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="http://niceperl.blogspot.com/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">NICEPERL's lists</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=NICEPERL%27s+lists+http%3A%2F%2Fniceperl.blogspot.com%2F by @niceperl via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://niceperl.blogspot.com/">Miguel Prz</a>                         (<a href="https://metacpan.org/author/NICEPERL">NICEPERL</a>)                  </span>               <p style="font-size: 16px">
+                 <a href="https://niceperl.blogspot.com/2023/10/cdlxv-9-great-cpan-modules-released.html">Great CPAN modules released last week</a>.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_" />
+        <div style="font-size: 18px; font-weight: bold;"><a href="https://perl.careers/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly">Perl Jobs by Perl Careers</a></div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://job.perl.careers/4tr" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Modern Perl and positive team vibes. UK Remote Perl role</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Modern+Perl+and+positive+team+vibes.+UK+Remote+Perl+role+https%3A%2F%2Fjob.perl.careers%2F4tr via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 If you’re a Modern Perl developer in the UK with TypeScript or Node and you’re searching for a team of dynamos, we’ve found the perfect place for you. This award-winning company may be newer, but the combined experience of their people is impressive. No doubt this is one of the many reasons their AI recruitment marketing business has taken off!
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://job.perl.careers/od3" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">UK Remote Perl Programmer for Leading Enterprise Tech Publication</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=UK+Remote+Perl+Programmer+for+Leading+Enterprise+Tech+Publication+https%3A%2F%2Fjob.perl.careers%2Fod3 via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 Our client is a global leader in the enterprise technology publishing industry, providing audiences worldwide with stimulating perspectives and unique news on enterprise tech that matters today and tomorrow. They are seeking a talented Perl programmer to manage the full life-cycle of software projects on a remote basis. The ideal candidate must be UK-based and have experience writing high-quality
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://job.perl.careers/1q4" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Perl Programmer Opportunity - Join a Prominent Tech Publishing Powerhouse in the Philippines</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Perl+Programmer+Opportunity+-+Join+a+Prominent+Tech+Publishing+Powerhouse+in+the+Philippines+https%3A%2F%2Fjob.perl.careers%2F1q4 via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 Our UK-based client is a global leader in the enterprise technology publishing industry, providing audiences worldwide with stimulating perspectives and unique news on enterprise tech that matters today and tomorrow. They are currently seeking a passionate and exceptional Perl programmer based in the Philippines to join their team.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+                style="
+                    background-color:#EEEEEE;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    -webkit-border-radius: 10px;
+                    padding-left: 10px;
+                   "
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://job.perl.careers/r2r" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Adventure! Senior Perl roles in Malaysia, Dubai and Malta</a>
+               </div>
+               <div class="share-links">
+                 <a href="https://twitter.com/home?status=Adventure%21+Senior+Perl+roles+in+Malaysia%2C+Dubai+and+Malta+https%3A%2F%2Fjob.perl.careers%2Fr2r via @perlweekly"><img src="https://perlweekly.com/img/twitter16.png" alt="Tweet"></a>
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 Clever folks know that if you’re lucky, you can earn a living and have an adventure at the same time. Enter our international client: online trading is their game, and they’re looking for Perl people with passion, drive, and an appreciation for new experiences.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+
+<tr><td>
+   <hr style="color: red" id="_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_" />
+
+  
+   <hr style="color: red" id="_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_" />
+  
+<div id="main">
+<p>
+You know, you could get the Perl Weekly right in your mailbox. Every Week.<br>Free of charge!
+</p>
+   <div class="subform">
+   <!--
+<form class="subscribe" action="https://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+<span class="formlabel">Enter your e-mail:</span>
+<input class="emailinput" name="email" size="20" />
+<input class="awesome_button" type="submit" value="and click to sign up!" />
+</form>
+-->
+
+<!--
+<form class="subscribe" action="https://mail.perlweekly.com/cgi-bin/mailman/listinfo/perlweekly" method="GET">
+<input class="awesome_button" type="submit" value="Click to sign up!" />
+</form>
+-->
+
+<form class="subscribe" action="/subscribe.html" method="GET">
+<input class="awesome_button" type="submit" value="Click to sign up!" />
+</form>
+
+   <div class="onemail">
+      Just ONE e-mail each Monday. Easy to <a href="/unsubscribe.html">unsubscribe</a>. No spam. Your e-mail address is safe.
+    </div>
+</div>
+
+
+</div>
+
+<div id="footer" style="
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+">
+(C) Copyright <a href="https://szabgab.com/">Gabor Szabo</a>. The articles are copyright the respective authors.</p>
+<p>This newsletter is about the Perl programming language.</p>
+</div>
+<div id="menu">
+  <ul>
+    <li>Sections:</li>
+  
+    <li><a href="#announcements">Announcements</a></li>
+  
+    <li><a href="#articles">Articles</a></li>
+  
+    <li><a href="#the_weekly_challenge">The Weekly Challenge</a></li>
+  
+    <li><a href="#rakudo">Rakudo</a></li>
+  
+    <li><a href="#weekly_collections">Weekly collections</a></li>
+  
+    <li><a href="#_a_href_https_perl_careers_utm_source_perlweekly_utm_campaign_perlweekly_utm_medium_perlweekly_perl_jobs_by_perl_careers_a_"><a href="https://perl.careers/?utm_source=perlweekly&utm_campaign=perlweekly&utm_medium=perlweekly">Perl Jobs by Perl Careers</a></a></li>
+  
+  </ul>
+</div>
+
+
+<div id="social_icons">
+<a href="https://twitter.com/perlweekly"><img src="/img/twitter32.png" alt="Perl Weekly on Twitter" /></a>
+<a href="/perlweekly.rss" rel="alternate" type="application/rss+xml"><img src="/img/feed-icon32x32.png" alt="RSS Feed of the Perl Weekly. Updated once a week" /></a>
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12199211-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+</td></tr>
+</table>
+
+
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+</body>
+</html>
