@@ -68,8 +68,10 @@ for my $site (@sites) {
 			$count++;
 		}
 	};
-	if ($@) {
-		say "Error $@";
+    my $err = $@;
+	if ($err) {
+        chomp $err;
+		say "Error '$err' in $site->{url}. Setting count to 0.";
 	}
 	$counter{ $site->{name} } = $count;
 }
