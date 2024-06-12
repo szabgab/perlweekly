@@ -415,7 +415,7 @@ sub events_page {
 		}
 		if ( $dstart < $prev_date ) {
 			die
-				"'$entry->{title}' is scheduled before the previous entry in events.json";
+				"'$entry->{title}' at $entry->{begin} is scheduled before the previous entry in events.json";
 		}
 		$prev_date = $dstart;
 
