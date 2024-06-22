@@ -15,7 +15,7 @@ If your Perl event is not listed here, please send a pull-request for <a href="h
 
 <ul>
 [% FOR e IN events %]
-<li><a href="[% e.url %]">[% e.title %]</a> - [% e.text %]</li>
+<li><a href="[% e.url %]">[% IF e.emphasize %]<b>[% END %][% e.title %][% IF e.emphasize %]</b>[% END %]</a> - [% e.text %]</li>
 [% END %]
 </ul>
 <p>
