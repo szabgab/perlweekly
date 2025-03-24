@@ -256,7 +256,7 @@ sub process_rss_header_item {
 		description => $text,
 		dc          => {
 			date    => $dateparser->format_datetime($dt),
-			subject => 'editorial',
+			subject => 'Editorial',
 		}
 	};
 }
@@ -291,6 +291,7 @@ sub process_rss {
 				description => $e->{text},
 				dc          => {
 					date    => $dateparser->format_datetime($dt),
+					subject => $ch->{title},
 				},
 			};
 		}
