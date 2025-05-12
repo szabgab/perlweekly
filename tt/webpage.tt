@@ -68,11 +68,7 @@
 
     <p>
 
-    <a href="https://twitter.com/share" class="twitter-share-button"
-    data-text="Perl Weekly: [% subject %] via @perlweekly" data-count="vertical">Tweet</a>
-    <script type="text/javascript" src="https://platform.twitter.com/widgets.js">
-    </script>
-
+[% INCLUDE tt/share.tt %]
 
 </td></tr>
 
@@ -124,13 +120,7 @@
                     ">[% e.title | html %]</a>
                </div>
                <div class="share-links">
-                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
-                   data-a2a-url="[% e.url %]" data-a2a-title="[% e.title %]">
-                   <a class="a2a_button_twitter"></a>
-                   <a class="a2a_button_facebook"></a>
-                   <a class="a2a_button_email"></a>
-                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
-                 </div>
+[% INCLUDE tt/share.tt %]
                </div>
 
                <br />
@@ -152,7 +142,7 @@
                </p>
                [% IF social_links %]
                  <br />
-                 <a href="https://twitter.com/home?status=[% e.title %] [% e.url %] via @perlweekly">Tweet</a>
+[% INCLUDE tt/share.tt %]
                [% END %]
                </div>
            [% IF e.img %]</td><td style="width:100px"><img src="[% UNLESS web %]https://perlweekly.com[% END %][% e.img %]" title="[% e.img_title %]" width="80" />[% END %]
