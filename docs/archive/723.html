@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+  <title>Perl Weekly Issue #723 - 2025-06-02 - Perl Ad Server needs ads</title>
+ <link rel="stylesheet" type="text/css" href="/style.css" />
+
+ <script>
+ $(document).ready(function() {
+    if (document.referrer !== 'https://www.google.com/') {
+       document.getElementById('registration').style.display = 'none';
+    }
+ });
+ </script>
+
+<script defer src="https://static.addtoany.com/menu/page.js"></script>
+
+<meta property="og:title" content="Perl Weekly Issue #723 - Perl Ad Server needs ads" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://perlweekly.com/archive/723.html" />
+<meta property="og:image" content="https://perlweekly.com/img/perl_weekly_479x218.png" />
+
+
+</head>
+<body>
+<style>
+.entry-title, .share-links {
+  float: left;
+  padding-right: 2px;
+}
+</style>
+
+<table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff">
+<tr><td>
+    <p id="logo">
+    <a href="https://perlweekly.com/" style="
+      background-color: #004065;
+      color: #FFF;
+      text-decoration: none;
+      font-size: 40px;
+      font-weight: bold;
+      font-family: Gadget;
+
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border: 1px solid #000;
+      padding: 10px;
+    ">Perl Weekly</a>
+
+    </p>
+    <p id="issue"
+      style="border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      font-size: 18px;">
+    Issue #723 - 2025-06-02 - Perl Ad Server needs ads
+    </p>
+
+    <a href="https://perlweekly.com/latest.html">latest</a> | <a href="https://perlweekly.com/archive">archive</a> | edited by <a href="https://szabgab.com/">Gabor Szabo</a>
+    
+        <div>
+        This edition was made possible by the <a href="https://www.patreon.com/szabgab">supporters of our cause</a>.
+        </div>
+    
+    <div class="subform" id="registration">
+      <div class="onemail">
+        Don't miss the next issue!
+      </div>
+      <!--
+<form class="subscribe" action="https://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+<span class="formlabel">Enter your e-mail:</span>
+<input class="emailinput" name="email" size="20" />
+<input class="awesome_button" type="submit" value="and click to sign up!" />
+</form>
+-->
+
+<!--
+<form class="subscribe" action="https://mail.perlweekly.com/cgi-bin/mailman/listinfo/perlweekly" method="GET">
+<input class="awesome_button" type="submit" value="Click to sign up!" />
+</form>
+-->
+
+<form class="subscribe" action="/subscribe.html" method="GET">
+<input class="awesome_button" type="submit" value="Click to sign up!" />
+</form>
+
+    </div>
+
+    <p>
+
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+
+</td></tr>
+
+<tr><td>
+    <table>
+    <tr><td>
+        
+        <p style="font-size: 16px">
+        Hi there,
+        </p>
+        
+        <p style="font-size: 16px">
+        I am glad that the renewed <a href="https://www.reddit.com/r/perl/comments/1kxbuw2/perl_ad_server_needs_ads/">Perl Ad Server</a> seems to be taking off. If you have some Perl-related thing you'd like to promote to MetaCPAN and other sites displaying the ads, this is your chance to add it to inventory of ads.
+        </p>
+        
+        <p style="font-size: 16px">
+        If you have a Perl-related event that you'd like to be listed at the bottom of each edition of the Perl Weekly newsletter and included in the <a href="https://perlweekly.com/events">Perl events calendar</a>, you can do that by sending a Pull-Request.
+        </p>
+        
+        <p style="font-size: 16px">
+        I'd also like to thank all the people who started to support me via <a href="https://github.com/sponsors/szabgab/">GitHub sponsors</a>. I feel happy that there are people out there who find my contribution valuable to award it with their financial support. I'd also like to thank the people who decided to support my by buying one of my <a href="https://leanpub.com/u/szabgab">books and courses</a>. Thank you!
+        </p>
+        
+        <p style="font-size: 16px">
+        Enjoy your week!
+        </p>
+        
+        <p style="font-size: 14px">
+        Gabor Szabo
+        </p>
+    </td>
+    <td>
+        <img  style="right:0; bottom: 0;" src="/img/gabor_szabo.png" title="Gabor Szabo" />
+    </td></tr>
+    </table>
+</td></tr>
+
+
+    <tr><td>
+        <hr style="color: red" id="articles" />
+        <div style="font-size: 18px; font-weight: bold;">Articles</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://blogs.perl.org/users/james/2025/06/hello-datastar.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Hello Datastar</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://blogs.perl.org/users/james/2025/06/hello-datastar.html" data-a2a-title="Hello Datastar"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://blogs.perl.org/users/james/">James Wright</a>                         (<a href="https://metacpan.org/author/JWRIGHT">JWRIGHT</a>)                  </span>               <p style="font-size: 16px">
+                 Datastar is a new-ish entry in the world of hypermedia-oriented ,htmx alternatives, with a distinct focus on Server-Sent Events.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dev.to/lnation/learning-perl-xs-how-to-create-an-object-24lj" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Learning XS - How to create an object</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://dev.to/lnation/learning-perl-xs-how-to-create-an-object-24lj" data-a2a-title="Learning XS - How to create an object"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://blogs.perl.org/users/robert_acock/">Robert Acock</a>                  </span>               <p style="font-size: 16px">
+                 XS is a Perl foreign function interface through which a program can call a C or C++ subroutine. XS or xsub is an abbreviation of 'eXtendable Subroutine'.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dev.to/lnation/learning-xs-what-is-in-my-variable-nfm" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Learning XS - What is in my variable</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://dev.to/lnation/learning-xs-what-is-in-my-variable-nfm" data-a2a-title="Learning XS - What is in my variable"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://blogs.perl.org/users/robert_acock/">Robert Acock</a>                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dev.to/lnation/learning-xs-list-context-2gng" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Learning XS - List context</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://dev.to/lnation/learning-xs-list-context-2gng" data-a2a-title="Learning XS - List context"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://blogs.perl.org/users/robert_acock/">Robert Acock</a>                  </span>               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://perlhacks.com/2025/05/deploying-dancer-apps-the-next-generation/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Deploying Dancer Apps – The Next Generation</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://perlhacks.com/2025/05/deploying-dancer-apps-the-next-generation/" data-a2a-title="Deploying Dancer Apps – The Next Generation"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://perlhacks.com/">Dave Cross</a>                         (<a href="https://metacpan.org/author/DAVECROSS">DAVECROSS</a>)                  </span>               <p style="font-size: 16px">
+                 Enter psgi-systemd-deploy and discuss it <a href="https://www.reddit.com/r/perl/comments/1kz7muf/deploying_dancer_apps_the_next_generation/">here</a>.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/dave_cross.png" title="Dave Cross" width="80" />
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://www.perl.com/article/perl-toolchain-summit-2025-key-results/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">The Perl Toolchain Summit 2025: Security, Testing, and Community Collaboration</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://www.perl.com/article/perl-toolchain-summit-2025-key-results/" data-a2a-title="The Perl Toolchain Summit 2025: Security, Testing, and Community Collaboration"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://onionstand.blogspot.com/">Breno de Oliveira</a>                         (<a href="https://metacpan.org/author/GARU">GARU</a>)                  </span>               <p style="font-size: 16px">
+                 From May 1–4, 2025, the invite-only Perl Toolchain Summit (PTS) brought together in Leipzig, Germany, 33 of the ecosystem’s most active maintainers — and welcomed 6 first-timers — for four days of uninterrupted deep-dive collaboration in pair-programming sessions, consensus discussions, and critical infrastructure work.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/breno_de_oliveira.png" title="Breno de Oliveira" width="80" />
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="discussion" />
+        <div style="font-size: 18px; font-weight: bold;">Discussion</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://www.reddit.com/r/perl/comments/1l0fth2/perl_homebrew_imagemagick_disappointment/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Perl + Homebrew + ImageMagick = Disappointment?</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://www.reddit.com/r/perl/comments/1l0fth2/perl_homebrew_imagemagick_disappointment/" data-a2a-title="Perl + Homebrew + ImageMagick = Disappointment?"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 Installation is hard
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://www.reddit.com/r/perl/comments/1l0ur3k/is_there_a_better_way_than_cpanspec_to_make_rpms/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Is there a better way than cpanspec to make RPMs?</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://www.reddit.com/r/perl/comments/1l0ur3k/is_there_a_better_way_than_cpanspec_to_make_rpms/" data-a2a-title="Is there a better way than cpanspec to make RPMs?"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="perl" />
+        <div style="font-size: 18px; font-weight: bold;">Perl</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://blogs.perl.org/users/psc/2025/05/this-week-in-psc-193-2025-05-29.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">This week in PSC (193) | 2025-05-29</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://blogs.perl.org/users/psc/2025/05/this-week-in-psc-193-2025-05-29.html" data-a2a-title="This week in PSC (193) | 2025-05-29"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="the_weekly_challenge" />
+        <div style="font-size: 18px; font-weight: bold;">The Weekly Challenge</div>
+        
+            <p style="font-size: 16px"><a href="https://theweeklychallenge.org">The Weekly Challenge</a> by <a href="https://manwar.org">Mohammad Sajid Anwar</a> will help you step out of your comfort-zone. You can even win prize money of $50 by participating in the weekly challenge. We pick one champion at the end of the month from among all of the contributors during the month, thanks to the sponsor Lance Wicks.</p>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://theweeklychallenge.org/blog/perl-weekly-challenge-324" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">The Weekly Challenge - 324</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://theweeklychallenge.org/blog/perl-weekly-challenge-324" data-a2a-title="The Weekly Challenge - 324"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://manwar.org/">Mohammad Sajid Anwar</a>                         (<a href="https://metacpan.org/author/MANWAR">MANWAR</a>)                  </span>               <p style="font-size: 16px">
+                 Welcome to a new week with a couple of fun tasks "2D Array" and "Total XOR". If you are new to the weekly challenge then why not join us and have fun every week. For more information, please read the <a href="https://theweeklychallenge.org/faq">FAQ</a>.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/mohammad_anwar.png" title="Mohammad Sajid Anwar" width="80" />
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://theweeklychallenge.org/blog/recap-challenge-323" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">RECAP - The Weekly Challenge - 323</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://theweeklychallenge.org/blog/recap-challenge-323" data-a2a-title="RECAP - The Weekly Challenge - 323"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://manwar.org/">Mohammad Sajid Anwar</a>                         (<a href="https://metacpan.org/author/MANWAR">MANWAR</a>)                  </span>               <p style="font-size: 16px">
+                 Enjoy a quick recap of last week's contributions by Team PWC dealing with the "Increment Decrement" and "Tax Amount" tasks in Perl and Raku. You will find plenty of solutions to keep you busy.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/mohammad_anwar.png" title="Mohammad Sajid Anwar" width="80" />
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://deadmarshal.blogspot.com/2025/05/twc323.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">TWC323</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://deadmarshal.blogspot.com/2025/05/twc323.html" data-a2a-title="TWC323"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Ali Moradi                  </span>               <p style="font-size: 16px">
+                 The use of map for side effects is unconventional, it showcases Perl's flexibility. Cool.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://raku-musings.com/increment-tax.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Increment Tax</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://raku-musings.com/increment-tax.html" data-a2a-title="Increment Tax"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Arne Sommer                  </span>               <p style="font-size: 16px">
+                 Solution as a complete application with verbose mode. It really helps to understand the flow. Great work.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://jacoby-lpwk.onrender.com/2025/05/29/orders-matter-and-order-matters-weekly-challenge-323.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Orders Matter and Order Matters</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://jacoby-lpwk.onrender.com/2025/05/29/orders-matter-and-order-matters-weekly-challenge-323.html" data-a2a-title="Orders Matter and Order Matters"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://varlogrant.blogspot.com/">Dave Jacoby</a>                         (<a href="https://metacpan.org/author/JACOBY">JACOBY</a>)                  </span>               <p style="font-size: 16px">
+                 Demonstrates solid Perl technique, using list operations and control structures effectively to solve ordering-related problems.
+               </p>
+               
+               </div>
+           </td><td style="width:100px"><img src="/img/dave_jacoby.jpg" title="Dave Jacoby" width="80" />
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://github.sommrey.de/the-bears-den/2025/05/30/ch-323.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Tax Steps</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://github.sommrey.de/the-bears-den/2025/05/30/ch-323.html" data-a2a-title="Tax Steps"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Jorg Sommrey                  </span>               <p style="font-size: 16px">
+                 Expert-level Perl programming, combining concise code with efficient algorithms. The solutions are optimized for performance, making them suitable for scenarios requiring repeated computations.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://fluca1978.github.io/2025/05/26/PerlWeeklyChallenge323.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">increment and decrement</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://fluca1978.github.io/2025/05/26/PerlWeeklyChallenge323.html" data-a2a-title="increment and decrement"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://fluca1978.blogspot.com">Luca Ferrari</a>                  </span>               <p style="font-size: 16px">
+                 For readers interested in multi-language implementations and exploring how the same problem can be approached in different programming environments, this post serves as an excellent resource.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://wlmb.github.io/2025/05/26/PWC323/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Perl Weekly Challenge 323</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://wlmb.github.io/2025/05/26/PWC323/" data-a2a-title="Perl Weekly Challenge 323"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          W Luis Mochan                  </span>               <p style="font-size: 16px">
+                 The solutions are characterized by their clarity and efficiency. It leverages Perl's strengths in pattern matching and concise scripting to address the challenges effectively.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-323/matthias-muth#readme" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Decrement Your Tax Amount</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-323/matthias-muth#readme" data-a2a-title="Decrement Your Tax Amount"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Matthias Muth                  </span>               <p style="font-size: 16px">
+                 The code is well-documented, making it accessible to readers with varying levels of Perl experience. While the implementations are straightforward, they effectively solve the problems without unnecessary complexity.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://packy.dardan.com/b/Ve" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Should five percent appear too small…</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://packy.dardan.com/b/Ve" data-a2a-title="Should five percent appear too small…"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://blogs.perl.org/users/packy_anderson/">Packy Anderson</a>                         (<a href="https://metacpan.org/author/PACKY">PACKY</a>)                  </span>               <p style="font-size: 16px">
+                 It stands out for its clarity, thoroughness, and educational value. Solutions in multiple languages caters to a diverse audience and showcases the versatility of different programming paradigms.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="http://ccgi.campbellsmiths.force9.co.uk/challenge/323" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Up, down, and pay your tax</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="http://ccgi.campbellsmiths.force9.co.uk/challenge/323" data-a2a-title="Up, down, and pay your tax"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Peter Campbell Smith                  </span>               <p style="font-size: 16px">
+                 The use of regular expressions to match '++' and '--' operations demonstrates a clear understanding of Perl's pattern matching capabilities.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://hatley-software.blogspot.com/2025/05/robbie-hatleys-solutions-in-perl-for_29.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">The Weekly Challenge #323</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://hatley-software.blogspot.com/2025/05/robbie-hatleys-solutions-in-perl-for_29.html" data-a2a-title="The Weekly Challenge #323"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://hatley-software.blogspot.com/">Robbie Hatley</a>                  </span>               <p style="font-size: 16px">
+                 The use of the Switch module, while unconventional, serves to illustrate structured decision-making in Perl. It's valuable resource for those looking to understand Perl implementations of algorithmic challenges.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://blog.firedrake.org/archive/2025/06/The_Weekly_Challenge_323__Incremental_Tax.html" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Incremental Tax</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://blog.firedrake.org/archive/2025/06/The_Weekly_Challenge_323__Incremental_Tax.html" data-a2a-title="Incremental Tax"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="https://blog.firedrake.org/">Roger Bell West</a>                         (<a href="https://metacpan.org/author/FIREDRAKE">FIREDRAKE</a>)                  </span>               <p style="font-size: 16px">
+                 It demonstrates a clear and pragmatic approach to problem-solving. By providing solutions in multiple languages, it not only showcases adaptability but also offers a comparative perspective on different programming paradigms.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://dev.to/simongreennet/weekly-challenge-counting-the-tax-53fh" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Counting the tax</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://dev.to/simongreennet/weekly-challenge-counting-the-tax-53fh" data-a2a-title="Counting the tax"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          Simon Green                  </span>               <p style="font-size: 16px">
+                 It exemplifies a clear and methodical approach to problem-solving. The explanations are concise, and the code examples are well-structured, making the post accessible to a broad audience.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="weekly_collections" />
+        <div style="font-size: 18px; font-weight: bold;">Weekly collections</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="http://niceperl.blogspot.com/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">NICEPERL's lists</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="http://niceperl.blogspot.com/" data-a2a-title="NICEPERL's lists"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />                 <span style="font-size: 14px">
+                   by                          <a href="http://niceperl.blogspot.com/">Miguel Prz</a>                         (<a href="https://metacpan.org/author/NICEPERL">NICEPERL</a>)                  </span>               <p style="font-size: 16px">
+                 <a href="https://niceperl.blogspot.com/2025/05/dl-6-great-cpan-modules-released-last.html">Great CPAN modules released last week</a>;<br><a href="https://niceperl.blogspot.com/2025/05/dcviii-metacpan-weekly-report-wanted.html">MetaCPAN weekly report</a>.
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+    <tr><td>
+        <hr style="color: red" id="events" />
+        <div style="font-size: 18px; font-weight: bold;">Events</div>
+        
+    </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://paris.mongueurs.net/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">Paris.pm monthly meeting</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://paris.mongueurs.net/" data-a2a-title="Paris.pm monthly meeting"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 Paris, France
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+       <tr><td>
+           <table style="width:100%"><tr><td>
+               <div
+                
+               >
+               <p style="margin-left: 1.5em;">
+               <div class="entry-title">
+                 <a href="https://tprc.us/tprc-2025-gsp/" style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    ">The Perl and Raku Conference 2025</a>
+               </div>
+               <div class="share-links">
+                 <div class="a2a_kit a2a_kit_size_16 a2a_default_style"
+                   data-a2a-url="https://tprc.us/tprc-2025-gsp/" data-a2a-title="The Perl and Raku Conference 2025"
+>
+                   <a class="a2a_button_twitter"></a>
+                   <a class="a2a_button_facebook"></a>
+                   <a class="a2a_button_email"></a>
+                   <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                 </div>
+
+               </div>
+
+               <br />               <p style="font-size: 16px">
+                 Greenville, South Carolina, USA
+               </p>
+               
+               </div>
+           
+           </td></tr></table>
+        </td></tr>
+    
+    
+
+
+<tr><td>
+   <hr style="color: red" id="events" />
+
+  
+   <hr style="color: red" id="events" />
+  
+<div id="main">
+<p>
+You know, you could get the Perl Weekly right in your mailbox. Every Week.<br>Free of charge!
+</p>
+   <div class="subform">
+   <!--
+<form class="subscribe" action="https://mail.perlweekly.com/mailman/subscribe/perlweekly" method="POST">
+<span class="formlabel">Enter your e-mail:</span>
+<input class="emailinput" name="email" size="20" />
+<input class="awesome_button" type="submit" value="and click to sign up!" />
+</form>
+-->
+
+<!--
+<form class="subscribe" action="https://mail.perlweekly.com/cgi-bin/mailman/listinfo/perlweekly" method="GET">
+<input class="awesome_button" type="submit" value="Click to sign up!" />
+</form>
+-->
+
+<form class="subscribe" action="/subscribe.html" method="GET">
+<input class="awesome_button" type="submit" value="Click to sign up!" />
+</form>
+
+   <div class="onemail">
+      Just ONE e-mail each Monday. Easy to <a href="/unsubscribe.html">unsubscribe</a>. No spam. Your e-mail address is safe.
+    </div>
+</div>
+
+
+</div>
+
+<div id="footer" style="
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+">
+(C) Copyright <a href="https://szabgab.com/">Gabor Szabo</a>. The articles are copyright the respective authors.</p>
+<p>This newsletter is about the Perl programming language.</p>
+</div>
+<div id="menu">
+  <ul>
+    <li>Sections:</li>
+  
+    <li><a href="#articles">Articles</a></li>
+  
+    <li><a href="#discussion">Discussion</a></li>
+  
+    <li><a href="#perl">Perl</a></li>
+  
+    <li><a href="#the_weekly_challenge">The Weekly Challenge</a></li>
+  
+    <li><a href="#weekly_collections">Weekly collections</a></li>
+  
+    <li><a href="#events">Events</a></li>
+  
+  </ul>
+</div>
+
+
+<div id="social_icons">
+<a href="https://twitter.com/perlweekly"><img src="/img/twitter32.png" alt="Perl Weekly on Twitter" /></a>
+<a href="/perlweekly.rss" rel="alternate" type="application/rss+xml"><img src="/img/feed-icon32x32.png" alt="RSS Feed of the Perl Weekly. Updated once a week" /></a>
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12199211-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+</td></tr>
+</table>
+
+
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+</body>
+</html>
