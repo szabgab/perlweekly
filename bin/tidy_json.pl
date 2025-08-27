@@ -3,9 +3,9 @@ use strict;
 use warnings;
 use 5.010;
 
-use JSON qw/ from_json to_json /;
+use JSON       qw/ from_json to_json /;
 use Path::Tiny qw/ path /;
-use Encode qw/ encode decode /;
+use Encode     qw/ encode decode /;
 
 main();
 
@@ -14,7 +14,7 @@ sub main {
 		next if $file !~ m{/\d+.json$};
 		tidy($file);
 	}
-	foreach my $file ("src/authors.json", "src/events.json") {
+	foreach my $file ( "src/authors.json", "src/events.json" ) {
 		tidy($file);
 	}
 }

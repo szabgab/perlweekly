@@ -10,11 +10,11 @@ use 5.010;
 # next to the perlweekly working directory
 
 use YAML;
-use JSON qw(from_json);
-use Path::Tiny qw(path);
-use Data::Dumper qw(Dumper);
-use Cwd qw(abs_path cwd);
-use File::Basename qw(dirname);
+use JSON            qw(from_json);
+use Path::Tiny      qw(path);
+use Data::Dumper    qw(Dumper);
+use Cwd             qw(abs_path cwd);
+use File::Basename  qw(dirname);
 use List::MoreUtils qw(any);
 
 my $cwd = cwd;

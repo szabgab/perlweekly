@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 use 5.010;
-use DateTime  ();
-use XML::Feed ();
+use DateTime     ();
+use XML::Feed    ();
 use Data::Dumper qw(Dumper);
 
 my $dt = DateTime->now;
@@ -68,9 +68,9 @@ for my $site (@sites) {
 			$count++;
 		}
 	};
-    my $err = $@;
+	my $err = $@;
 	if ($err) {
-        chomp $err;
+		chomp $err;
 		say "Error '$err' in $site->{url}. Setting count to 0.";
 	}
 	$counter{ $site->{name} } = $count;

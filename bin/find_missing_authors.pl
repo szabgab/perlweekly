@@ -5,10 +5,10 @@ use warnings;
 use autodie qw/ :all /;
 use 5.010;
 
-use JSON qw/ from_json to_json /;
+use JSON       qw/ from_json to_json /;
 use Path::Tiny qw/ path /;
-use FindBin qw/ $Bin $Script /;
-use Encode qw/ encode decode /;
+use FindBin    qw/ $Bin $Script /;
+use Encode     qw/ encode decode /;
 
 use Getopt::Long;
 

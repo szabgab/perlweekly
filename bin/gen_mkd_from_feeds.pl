@@ -40,7 +40,7 @@ my %seen;
 my @entries = sort { $a->issued <=> $b->issued }
 	grep {
 	!( $_->link ~~ @in_archive )
-		or do { warn $_->link, " seen in archive"; 0 }
+	or do { warn $_->link, " seen in archive"; 0 }
 	}
 	grep { not $seen{ $_->link }++ }
 	grep { $_->issued >= $cutout_date }
@@ -49,7 +49,7 @@ my @entries = sort { $a->issued <=> $b->issued }
 
 for my $entry (@entries) {
 	$target->append(
-		join "\n", '### ' . $entry->title,
+		join "\n",      '### ' . $entry->title,
 		$entry->link,   eval { $entry->issued->ymd } || '????-??-??',
 		$entry->author, "\n\n",
 	);

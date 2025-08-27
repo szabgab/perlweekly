@@ -3,11 +3,11 @@ use warnings;
 use autodie;
 use 5.010;
 
-use JSON qw(from_json to_json);
+use JSON       qw(from_json to_json);
 use Path::Tiny qw(path);
 use WWW::Shorten::Bitly;
 use Data::Dumper qw(Dumper);
-use Encode qw(decode encode);
+use Encode       qw(decode encode);
 
 my $bitly_file = '/home/gabor/.bitly';
 open my $fh, '<', $bitly_file;

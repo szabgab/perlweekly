@@ -6,8 +6,8 @@ use Encode;
 
 use Getopt::Long qw(GetOptions);
 use Email::SendGrid::V3;
-use JSON qw(from_json);
-use Path::Tiny qw(path);
+use JSON         qw(from_json);
+use Path::Tiny   qw(path);
 use Data::Dumper qw(Dumper);
 
 my $sent_file = 'sent.json';
@@ -15,112 +15,125 @@ my $sent_file = 'sent.json';
 main();
 
 sub get_sent {
-    return {} if not -e $sent_file;
+	return {} if not -e $sent_file;
 
-    open my $fh, '<', $sent_file or die "Could not open '$sent_file' for reading $!";
-    local $/ = undef;
-    return from_json scalar <$fh>;
+	open my $fh, '<', $sent_file
+		or die "Could not open '$sent_file' for reading $!";
+	local $/ = undef;
+	return from_json scalar <$fh>;
 }
 
 sub save {
-    my ($sent) = @_;
+	my ($sent) = @_;
 
-    open my $fh, '>', $sent_file or die "Could not open '$sent_file' for writing $!";
-    my $json = JSON->new->allow_nonref;
-    print $fh $json->pretty->encode($sent);
+	open my $fh, '>', $sent_file
+		or die "Could not open '$sent_file' for writing $!";
+	my $json = JSON->new->allow_nonref;
+	print $fh $json->pretty->encode($sent);
 }
 
 sub main {
-    binmode( STDOUT, ":encoding(UTF-8)" );
-    binmode( STDERR, ":encoding(UTF-8)" );
-    my $sent = get_sent();
+	binmode( STDOUT, ":encoding(UTF-8)" );
+	binmode( STDERR, ":encoding(UTF-8)" );
+	my $sent = get_sent();
 
-    my %opt;
-    GetOptions( \%opt, 'to=s', 'tofile=s', 'issue=i', 'limit=i') or die;
-    die "Usage: $0 --to mail\@address.com --tofile addresses.txt  --issue N --limit N\n"
-	if ((not $opt{to} and not $opt{tofile}) or not $opt{issue});
+	my %opt;
+	GetOptions( \%opt, 'to=s', 'tofile=s', 'issue=i', 'limit=i' ) or die;
+	die
+		"Usage: $0 --to mail\@address.com --tofile addresses.txt  --issue N --limit N\n"
+		if ( ( not $opt{to} and not $opt{tofile} ) or not $opt{issue} );
 
-    my $html = Encode::decode_utf8 qx{$^X bin/generate.pl mail $opt{issue}};
-    my $text = Encode::decode_utf8 qx{$^X bin/generate.pl text $opt{issue}};
+	my $html = Encode::decode_utf8 qx{$^X bin/generate.pl mail $opt{issue}};
+	my $text = Encode::decode_utf8 qx{$^X bin/generate.pl text $opt{issue}};
 
-    my $data = from_json scalar( path("src/$opt{issue}.json")->slurp_utf8 );
-    my $subject = "[Perlweekly] #$opt{issue} - $data->{subject}";
+	my $data = from_json scalar( path("src/$opt{issue}.json")->slurp_utf8 );
+	my $subject = "[Perlweekly] #$opt{issue} - $data->{subject}";
 
-    my $editors = from_json scalar( path("src/authors.json")->slurp_utf8 );
+	my $editors = from_json scalar( path("src/authors.json")->slurp_utf8 );
 
-    #die $data->{editor};
-    #die Dumper $editors;
-    die "Editor '$data->{editor}' not found.\n"
-    	if not $editors->{ $data->{editor} };
+	#die $data->{editor};
+	#die Dumper $editors;
+	die "Editor '$data->{editor}' not found.\n"
+		if not $editors->{ $data->{editor} };
 
-    my $from = "$editors->{gabor_szabo}{name} <$editors->{gabor_szabo}{from}>";
+	my $from
+		= "$editors->{gabor_szabo}{name} <$editors->{gabor_szabo}{from}>";
 
-    my $api_key = get_api_key();
+	my $api_key = get_api_key();
 
-    #print($html);
-    #print($text);
-    #exit();
-    if ($opt{to}) {
-        my $result = sendmail($api_key, $opt{to}, $from, $subject, $html, $text);
-	    say $result->{success}
-		? "It worked"
-		: "It failed: " . $result->{reason};
-        return
-    }
-    if ($opt{tofile}) {
-        # read file and send email to each address
-        open my $fh, '<', $opt{tofile} or die "Could not open '$opt{tofile}' $!";
-        my @rows = <$fh>;
-        chomp @rows;
-        my $total = scalar @rows;
-        my $count = 0;
-        my $start_time = time();
-        for my $row (@rows) {
-            $count++;
-            my $current_time = time();
-            next if $row =~ /^\s*(#.*)?$/;
-            my ($name, $to) = split_row($row);
-            next if $sent->{$to};
+	#print($html);
+	#print($text);
+	#exit();
+	if ( $opt{to} ) {
+		my $result
+			= sendmail( $api_key, $opt{to}, $from, $subject, $html, $text );
+		say $result->{success}
+			? "It worked"
+			: "It failed: " . $result->{reason};
+		return;
+	}
+	if ( $opt{tofile} ) {
 
-            if (defined $opt{limit}) {
-                $opt{limit}--;
-                if ($opt{limit} < 0) {
-                    last;
-                }
-            }
+		# read file and send email to each address
+		open my $fh, '<', $opt{tofile}
+			or die "Could not open '$opt{tofile}' $!";
+		my @rows = <$fh>;
+		chomp @rows;
+		my $total      = scalar @rows;
+		my $count      = 0;
+		my $start_time = time();
+		for my $row (@rows) {
+			$count++;
+			my $current_time = time();
+			next if $row =~ /^\s*(#.*)?$/;
+			my ( $name, $to ) = split_row($row);
+			next if $sent->{$to};
 
-            # returns a plain hash
-            my $result = sendmail($api_key, $name, $to, $from, $subject, $html, $text);
-            #say Dumper $result;
-            $sent->{$to} = {
-                success => $result->{success},
-                reason  => $result->{reason},
-                content => $result->{content},
-                status => $result->{status},
-            };
+			if ( defined $opt{limit} ) {
+				$opt{limit}--;
+				if ( $opt{limit} < 0 ) {
+					last;
+				}
+			}
 
-            save($sent);
-            my $elapsed_time = $current_time-$start_time;
-            my $remaining = int(($total-$count) * $elapsed_time / $count);
-            my $progress = "($count/$total remaining $remaining seconds (elapsed time $elapsed_time))";
-	        say $result->{success}
-		    ? "  It worked $progress"
-		    : "  It failed: $result->{reason} $progress";
-        }
-    }
+			# returns a plain hash
+			my $result
+				= sendmail( $api_key, $name, $to, $from, $subject, $html,
+				$text );
+
+			#say Dumper $result;
+			$sent->{$to} = {
+				success => $result->{success},
+				reason  => $result->{reason},
+				content => $result->{content},
+				status  => $result->{status},
+			};
+
+			save($sent);
+			my $elapsed_time = $current_time - $start_time;
+			my $remaining
+				= int( ( $total - $count ) * $elapsed_time / $count );
+			my $progress
+				= "($count/$total remaining $remaining seconds (elapsed time $elapsed_time))";
+			say $result->{success}
+				? "  It worked $progress"
+				: "  It failed: $result->{reason} $progress";
+		}
+	}
 }
 
 sub split_row {
-    my ($row) = @_;
-    if ($row =~ /</) {
-        if ($row =~ /^\s*(.*?)\s*<([^<>]+)>\s*$/) {
-            return $1, $2;
-        } else {
-            warn "No matching in $row";
-            return;
-        }
-    }
-    return "", $row;
+	my ($row) = @_;
+	if ( $row =~ /</ ) {
+		if ( $row =~ /^\s*(.*?)\s*<([^<>]+)>\s*$/ ) {
+			return $1, $2;
+		}
+		else {
+			warn "No matching in $row";
+			return;
+		}
+	}
+	return "", $row;
 }
 
 sub get_api_key {
@@ -129,33 +142,33 @@ sub get_api_key {
 	my $row = <$fh>;
 	chomp $row;
 	close $fh;
-    my ($var, $api_key) = split /=/, $row;
+	my ( $var, $api_key ) = split /=/, $row;
 	return $api_key;
 }
 
 sub sendmail {
-	my ($api_key, $name, $to, $from, $subject, $html, $text) = @_;
-    say "Sending to '$to'     ($name)";
-    #return;
+	my ( $api_key, $name, $to, $from, $subject, $html, $text ) = @_;
+	say "Sending to '$to'     ($name)";
 
-    # ->reply_to
+	#return;
+
+	# ->reply_to
 	my $sg = Email::SendGrid::V3->new( api_key => $api_key );
 	my $result
 		= $sg->from($from)
-        ->subject($subject)
+		->subject($subject)
 		->add_content( 'text/plain', $text )
-		->add_content( 'text/html', $html )
+		->add_content( 'text/html',  $html )
 		->add_envelope( to => [$to] )
-        ->click_tracking(0)
-        ->open_tracking(0)
-        ->send;
+		->click_tracking(0)
+		->open_tracking(0)
+		->send;
 	return $result;
 }
 
 # This is how the sendmail code works:
 # perl bin/sendmail.pl --issue 560 --to gabor@szabgab.com
 # perl bin/sendmail.pl --issue 560 --to perlweekly@perlweekly.com
-
 
 # This is the plan:
 # perl bin/sendgrid.pl --issue 560 --to gabor@szabgab.com

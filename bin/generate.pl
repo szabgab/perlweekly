@@ -9,13 +9,13 @@ binmode( STDOUT, ":encoding(UTF-8)" );
 binmode( STDERR, ":encoding(UTF-8)" );
 
 use Carp::Always;
-use Cwd qw(abs_path);
-use Data::Dumper qw(Dumper);
-use File::Basename qw(basename dirname);
-use File::Copy qw(copy);
-use Path::Tiny qw(path);
-use JSON qw(from_json);
-use List::Util qw(max);
+use Cwd                        qw(abs_path);
+use Data::Dumper               qw(Dumper);
+use File::Basename             qw(basename dirname);
+use File::Copy                 qw(copy);
+use Path::Tiny                 qw(path);
+use JSON                       qw(from_json);
+use List::Util                 qw(max);
 use Data::ICal                 ();
 use Data::ICal::Entry::Event   ();
 use DateTime::Format::Strptime ();
@@ -24,7 +24,7 @@ use DateTime::Format::W3CDTF   ();
 use DateTime                   ();
 
 use lib dirname( dirname abs_path($0) ) . '/lib';
-use PerlWeekly qw(get_authors);
+use PerlWeekly           qw(get_authors);
 use PerlWeekly::Template qw();
 use PerlWeekly::Issue;
 
@@ -33,8 +33,7 @@ for my $name ( 'archive', 'a', 'tags' ) {
 	mkdir "$dir/$name" if not -e "$dir/$name";
 }
 
-copy("src/perlweekly.js", "docs/perlweekly.js");
-
+copy( "src/perlweekly.js", "docs/perlweekly.js" );
 
 my ( $target, $issue ) = @ARGV;
 if (   not $target

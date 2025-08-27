@@ -4,7 +4,7 @@ use 5.16.0;
 
 use strict;
 use warnings;
-use Path::Tiny qw(path);
+use Path::Tiny     qw(path);
 use List::AllUtils qw(before);
 use PerlX::Maybe;
 

@@ -9,11 +9,11 @@ use lib 'lib';
 
 use Getopt::Long qw(GetOptions);
 use MIME::Lite;
-use Cwd qw(abs_path cwd);
+use Cwd          qw(abs_path cwd);
 use Data::Dumper qw(Dumper);
-use Path::Tiny qw(path);
-use JSON qw(from_json);
-use Encode qw(decode encode);
+use Path::Tiny   qw(path);
+use JSON         qw(from_json);
+use Encode       qw(decode encode);
 
 my %opt = ( smtp => 'localhost', );
 GetOptions( \%opt, 'to=s', 'issue=i', 'smtp=s' ) or die;

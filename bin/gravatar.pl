@@ -3,7 +3,7 @@ use warnings;
 use 5.010;
 
 use Gravatar::URL qw(gravatar_id gravatar_url);
-use LWP::Simple qw(getstore);
+use LWP::Simple   qw(getstore);
 
 my ( $email, $file ) = @ARGV;
 
@@ -14,7 +14,7 @@ die "Usage: $0 email file\n" if not $email or not $file;
 
 #my $size = 128;    # Perl Maven
 
-my $size = 80;    # Perl weekly
+my $size         = 80;    # Perl weekly
 my $gravatar_url = gravatar_url( email => $email, size => $size );
 die if not $gravatar_url;
 
