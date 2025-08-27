@@ -3,7 +3,7 @@
   <link rel="stylesheet" type="text/css" href="/style.css" />
 </head>
 <body id="home">
-<div id="stripe">List of Perl Events</div>
+<div id="stripe"><a href="/">Perl Weekly</a> - List of Perl Events</div>
 
 <div id="main">
 
@@ -15,7 +15,7 @@ If your Perl event is not listed here, please send a pull-request for <a href="h
 
 <ul>
 [% FOR e IN events %]
-<li><a href="[% e.url %]">[% IF e.emphasize %]<b>[% END %][% e.title %][% IF e.emphasize %]</b>[% END %]</a> - [% e.text %]</li>
+    <li><a href="[% e.url %]">[% IF e.emphasize %]<b>[% END %][% e.title %][% IF e.emphasize %]</b>[% END %]</a> - <span class="begin" datetime="[% e.begin %]"></span></li>
 [% END %]
 </ul>
 <p>
@@ -65,3 +65,6 @@ This newsletter is about the Perl Programming languages.
 
 </body>
 </html>
+
+
+<script src="/perlweekly.js"></script>

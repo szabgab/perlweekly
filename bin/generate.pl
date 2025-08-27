@@ -12,6 +12,7 @@ use Carp::Always;
 use Cwd qw(abs_path);
 use Data::Dumper qw(Dumper);
 use File::Basename qw(basename dirname);
+use File::Copy qw(copy);
 use Path::Tiny qw(path);
 use JSON qw(from_json);
 use List::Util qw(max);
@@ -31,6 +32,9 @@ my $dir = 'docs';
 for my $name ( 'archive', 'a', 'tags' ) {
 	mkdir "$dir/$name" if not -e "$dir/$name";
 }
+
+copy("src/perlweekly.js", "docs/perlweekly.js");
+
 
 my ( $target, $issue ) = @ARGV;
 if (   not $target
