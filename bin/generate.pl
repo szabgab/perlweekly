@@ -36,7 +36,6 @@ for my $name ( 'archive', 'a', 'tags' ) {
 	mkdir "$dir/$name" if not -e "$dir/$name";
 }
 
-copy( "src/perlweekly.js", "docs/perlweekly.js" );
 
 my ( $target, $issue ) = @ARGV;
 if (   not $target
