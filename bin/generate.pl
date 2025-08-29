@@ -29,6 +29,7 @@ use PerlWeekly::Template qw();
 use PerlWeekly::Issue;
 
 my $dir = 'docs';
+mkdir $dir if not -e $dir;
 for my $name ( 'archive', 'a', 'tags' ) {
 	mkdir "$dir/$name" if not -e "$dir/$name";
 }
