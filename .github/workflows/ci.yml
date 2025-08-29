@@ -31,9 +31,12 @@ jobs:
         run: |
             prove
 
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      - name: Generate HTML
+        if: github.ref == 'refs/heads/master'
+        run: perl bin/generate.pl web all
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
