@@ -63,6 +63,14 @@ sub new {
 		$id =~ s/\W+/_/g;
 		$ch->{id} = $id;
 		next if $issue eq 'next';
+
+		# These two old editions have chapters with meaningfull headers
+		# but without entries.
+		if ( $issue ne "159" and $issue ne "191" ) {
+			if ( @{ $ch->{entries} } == 0 ) {
+				die "No entries found in issue $issue for $ch->{title}";
+			}
+		}
 		foreach my $e ( @{ $ch->{entries} } ) {
 			die "url field is mising in issue $issue for " . Dumper $e
 				if not $e->{url};
