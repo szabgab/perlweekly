@@ -68,7 +68,7 @@ sub new {
 		# but without entries.
 		if ( $issue ne "159" and $issue ne "191" ) {
 			if ( @{ $ch->{entries} } == 0 ) {
-				die "No entries found in issue $issue for $ch->{title}";
+				die "No entries found in issue $issue for '$ch->{title}'";
 			}
 		}
 		foreach my $e ( @{ $ch->{entries} } ) {
