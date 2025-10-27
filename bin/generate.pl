@@ -95,13 +95,13 @@ if ( $issue eq 'all' or $issue eq 'latest' ) {
 		map { substr( basename($_), 0, -5 ) } glob 'src/*.json';
 	my $strict = $issue eq 'all';
 	foreach my $i ( 1 .. $max ) {
-		my $pwissue = PerlWeekly::Issue->new( $i, $target, $dir, $strict);
+		my $pwissue = PerlWeekly::Issue->new( $i, $target, $dir, $strict );
 		push @{ $editors{ $pwissue->{editor} } }, $i;
 		$pwissue->{latest} = $max;
 		if ( $issue eq 'all' or $i == $max ) {
 			$pwissue->generate( $target, "$dir/archive/$i.html" );
-		    push @issues, $pwissue;
-		    $last = $pwissue;
+			push @issues, $pwissue;
+			$last = $pwissue;
 		}
 	}
 
@@ -140,7 +140,8 @@ END_REGISTER
 			#die Dumper $ch;
 			foreach my $entry ( @{ $ch->{entries} } ) {
 				if ( $entry->{title} =~ /^\s*$/ ) {
-					die "Issue '$issue_instance->{issue}' is missing a title\n";
+					die
+						"Issue '$issue_instance->{issue}' is missing a title\n";
 				}
 				if ( $entry->{author} ) {
 

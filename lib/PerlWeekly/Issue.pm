@@ -68,7 +68,8 @@ sub new {
 		# but without entries.
 		if ( $issue ne "159" and $issue ne "191" ) {
 			if ( @{ $ch->{entries} } == 0 ) {
-				my $msg = "No entries found in issue $issue for '$ch->{title}'";
+				my $msg
+					= "No entries found in issue $issue for '$ch->{title}'";
 				$strict ? die $msg : say $msg;
 			}
 		}
