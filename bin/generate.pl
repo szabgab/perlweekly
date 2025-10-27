@@ -93,15 +93,16 @@ if ( $issue eq 'all' or $issue eq 'latest' ) {
 	my ( @issues, $last, %editors );
 	my ($max) = max grep {/^\d+$/}
 		map { substr( basename($_), 0, -5 ) } glob 'src/*.json';
+	my $strict = $issue eq 'all';
 	foreach my $i ( 1 .. $max ) {
-		my $pwissue = PerlWeekly::Issue->new( $i, $target, $dir );
+		my $pwissue = PerlWeekly::Issue->new( $i, $target, $dir, $strict);
 		push @{ $editors{ $pwissue->{editor} } }, $i;
 		$pwissue->{latest} = $max;
 		if ( $issue eq 'all' or $i == $max ) {
 			$pwissue->generate( $target, "$dir/archive/$i.html" );
+		    push @issues, $pwissue;
+		    $last = $pwissue;
 		}
-		push @issues, $pwissue;
-		$last = $pwissue;
 	}
 
 	$last->generate('rss');
@@ -130,21 +131,21 @@ END_REGISTER
 
 	my %articles_by;
 	my $authors = get_authors();
-	foreach my $issue (@issues) {
+	foreach my $issue_instance (@issues) {
 
-		#say "   Issue: $issue->{issue}";
-		#die Dumper $issue;
-		foreach my $ch ( @{ $issue->{chapters} } ) {
+		#say "   Issue: $issue_instance->{issue}";
+		#die Dumper $issue_instance;
+		foreach my $ch ( @{ $issue_instance->{chapters} } ) {
 
 			#die Dumper $ch;
 			foreach my $entry ( @{ $ch->{entries} } ) {
 				if ( $entry->{title} =~ /^\s*$/ ) {
-					die "Issue '$issue->{issue}' is missing a title\n";
+					die "Issue '$issue_instance->{issue}' is missing a title\n";
 				}
 				if ( $entry->{author} ) {
 
 					#print Dumper $entry;
-					$entry->{issue} = $issue->{issue};
+					$entry->{issue} = $issue_instance->{issue};
 					push @{ $articles_by{ $entry->{author}{key} } }, $entry;
 				}
 			}

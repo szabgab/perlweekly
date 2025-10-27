@@ -24,7 +24,7 @@ use PerlWeekly qw(get_authors);
 
 sub new {
 	my $class = shift;
-	my ( $issue, $target, $dir ) = @_;
+	my ( $issue, $target, $dir, $strict ) = @_;
 
 	my $self;
 	my $filename = "src/$issue.json";
@@ -68,7 +68,8 @@ sub new {
 		# but without entries.
 		if ( $issue ne "159" and $issue ne "191" ) {
 			if ( @{ $ch->{entries} } == 0 ) {
-				die "No entries found in issue $issue for '$ch->{title}'";
+				my $msg = "No entries found in issue $issue for '$ch->{title}'";
+				$strict ? die $msg : say $msg;
 			}
 		}
 		foreach my $e ( @{ $ch->{entries} } ) {
