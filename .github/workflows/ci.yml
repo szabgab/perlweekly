@@ -23,6 +23,11 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Environment
+        run: |
+          echo GITHUB.REF_NAME: ${{ github.ref_name }}
+          printenv | sort
+
       - name: Install deps
         run: |
             cpanm --quiet --installdeps --verbose --notest .
