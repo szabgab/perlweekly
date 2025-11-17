@@ -49,8 +49,8 @@ my @sites = (
 my %counter;
 
 for my $site (@sites) {
-
-	#say $site->{name};
+	say "$site->{name} $site->{url}";
+    my $start = time();
 	my $count = 0;
 	eval {
 		my $feed = XML::Feed->parse( URI->new( $site->{url} ) );
@@ -73,6 +73,8 @@ for my $site (@sites) {
 		chomp $err;
 		say "Error '$err' in $site->{url}. Setting count to 0.";
 	}
+    my $end = time();
+    say "Counted $count Elapsed time: ", ($end-$start);
 	$counter{ $site->{name} } = $count;
 }
 
