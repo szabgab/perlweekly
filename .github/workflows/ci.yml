@@ -45,13 +45,14 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
+        if: github.repository == 'szabgab/perlweekly'
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/
 
 
   deploy:
-    if: github.ref == 'refs/heads/master'
+    if: (github.ref == 'refs/heads/master') && (github.repository == 'szabgab/perlweekly')
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
