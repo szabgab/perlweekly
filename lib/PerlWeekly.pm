@@ -10,7 +10,7 @@ use Path::Tiny   qw(path);
 our @EXPORT_OK = qw(get_authors);
 
 my %VALID = map { $_ => 1 }
-	qw(comment from img linkedin name nick pause support twitter url url2);
+	qw(comment deceased from img linkedin name nick pause support twitter url url2);
 
 sub _exit {
 	my ($msg) = @_;
