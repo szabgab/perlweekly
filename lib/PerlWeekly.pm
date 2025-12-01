@@ -33,8 +33,8 @@ sub get_authors {
 			if ( $img !~ m{^/img/[a-z_-]+\.(png|jpg|jpeg|gif)$} ) {
 				_exit("Incorrectly formatted image path: `$img`");
 			}
-            my $path = "static$img";
-            _exit("Image '$path' does not exist") if not -e $path;
+			my $path = "static$img";
+			_exit("Image '$path' does not exist") if not -e $path;
 		}
 
 		# Check if there are no extra fields
