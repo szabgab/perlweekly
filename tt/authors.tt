@@ -5,6 +5,15 @@
 <body id="home">
 <p>&nbsp;</p>
 <table id="authors">
+    <tr>
+        <th>Img (name)</th>
+        <th>Name (url)</th>
+        <th>Nickname</th>
+        <th>LinkedIn</th>
+        <th>PAUSE</th>
+        <th>Twitter</th>
+    </tr>
+
 <tr>
 [% FOR a IN authors %]
 <tr>
@@ -23,19 +32,27 @@
       [% ELSE %]
             [% a.name %]
       [% END %]
-
+  </td>
+  <td align="left">
       [% IF a.nick %]
             ([% a.nick %])
       [% END %]
-
   </td>
   <td align="left">
       [% IF a.linkedin %]
             <a href="[% a.linkedin %]">LinkedIn</a>
       [% END %]
   </td>
- <td align="left">[% IF a.pause %]<a href="https://metacpan.org/author/[% a.pause %]">[% a.pause %]</a>[% END %]</td>
- <td>[% IF a.twitter %]<img src="https://perlweekly.com/img/twitter32.png" alt="Tweet"> <a href="https://twitter.com/[% a.twitter %]">@[% a.twitter %]</a>[% END %]</td>
+  <td align="left">
+      [% IF a.pause %]
+         <a href="https://metacpan.org/author/[% a.pause %]">[% a.pause %]</a>
+      [% END %]
+  </td>
+  <td>
+      [% IF a.twitter %]
+         <img src="https://perlweekly.com/img/twitter32.png" alt="Tweet"> <a href="https://twitter.com/[% a.twitter %]">@[% a.twitter %]</a>
+      [% END %]
+  </td>
 </tr>
 [% END %]
 </table>
