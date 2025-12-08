@@ -2,6 +2,7 @@ package PerlWeekly::Issue;
 use 5.010;
 use strict;
 use warnings;
+use utf8;
 
 use autodie;
 
@@ -57,6 +58,7 @@ sub new {
 		die "The 'header' is empty for issue $issue.\n"
 			if not @{ $self->{header} };
 	}
+	$self->check_for_invalid_characters($issue);
 
 	for my $ch ( @{ $self->{chapters} } ) {
 		my $id = lc $ch->{title};
@@ -89,6 +91,33 @@ sub new {
 	$self->{number}  = $issue;
 
 	return $self;
+}
+
+sub check_for_invalid_characters {
+	my ( $self, $issue ) = @_;
+
+	$self->check_for_invalid_characters_in_text( $self->{subject}, $issue,
+		'subject' );
+
+	for my $text ( @{ $self->{header} } ) {
+		$self->check_for_invalid_characters_in_text( $text, $issue,
+			'header' );
+	}
+}
+
+sub check_for_invalid_characters_in_text {
+	my ( $self, $text, $issue, $area ) = @_;
+
+	my @invalid_characters = ( '’', '‑', '—', ' ' );
+	for my $char (@invalid_characters) {
+		my $location = index( $text, $char );
+		if ( $location >= 0 ) {
+			die
+				"In issue $issue there is an invalid character '$char' at location $location in '$text' in the $area\n";
+		}
+	}
+
+	# TODO: check in the entries as well. Both title and text.
 }
 
 sub generate {

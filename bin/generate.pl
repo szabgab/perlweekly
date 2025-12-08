@@ -8,7 +8,7 @@ use autodie;
 binmode( STDOUT, ":encoding(UTF-8)" );
 binmode( STDERR, ":encoding(UTF-8)" );
 
-use Carp::Always;
+#use Carp::Always;
 use Cwd                        qw(abs_path);
 use Data::Dumper               qw(Dumper);
 use File::Basename             qw(basename dirname);
