@@ -56,8 +56,7 @@ sub main {
 	die "Editor '$data->{editor}' not found.\n"
 		if not $editors->{ $data->{editor} };
 
-	my $from
-		= "$editors->{gabor_szabo}{name} <$editors->{gabor_szabo}{from}>";
+	my $from = 'Gabor Szabo <gabor@szabgab.com>';
 
 	my $api_key = get_api_key();
 
