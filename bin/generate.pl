@@ -27,6 +27,7 @@ use lib dirname( dirname abs_path($0) ) . '/lib';
 use PerlWeekly           qw(get_authors);
 use PerlWeekly::Template qw();
 use PerlWeekly::Issue;
+use PerlWeekly::ChartUploads qw(chart_uploads);
 
 my $dir = 'docs';
 system("rm -fr $dir");
@@ -388,6 +389,9 @@ sub metacpan_page {
 	$t->process( 'tt/metacpan.tt', { metacpan => \@metacpan },
 		"$dir/metacpan.html" )
 		or die $t->error;
+
+	my $filename_chart = path('chart_uploads.png');
+	chart_uploads($filename, "$dir/".$filename_chart.q{});
 
 }
 
