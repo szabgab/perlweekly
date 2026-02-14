@@ -391,7 +391,7 @@ sub metacpan_page {
 		or die $t->error;
 
 	my $filename_chart = path('chart_uploads.png');
-	chart_uploads($filename, "$dir/".$filename_chart.q{});
+	chart_uploads( $filename, "$dir/" . $filename_chart . q{} );
 
 }
 
