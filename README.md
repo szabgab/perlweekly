@@ -56,7 +56,13 @@ Each entry has the following fields:
 Checking your file
 ===================
 
-You can generate the HTML files by running `perl bin/generate.pl web all` and then you can run `plackup` and visit http://127.0.0.1:5000/ to see the results.
+You can generate the HTML files by running `perl bin/generate.pl web all`. Then you can run `plackup` and visit http://127.0.0.1:5000/ to see the results.
+
+Alternatively you can install [rustatic](https://rustatic.code-maven.com/) and run it like this:
+
+```
+rustatic --path docs/ --nice --indexfile index.html
+```
 
 
 Linking to blogspot
