@@ -1,85 +1,63 @@
 {
-   "date" : "2026-03-02",
-   "editor" : "mohammad_anwar",
-   "subject" : "Perl with MetaCPAN",
-   "header" : [
-      "Hi there,",
-      "If there's one thing that keeps impressing me in our community, it's the dedication of people like <strong>Olaf Alders</strong>. Week after week, Olaf keeps refining <a href=\"https://metacpan.org\">MetaCPAN</a>, polishing small details and improving the user experience. It's not always flashy work, but when you use <strong>MetaCPAN</strong>, you can feel it - everything feels smoother, faster, and more reliable. That kind of steady, thoughtful dedication really inspires me.",
-      "Speaking of inspiration, <strong>Dave Cross</strong> recently shared a neat little trick that I think many of us can use. He showed how your README file can be turned into a static website - yes, the README you already have for your module! The article on Dev.to is called <a href=\"https://dev.to/davorg/your-readme-is-already-a-website-dg7\">\"Your README is already a website\"</a> and it's a fun, practical reminder that sometimes the tools we already have, can do more than we think. I love seeing simple ideas like that applied in clever ways.",
-      "On my side of things, I've been quietly wrestling with some longstanding issues in <a href=\"https://metacpan.org/pod/DBIx::Class\">DBIx::Class</a>. Not only that, but <a href=\"https://metacpan.org/dist/DBIx-Class-Async\">DBIx::Class::Async</a> shares the same quirks, so it's been double the fun. I managed to fix a few problems already, but some issues are tied to <strong>PostgreSQL</strong>-specific behavior. That turned out to be tricky because most of the existing tests run on <strong>SQLite</strong> - easy to spin up, but not the same as <strong>PostgreSQL</strong>. I stumbled upon <a href=\"https://metacpan.org/pod/Test::PostgreSQL\">Test::PostgreSQL</a>, which looked perfect, and then found <a href=\"https://metacpan.org/pod/Test::DBIx::Class\">Test::DBIx::Class</a>, which integrates smoothly with it. I thought, \"Great! Just write a use case and done.\" Ha! Not quite. My <strong>Ubuntu 24.04</strong> setup didn't want to play nicely with <strong>Test::PostgreSQL</strong> - some socket permission issues blocked me entirely. I decided to tinker and ended up creating <a href=\"https://metacpan.org/pod/Test::PostgreSQL::v2\">Test::PostgreSQL::v2</a>, which worked like a charm. Then came integrating it with <strong>Test::DBIx::Class</strong>, which needed a trait for my new module. After a little more work, I added <strong>Test::DBIx::Class::SchemaManager::Trait::Testpostgresqlv2</strong>, and voila - now anyone using <strong>Test::DBIx::Class</strong> with <strong>PostgreSQL</strong> can benefit. For me, that meant I finally had a reliable way to reproduce <a href=\"https://rt.cpan.org/Public/Bug/Display.html?id=133621\">the issue</a> and verify the fix, like in this unit test for <strong>DBIx::Class::Async v0.64</strong>: <a href=\"https://github.com/manwar/DBIx-Class-Async/blob/master/t/156-resultset-inflate-datetime.t\">t/156-resultset-inflate-datetime.t</a>. Feels good to see it all working.",
-      "While I was in tinkering mode, I also revisited <strong>Test::Spelling</strong>. I always get tripped up on <strong>British</strong> vs. <strong>American</strong> English in POD, and I wanted a unit test that could work across all my modules. Initially, I had to manually add stopwords per module - tedious! So I upgraded <strong>Test::Spelling</strong> and created <a href=\"https://metacpan.org/pod/Test::Spelling::Stopwords\">Test::Spelling::Stopwords</a>. Now I can generate stopwords automatically, and the same script works for every module. It's been a real time-saver, and I'm even using it in <strong>DBIx::Class::Async</strong> here: <a href=\"https://github.com/manwar/DBIx-Class-Async/blob/master/t/spell-pod.t\">t/spell-pod.t</a>",
-      "It's funny how small tools and little tweaks can make such a difference. Between Olaf's continuous improvements, Dave's clever README trick, and the testing adventures I've had, I feel reminded of what makes our Perl community special - curiosity, persistence, and a little bit of playful tinkering.",
-      "Enjoy rest of the newsletter and stay safe & healthy."
-   ],
-   "footer" : [
-   ],
    "chapters" : [
       {
-         "title" : "Sponsors",
-         "sponsor" : 1,
-         "entries" : [
-         ]
-      },
-      {
-         "title" : "Announcements",
          "entries" : [
             {
-               "title" : "TPRC call for presentations is open!",
                "author" : "sarah_gray",
                "text" : "The Perl & Raku Foundation has opened its call for presentations for TPRC 2026, inviting submissions of 20 or 50 minute talks on topics of interest to the Perl and Raku communities. Accepted speakers will receive complimentary conference tickets, with sessions scheduled for June 26–28 in Greenville, SC—an excellent opportunity to share insights and help shape this year's technical programme.",
-               "url" : "https://news.perlfoundation.org/post/tprc-2026-call-for-sessions",
-               "ts" : "2026.02.27"
+               "title" : "TPRC call for presentations is open!",
+               "ts" : "2026.02.27",
+               "url" : "https://news.perlfoundation.org/post/tprc-2026-call-for-sessions"
             },
             {
-               "title" : "Board Proposes Chris Prather (perigrin) for Membership",
                "author" : "ruth_bavousett",
                "text" : "The Perl Foundation's board has put forward Chris Prather (perigrin) as a candidate for board membership, highlighting his decades of professional Perl experience and long‑standing community contributions. His vision emphasises strengthening the Foundation's role in uniting Perl and Raku projects, supporting maintainers, and fostering sustainable ecosystem growth.",
-               "url" : "https://news.perlfoundation.org/post/board_proposes_chris_prather",
-               "ts" : "2026.02.23"
+               "title" : "Board Proposes Chris Prather (perigrin) for Membership",
+               "ts" : "2026.02.23",
+               "url" : "https://news.perlfoundation.org/post/board_proposes_chris_prather"
             }
-         ]
+         ],
+         "title" : "Announcements"
       },
       {
-         "title" : "Articles",
          "entries" : [
             {
-               "title" : "Cloud VM Performance / Price comparison 2026",
                "author" : "dimitrios_kechagias",
                "text" : "This post offers a timely, data‑driven benchmark of CPU performance versus cost across 7 major cloud providers and 44 VM families, using Perl‑based tooling for reproducible results. The concise summary and practical Docker‑ready benchmark suite make it a valuable reference for developers and architects seeking real‑world insights into cloud compute value.",
-               "url" : "https://blogs.perl.org/users/dimitrios_kechagias/2026/03/cloud-vm-performance-price-comparison-2026.html",
-               "ts" : "2026.03.01"
+               "title" : "Cloud VM Performance / Price comparison 2026",
+               "ts" : "2026.03.01",
+               "url" : "https://blogs.perl.org/users/dimitrios_kechagias/2026/03/cloud-vm-performance-price-comparison-2026.html"
             },
             {
-               "title" : "Automatic cross-platform testing: part 7: 32 bit, again",
                "author" : "david_cantrell",
                "text" : "David Cantrell's latest on automatic cross‑platform testing tackles the perennial challenge of running CI on 32‑bit environments using modern GitHub Actions, showing how to assemble a unified workflow across Unix‑like systems while handling 32‑bit builds. He walks through clever tricks for downloading artifacts and even building a 32‑bit Perl with 32‑bit integers for more thorough testing. It’s a practical, hands‑on guide for anyone keen to broaden test coverage beyond the usual 64‑bit platforms.",
-               "url" : "https://dev.to/drhyde/automatic-cross-platform-testing-part-7-32-bit-again-1ipf",
-               "ts" : "2026.02.27"
+               "title" : "Automatic cross-platform testing: part 7: 32 bit, again",
+               "ts" : "2026.02.27",
+               "url" : "https://dev.to/drhyde/automatic-cross-platform-testing-part-7-32-bit-again-1ipf"
             }
-         ]
+         ],
+         "title" : "Articles"
       },
       {
-         "title" : "CPAN",
          "entries" : [
             {
-               "title" : "DBD::Mock::Session::GenerateFixtures v1.03",
                "author" : "dragos_trif",
                "text" : "The latest release includes automatic mock data generation for transactional database interactions. That means it's much easier to capture and replay sequences that involve BEGIN WORK, COMMIT, ROLLBACK, and even nested try/catch logic.",
-               "url" : "https://metacpan.org/pod/DBD::Mock::Session::GenerateFixtures",
-               "ts" : "2026.03.01"
+               "title" : "DBD::Mock::Session::GenerateFixtures v1.03",
+               "ts" : "2026.03.01",
+               "url" : "https://metacpan.org/pod/DBD::Mock::Session::GenerateFixtures"
             },
             {
-               "title" : "App::Test::Generator v0.29",
                "author" : "nigel_horne",
                "text" : "The latest release introduces mutation testing alongside a sleek HTML mutation dashboard, making it easier to see which lines of code survived mutations and where your tests could miss mistakes. Instead of just coverage numbers, you can now ask, \"Would a mistake here be caught?\" The dashboard highlights affected lines, provides helpful tooltips, and allows detailed per-line inspection.",
-               "url" : "https://metacpan.org/pod/App::Test::Generator",
-               "ts" : "2026.02"
+               "title" : "App::Test::Generator v0.29",
+               "ts" : "2026.02",
+               "url" : "https://metacpan.org/pod/App::Test::Generator"
             }
-         ]
+         ],
+         "title" : "CPAN"
       },
       {
-         "title" : "The Weekly Challenge",
-         "header" : "<a href=\"https://theweeklychallenge.org\">The Weekly Challenge</a> by <a href=\"https://manwar.org\">Mohammad Sajid Anwar</a> will help you step out of your comfort-zone. You can even win prize money of $50 by participating in the weekly challenge. We pick one champion at the end of the month from among all of the contributors during the month, thanks to the sponsor Lance Wicks.",
          "entries" : [
             {
                "author" : "mohammad_anwar",
@@ -209,16 +187,11 @@
                "ts" : "2026.03.01",
                "url" : "https://dev.to/simongreennet/weekly-challenge-the-one-liners-14lo"
             }
-         ]
+         ],
+         "header" : "<a href=\"https://theweeklychallenge.org\">The Weekly Challenge</a> by <a href=\"https://manwar.org\">Mohammad Sajid Anwar</a> will help you step out of your comfort-zone. You can even win prize money of $50 by participating in the weekly challenge. We pick one champion at the end of the month from among all of the contributors during the month, thanks to the sponsor Lance Wicks.",
+         "title" : "The Weekly Challenge"
       },
       {
-         "title" : "Perl Tutorial",
-         "header" : "A section for newbies and for people who need some refreshing of their Perl knowledge. If you have questions or suggestions about the articles, let me know and I'll try to make the necessary changes. The included articles are from the <a href=\"https://perlmaven.com/perl-tutorial\">Perl Maven Tutorial</a> and are part of the <a href=\"https://leanpub.com/perl-maven\">Perl Maven eBook</a>.",
-         "entries" : [
-         ]
-      },
-      {
-         "title" : "Rakudo",
          "entries" : [
             {
                "author" : "liztormato",
@@ -228,30 +201,68 @@
                "ts" : "2026.02.23",
                "url" : "https://rakudoweekly.blog/2026/02/23/2026-08-positional-adverbs/"
             }
-         ]
+         ],
+         "title" : "Rakudo"
       },
       {
-         "title" : "Weekly collections",
          "entries" : [
             {
-              "title" : "NICEPERL's lists",
-              "author" : "miguel_prz",
-              "url" : "http://niceperl.blogspot.com/",
-              "text" : "<a href=\"https://niceperl.blogspot.com/2026/02/dlxxxix-16-great-cpan-modules-released.html\">Great CPAN modules released last week</a>.",
-              "ts" : "2026.02.28"
+               "author" : "miguel_prz",
+               "text" : "<a href=\"https://niceperl.blogspot.com/2026/02/dlxxxix-16-great-cpan-modules-released.html\">Great CPAN modules released last week</a>.",
+               "title" : "NICEPERL's lists",
+               "ts" : "2026.02.28",
+               "url" : "http://niceperl.blogspot.com/"
             }
-         ]
+         ],
+         "title" : "Weekly collections"
       },
       {
-         "title" : "The corner of Gabor",
-         "header" : "A couple of entries sneaked in by Gabor.",
          "entries" : [
-         ]
-      },
-      {
-         "title" : "Events",
-         "entries" : [
-         ]
+            {
+               "begin" : "2026-03-10T20:00:00+02:00",
+               "text" : "March 10, 2026",
+               "title" : "Perl Maven online: Code-reading and Open Source contribution",
+               "url" : "https://luma.com/perl-maven"
+            },
+            {
+               "begin" : "2026-03-11T20:00:00+01:00",
+               "text" : "March 11, 2026",
+               "title" : "Paris.pm monthly meeting",
+               "url" : "https://paris.mongueurs.net/"
+            },
+            {
+               "begin" : "2026-03-16T08:00:00+01:00",
+               "text" : "March 16-18, 2026",
+               "title" : "German Perl/Raku Workshop 2026 in Berlin",
+               "url" : "https://act.yapc.eu/gpw2026/"
+            },
+            {
+               "begin" : "2026-04-23T08:00:00+01:00",
+               "text" : "April 23-26, 2026",
+               "title" : "Perl Toolchain Summit 2026",
+               "url" : "https://www.perl.com/article/announcing-the-perl-toolchain-summit-2026/"
+            },
+            {
+               "begin" : "2026-06-26",
+               "text" : "June 26-29, 2026, Greenville, SC, USA",
+               "title" : "The Perl and Raku Conference 2026",
+               "url" : "https://tprc.us/tprc-2026-gsp/"
+            }
+         ],
+         "title" : "Events"
       }
-   ]
+   ],
+   "date" : "2026-03-02",
+   "editor" : "mohammad_anwar",
+   "footer" : [],
+   "header" : [
+      "Hi there,",
+      "If there's one thing that keeps impressing me in our community, it's the dedication of people like <strong>Olaf Alders</strong>. Week after week, Olaf keeps refining <a href=\"https://metacpan.org\">MetaCPAN</a>, polishing small details and improving the user experience. It's not always flashy work, but when you use <strong>MetaCPAN</strong>, you can feel it - everything feels smoother, faster, and more reliable. That kind of steady, thoughtful dedication really inspires me.",
+      "Speaking of inspiration, <strong>Dave Cross</strong> recently shared a neat little trick that I think many of us can use. He showed how your README file can be turned into a static website - yes, the README you already have for your module! The article on Dev.to is called <a href=\"https://dev.to/davorg/your-readme-is-already-a-website-dg7\">\"Your README is already a website\"</a> and it's a fun, practical reminder that sometimes the tools we already have, can do more than we think. I love seeing simple ideas like that applied in clever ways.",
+      "On my side of things, I've been quietly wrestling with some longstanding issues in <a href=\"https://metacpan.org/pod/DBIx::Class\">DBIx::Class</a>. Not only that, but <a href=\"https://metacpan.org/dist/DBIx-Class-Async\">DBIx::Class::Async</a> shares the same quirks, so it's been double the fun. I managed to fix a few problems already, but some issues are tied to <strong>PostgreSQL</strong>-specific behavior. That turned out to be tricky because most of the existing tests run on <strong>SQLite</strong> - easy to spin up, but not the same as <strong>PostgreSQL</strong>. I stumbled upon <a href=\"https://metacpan.org/pod/Test::PostgreSQL\">Test::PostgreSQL</a>, which looked perfect, and then found <a href=\"https://metacpan.org/pod/Test::DBIx::Class\">Test::DBIx::Class</a>, which integrates smoothly with it. I thought, \"Great! Just write a use case and done.\" Ha! Not quite. My <strong>Ubuntu 24.04</strong> setup didn't want to play nicely with <strong>Test::PostgreSQL</strong> - some socket permission issues blocked me entirely. I decided to tinker and ended up creating <a href=\"https://metacpan.org/pod/Test::PostgreSQL::v2\">Test::PostgreSQL::v2</a>, which worked like a charm. Then came integrating it with <strong>Test::DBIx::Class</strong>, which needed a trait for my new module. After a little more work, I added <strong>Test::DBIx::Class::SchemaManager::Trait::Testpostgresqlv2</strong>, and voila - now anyone using <strong>Test::DBIx::Class</strong> with <strong>PostgreSQL</strong> can benefit. For me, that meant I finally had a reliable way to reproduce <a href=\"https://rt.cpan.org/Public/Bug/Display.html?id=133621\">the issue</a> and verify the fix, like in this unit test for <strong>DBIx::Class::Async v0.64</strong>: <a href=\"https://github.com/manwar/DBIx-Class-Async/blob/master/t/156-resultset-inflate-datetime.t\">t/156-resultset-inflate-datetime.t</a>. Feels good to see it all working.",
+      "While I was in tinkering mode, I also revisited <strong>Test::Spelling</strong>. I always get tripped up on <strong>British</strong> vs. <strong>American</strong> English in POD, and I wanted a unit test that could work across all my modules. Initially, I had to manually add stopwords per module - tedious! So I upgraded <strong>Test::Spelling</strong> and created <a href=\"https://metacpan.org/pod/Test::Spelling::Stopwords\">Test::Spelling::Stopwords</a>. Now I can generate stopwords automatically, and the same script works for every module. It's been a real time-saver, and I'm even using it in <strong>DBIx::Class::Async</strong> here: <a href=\"https://github.com/manwar/DBIx-Class-Async/blob/master/t/spell-pod.t\">t/spell-pod.t</a>",
+      "It's funny how small tools and little tweaks can make such a difference. Between Olaf's continuous improvements, Dave's clever README trick, and the testing adventures I've had, I feel reminded of what makes our Perl community special - curiosity, persistence, and a little bit of playful tinkering.",
+      "Enjoy rest of the newsletter and stay safe & healthy."
+   ],
+   "subject" : "Perl with MetaCPAN"
 }
