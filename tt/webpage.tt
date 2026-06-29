@@ -141,6 +141,10 @@
                        [%- IF e.author.pause -%]
                          (<a href="https://metacpan.org/author/[% e.author.pause %]">[% e.author.pause %]</a>)
                        [%- END -%]
+                       [%- SET linkedin_url = e.author.linkedin || e.author.linked -%]
+                       [%- IF linkedin_url -%]
+                          <a href="[% linkedin_url %]" title="LinkedIn"><img src="[% UNLESS web %]https://perlweekly.com[% END %]/img/linkedin32.png" width="16" height="16" style="vertical-align: middle; margin-left: 5px;" alt="LinkedIn" /></a>
+                       [%- END -%]
                   </span>
                [%- END -%]
                <p style="font-size: 16px">
