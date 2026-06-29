@@ -121,7 +121,7 @@ sub check_chapters {
 			my @invalid_fields = grep { !$valid_fields{$_} } keys %$e;
 			if (@invalid_fields) {
 				my $title = $e->{title} // '';
-				warn "Invalid field(s) '"
+				die "Invalid field(s) '"
 					. join( "', '", sort @invalid_fields )
 					. "' in entry '$title' (url: $e->{url}) in issue $issue\n";
 			}
