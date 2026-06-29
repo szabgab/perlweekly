@@ -38,11 +38,12 @@
             ([% a.nick %])
       [% END %]
   </td>
-  <td align="left">
-      [% IF a.linkedin %]
-            <a href="[% a.linkedin %]">LinkedIn</a>
-      [% END %]
-  </td>
+   <td align="left">
+      [%- SET linkedin_url = a.linkedin || a.linked -%]
+      [%- IF linkedin_url -%]
+             <a href="[% linkedin_url %]"><img src="/img/linkedin32.png" alt="LinkedIn" /></a>
+      [%- END -%]
+   </td>
   <td align="left">
       [% IF a.pause %]
          <a href="https://metacpan.org/author/[% a.pause %]">[% a.pause %]</a>
