@@ -126,6 +126,9 @@ a { color: #04c; }
                   font-size: 18px;
                   font-weight: bold;
                   ">[% e.title | html %]</a>
+               [%- IF e.reddit -%]
+                 <a href="[% e.reddit %]" title="Reddit"><img src="[% UNLESS web %]https://perlweekly.com[% END %]/img/reddit32.png" width="16" height="16" style="vertical-align: middle; margin-left: 5px;" alt="Reddit" /></a>
+               [%- END -%]
                <br />
                [%- IF e.author -%]
                  <span style="font-size: 14px"> 
