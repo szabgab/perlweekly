@@ -8,7 +8,18 @@ The command `perl bin/generate.pl web all` generates the static web site in the 
 
 The command `perl bin/generate.pl web latest` generates the static web site only for the most recent edition in the `docs` folder.
 
+The source of each edition of the newsletter is in the `src/` folder in a JSON File numbered from `1.json`.
 
-* Aftere every change run `tidyall -a --refresh-cache` to make the Perl source code tidy.
+The HTML templates are in the `tt/` folder using Template Toolkit https://template-toolkit.org/
 
+The Perl source code is in the `bin` and in the `lib` folders.
+
+
+## Development instructions
+
+* After every change run `tidyall -a --refresh-cache` to make the Perl source code tidy.
+
+* Do NOT change the json files in the `src` folder unless explicitely asked to do it.
+
+* Run the tests: `perl Makefile.PL && make && make test` and make sure they are passing.
 
