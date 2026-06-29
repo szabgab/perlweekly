@@ -60,6 +60,18 @@ sub new {
 	}
 	$self->check_for_invalid_characters($issue);
 
+	$self->check_chapters( $issue, $strict );
+
+	$self->{$target} = 1;
+	$self->{issue}   = $issue;
+	$self->{number}  = $issue;
+
+	return $self;
+}
+
+sub check_chapters {
+	my ( $self, $issue, $strict ) = @_;
+
 	for my $ch ( @{ $self->{chapters} } ) {
 		my $id = lc $ch->{title};
 		$id =~ s/\W+/_/g;
@@ -85,12 +97,6 @@ sub new {
 #print "Invalid ts format for url $e->{url} in issue $issue: '$e->{ts}'.\n" if $e->{ts} !~ /^\d\d\d\d\.\d\d\.\d\d$/;
 		}
 	}
-
-	$self->{$target} = 1;
-	$self->{issue}   = $issue;
-	$self->{number}  = $issue;
-
-	return $self;
 }
 
 sub check_for_invalid_characters {
