@@ -91,6 +91,41 @@ sub check_chapters {
 			die "url field is mising in issue $issue for " . Dumper $e
 				if not $e->{url};
 
+			my @valid_fields = qw(title author text url ts tags);
+
+			# These conditional fields still need to be verified
+			# Maybe cleaned up
+			if ( $ch->{title} eq "Events" ) {
+				push @valid_fields, qw(begin end emphasize);
+			}
+			if ( $issue < 280 ) {
+				push @valid_fields, qw(link);
+			}
+			if ( $issue < 180 ) {
+				push @valid_fields, qw(map);
+			}
+			if ( $issue >= 779 ) {
+				push @valid_fields, qw(reddit);
+			}
+			if ( $issue == 169 ) {
+				push @valid_fields, qw(img img_title);
+			}
+			if ( $issue == 230 ) {
+				push @valid_fields, qw(comment);
+			}
+			if ( $issue == 600 ) {
+				push @valid_fields, qw(sponsor);
+			}
+			my %valid_fields = map { $_ => 1 } @valid_fields;
+
+			my @invalid_fields = grep { !$valid_fields{$_} } keys %$e;
+			if (@invalid_fields) {
+				my $title = $e->{title} // '';
+				warn "Invalid field(s) '"
+					. join( "', '", sort @invalid_fields )
+					. "' in entry '$title' (url: $e->{url}) in issue $issue\n";
+			}
+
 			#die "ts field missing for url $e->{url} in issue $issue.\n"
 			#	if not $e->{ts};
 
