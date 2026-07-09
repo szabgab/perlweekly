@@ -229,6 +229,8 @@ END_REGISTER
 		$t->process( "tt/$f.tt", {}, "$dir/$f.html" ) or die $t->error;
 	}
 
+	logos_page();
+
 	# Create sitemap.xml
 	my $URL   = 'https://perlweekly.com';
 	my @pages = { filename => "$URL/" };
@@ -241,6 +243,7 @@ END_REGISTER
 		latest.html
 		sponsors.html
 		promoting-perl-events.html
+		logos.html
 	);
 	push @pages, map { { filename => "$URL/archive/$_.html" } } 1 .. $max;
 	$t->process( 'tt/sitemap.tt', { pages => \@pages }, "$dir/sitemap.xml" )
@@ -484,5 +487,45 @@ sub generate_index_rss {
 	}
 
 	$rss->save("$dir/index.rss");
+}
+
+sub logos_page {
+	my @logos;
+	foreach my $file ( sort grep {-f} glob 'static/img/logo/*' ) {
+		my $name     = basename($file);
+		my $size     = -s $file;
+		my $size_str = sprintf( "%.1f KB", $size / 1024 );
+
+		# Extract dimensions
+		my ( $width, $height ) = ( 0, 0 );
+		if ( open my $fh, '<:raw', $file ) {
+			my $header;
+			read $fh, $header, 24;
+			close $fh;
+			if ( length($header) == 24 && substr( $header, 12, 4 ) eq 'IHDR' )
+			{
+				( $width, $height )
+					= unpack( 'NN', substr( $header, 16, 8 ) );
+			}
+		}
+
+		my $title = $name;
+		$title =~ s/\.png$//i;
+		$title =~ s/-/ /g;
+		$title = join ' ', map {ucfirst} split ' ', $title;
+
+		push @logos,
+			{
+			name   => $name,
+			title  => $title,
+			size   => $size_str,
+			width  => $width  || 'N/A',
+			height => $height || 'N/A',
+			};
+	}
+
+	my $t = PerlWeekly::Template->new();
+	$t->process( 'tt/logos.tt', { logos => \@logos }, "$dir/logos.html" )
+		or die $t->error;
 }
 

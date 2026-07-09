@@ -1,0 +1,470 @@
+[% INCLUDE tt/incl/header.tt %]
+  <title>Perl Weekly - Logos and Branding Assets</title>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Premium Brand assets design */
+    :root {
+      --primary-color: #004065;
+      --primary-hover: #005575;
+      --accent-color: #f7a81b;
+      --bg-gradient-light: linear-gradient(135deg, #f5f8fa 0%, #e4ecf2 100%);
+      --card-bg-light: rgba(255, 255, 255, 0.85);
+      --text-main-light: #1e293b;
+      --text-muted-light: #64748b;
+      --border-color-light: rgba(226, 232, 240, 0.8);
+      
+      --bg-gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --card-bg-dark: rgba(30, 41, 59, 0.7);
+      --text-main-dark: #f8fafc;
+      --text-muted-dark: #94a3b8;
+      --border-color-dark: rgba(51, 65, 85, 0.5);
+
+      --transition-speed: 0.3s;
+    }
+
+    body.brand-page {
+      font-family: 'Outfit', sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background var(--transition-speed), color var(--transition-speed);
+      background: var(--bg-gradient-light);
+      color: var(--text-main-light);
+      min-height: 100vh;
+    }
+
+    body.brand-page.dark-mode {
+      background: var(--bg-gradient-dark);
+      color: var(--text-main-dark);
+    }
+
+    .brand-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .theme-btn {
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: all var(--transition-speed) ease;
+    }
+
+    .theme-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    body.brand-page.dark-mode .theme-btn {
+      background: var(--accent-color);
+      color: #0f172a;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      margin-bottom: 50px;
+      padding: 40px;
+      background: var(--card-bg-light);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 24px;
+      border: 1px solid var(--border-color-light);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all var(--transition-speed);
+    }
+
+    body.brand-page.dark-mode .hero-section {
+      background: var(--card-bg-dark);
+      border-color: var(--border-color-dark);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    body.brand-page.dark-mode .hero-title {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted-light);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    body.brand-page.dark-mode .hero-subtitle {
+      color: var(--text-muted-dark);
+    }
+
+    /* Grid Layout */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 30px;
+    }
+
+    /* Logo Card */
+    .logo-card {
+      background: var(--card-bg-light);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid var(--border-color-light);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                  box-shadow 0.4s, 
+                  border-color var(--transition-speed);
+      display: flex;
+      flex-direction: column;
+    }
+
+    body.brand-page.dark-mode .logo-card {
+      background: var(--card-bg-dark);
+      border-color: var(--border-color-dark);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 64, 101, 0.3);
+    }
+
+    body.brand-page.dark-mode .logo-card:hover {
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    /* Checkerboard Preview */
+    .logo-preview-container {
+      padding: 30px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      /* Checkerboard background */
+      background-color: #f1f5f9;
+      background-image: linear-gradient(45deg, #e2e8f0 25%, transparent 25%), 
+                        linear-gradient(-45deg, #e2e8f0 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #e2e8f0 75%), 
+                        linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      border-bottom: 1px solid var(--border-color-light);
+    }
+
+    body.brand-page.dark-mode .logo-preview-container {
+      background-color: #0f172a;
+      background-image: linear-gradient(45deg, #1e293b 25%, transparent 25%), 
+                        linear-gradient(-45deg, #1e293b 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #1e293b 75%), 
+                        linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+      border-color: var(--border-color-dark);
+    }
+
+    .logo-img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      transition: transform 0.5s ease;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.08));
+    }
+
+    .logo-card:hover .logo-img {
+      transform: scale(1.08);
+    }
+
+    /* Details Area */
+    .logo-details {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .logo-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 10px 0;
+      word-break: break-all;
+      line-height: 1.4;
+    }
+
+    .logo-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 0.85rem;
+      color: var(--text-muted-light);
+      margin-bottom: 20px;
+    }
+
+    body.brand-page.dark-mode .logo-meta {
+      color: var(--text-muted-dark);
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Actions */
+    .logo-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .btn {
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all var(--transition-speed) ease;
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary-color);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    body.brand-page.dark-mode .btn-primary {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    body.brand-page.dark-mode .btn-primary:hover {
+      background: #7dd3fc;
+    }
+
+    .btn-secondary {
+      background: rgba(226, 232, 240, 0.8);
+      color: #334155;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(203, 213, 225, 0.8);
+    }
+
+    body.brand-page.dark-mode .btn-secondary {
+      background: rgba(51, 65, 85, 0.6);
+      color: #e2e8f0;
+    }
+
+    body.brand-page.dark-mode .btn-secondary:hover {
+      background: rgba(71, 85, 105, 0.8);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show {
+      bottom: 30px;
+    }
+
+    /* Back Link */
+    .back-to-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 30px;
+      transition: transform 0.2s;
+    }
+
+    .back-to-home:hover {
+      transform: translateX(-4px);
+      color: var(--primary-hover);
+    }
+
+    body.brand-page.dark-mode .back-to-home {
+      color: #38bdf8;
+    }
+
+    body.brand-page.dark-mode .back-to-home:hover {
+      color: #7dd3fc;
+    }
+
+    /* Footer adjustments */
+    #footer-logos {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: var(--text-muted-light);
+      border-top: 1px solid var(--border-color-light);
+      padding-top: 30px;
+    }
+
+    body.brand-page.dark-mode #footer-logos {
+      color: var(--text-muted-dark);
+      border-color: var(--border-color-dark);
+    }
+  </style>
+</head>
+<body class="brand-page" id="logos-page">
+  <div class="brand-container">
+    <a href="/" class="back-to-home">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Back to Perl Weekly
+    </a>
+
+    <div class="theme-toggle-container">
+      <button class="theme-btn" id="theme-toggle" aria-label="Toggle Theme">
+        <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <span>Toggle Dark Mode</span>
+      </button>
+    </div>
+
+    <header class="hero-section">
+      <h1 class="hero-title">Perl Weekly Logos</h1>
+      <p class="hero-subtitle">Official high-quality graphics and branding assets for the Perl Weekly newsletter. Feel free to use these to link to us or promote the newsletter.</p>
+    </header>
+
+    <main>
+      <div class="logo-grid">
+        [% FOR logo IN logos %]
+          <div class="logo-card">
+            <div class="logo-preview-container">
+              <img src="/img/logo/[% logo.name %]" alt="[% logo.title %]" class="logo-img" loading="lazy" />
+            </div>
+            <div class="logo-details">
+              <h2 class="logo-name">[% logo.title %]</h2>
+              <div class="logo-meta">
+                <div class="meta-item" title="Dimensions">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>
+                  [% logo.width %] x [% logo.height %] px
+                </div>
+                <div class="meta-item" title="File Size">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                  [% logo.size %]
+                </div>
+              </div>
+              <div class="logo-actions">
+                <a href="/img/logo/[% logo.name %]" download="[% logo.name %]" class="btn btn-primary">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Download
+                </a>
+                <button onclick="copyUrl('/img/logo/[% logo.name %]')" class="btn btn-secondary">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  Copy Link
+                </button>
+              </div>
+            </div>
+          </div>
+        [% END %]
+      </div>
+    </main>
+
+    <footer id="footer-logos">
+      <p>Perl Weekly is curated by Gabor Szabo and other active Perl editors. Static site generated via Perl & Template Toolkit.</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    Link copied to clipboard!
+  </div>
+
+  <script>
+    // Theme Toggle Functionality
+    const body = document.body;
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const isDark = localStorage.getItem('theme') === 'dark';
+
+    // Initial state
+    if (isDark) {
+      body.classList.add('dark-mode');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const darkEnabled = body.classList.contains('dark-mode');
+      localStorage.setItem('theme', darkEnabled ? 'dark' : 'light');
+    });
+
+    // Copy URL to Clipboard
+    function copyUrl(path) {
+      const fullUrl = window.location.origin + path;
+      navigator.clipboard.writeText(fullUrl).then(() => {
+        showToast();
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+    // Show Toast Notification
+    function showToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+  </script>
+
+  [% INCLUDE tt/incl/tracking.tt %]
+</body>
+</html>
