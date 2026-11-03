@@ -116,6 +116,9 @@ sub check_chapters {
 			if ( $issue == 600 ) {
 				push @valid_fields, qw(sponsor);
 			}
+			if ( $id eq "events" ) {
+				push @valid_fields, qw(online);
+			}
 			my %valid_fields = map { $_ => 1 } @valid_fields;
 
 			my @invalid_fields = grep { !$valid_fields{$_} } keys %$e;

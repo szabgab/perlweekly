@@ -445,7 +445,8 @@ sub events_page {
 		}
 
         my $day = (split /T/, $dstart)[0];
-        $markdown .= "* $day [$entry->{title}]($entry->{url})\n";
+        my $emojy = $entry->{online} ? "📺" : "🏫" ;
+        $markdown .= "* $emojy $day [$entry->{title}]($entry->{url})\n";
 		$event->add_properties(
 			summary     => $entry->{title},
 			description => join( "\n\n", $entry->{url}, $entry->{text} ),
