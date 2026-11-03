@@ -417,7 +417,7 @@ sub events_page {
 	$t->process( 'tt/events.tt', { events => \@entries }, "$dir/events.html" )
 		or die $t->error;
 
-    my $markdown = "";
+	my $markdown = "";
 	my $prev_date;
 	for my $entry (@entries) {
 		my $event = Data::ICal::Entry::Event->new;
@@ -444,9 +444,9 @@ sub events_page {
 				DateTime::Duration->new( hours => 2, minutes => 0 ) );
 		}
 
-        my $day = (split /T/, $dstart)[0];
-        my $emojy = $entry->{online} ? "📺" : "🏫" ;
-        $markdown .= "* $emojy $day [$entry->{title}]($entry->{url})\n";
+		my $day   = ( split /T/, $dstart )[0];
+		my $emojy = $entry->{online} ? "📺" : "🏫";
+		$markdown .= "* $emojy $day [$entry->{title}]($entry->{url})\n";
 		$event->add_properties(
 			summary     => $entry->{title},
 			description => join( "\n\n", $entry->{url}, $entry->{text} ),
@@ -463,8 +463,8 @@ sub events_page {
 	open my $fh, '>', 'docs/perlweekly.ical' or die;
 	print $fh $calendar->as_string;
 
-    open my $out, '>', 'events.md' or die;
-    print $out $markdown;
+	open my $out, '>', 'events.md' or die;
+	print $out $markdown;
 }
 
 sub generate_index_rss {
