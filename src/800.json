@@ -1,0 +1,277 @@
+{
+   "date" : "2026-11-23",
+   "editor" : "mohammad_anwar",
+   "subject" : "Perl v5.45.5",
+   "header" : [
+      "Hi there,",
+      "Perl v5.45.5 yet another development release emphasises a lot on improvements in regex but what caught my attention was the bug fixes that solve the nesting lvalue substr buggy issues which originated from version 5.44.0. Please find detailed description in <a href=\"https://metacpan.org/release/EHERMAN/perl-5.45.5/view/pod/perldelta.pod\">perldelta</a> for the release.",
+      "Last Saturday, I got the opportunity to attend <strong>London Perl Workshop 2026</strong>. It was the most awaited event of the year. This time it was made even more special by the presence of <strong>Curtis Poe</strong>. He shared how he was AI skeptic at one point. As always the case, the talk was well received by all those presented there. Don't worry if you missed it, LPW organisers likely make the video public soon. <strong>Dave Cross</strong> couldn't attend the event last year but this time he made up by giving two talks. Infact one talk and one workshop. I enjoyed both, the workshop was fun to attend. There is plenty to learn by just listening to him. I thoroughly enjoyed it. <strong>Paul Evans</strong> had a fun talk. I had no clue about the topic, <strong>Armada</strong>, to be very honest with you but as the talk progressed, I got to learn about it. For me the bonus was section where he shared the latest changes in Perl. In fact, it wasn't planned initial as he confessed. He thought I was going to give talk but when I told him I am not given any talk this time. He quickly prepared the notes during the short break. At the end of the talk, I teased him with my ususal question, <strong>what the status of support for roles in experimental class feature?</strong>. His response was same as last year, nothing has changed unfortunately. I had a quick chat with hum at the end of the event when everyone was heading off to the pub and he explained his point of view with regards to the support of roles in class feature. The discussion was around my book, <a href=\"https://design-patterns-in-modern-perl.com\">Design Patterns in Modern Perl</a> and how I used <strong>Moo::Role</strong> in some of the design pattern examples. I promised to get back to him with my reasoning.",
+      "This year's event had another hightlight, <strong>Dave Cross</strong>'s book launch of <a href=\"https://perlhacks.com/2026/11/data-munging-with-perl-twenty-five-years-later\">Data Munging with Perl (2nd edition)</a>. I was lucky to receive the signed copy of his book. Thank you, <strong>Dave</strong>. I will keep it as a prized possesion.",
+      "Last but not least, the annoucement of <strong>FOSDEM</strong> participation by <strong>Theo van Hoesel</strong>. I have never attended <strong>FOSDEM</strong> but this time I am thinking of not just attending but give a talk too. I will submit my proposal in the next day or two. We need more <strong>Perl</strong> talk. So if you are available then please do submit your proposal. For more information, please checkout this <a href=\"https://blogs.perl.org/users/vanhoesel/2026/11/fosdem-2027-call-for-participation.html\">post</a> by <strong>Theo van Hoesel</strong>.",
+      "I will share the detailed event report soon, so watch this space, till then enjoy rest of the newsletter."
+   ],
+   "footer" : [
+   ],
+   "chapters" : [
+      {
+         "title" : "Sponsors",
+         "sponsor" : 1,
+         "entries" : [
+         ]
+      },
+      {
+         "title" : "Announcements",
+         "entries" : [
+            {
+               "title" : "Data Munging with Perl: Twenty-Five Years Later",
+               "reddit": "",
+               "author" : "dave_cross",
+               "text" : "Celebrating the quarter-century anniversary of the second edition of Data Munging with Perl, Dave examines how data formats and tools have evolved since 2001, from frail HTML::TokeParser to XML buzzwords to APIs, JSON/YAML and proper Unicode. Meanwhile, the essential UNIX filter model of linking small, targeted tools has not changed much, though it has been updated with modern Perl concepts like using v5.36 and lexical filehandles.",
+               "url" : "https://perlhacks.com/2026/11/data-munging-with-perl-twenty-five-years-later/",
+               "ts" : "2026.11.22"
+            },
+            {
+               "title" : "Perl v5.45.5 - Development Release",
+               "reddit": "",
+               "author" : "eric_herman",
+               "text" : "The newly development released Perl v5.45.5 emphasises a lot on improvements in regex based on trie and speed-ups in Aho-Corasick scanning including Boyer-Moore-Horspool skipping and case insensitive improvements in trie as well as cached lookups through isa and deterministic parser error messages. There are important bug fixes that solve the nesting lvalue substr buggy issues which originated from version 5.44.0, initialisation of ${^UTF8CACHE} in the new threads and flags in PL_sv_zero so that the serialisers can consider zero as a number rather than \"0\".",
+               "url" : "https://metacpan.org/release/EHERMAN/perl-5.45.5/view/pod/perldelta.pod",
+               "ts" : "2026.11.19"
+            }
+         ]
+      },
+      {
+         "title" : "Articles",
+         "entries" : [
+            {
+               "title" : "One Korean title, three different lengths: testing Unicode keys in Perl",
+               "reddit": "",
+               "author" : "rillbyteonion57",
+               "text" : "Using the Korean title as a concise Test::More fixture, rillbyteonion57 explains the problem of handling text in Perl when code points, grapheme clusters, and UTF-8 byte lengths are not distinguished. The article provides a simple pattern for catalog searching where both the insertion and searching operations use normalisation via NFC while keeping the original strings intact. Additionally, he points out the common mistake of confusing utf8 and :encoding(UTF-8) in file I/O operations.",
+               "url" : "https://blogs.perl.org/users/rillbyteonion57/2026/11/one-korean-title-three-different-lengths-testing-unicode-keys-in-perl.html",
+               "ts" : "2026.11.22"
+            },
+            {
+               "title" : "Adventures in CPAN Distribution Installation",
+               "reddit": "",
+               "author" : "rob_lauer",
+               "text" : "In his article, Rob examines the reason why .packlist files disappear every time a new version of CPAN is released when you set INSTALL_BASE. He reveals that the problem stems from ExtUtils::MakeMaker not properly understanding the SYSTEM SITEARCHEXP when it goes through the process of writing to INSTALLSITEARCH. He discusses the original debate about the status of packlists and details a recent PR concerning a fix to the matter of file pathfinding.",
+               "url" : "https://rclauer.medium.com/adventures-in-cpan-distribution-installation-5198ee2fb314",
+               "ts" : "2026.11.19"
+            },
+            {
+               "title" : "Perl: An Exercise in Write-Only Programming",
+               "reddit": "",
+               "author" : "jean_luc_martel",
+               "text" : "Jean-Luc Martel, has published a fun and entertaining article in which he discusses the features of Perl programming that can be very useful but may also make programming in this language rather difficult, such as: embedded regex code and stateful matching, coercion DWIM, tie, AUTOLOAD, typeglobs, and early cgi-bin days.",
+               "url" : "https://dev.to/jlmartel/perl-an-exercise-in-write-only-programming-24o3",
+               "ts" : "2026.11.16"
+            }
+         ]
+      },
+      {
+         "title" : "Podcast",
+         "entries" : [
+            {
+               "title" : "The Underbar, episode 12",
+               "reddit": "",
+               "author" : "",
+               "text" : "A new episode of The Underbar podcast is out. Vienna.pm, the Perl Mongers group, gave the Perl Toolchain Summit 2026 its local organizers team. During the summit, we jumped at the opportunity to discuss with members Thomas Klausner and Michael Kröll. We talked about the history and future of the group, got on a side chat about the Toolchain Summit, had a long discussion about sponsoring (Michael is the CTO of Geizhals, a TPRF sponsor) and various ways to support Perl development, and finished with idle talk about future events in Vienna.",
+               "url" : "https://underbar.cpan.io/episodes/12/",
+               "ts" : "2026.11.22"
+            }
+         ]
+      },
+      {
+         "title" : "Grants",
+         "entries" : [
+            {
+               "title" : "Maintaining Perl 5 Core (Dave Mitchell): October 2026",
+               "reddit": "",
+               "author" : "",
+               "text" : "",
+               "url" : "https://news.perlfoundation.org/post/maintaining_perl_dave_mitchell_october_2026",
+               "ts" : "2026.11.10"
+            },
+            {
+               "title" : "PEVANS Core Perl 5: Grant Report for October 2026",
+               "reddit": "",
+               "author" : "",
+               "text" : "",
+               "url" : "https://news.perlfoundation.org/post/pevans_core_dev_october_2026",
+               "ts" : "2026.11.10"
+            },
+            {
+               "title" : "Maintaining Perl (Tony Cook) October 2026",
+               "reddit": "",
+               "author" : "",
+               "text" : "",
+               "url" : "https://news.perlfoundation.org/post/maintaining_perl_tonyc_october_2026",
+               "ts" : "2026.11.10"
+            }
+         ]
+      },
+      {
+         "title" : "Slides",
+         "entries" : [
+            {
+               "title" : "London Perl Workshop (2026)",
+               "reddit": "",
+               "author" : "dave_cross",
+               "text" : "Please find the presentation slides by <strong>Dave Cross</strong> if you missed the event.",
+               "url" : "https://talks.davecross.co.uk/event/london-perl-workshop-2026/",
+               "ts" : "2026.11.21"
+            }
+         ]
+      },
+      {
+         "title" : "The Weekly Challenge",
+         "header" : "<a href=\"https://theweeklychallenge.org\">The Weekly Challenge</a> by <a href=\"https://manwar.org\">Mohammad Sajid Anwar</a> will help you step out of your comfort-zone. You can even win prize money of $50 by participating in the weekly challenge. We pick one champion at the end of the month from among all of the contributors during the month, thanks to the sponsor Marc Perry.",
+         "entries" : [
+            {
+               "author" : "mohammad_anwar",
+               "tags" : [],
+               "text" : "Welcome to a new week with a couple of fun tasks \"\" and \"\". If you are new to the weekly challenge then why not join us and have fun every week. For more information, please read the <a href=\"https://theweeklychallenge.org/faq\">FAQ</a>.",
+               "title" : "The Weekly Challenge - 401",
+               "ts" : "2026.11.23",
+               "url" : "https://theweeklychallenge.org/blog/perl-weekly-challenge-401"
+            },
+            {
+               "author" : "mohammad_anwar",
+               "tags" : [],
+               "text" : "Enjoy a quick recap of last week's contributions by Team PWC dealing with the \"\" and \"\" tasks in Perl and Raku. You will find plenty of solutions to keep you busy.",
+               "title" : "RECAP - The Weekly Challenge - 400",
+               "ts" : "2026.11.23",
+               "url" : "https://theweeklychallenge.org/blog/recap-challenge-400"
+            },
+            {
+               "author" : "ali",
+               "tags" : [],
+               "text" : "This post shares clear and efficient Perl solutions for The Weekly Challenge #400, combining standard practices of strict/warnings and Test::More with remedial decisions. I find especially interesting the O(1) fast lookup of %valid hash alongside early exit on achieving the goal in the breadth-first search, as well as the innovative application of List::Util's reduce and max functions to conduct gap counting.",
+               "title" : "TWC400",
+               "ts" : "2026.11.17",
+               "url" : "https://deadmarshal.blogspot.com/2026/11/twc400.html"
+            },
+            {
+               "author" : "arne_sommer",
+               "tags" : [],
+               "text" : "In his article, Arne writes about The Weekly Challenge #400 in simple yet idiomatic Raku language while applying various concepts of Raku including the subset input validation, .comb, .repeated, and Bag. I find it quite appealing how he demonstrates the evolution of the idea from the initial working prototype to the improved version.",
+               "title" : "Genetic Interval",
+               "ts" : "2026.11.21",
+               "url" : "https://raku-musings.com/genetic-interval.html"
+            },
+            {
+               "author" : "bob_lied",
+               "tags" : [],
+               "text" : "Bob presents an exciting tutorial for The Weekly Challenge #400 that uses smart list-processing techniques (grepping, sliding, and maximising) and a straightforward, simple breadth-first search algorithm. His modularisation of the problem is exemplary and the explicit trade-offs he discusses makes it an entertaining read.",
+               "title" : "Don't repeat yourself",
+               "ts" : "2026.11.20",
+               "url" : "https://dev.to/boblied/pwc-400-dont-repeat-yourself-4lak"
+            },
+            {
+               "author" : "jaldhar_vyas",
+               "tags" : [],
+               "text" : "For the Perl Weekly Challenge #400, Jaldhar demonstrates straightforward and comparable solutions in Raku and Perl, using regex filtering and adjacent-gap checks in Largest Interval problem and breadth-first search technique in Minimum Genetic Mutation. I particularly like the way idiomatic Raku code like Set and ∈ is converted into idiomatic Perl and the use of exit conditions and index pointer queue traversal.",
+               "title" : "Perl Weekly Challenge: Week 400",
+               "ts" : "2026.11.22",
+               "url" : "https://www.braincells.com/perl/2026/11/perl_weekly_challenge_week_400.html"
+            },
+            {
+               "author" : "jorg_sommrey",
+               "tags" : [],
+               "text" : "Foregoing brute-force iteration in favour of decimal transition points, block-skipping, and OEIS sequence ties, this post approaches The Weekly Challenge #400 from a mathematical, optimisation-focused angle. It also presents matching implementations in both Perl and J that help make the development of the algorithm particularly interesting to follow.",
+               "title" : "Non-Repeating Mutations",
+               "ts" : "2026.11.20",
+               "url" : "https://github.sommrey.de/the-bears-den/2026/11/20/ch-400.html"
+            },
+            {
+               "author" : "lubos_kolouch",
+               "tags" : [],
+               "text" : "In his article, Lubos gives clear and concise Perl and Python code along with complexity analysis of the methods used and input validation using Type::Params and type hints as well as using collections.deque for BFS queue operations. Presenting Perl and Python solutions with edge case checks has resulted in a write-up that is easy to understand.",
+               "title" : "The Weekly Challenge 400",
+               "ts" : "2026.11.21",
+               "url" : "https://kolouch.net/perlweeklychallenge/blog-400.html"
+            },
+            {
+               "author" : "matthias_muth",
+               "tags" : [],
+               "text" : "In his article, Matthias presents elegant and up-to-date solutions in Perl v5.36. He explains simply why trailing gaps close only when another valid number comes after it, and how he used bitwise string XOR technique via ^ to identify single-base mutations. He employs breadth-first search method in a straightforward way, too, which makes it much simpler to comprehend his approach.",
+               "title" : "Don't Jump Mutations",
+               "ts" : "2026.11.22",
+               "url" : "https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-400/matthias-muth/README.md"
+            },
+            {
+               "author" : "packy_anderson",
+               "tags" : [],
+               "text" : "Packy presents a colorful, multilingual guide to The Weekly Challenge #400 with implementations in Raku, Perl, Python, and Elixir, providing an opportunity to compare how various languages implement processing of filtering, dictionaries/maps, and recursion for shortest path. I love his entertaining yet honest debugging comments, like highlighting Raku's operator precedence in REPL and observing idiomatic constructs like defaultdict, deque, and Access in Elixir.",
+               "title" : "We rolled down the long and winding interstate in our '53 DeSota…",
+               "ts" : "2026.11.18",
+               "url" : "https://packy.dardan.com/b/13f"
+            },
+            {
+               "author" : "roger_bell_west",
+               "tags" : [],
+               "text" : "Roger has put together a practical and insightful multi-language analysis of The Weekly Challenge #400. He presents the comparison of two methods: the Perl approach with short-circuit digit checking and the Rust approach employing already created adjacency graph traversal. I highly appreciate the very honest engineering choices that Roger made by combining short-circuit duplicate checking with completely eliminating language-specific techniques.",
+               "title" : "Genetic Interval",
+               "ts" : "2026.11.22",
+               "url" : "https://blog.firedrake.org/archive/2026/11/The_Weekly_Challenge_400__Genetic_Interval.html"
+            },
+            {
+               "author" : "robbie_hatley",
+               "tags" : [],
+               "text" : "In the article, Robbie provides a brief and logical summary of Perl language that abstains from keeping the whole sequence of the Largest Interval and chooses to keep the information about the length of the longest interval. In his portion of writing on Minimum Genetic Mutation, he describes how to build a chain of mutations that never coincide the same at any step in the process.",
+               "title" : "The Weekly Challenge #400",
+               "ts" : "2026.11.18",
+               "url" : "https://hatley-software.blogspot.com/2026/11/robbie-hatleys-solutions-in-perl-for_0277404226.html"
+            }
+         ]
+      },
+      {
+         "title" : "Perl Tutorial",
+         "header" : "A section for newbies and for people who need some refreshing of their Perl knowledge. If you have questions or suggestions about the articles, let me know and I'll try to make the necessary changes. The included articles are from the <a href=\"https://perlmaven.com/perl-tutorial\">Perl Maven Tutorial</a> and are part of the <a href=\"https://leanpub.com/perl-maven\">Perl Maven eBook</a>.",
+         "entries" : [
+         ]
+      },
+      {
+         "title" : "Rakudo",
+         "entries" : [
+            {
+               "author" : "liztormato",
+               "tags" : [],
+               "text" : "",
+               "title" : "2026.46 Secure Release",
+               "ts" : "2026.11.17",
+               "url" : "https://rakuweekly.blog/2026/11/17/2026-46-secure-release/"
+            }
+         ]
+      },
+      {
+         "title" : "Training",
+         "entries" : [
+         ]
+      },
+      {
+         "title" : "Weekly collections",
+         "entries" : [
+            {
+              "title" : "NICEPERL's lists",
+              "author" : "miguel_prz",
+              "url" : "http://niceperl.blogspot.com/",
+              "text" : "<a href=\"https://niceperl.blogspot.com/2026/11/dcxxvii-21-great-cpan-modules-released.html\">Great CPAN modules released last week</a>.",
+              "ts" : "2026.11.21"
+            }
+         ]
+      },
+      {
+         "title" : "The corner of Gabor",
+         "header" : "A couple of entries sneaked in by Gabor.",
+         "entries" : [
+         ]
+      },
+      {
+         "title" : "Events",
+         "entries" : [
+         ]
+      }
+   ]
+}
